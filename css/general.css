@@ -1,0 +1,59 @@
+:root {
+  --card-bg-color: white;
+  --text-color: #262626;
+  --text-color-grey: #999999;
+  --bx-shadow-color: #00000063;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+
+html,
+body {
+  height: 100%;
+  scrollbar-color: transparent;
+}
+
+body {
+  background-color: #fafafa;
+}
+
+.container {
+  max-width: 935px;
+  width: 100%;
+  padding: 0;
+}
+
+.container-top {
+  padding-top: 100px;
+}
+
+.content-container {
+  padding-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 1000px) {
+  .content-container {
+    padding-top: 20px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 735px) {
+  .container-top {
+    padding-top: 75px;
+  }
+}
+@media (max-width: 640px) {
+  :root {
+    --card-bg-color: #fafafa;
+  }
+
+  .content-container {
+    padding-top: 0;
+  }
+}
