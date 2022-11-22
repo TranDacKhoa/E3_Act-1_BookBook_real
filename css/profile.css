@@ -1,6 +1,17 @@
+* {
+  padding: 0;
+  box-sizing: border-box;
+}
+.profile-container {
+  width: 100%;
+}
 .profile-wrapper {
   display: flex;
   align-items: center;
+  width: 100%;
+  margin: 10px auto;
+  padding: 20px;
+  border: 1px solid #f0f0f0;
 }
 
 .profile__profile-image-wrapper {
@@ -140,4 +151,18 @@
   .profile__profile-follower-wrapper a {
     color: var(--text-color-grey);
   }
+}
+.posts-container {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  column-gap: 20px;
+  padding: auto;
+}
+.content-card {
+  overflow: hidden;
+  margin: 0 auto;
+}
+.post-card > a > img {
+  height: 350px;
 }
