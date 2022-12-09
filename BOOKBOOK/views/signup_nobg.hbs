@@ -1,0 +1,61 @@
+<div class="container">
+    <header>
+        <h2>Register</h2>
+    </header>
+    <form id="form-signup" class="form">
+        <div class="form-group">
+            <label for="fullname">Full name </label>
+            <input class="fullname" id="fullname" placeholder="eg. Alex Wu" type="text" minlength="6"
+                maxlength="30" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle">
+                <div class="errorInfo">Requiring to capitalize the first letter of each word.</div>
+            </i>
+            <small>Error message</small>
+        </div>
+        <div class="form-group">
+            <label for="username">User name</label>
+            <input class="username" id="username" placeholder="eg. alex978" type="text" maxlength="30" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle">
+                <div class="errorInfo">At least 6 characters including alphabet letters, numbers or _
+                    (underscore)
+                    and not begun with a digit.
+                </div>
+            </i>
+            <small>Error message</small>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input class="email" id="email" placeholder="eg. alex@example.com" type="email" maxlength="40" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle">
+                <div class="errorInfo">A valid email following regular-mail-format.</div>
+            </i>
+            <small>Error message</small>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone number</label>
+            <input class="phone" id="phone" placeholder="0999123123" type="tel" maxlength="10" />
+            <i class=" fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle">
+                <div class="errorInfo">10 digits begun with number '0'.</div>
+            </i>
+            <small>Error message</small>
+        </div>
+        <div class="form-group">
+            <label for="birthday">Birthday</label>
+            <input id="birthday" class="birthday" type="date" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle">
+                <div class="errorInfo">Your age must between 15 and 55.</div>
+            </i>
+            <small>Error message</small>
+        </div>
+        <input type="submit" value="Sign Up" />
+    </form>
+    <footer>
+        <div>Already have an account? <a href="/user/login">Log in</a></div>
+    </footer>
+</div>

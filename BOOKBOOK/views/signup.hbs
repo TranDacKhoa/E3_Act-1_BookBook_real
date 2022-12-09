@@ -1,0 +1,95 @@
+<div class="container">
+    <div class="main-container">
+        <img id="cover-pic" src="./img/cover.jpg" alt="">
+        <div class="signup-container form-container">
+            <header>
+                <h2>Register</h2>
+            </header>
+            <form id="form-signup" class="form">
+
+                <div class="form-group">
+                    <label for="fullname">Full name </label>
+                    <input class="fullname" id="fullname" placeholder="eg. Alex Wu" type="text" required/>
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle">
+                        <div class="errorInfo">Requiring to capitalize the first letter of each word.</div>
+                    </i>
+                    <small>Error message</small>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input class="username" id="username" placeholder="eg. alex978" type="text" required/>
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle">
+                        <div class="errorInfo">Username must not begin with a digit and contain 
+                            at least 6 characters including alphabet letters, numbers or _ (underscore)
+                        </div>
+                    </i>
+                    <small>Error message</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input class="email" id="email" placeholder="eg. alex@example.com" type="email" required/>
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle">
+                        <div class="errorInfo">A valid email following regular-mail-format.</div>
+                    </i>
+                    <small>Error message</small>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input class="password" id="password" placeholder="Password" type="password" required/>
+                    <i class="fas bx-error-circle error-icon"></i>
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+                <div class="form-group">
+                    <label for="cpassword">Confirm password</label>
+                    <input class="password" id="cpassword" placeholder="Password" type="password" required/>
+                    <i class="fas bx-error-circle error-icon"></i>
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+                <div class="form-group" id="sex-group">
+                    <label>Sex</label>
+                    <div class="radio-input" id="input-sex">
+                        <input name="sex" id="male" type="radio" required>
+                        <label class="genner" for="male">Male</label>
+                        <input name="sex" id="female" type="radio">
+                        <label class="genner" for="female">Female</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone number</label>
+                    <input class="phone" id="phone" placeholder="0999123123" type="tel" maxlength="10" required/>
+                    <i class=" fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle">
+                        <div class="errorInfo">10 digits begun with number '0'</div>
+                    </i>
+                    <small>Error message</small>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of birth</label>
+                    <input id="dob" class="dob" type="date" required/>
+                    <i class="fas fa-check-circle"></i>
+                    {{!-- <i class="fas fa-exclamation-circle">
+                        <div class="errorInfo">Your age must between 15 and 55.</div>
+                    </i>
+                    <small>Error message</small> --}}
+                </div>
+                <div id="signup-btn">
+                    <input type="submit" value="Sign Up" />
+                    <footer>
+                        <div>Already have an account? <a href="/user/login">Log in</a></div>
+                    </footer>
+                </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
