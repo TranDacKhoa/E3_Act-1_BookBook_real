@@ -1,5 +1,7 @@
 const express = require("express")
 const userRouter = require("./routers/user.r")
+//const profileRouter = require("./routers/profile.r")
+const feedRouter = require("./routers/feed.r")
 //const adminRouter = require("./routers/admin.r")
 const bodyParser = require("body-parser")
 
@@ -19,7 +21,9 @@ require("./configs/hbs") (app)
 require("./configs/session") (app)
 
 // Router
-app.use('/user', userRouter)
+app.use('/', userRouter)
+//app.use('/', profileRouter)
+app.use('/', feedRouter)
 //app.use('/admin', adminRouter)
 
 // Root

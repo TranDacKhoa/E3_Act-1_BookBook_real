@@ -74,22 +74,6 @@ body {
   visibility: hidden;
 }
 
-.search {
-  width: 215px;
-  height: 28px;
-  background-color: #fafafa;
-  /* outline: none !important; */
-  border: solid 1px #dbdbdb;
-  border-radius: 3px;
-  color: var(--text-color);
-  text-align: center;
-}
-
-.search:focus {
-  padding: 3px 10px 3px 26px;
-  text-align: left;
-}
-
 .navbar-icon {
   margin-right: 20px;
 }
@@ -111,4 +95,8 @@ body {
 }
 .bi {
   height: 30px !important;
+}
+
+.hidden {
+  display: none;
 }

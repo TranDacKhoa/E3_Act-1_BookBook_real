@@ -1,148 +1,161 @@
-const nameRegex =
-  /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+)+$/;
+function validateLogin() {
+  const login_form = document.forms.namedItem("form-login")
 
-const usernameRegex = /^(?!\d)(\w){6,}$/;
-
-const emailRegex =
-  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-const telRegex = /^[0][0-9]{9}$/;
-
-var form = document.getElementById("form-signup");
-if (form) {
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    var valid = validateInputs();
-    if (valid) {
-      alert("Sign up successful!");
-      window.location = "index.html";
-    }
-  });
-}
-
-const formLogin = document.getElementById("form-login");
-if (formLogin) {
-  form = formLogin;
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (validateInputs()) {
-      alert("Checking account...");
-    }
-  });
-}
-
-function validateInputs() {
-  var allValid = true;
-  var arrGroup = form.getElementsByClassName("form-group");
-  for (let group of arrGroup) {
-    let input = group.querySelector("input");
-    if (validator(input)) {
-      setSuccessFor(input);
-    } else {
-      allValid = false;
-    }
+  if (validator(login_form[0])) {
+    setSuccess(login_form[0])
+    setSuccess(login_form[1])
+    return true
   }
-  return allValid;
-}
-function validator(input) {
-  var type = input.className;
-  switch (type) {
-    case "fullname":
-      return checkFullname(input);
-    case "username":
-      return checkUsername(input);
-    case "email":
-      return checkEmail(input);
-    case "phone":
-      return checkTel(input);
-    case "birthday":
-      return checkBirthday(input);
-    default:
-      return filledOut(input);
+  else {
+    setError(login_form[0])
+    return false
   }
 }
-function setSuccessFor(input) {
+
+let isDupUsername = false
+function validateSignup() {
+  const signup_form = document.forms.namedItem("form-signup")
+  let isValid = true
+
+  for (let i = 0; i < signup_form.length - 2; i++) {
+    if (signup_form[i].id == "male" || signup_form[i].id == "female") {
+      continue
+    }
+    if (signup_form[i].id == "password" || signup_form[i].id == "dob" || 
+        signup_form[i].id == "secretkey" || validator(signup_form[i])) {
+      setSuccess(signup_form[i])
+    }
+    else {
+      if (signup_form[i].id == "username" && isDupUsername) {
+        setError(signup_form[i], "has been used")
+      }
+      else {
+        setError(signup_form[i])
+      }
+      isValid = false
+    }
+  }
+
+  return isValid
+}
+
+function setSuccess(input) {
   const formControl = input.parentElement;
   formControl.className = "form-group success";
 }
-function raiseError(input, msg, prefix = true, longMSG = false) {
+
+function setError(input, msg = "is invalid", prefix = true, longMSG = false) {
   const formControl = input.parentElement;
   const small = formControl.querySelector("small");
   formControl.className = "form-group error";
   small.innerText = (prefix ? input.id : "") + " " + msg;
 }
 
-function filledOut(input) {
-  const inputValue = input.value.trim();
-  if (inputValue === "") {
-    raiseError(input, "can not be blank");
-    return false;
+function validator(input) {
+  switch (input.id) {
+    case "fullname":
+      return checkFullname(input.value)
+    case "username":
+      return checkUsername(input.value)
+    case "email":
+      return checkEmail(input.value)
+    case "phone":
+      return checkTel(input.value)
   }
-  return true;
-}
-function checkFullname(input) {
-  if (!filledOut(input)) {
-    return false;
-  }
-  if (!nameRegex.test(input.value)) {
-    raiseError(input, "is invalid");
-    return false;
-  }
-  return true;
-}
-function checkUsername(input) {
-  if (!filledOut(input)) {
-    return false;
-  }
-  if (!usernameRegex.test(input.value)) {
-    raiseError(input, "is invalid", true, true);
-    return false;
-  }
-  return true;
-}
-function checkEmail(input) {
-  if (!filledOut(input)) {
-    return false;
-  }
-  if (!emailRegex.test(input.value)) {
-    raiseError(input, "is invalid");
-    return false;
-  }
-  return true;
-}
-function checkTel(input) {
-  if (!filledOut(input)) {
-    return false;
-  }
-  let phone = input.value.trim();
-  let len = phone.toString().length;
-  if (len != 10) {
-    raiseError(input, "number must has 10 digits");
-    return false;
-  } else if (!telRegex.test(phone)) {
-    raiseError(input, "is invalid");
-    return false;
-  }
-  return true;
 }
 
-function calculateAge(date) {
-  date = new Date(date.toString());
-  const now = new Date();
-  const diff = Math.abs(now - date);
-  const age = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
-  return age;
+function checkFullname(fullname) {
+  const fullname_regex = /^[A-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪỬỮỰỲỴÝỶỸ][a-zàáâãèéêìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]*(?: [A-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪỬỮỰỲỴÝỶỸ][a-zàáâãèéêìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]*)*$/
+  return fullname_regex.test(fullname)
 }
-function checkBirthday(input) {
-  if (!filledOut(input)) {
-    return false;
+
+function checkUsername(username) {
+  const username_regex = /^(?!\d)(\w){6,}$/
+
+  fetch('/user', {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({todo: "checkusername", username: username})
+  })  
+  .then((res) => res.json())
+  .then((data_received) => {
+    if (data_received.result == 0) {
+      isDupUsername = true
+    }
+    else {
+      isDupUsername = false
+    }
+  })
+  .catch((error) => {
+    console.error(error)
+  })
+
+  if (username_regex.test(username) && !isDupUsername) {
+    return true
   }
-  console.log(input.value);
-  let age = calculateAge(input.value);
-  console.log(age);
-  if (age < 15 || age > 55) {
-    raiseError(input, "Age must between 15 and 55", false);
-    return false;
+  else {
+    return false
   }
-  return true;
 }
+
+function checkEmail(email) {
+  const email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  return email_regex.test(email)
+}
+
+function checkTel(tel) {
+  const tel_regex = /^0[0-9]{9}$/
+  return tel_regex.test(tel)
+}
+
+// document.getElementById("signup-btn").addEventListener('click', (e) => {
+//   e.preventDefault()
+  
+//   if (validateSignup()) {
+//     let fullname = document.getElementById("fullname").value
+//     let username = document.getElementById("username").value
+//     let password = document.getElementById("password").value
+//     let email = document.getElementById("email").value
+//     let dob = document.getElementById("dob").value
+//     let sex = document.querySelector('input[name="sex"]:checked').value;
+//     let phone = document.getElementById("phone").value
+//     let secretkey = document.getElementById("secretkey").value
+
+//     let data = {
+//       fullname: fullname,
+//       username: username,
+//       password: password,
+//       email: email,
+//       dob: dob,
+//       sex: sex,
+//       phone: phone,
+//       secretkey: secretkey
+//     }
+
+//     fetch('/user', {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Accept: "application/json",
+//       },
+//       redirect: 'follow',
+//       body: JSON.stringify(data)
+//     })  
+//     .then((res) => res.json())
+//     .then((data_received) => {
+//       if (data_received.result == 1) {
+//         window.location.href = "/login"
+//       }
+//       else {
+//         let input_username = document.getElementById("username")
+//         setError(input_username, "This username has been used")
+//       }
+//     })
+//     .catch((error) => {
+//       console.error(error)
+//     })
+//   }
+// })

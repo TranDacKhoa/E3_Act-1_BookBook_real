@@ -5,11 +5,11 @@
             <header>
                 <h2>Register</h2>
             </header>
-            <form id="form-signup" class="form">
+            <form id="form-signup" class="form" method="post" action="/user" onsubmit="return validateSignup()">
 
                 <div class="form-group">
                     <label for="fullname">Full name </label>
-                    <input class="fullname" id="fullname" placeholder="eg. Alex Wu" type="text" required/>
+                    <input name="fullname" class="fullname" id="fullname" placeholder="eg. Alex Wu" type="text" required/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle">
                         <div class="errorInfo">Requiring to capitalize the first letter of each word.</div>
@@ -18,7 +18,7 @@
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input class="username" id="username" placeholder="eg. alex978" type="text" required/>
+                    <input name="username" class="username" id="username" placeholder="eg. alex978" type="text" required/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle">
                         <div class="errorInfo">Username must not begin with a digit and contain 
@@ -30,7 +30,7 @@
 
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input class="email" id="email" placeholder="eg. alex@example.com" type="email" required/>
+                    <input name="email" class="email" id="email" placeholder="eg. alex@example.com" type="email" required/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle">
                         <div class="errorInfo">A valid email following regular-mail-format.</div>
@@ -39,32 +39,32 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input class="password" id="password" placeholder="Password" type="password" required/>
+                    <input name="password" class="password" id="password" placeholder="Password" type="password" required/>
                     <i class="fas bx-error-circle error-icon"></i>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
                     <small>Error message</small>
                 </div>
                 <div class="form-group">
-                    <label for="cpassword">Confirm password</label>
-                    <input class="password" id="cpassword" placeholder="Password" type="password" required/>
+                    <label for="dob">Date of birth</label>
+                    <input name="dob" id="dob" class="dob" type="date" required/>
                     <i class="fas bx-error-circle error-icon"></i>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
                     <small>Error message</small>
                 </div>
                 <div class="form-group" id="sex-group">
-                    <label>Sex</label>
+                    <label for="sex">Sex</label>
                     <div class="radio-input" id="input-sex">
-                        <input name="sex" id="male" type="radio" required>
+                        <input name="sex" id="male" type="radio" value="male" required>
                         <label class="genner" for="male">Male</label>
-                        <input name="sex" id="female" type="radio">
+                        <input name="sex" id="female" type="radio" value="female">
                         <label class="genner" for="female">Female</label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone number</label>
-                    <input class="phone" id="phone" placeholder="0999123123" type="tel" maxlength="10" required/>
+                    <input name="phone" class="phone" id="phone" placeholder="eg. 0999123123" type="tel" maxlength="10" required/>
                     <i class=" fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle">
                         <div class="errorInfo">10 digits begun with number '0'</div>
@@ -72,24 +72,19 @@
                     <small>Error message</small>
                 </div>
                 <div class="form-group">
-                    <label for="dob">Date of birth</label>
-                    <input id="dob" class="dob" type="date" required/>
+                    <label for="secretkey">What city were you born in?</label>
+                    <input name="secretkey" id="secretkey" name="secretkey" type="text" placeholder="eg. Ho Chi Minh" required/>
                     <i class="fas fa-check-circle"></i>
-                    {{!-- <i class="fas fa-exclamation-circle">
-                        <div class="errorInfo">Your age must between 15 and 55.</div>
-                    </i>
-                    <small>Error message</small> --}}
                 </div>
                 <div id="signup-btn">
-                    <input type="submit" value="Sign Up" />
+                    <input type="submit" value="Sign Up" id="signup-btn"/>
                     <footer>
-                        <div>Already have an account? <a href="/user/login">Log in</a></div>
+                        <div>Already have an account? <a href="/login">Log in</a></div>
                     </footer>
                 </div>
 
+                <input class="hidden" name="todo" id="todo" type="text" value="signup">
             </form>
-
-
         </div>
     </div>
 </div>
