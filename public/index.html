@@ -23,18 +23,22 @@
                </div>
                <div
                   class="header-center d-flex gap-3 justify-content-center align-items-center w-100">
-                  <ul class="d-flex justify-content-center m-0 p-0 w-100 gap-4">
-                     <li>
-                        <a href="#home"><i class="fa-solid fa-house"></i></a>
+                  <ul class="nav justify-content-center m-0 p-0 w-100 gap-4">
+                     <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#"
+                           ><i class="fa-solid fa-house"></i
+                        ></a>
                      </li>
-                     <li>
-                        <a href="#search"><i class="fa-solid fa-magnifying-glass"></i></a>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#"
+                           ><i class="fa-solid fa-magnifying-glass"></i
+                        ></a>
                      </li>
-                     <li>
-                        <a href="#store"><i class="fa-solid fa-store"></i></a>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-store"></i></a>
                      </li>
-                     <li>
-                        <a href="#favourite"><i class="fa-solid fa-heart"></i></a>
+                     <li class="nav-item">
+                        <a class="nav-link"><i class="fa-regular fa-heart"></i></a>
                      </li>
                   </ul>
                </div>
@@ -48,12 +52,85 @@
                </div>
             </div>
          </div>
-         <div class="content w-100 h-100 d-flex">
-            <div class="content-left h-100 w-25"></div>
-            <div class="content-right h-100 w-75"></div>
+         <div class="content w-100 d-flex gap-4">
+            <div class="content-left h-100">
+               <div class="card">
+                  <div
+                     class="bgr-image d-flex flex-column justify-content-center align-items-center">
+                     <div>
+                        <img src="../public/image/nguyen.png" alt="" />
+                     </div>
+                     <span><b>Nguyen Hoang</b> </span>
+                     <span>Developers</span>
+                  </div>
+
+                  <div class="card-body overflow-auto d-flex flex-column">
+                     <div class="d-flex flex-column mb-3">
+                        <div class="d-flex justify-content-around mb-3">
+                           <div class="ports d-flex flex-column justify-content-center">
+                              <span><h4 class="m-0">543</h4></span>
+                              <span class="fw-light fst-italic">ports</span>
+                           </div>
+                           <div class="followers d-flex flex-column justify-content-center">
+                              <span><h4 class="m-0 fw-bold">543</h4></span>
+                              <span class="fw-light fst-italic">followers</span>
+                           </div>
+                           <div class="following d-flex flex-column justify-content-center">
+                              <span><h4 class="m-0">543</h4></span>
+                              <span class="fw-light fst-italic">following</span>
+                           </div>
+                        </div>
+                        <div class="d-flex flex-column justify-content-between gap-3">
+                           <button type="button" class="btn btn-outline-info w-100">
+                              New port
+                           </button>
+                           <button type="button" class="btn btn-outline-primary w-100">
+                              Edit profile
+                           </button>
+                        </div>
+                     </div>
+                     <span class="d-flex justify-content-flex-start"><h5>Jack Harding</h5></span>
+                     <div class="about d-flex flex-column gap-2 mb-3">
+                        <div class="about-box d-flex gap-2 pt-2 pb-2 align-items-start flex-column">
+                           <span>Travel, Adventure & Lifestyle</span>
+                           <span>Photographer</span>
+                           <span>Sony Imaging Ambassador</span>
+                           <span>Currently in Edinburgh</span>
+                        </div>
+                     </div>
+                     <span class="d-flex justify-content-flex-start"
+                        ><h5>Recommended account</h5></span
+                     >
+                     <div class="users-other d-flex flex-column gap-2">
+                        <div class="user-box d-flex gap-2 pt-2 pb-2 align-items-center">
+                           <div class="box-image">
+                              <img src="../public/image/nguyen.png" alt="" />
+                           </div>
+                           <div
+                              class="box-name d-flex flex-column justify-content-center align-items-flex-start">
+                              <span><b>Nguyen Hoang</b></span>
+                              <span>@nguyenhoang</span>
+                           </div>
+                           <div class="box-follow">
+                              <button type="button" class="btn btn-warning w-100">Follow</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="content-right h-100">
+               <div class="image-list d-grid gap-2">
+                  <div class="images">
+                     <img src="../public/image/nguyen.png" alt="" />
+                  </div>
+               </div>
+            </div>
          </div>
          <div class="footer"></div>
       </div>
    </body>
    <script type="module" src="../build/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
+   s
+   <script type="module" src="../js/index.js"></script>
 </html>

@@ -2,6 +2,7 @@
    // light
    --light-orange: rgb(255, 158, 29);
    --light-blue: rgb(35, 135, 241);
+   --light-gray: rgb(170, 170, 170);
    // dark
    --dark-orange: rgb(255, 117, 47);
    --white: white;
@@ -20,10 +21,11 @@ body {
 }
 .base-layout {
    width: 100%;
-   height: 100%;
+   height: auto;
 }
 .header {
    background-color: var(--white);
+   z-index: 10;
 }
 .header-container {
    max-width: 1200px;
@@ -76,12 +78,69 @@ body {
    }
 }
 .content {
-   margin-top: 100px;
+   margin: 120px 10px 0 10px;
    max-width: 1200px;
+   z-index: 1;
 }
 .content-left {
+   width: 28%;
    background-color: rgb(72, 141, 201);
 }
+
+.card {
+   & .bgr-image {
+      height: 230px;
+      width: 100%;
+      background-image: linear-gradient(0deg, rgb(8, 174, 234) 0%, rgb(42, 245, 152) 100%);
+      & div {
+         width: 100px;
+         height: 100px;
+         border-radius: 100rem;
+         overflow: hidden;
+         & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+         }
+      }
+   }
+}
+.card-body {
+   & span {
+      text-align: center;
+   }
+}
+.users-other {
+   & .user-box {
+      border-bottom: 1px var(--light-gray) solid;
+      & .box-image {
+         width: 50px;
+         height: 50px;
+         border-radius: 100rem;
+         overflow: hidden;
+         & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+         }
+      }
+      & .box-name {
+         flex: 1;
+         align-items: flex-start;
+         justify-content: flex-start;
+      }
+   }
+}
 .content-right {
-   background-color: rgb(73, 188, 130);
+   width: 72%;
+}
+.image-list {
+   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.images {
+   & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+   }
 }
