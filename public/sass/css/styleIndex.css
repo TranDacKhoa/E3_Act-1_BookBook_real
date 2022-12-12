@@ -27,6 +27,7 @@ body {
 .header {
   background-color: var(--white);
   z-index: 10;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .header-container {
@@ -53,7 +54,7 @@ body {
 .header-left .left-logo span {
   position: absolute;
   letter-spacing: 5px;
-  bottom: 0%;
+  bottom: 10%;
   transform: translate(-15%, 20%);
 }
 
@@ -88,7 +89,15 @@ body {
 
 .content-left {
   width: 28%;
-  background-color: rgb(72, 141, 201);
+}
+
+.left-child {
+  position: fixed;
+  overflow: auto;
+  padding-bottom: 150px;
+}
+.left-child::-webkit-scrollbar {
+  display: none;
 }
 
 .card .bgr-image {
