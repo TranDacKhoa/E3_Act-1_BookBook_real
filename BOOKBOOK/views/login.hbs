@@ -1,50 +1,24 @@
-<div class="container">
-    <div class="main-container">
-        <img id="cover-pic" src="./img/cover.jpg" alt="">
-        <div class="form-container">
-            <header>
-                <h2>Log in</h2>
-            </header>
-            <form class="form" id="form-login" method="POST" action="/user" onsubmit="return validateLogin()">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input name="username" class="username" id="username" placeholder="eg. alex978" type="text" required/>
-                    <i class="fas fa-check-circle"></i>
-                    <i class="fas fa-exclamation-circle">
-                        <div class="errorInfo">Username must not begin with a digit and contain 
-                            at least 6 characters including alphabet letters, numbers or _ (underscore)
-                        </div>
-                    </i>
-                    <small>Error message</small>
-                </div>
-                <div class="form-group" style="margin-bottom: 0;">
-                    <label for="password">Password</label>
-                    <input name="password" class="password" id="password" placeholder="Password" type="password" required/>
-                    <i class="fas bx-error-circle error-icon"></i>
-                    <i class="fas fa-check-circle"></i>
-                    <i class="fas fa-exclamation-circle"></i>
-                    <small>Error message</small>
-                </div>
-
-                <div class="rem-group">
-                    <input name="remember" class="rem-input" id="remember" type="checkbox" name="remember"/>
-                    <label for="checkbox" class="rem-label">Remember me</label>
-                </div>
-
-                <input id="submitBtn" type="submit" value="Login" />
-                <input class="hidden" name="todo" id="todo" type="text" value="login">
-                <footer>
-                    <div>or <a href="#"> Forgot password</a></div>
-                    <div>Don't have an account? <a href="/signup"> Sign up</a></div>
-                </footer>
-
-
-            </form>
-
-
-        </div>
-    </div>
+<div class="content-form login isActive p-4 px-5 container">
+   <form>
+         <label class="form-check-label mb-3 fs-3 fw-bold" for="exampleCheck1">Log in</label>
+         <div class="mb-3">
+            <input type="email" class="form-control p-3" id="exampleInputEmail1" placeholder="Username"
+            aria-describedby="emailHelp" />
+         </div>
+         <div class="mb-3">
+            <input type="password" class="form-control p-3" placeholder="Password"
+            id="exampleInputPassword1" />
+         </div>
+         <button class="btn btn-primary fw-bold btn-login w-100 my-2">Log In</button>
+   </form>
+   <hr style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
+   <div class="mt-3 d-flex justify-content-center gap-2">
+         <label class="form-check-label fw-lighter fst-italic" for="exampleCheck1">
+            <a href="#">Forgot password?</a>    
+         </label>
+         <span class="fw-lighter fw-bold" style="font-size: 13.5px;">or</span>
+         <label class="form-check-label mb-3 fw-lighter fst-italic label-sign-up" for="exampleCheck1">
+            <a href="/signup">Create an account</a>
+         </label>
+   </div>
 </div>
-
-
-<
