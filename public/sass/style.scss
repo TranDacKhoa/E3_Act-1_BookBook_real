@@ -26,6 +26,7 @@ body {
    align-items: center;
    &::after {
       position: absolute;
+      z-index: 1;
       content: '';
       width: 150px;
       height: 150px;
@@ -36,6 +37,7 @@ body {
    }
    &::before {
       position: absolute;
+      z-index: 1;
       content: '';
       width: 150px;
       height: 150px;
@@ -46,7 +48,9 @@ body {
       filter: blur(100px);
    }
 }
-
+.content {
+   z-index: 2;
+}
 .content-trademark {
    & .trademark-logo {
       width: 200px;

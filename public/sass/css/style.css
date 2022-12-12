@@ -27,6 +27,7 @@ body {
 }
 .base-layout::after {
   position: absolute;
+  z-index: 1;
   content: "";
   width: 150px;
   height: 150px;
@@ -37,6 +38,7 @@ body {
 }
 .base-layout::before {
   position: absolute;
+  z-index: 1;
   content: "";
   width: 150px;
   height: 150px;
@@ -45,6 +47,10 @@ body {
   right: 5%;
   transform: translateY(-50%);
   filter: blur(100px);
+}
+
+.content {
+  z-index: 2;
 }
 
 .content-trademark .trademark-logo {
