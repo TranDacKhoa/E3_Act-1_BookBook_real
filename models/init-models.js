@@ -7,7 +7,7 @@ function initModels(sequelize) {
   var User = _User(sequelize, DataTypes);
   var UserProfile = _UserProfile(sequelize, DataTypes);
   var Follow = _Follow(sequelize, DataTypes);
-  //1-1 : one-to-one
+  //user_profile
   User.hasOne(UserProfile, {
     foreignKey: "username",
   });
@@ -15,6 +15,7 @@ function initModels(sequelize) {
     foreignKey: "username",
   });
 
+  //user_profile x follow
   UserProfile.belongsToMany(UserProfile, {
     as: "flw",
     foreignKey: "usr_follow",
@@ -27,18 +28,20 @@ function initModels(sequelize) {
   });
 
   Follow.belongsTo(UserProfile, {
-    as: "fl",
+    as: "following",
     foreignKey: "usr_follow",
   });
   Follow.belongsTo(UserProfile, {
-    as: "fled",
+    as: "followed",
     foreignKey: "usr_followed",
   });
-  UserProfile.hasMany(Follow, { as: "follow", foreignKey: "usr_follow" });
+  UserProfile.hasMany(Follow, { as: "following", foreignKey: "usr_follow" });
   UserProfile.hasMany(Follow, {
     as: "followed",
     foreignKey: "usr_followed",
   });
+  //
+
   return {
     User,
     UserProfile,

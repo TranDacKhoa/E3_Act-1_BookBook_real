@@ -18,6 +18,6 @@ app.use(express.json());
 app.listen(port, async () => {
   console.log("server started!");
   // const text = await user.getList();
-  const text = await user.getFollowingList("user2");
-  console.log(text);
+  const text1 = await user.checkLogin("user2", "");
+  console.log(text1);
 });
