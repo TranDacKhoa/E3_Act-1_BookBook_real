@@ -1,24 +1,27 @@
-const formLogin = document.querySelector('.login');
-const formSignUp = document.querySelector('.sign-up');
-
-// tab switching
-const label_sign_up = document.querySelector('.label-sign-up');
-label_sign_up.addEventListener('click', () => {
-   formLogin.classList.toggle('isActive');
-   formSignUp.classList.toggle('isActive');
-});
-const label_login = document.querySelector('.label-login');
-label_login.addEventListener('click', () => {
-   formLogin.classList.toggle('isActive');
-   formSignUp.classList.toggle('isActive');
-});
-
-// Event button login, signup
-const button_login = document.querySelector('.btn-login');
-button_login.addEventListener('click', (e) => {
-   e.preventDefault();
-});
-const button_signup = document.querySelector('.btn-signup');
-button_signup.addEventListener('click', (e) => {
-   e.preventDefault();
-});
+const users_other = document.querySelector('.user-box');
+// users-other
+for (let index = 0; index < 5; index++) {
+   let html = `
+        <div class="user-box d-flex gap-2 pt-2 pb-2 align-items-center">
+            <div class="box-image">
+            <img src="../public/image/nguyen.png" alt="" />
+            </div>
+            <div
+            class="box-name d-flex flex-column justify-content-center align-items-flex-start">
+            <span><b>Nguyen Hoang</b></span>
+            <span>@nguyenhoang</span>
+            </div>
+            <div class="box-follow">
+            <button type="button" class="btn btn-warning w-100">Follow</button>
+            </div>
+        </div>`;
+   users_other.insertAdjacentHTML('afterend', html);
+}
+// image
+const images = document.querySelector('.images');
+for (let index = 0; index < 50; index++) {
+   let html = `<div class="images">
+        <img src="../public/image/nguyen.png" alt="" />
+    </div>`;
+   images.insertAdjacentHTML('afterend', html);
+}
