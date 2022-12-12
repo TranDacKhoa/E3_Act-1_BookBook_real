@@ -114,10 +114,21 @@ body {
    position: fixed;
    overflow: auto;
    padding-bottom: 135px;
-   width: 21%;
+   width: 20%;
    &::-webkit-scrollbar {
       display: none;
+      width: 7px;
    }
+   //    &::-webkit-scrollbar-track {
+   //       background-color: #fafafa;
+   //    }
+   //    &::-webkit-scrollbar-thumb {
+   //       background-image: linear-gradient(-45deg, #6a5af9, #d66efd);
+   //       border-radius: 50px;
+   //    }
+   //    &:hover::-webkit-scrollbar {
+   //       display: block;
+   //    }
 }
 
 .card {
@@ -169,7 +180,7 @@ body {
 }
 .content-right {
    width: 72%;
-   box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
    padding: 10px;
    border-radius: 10px;
 

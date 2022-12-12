@@ -119,10 +119,11 @@ body {
   position: fixed;
   overflow: auto;
   padding-bottom: 135px;
-  width: 21%;
+  width: 20%;
 }
 .left-child::-webkit-scrollbar {
   display: none;
+  width: 7px;
 }
 
 .card .bgr-image {
@@ -171,7 +172,7 @@ body {
 
 .content-right {
   width: 72%;
-  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   padding: 10px;
   border-radius: 10px;
   background-color: var(--white);
