@@ -137,6 +137,9 @@ body {
          align-items: flex-start;
          justify-content: flex-start;
       }
+      &:last-child {
+         border-bottom: none;
+      }
    }
 }
 .content-right {
