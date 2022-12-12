@@ -19,7 +19,7 @@ for (let index = 0; index < 5; index++) {
 }
 // image
 const images = document.querySelector('.images');
-for (let index = 0; index < 10; index++) {
+for (let index = 0; index < 50; index++) {
    let html = `<div class="images">
         <img src="../public/image/nguyen.png" alt="" />
     </div>`;

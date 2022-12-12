@@ -118,8 +118,9 @@ body {
 .left-child {
   position: fixed;
   overflow: auto;
-  padding-bottom: 135px;
-  width: 20%;
+  padding-bottom: 20px;
+  max-width: 25%;
+  max-height: 600px;
 }
 .left-child::-webkit-scrollbar {
   display: none;
@@ -187,6 +188,17 @@ body {
   height: 100%;
   object-fit: cover;
   border-radius: 6px;
+}
+
+@media (max-width: 1200px) {
+  .left-child {
+    max-width: 25%;
+  }
+}
+@media (min-height: 750px) {
+  .left-child {
+    max-height: none;
+  }
 }
 
 /*# sourceMappingURL=styleIndex.css.map */
