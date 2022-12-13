@@ -1,12 +1,16 @@
 var DataTypes = require("sequelize").DataTypes;
-var _User = require("./user_info");
-var _UserProfile = require("./user_profile");
-var _Follow = require("./follow");
-
+const _User = require("./user_info");
+const _UserProfile = require("./user_profile");
+const _Follow = require("./follow");
+const _GeneralPost = require("./general_post");
+const _UserWall = require("./user_wall");
 function initModels(sequelize) {
   var User = _User(sequelize, DataTypes);
   var UserProfile = _UserProfile(sequelize, DataTypes);
   var Follow = _Follow(sequelize, DataTypes);
+  var GeneralPost = _GeneralPost(sequelize, DataTypes);
+  var UserWall = _UserWall(sequelize, DataTypes);
+
   //user_profile
   User.hasOne(UserProfile, {
     foreignKey: "username",
@@ -42,10 +46,25 @@ function initModels(sequelize) {
   });
   //
 
+  //user_wall x general_post
+  UserWall.hasOne(GeneralPost, {
+    sourceKey: "post_id",
+    foreignKey: "post_id",
+  });
+  GeneralPost.belongsTo(UserWall, {
+    foreignKey: "post_id",
+  });
+
+  //
+
+  //
+
   return {
     User,
     UserProfile,
     Follow,
+    GeneralPost,
+    UserWall,
   };
 }
 module.exports = initModels;

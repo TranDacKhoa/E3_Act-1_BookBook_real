@@ -18,6 +18,6 @@ app.use(express.json());
 app.listen(port, async () => {
   console.log("server started!");
   // const text = await user.getList();
-  const text1 = await user.checkLogin("user2", "");
-  console.log(text1);
+  // const text1 = await user.createNewUser("user5", "1", "1", "user5@gmail.com");
+  // console.log(text1);
 });

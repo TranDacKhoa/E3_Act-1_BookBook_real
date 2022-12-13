@@ -1,7 +1,5 @@
-const {
-  DataTypes
-} = require('sequelize');
-module.exports = sequelize => {
+const { DataTypes } = require("sequelize");
+module.exports = (sequelize) => {
   const attributes = {
     post_id: {
       type: DataTypes.INTEGER,
@@ -10,7 +8,7 @@ module.exports = sequelize => {
       comment: null,
       primaryKey: true,
       field: "post_id",
-      autoIncrement: false
+      autoIncrement: false,
     },
     author_username: {
       type: DataTypes.CHAR(50),
@@ -22,17 +20,17 @@ module.exports = sequelize => {
       autoIncrement: false,
       references: {
         key: "username",
-        model: "user_profile_model"
-      }
+        model: "user_profile_model",
+      },
     },
     date_post: {
       type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: sequelize.fn('now'),
+      defaultValue: sequelize.fn("now"),
       comment: null,
       primaryKey: false,
       field: "date_post",
-      autoIncrement: false
+      autoIncrement: false,
     },
     img: {
       type: DataTypes.CHAR(250),
@@ -41,7 +39,7 @@ module.exports = sequelize => {
       comment: null,
       primaryKey: false,
       field: "img",
-      autoIncrement: false
+      autoIncrement: false,
     },
     text: {
       type: DataTypes.CHAR(250),
@@ -50,14 +48,19 @@ module.exports = sequelize => {
       comment: null,
       primaryKey: false,
       field: "text",
-      autoIncrement: false
-    }
+      autoIncrement: false,
+    },
   };
   const options = {
     tableName: "general_post",
     comment: "",
-    indexes: []
+    indexes: [],
+    timestamps: false,
   };
-  const GeneralPostModel = sequelize.define("general_post_model", attributes, options);
+  const GeneralPostModel = sequelize.define(
+    "general_post_model",
+    attributes,
+    options
+  );
   return GeneralPostModel;
 };

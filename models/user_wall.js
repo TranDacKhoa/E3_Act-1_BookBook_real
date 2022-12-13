@@ -1,7 +1,5 @@
-const {
-  DataTypes
-} = require('sequelize');
-module.exports = sequelize => {
+const { DataTypes } = require("sequelize");
+module.exports = (sequelize) => {
   const attributes = {
     username: {
       type: DataTypes.CHAR(50),
@@ -13,8 +11,8 @@ module.exports = sequelize => {
       autoIncrement: false,
       references: {
         key: "username",
-        model: "user_info_model"
-      }
+        model: "user_info_model",
+      },
     },
     post_id: {
       type: DataTypes.INTEGER,
@@ -26,15 +24,20 @@ module.exports = sequelize => {
       autoIncrement: false,
       references: {
         key: "post_id",
-        model: "general_post_model"
-      }
-    }
+        model: "general_post_model",
+      },
+    },
   };
   const options = {
     tableName: "user_wall",
     comment: "",
-    indexes: []
+    indexes: [],
+    timestamps: false,
   };
-  const UserWallModel = sequelize.define("user_wall_model", attributes, options);
+  const UserWallModel = sequelize.define(
+    "user_wall_model",
+    attributes,
+    options
+  );
   return UserWallModel;
 };

@@ -46,6 +46,7 @@ module.exports = {
     });
     return result;
   },
+  //login signup services
   checkExistUser: async (username) => {
     const result = await models.User.findByPk(username);
     if (result === null) return false;
@@ -67,11 +68,34 @@ module.exports = {
     const result = await models.User.findByPk(username, {
       attributes: ["pwd"],
     });
+    // hash usrpw before compare
     if (result !== null) {
       const dbpw = result.pwd;
       return usrpw === dbpw;
     } else {
       return false;
     }
+  },
+  getLibrary: async (username) => {
+    const result = await models.UserWall.findAll({
+      include: {
+        model: models.GeneralPost,
+        required: true,
+      },
+      raw: true,
+      where: {
+        username: username,
+      },
+    });
+    return result;
+  },
+  createNewUser: async (username, password, secretkey, email) => {
+    const result = await models.User.create({
+      username: username,
+      pwd: password,
+      secret_key: secretkey,
+      email: email,
+    });
+    return result;
   },
 };
