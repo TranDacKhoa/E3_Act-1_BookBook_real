@@ -4,6 +4,9 @@
   --light-gray: rgb(170, 170, 170);
   --dark-orange: rgb(255, 117, 47);
   --white: white;
+  --border-light-gray: rgb(226, 226, 226);
+  --bgr-light-gray: rgba(226, 226, 226, 0.652);
+  --text-dart-orange: rgb(255, 117, 47);
 }
 
 html {
@@ -15,7 +18,7 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100vh;
+  height: auto;
   box-sizing: border-box;
 }
 
@@ -183,11 +186,114 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
+.images {
+  cursor: pointer;
+}
 .images img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 6px;
+}
+
+.modal-container {
+  max-width: 70%;
+}
+
+.modal-content {
+  background-color: black;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.modal-header {
+  z-index: 10;
+  color: white;
+  border-bottom: none;
+}
+.modal-header button i {
+  color: white;
+  font-size: 30px;
+}
+
+.modal-body {
+  padding: 15px 0;
+}
+.modal-body img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-port {
+  min-width: 360px;
+  background-color: var(--white);
+}
+
+.port-container {
+  max-height: 90vh;
+}
+
+.header-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 100rem;
+  overflow: hidden;
+}
+.header-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.header-name {
+  flex: 1;
+}
+
+.header-setting {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.header-setting i {
+  font-size: 25px;
+}
+
+.contents-footer {
+  border-top: 1px var(--border-light-gray) solid;
+  border-bottom: 1px var(--border-light-gray) solid;
+}
+.contents-footer div {
+  cursor: pointer;
+  flex: 1;
+  border-radius: 7px;
+}
+.contents-footer div:hover {
+  background-color: var(--bgr-light-gray);
+  color: var(--text-dart-orange);
+}
+
+.user-other .img-user {
+  min-width: 40px;
+  min-height: 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 100rem;
+  overflow: hidden;
+}
+.user-other .img-user img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.user-other .user-comment > div:first-child {
+  background-color: var(--bgr-light-gray);
+  border-radius: 12px;
+}
+.user-other .user-comment > div:last-child span {
+  cursor: pointer;
+}
+.user-other .user-comment > div:last-child span:hover {
+  color: var(--text-dart-orange);
 }
 
 @media (max-width: 1200px) {
