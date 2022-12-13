@@ -17,7 +17,7 @@ app.use(express.json());
 
 app.listen(port, async () => {
   console.log("server started!");
-  // const text = await user.getList();
+  const text = await user.getList();
   var data = {
     username: "user5",
     password: "11",
@@ -36,5 +36,5 @@ app.listen(port, async () => {
     text: "tôi test cmt phát",
   };
   // const text1 = await user.deleteOnWall(17);
-  // console.log(text1);
+  console.log(text);
 });

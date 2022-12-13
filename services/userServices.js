@@ -1,4 +1,4 @@
-const seq = require("../models/index");
+const seq = require("../database/db");
 const models = seq.models;
 const sequelize = seq.sequelize;
 
