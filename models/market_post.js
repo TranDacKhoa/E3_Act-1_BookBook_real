@@ -1,90 +1,62 @@
-const {
-  DataTypes
-} = require('sequelize');
-module.exports = sequelize => {
-  const attributes = {
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('market_post', {
     post_id: {
-      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      type: DataTypes.BIGINT,
       allowNull: false,
-      defaultValue: null,
-      comment: null,
-      primaryKey: true,
-      field: "post_id",
-      autoIncrement: false
+      primaryKey: true
     },
     post_by: {
-      type: DataTypes.CHAR(50),
-      allowNull: true,
-      defaultValue: null,
-      comment: null,
-      primaryKey: false,
-      field: "post_by",
-      autoIncrement: false,
+      type: DataTypes.STRING(50),
+      allowNull: false,
       references: {
-        key: "username",
-        model: "user_profile_model"
+        model: 'user_profile',
+        key: 'username'
       }
     },
     post_time: {
       type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: sequelize.fn('now'),
-      comment: null,
-      primaryKey: false,
-      field: "post_time",
-      autoIncrement: false
+      defaultValue: Sequelize.Sequelize.fn('now')
     },
     img: {
-      type: DataTypes.CHAR(250),
+      type: DataTypes.STRING(250),
       allowNull: true,
-      defaultValue: null,
-      comment: null,
-      primaryKey: false,
-      field: "img",
-      autoIncrement: false
+      defaultValue: ".\/public\/defaultItem.png"
     },
     text: {
-      type: DataTypes.CHAR(250),
+      type: DataTypes.STRING(250),
       allowNull: true,
-      defaultValue: "insert your caption",
-      comment: null,
-      primaryKey: false,
-      field: "text",
-      autoIncrement: false
+      defaultValue: "insert your caption"
     },
     price: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      defaultValue: "0",
-      comment: null,
-      primaryKey: false,
-      field: "price",
-      autoIncrement: false
+      defaultValue: 0
     },
     title: {
-      type: DataTypes.CHAR(50),
+      type: DataTypes.STRING(50),
       allowNull: true,
-      defaultValue: "untitled",
-      comment: null,
-      primaryKey: false,
-      field: "title",
-      autoIncrement: false
+      defaultValue: "untitled"
     },
     tag: {
-      type: array,
-      allowNull: true,
-      defaultValue: null,
-      comment: null,
-      primaryKey: false,
-      field: "tag",
-      autoIncrement: false
+      type: DataTypes.ARRAY(DataTypes.TEXT),
+      allowNull: true
     }
-  };
-  const options = {
-    tableName: "market_post",
-    comment: "",
-    indexes: []
-  };
-  const MarketPostModel = sequelize.define("market_post_model", attributes, options);
-  return MarketPostModel;
+  }, {
+    sequelize,
+    tableName: 'market_post',
+    schema: 'public',
+    timestamps: false,
+    indexes: [
+      {
+        name: "market_post_pkey",
+        unique: true,
+        fields: [
+          { name: "post_id" },
+        ]
+      },
+    ]
+  });
 };

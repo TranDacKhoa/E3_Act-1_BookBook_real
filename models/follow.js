@@ -1,39 +1,38 @@
-const { DataTypes } = require("sequelize");
-module.exports = (sequelize) => {
-  const attributes = {
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('follow', {
     usr_follow: {
-      type: DataTypes.CHAR(50),
+      type: DataTypes.STRING(50),
       allowNull: false,
-      defaultValue: null,
-      comment: null,
       primaryKey: true,
-      field: "usr_follow",
-      autoIncrement: false,
       references: {
-        key: "username",
-        model: "user_profile_model",
-      },
+        model: 'user_profile',
+        key: 'username'
+      }
     },
     usr_followed: {
-      type: DataTypes.CHAR(50),
+      type: DataTypes.STRING(50),
       allowNull: false,
-      defaultValue: null,
-      comment: null,
       primaryKey: true,
-      field: "usr_followed",
-      autoIncrement: false,
       references: {
-        key: "username",
-        model: "user_profile_model",
-      },
-    },
-  };
-  const options = {
-    tableName: "follow",
-    comment: "",
-    indexes: [],
+        model: 'user_profile',
+        key: 'username'
+      }
+    }
+  }, {
+    sequelize,
+    tableName: 'follow',
+    schema: 'public',
     timestamps: false,
-  };
-  const FollowModel = sequelize.define("follow_model", attributes, options);
-  return FollowModel;
+    indexes: [
+      {
+        name: "follow_pkey",
+        unique: true,
+        fields: [
+          { name: "usr_followed" },
+          { name: "usr_follow" },
+        ]
+      },
+    ]
+  });
 };

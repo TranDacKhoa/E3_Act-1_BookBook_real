@@ -1,67 +1,53 @@
-const {
-  DataTypes
-} = require('sequelize');
-module.exports = sequelize => {
-  const attributes = {
-    cmt_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: null,
-      comment: null,
-      primaryKey: true,
-      field: "cmt_id",
-      autoIncrement: false
+const Sequelize = require("sequelize");
+module.exports = function (sequelize, DataTypes) {
+  return sequelize.define(
+    "general_comment",
+    {
+      cmt_id: {
+        autoIncrement: true,
+        type: DataTypes.BIGINT,
+        allowNull: false,
+        primaryKey: true,
+      },
+      cmt_on: {
+        type: DataTypes.BIGINT,
+        allowNull: false,
+        references: {
+          model: "general_post",
+          key: "post_id",
+        },
+      },
+      cmt_by: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+        references: {
+          model: "user_profile",
+          key: "username",
+        },
+      },
+      text: {
+        type: DataTypes.STRING(250),
+        allowNull: true,
+        defaultValue: "your comment",
+      },
+      cmt_time: {
+        type: DataTypes.TIME,
+        allowNull: true,
+        defaultValue: Sequelize.Sequelize.fn("now"),
+      },
     },
-    cmt_on: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: null,
-      comment: null,
-      primaryKey: false,
-      field: "cmt_on",
-      autoIncrement: false,
-      references: {
-        key: "post_id",
-        model: "general_post_model"
-      }
-    },
-    cmt_by: {
-      type: DataTypes.CHAR(50),
-      allowNull: false,
-      defaultValue: null,
-      comment: null,
-      primaryKey: false,
-      field: "cmt_by",
-      autoIncrement: false,
-      references: {
-        key: "username",
-        model: "user_profile_model"
-      }
-    },
-    text: {
-      type: DataTypes.CHAR(250),
-      allowNull: true,
-      defaultValue: "your comment",
-      comment: null,
-      primaryKey: false,
-      field: "text",
-      autoIncrement: false
-    },
-    cmt_time: {
-      type: DataTypes.TIME,
-      allowNull: true,
-      defaultValue: sequelize.fn('now'),
-      comment: null,
-      primaryKey: false,
-      field: "cmt_time",
-      autoIncrement: false
+    {
+      sequelize,
+      tableName: "general_comment",
+      schema: "public",
+      timestamps: false,
+      indexes: [
+        {
+          name: "general_comment_pkey",
+          unique: true,
+          fields: [{ name: "cmt_id" }],
+        },
+      ],
     }
-  };
-  const options = {
-    tableName: "general_comment",
-    comment: "",
-    indexes: []
-  };
-  const GeneralCommentModel = sequelize.define("general_comment_model", attributes, options);
-  return GeneralCommentModel;
+  );
 };

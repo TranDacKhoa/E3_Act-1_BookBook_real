@@ -1,58 +1,49 @@
-const {
-  DataTypes
-} = require('sequelize');
-module.exports = sequelize => {
-  const attributes = {
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('group_member', {
     group_id: {
-      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      type: DataTypes.BIGINT,
       allowNull: false,
-      defaultValue: null,
-      comment: null,
       primaryKey: true,
-      field: "group_id",
-      autoIncrement: false,
       references: {
-        key: "group_id",
-        model: "group_info_model"
+        model: 'group_info',
+        key: 'group_id'
       }
     },
     username: {
-      type: DataTypes.CHAR(50),
+      type: DataTypes.STRING(50),
       allowNull: false,
-      defaultValue: null,
-      comment: null,
       primaryKey: true,
-      field: "username",
-      autoIncrement: false,
       references: {
-        key: "username",
-        model: "user_profile_model"
+        model: 'user_profile',
+        key: 'username'
       }
     },
     permission: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      defaultValue: "0",
-      comment: null,
-      primaryKey: false,
-      field: "permission",
-      autoIncrement: false
+      defaultValue: 0
     },
     blocked: {
       type: DataTypes.BOOLEAN,
       allowNull: true,
-      defaultValue: null,
-      comment: null,
-      primaryKey: false,
-      field: "blocked",
-      autoIncrement: false
+      defaultValue: false
     }
-  };
-  const options = {
-    tableName: "group_member",
-    comment: "",
-    indexes: []
-  };
-  const GroupMemberModel = sequelize.define("group_member_model", attributes, options);
-  return GroupMemberModel;
+  }, {
+    sequelize,
+    tableName: 'group_member',
+    schema: 'public',
+    timestamps: false,
+    indexes: [
+      {
+        name: "group_member_pkey",
+        unique: true,
+        fields: [
+          { name: "group_id" },
+          { name: "username" },
+        ]
+      },
+    ]
+  });
 };

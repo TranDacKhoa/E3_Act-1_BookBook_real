@@ -1,43 +1,39 @@
-const { DataTypes } = require("sequelize");
-module.exports = (sequelize) => {
-  const attributes = {
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('user_wall', {
     username: {
-      type: DataTypes.CHAR(50),
+      type: DataTypes.STRING(50),
       allowNull: false,
-      defaultValue: null,
-      comment: null,
       primaryKey: true,
-      field: "username",
-      autoIncrement: false,
       references: {
-        key: "username",
-        model: "user_info_model",
-      },
+        model: 'user_info',
+        key: 'username'
+      }
     },
     post_id: {
-      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      type: DataTypes.BIGINT,
       allowNull: false,
-      defaultValue: null,
-      comment: null,
       primaryKey: true,
-      field: "post_id",
-      autoIncrement: false,
       references: {
-        key: "post_id",
-        model: "general_post_model",
-      },
-    },
-  };
-  const options = {
-    tableName: "user_wall",
-    comment: "",
-    indexes: [],
+        model: 'general_post',
+        key: 'post_id'
+      }
+    }
+  }, {
+    sequelize,
+    tableName: 'user_wall',
+    schema: 'public',
     timestamps: false,
-  };
-  const UserWallModel = sequelize.define(
-    "user_wall_model",
-    attributes,
-    options
-  );
-  return UserWallModel;
+    indexes: [
+      {
+        name: "user_wall_pkey",
+        unique: true,
+        fields: [
+          { name: "username" },
+          { name: "post_id" },
+        ]
+      },
+    ]
+  });
 };

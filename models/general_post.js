@@ -1,66 +1,47 @@
-const { DataTypes } = require("sequelize");
-module.exports = (sequelize) => {
-  const attributes = {
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('general_post', {
     post_id: {
-      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      type: DataTypes.BIGINT,
       allowNull: false,
-      defaultValue: null,
-      comment: null,
-      primaryKey: true,
-      field: "post_id",
-      autoIncrement: false,
+      primaryKey: true
     },
     author_username: {
-      type: DataTypes.CHAR(50),
+      type: DataTypes.STRING(50),
       allowNull: false,
-      defaultValue: null,
-      comment: null,
-      primaryKey: false,
-      field: "author_username",
-      autoIncrement: false,
       references: {
-        key: "username",
-        model: "user_profile_model",
-      },
+        model: 'user_profile',
+        key: 'username'
+      }
     },
     date_post: {
       type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: sequelize.fn("now"),
-      comment: null,
-      primaryKey: false,
-      field: "date_post",
-      autoIncrement: false,
+      defaultValue: Sequelize.Sequelize.fn('now')
     },
     img: {
-      type: DataTypes.CHAR(250),
-      allowNull: true,
-      defaultValue: null,
-      comment: null,
-      primaryKey: false,
-      field: "img",
-      autoIncrement: false,
+      type: DataTypes.STRING(250),
+      allowNull: true
     },
     text: {
-      type: DataTypes.CHAR(250),
+      type: DataTypes.STRING(250),
       allowNull: true,
-      defaultValue: "insert your caption",
-      comment: null,
-      primaryKey: false,
-      field: "text",
-      autoIncrement: false,
-    },
-  };
-  const options = {
-    tableName: "general_post",
-    comment: "",
-    indexes: [],
+      defaultValue: "insert your caption"
+    }
+  }, {
+    sequelize,
+    tableName: 'general_post',
+    schema: 'public',
     timestamps: false,
-  };
-  const GeneralPostModel = sequelize.define(
-    "general_post_model",
-    attributes,
-    options
-  );
-  return GeneralPostModel;
+    indexes: [
+      {
+        name: "general_post_pkey",
+        unique: true,
+        fields: [
+          { name: "post_id" },
+        ]
+      },
+    ]
+  });
 };

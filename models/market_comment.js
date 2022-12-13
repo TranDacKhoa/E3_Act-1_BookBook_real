@@ -1,63 +1,52 @@
-const {
-  DataTypes
-} = require('sequelize');
-module.exports = sequelize => {
-  const attributes = {
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('market_comment', {
     cmt_id: {
-      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      type: DataTypes.BIGINT,
       allowNull: false,
-      defaultValue: null,
-      comment: null,
-      primaryKey: true,
-      field: "cmt_id",
-      autoIncrement: false
+      primaryKey: true
     },
     cmt_on: {
-      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      type: DataTypes.BIGINT,
       allowNull: false,
-      defaultValue: null,
-      comment: null,
-      primaryKey: false,
-      field: "cmt_on",
-      autoIncrement: false,
       references: {
-        key: "post_id",
-        model: "market_post_model"
+        model: 'market_post',
+        key: 'post_id'
       }
     },
     cmt_by: {
-      type: DataTypes.CHAR(50),
+      type: DataTypes.STRING(50),
       allowNull: false,
-      defaultValue: null,
-      comment: null,
-      primaryKey: false,
-      field: "cmt_by",
-      autoIncrement: false
+      references: {
+        model: 'user_profile',
+        key: 'username'
+      }
     },
     cmt_time: {
       type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: sequelize.fn('now'),
-      comment: null,
-      primaryKey: false,
-      field: "cmt_time",
-      autoIncrement: false
+      defaultValue: Sequelize.Sequelize.fn('now')
     },
     text: {
-      type: DataTypes.CHAR(250),
+      type: DataTypes.STRING(250),
       allowNull: true,
-      defaultValue: "your comment",
-      comment: null,
-      primaryKey: false,
-      field: "text",
-      autoIncrement: false
+      defaultValue: "your comment"
     }
-  };
-  const options = {
-    tableName: "market_comment",
-    comment: "",
-    indexes: []
-  };
-  const MarketCommentModel = sequelize.define("market_comment_model", attributes, options);
-  return MarketCommentModel;
+  }, {
+    sequelize,
+    tableName: 'market_comment',
+    schema: 'public',
+    timestamps: false,
+    indexes: [
+      {
+        name: "market_comment_pkey",
+        unique: true,
+        fields: [
+          { name: "cmt_id" },
+        ]
+      },
+    ]
+  });
 };

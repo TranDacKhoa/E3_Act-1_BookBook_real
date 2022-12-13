@@ -1,75 +1,49 @@
-const { DataTypes } = require("sequelize");
-module.exports = (sequelize) => {
-  const attributes = {
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('user_profile', {
     fullname: {
-      type: DataTypes.CHAR(50),
-      allowNull: false,
-      defaultValue: null,
-      comment: null,
-      primaryKey: false,
-      field: "fullname",
-      autoIncrement: false,
+      type: DataTypes.STRING(50),
+      allowNull: false
     },
     username: {
-      type: DataTypes.CHAR(50),
+      type: DataTypes.STRING(50),
       allowNull: false,
-      defaultValue: null,
-      comment: null,
       primaryKey: true,
-      field: "username",
-      autoIncrement: false,
       references: {
-        key: "username",
-        model: "user_info_model",
-      },
+        model: 'user_info',
+        key: 'username'
+      }
     },
     gender: {
-      type: DataTypes.CHAR(10),
+      type: DataTypes.STRING(10),
       allowNull: true,
-      defaultValue: "unknow",
-      comment: null,
-      primaryKey: false,
-      field: "gender",
-      autoIncrement: false,
+      defaultValue: "unknow"
     },
     location: {
-      type: DataTypes.CHAR(250),
-      allowNull: true,
-      defaultValue: null,
-      comment: null,
-      primaryKey: false,
-      field: "location",
-      autoIncrement: false,
+      type: DataTypes.STRING(250),
+      allowNull: true
     },
     about: {
-      type: DataTypes.CHAR(250),
-      allowNull: true,
-      defaultValue: null,
-      comment: null,
-      primaryKey: false,
-      field: "about",
-      autoIncrement: false,
+      type: DataTypes.STRING(250),
+      allowNull: true
     },
     avatar: {
-      type: DataTypes.CHAR(300),
-      allowNull: true,
-      defaultValue: null,
-      comment: null,
-      primaryKey: false,
-      field: "avatar",
-      autoIncrement: false,
-    },
-  };
-  const options = {
-    tableName: "user_profile",
-    comment: "",
-    indexes: [],
+      type: DataTypes.STRING(300),
+      allowNull: true
+    }
+  }, {
+    sequelize,
+    tableName: 'user_profile',
+    schema: 'public',
     timestamps: false,
-  };
-  const UserProfileModel = sequelize.define(
-    "user_profile_model",
-    attributes,
-    options
-  );
-  return UserProfileModel;
+    indexes: [
+      {
+        name: "user_profile_pkey",
+        unique: true,
+        fields: [
+          { name: "username" },
+        ]
+      },
+    ]
+  });
 };

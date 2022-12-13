@@ -4,13 +4,14 @@ const _UserProfile = require("./user_profile");
 const _Follow = require("./follow");
 const _GeneralPost = require("./general_post");
 const _UserWall = require("./user_wall");
+const _GeneralComment = require("./general_comment");
 function initModels(sequelize) {
   var User = _User(sequelize, DataTypes);
   var UserProfile = _UserProfile(sequelize, DataTypes);
   var Follow = _Follow(sequelize, DataTypes);
   var GeneralPost = _GeneralPost(sequelize, DataTypes);
   var UserWall = _UserWall(sequelize, DataTypes);
-
+  var GeneralComment = _GeneralComment(sequelize, DataTypes);
   //user_profile
   User.hasOne(UserProfile, {
     foreignKey: "username",
@@ -47,17 +48,24 @@ function initModels(sequelize) {
   //
 
   //user_wall x general_post
-  UserWall.hasOne(GeneralPost, {
+
+  GeneralPost.hasOne(UserWall, {
+    foreignKey: "post_id",
+  });
+  UserWall.belongsTo(GeneralPost, {
     sourceKey: "post_id",
     foreignKey: "post_id",
   });
-  GeneralPost.belongsTo(UserWall, {
-    foreignKey: "post_id",
+  //
+
+  //general_post x general_comment
+  GeneralPost.hasMany(GeneralComment, {
+    foreignKey: "cmt_on",
   });
-
-  //
-
-  //
+  GeneralComment.belongsTo(GeneralPost, {
+    sourceKey: "post_id",
+    foreignKey: "cmt_on",
+  });
 
   return {
     User,
@@ -65,6 +73,7 @@ function initModels(sequelize) {
     Follow,
     GeneralPost,
     UserWall,
+    GeneralComment,
   };
 }
 module.exports = initModels;

@@ -1,49 +1,44 @@
-const {
-  DataTypes
-} = require('sequelize');
-module.exports = sequelize => {
-  const attributes = {
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('reaction', {
     react_on: {
-      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      type: DataTypes.BIGINT,
       allowNull: false,
-      defaultValue: null,
-      comment: null,
       primaryKey: true,
-      field: "react_on",
-      autoIncrement: false,
       references: {
-        key: "post_id",
-        model: "general_post_model"
+        model: 'general_post',
+        key: 'post_id'
       }
     },
     react_type: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      defaultValue: "0",
-      comment: null,
-      primaryKey: false,
-      field: "react_type",
-      autoIncrement: false
+      defaultValue: 0
     },
     react_by: {
-      type: DataTypes.CHAR(50),
+      type: DataTypes.STRING(50),
       allowNull: false,
-      defaultValue: null,
-      comment: null,
       primaryKey: true,
-      field: "react_by",
-      autoIncrement: false,
       references: {
-        key: "username",
-        model: "user_profile_model"
+        model: 'user_profile',
+        key: 'username'
       }
     }
-  };
-  const options = {
-    tableName: "reaction",
-    comment: "",
-    indexes: []
-  };
-  const ReactionModel = sequelize.define("reaction_model", attributes, options);
-  return ReactionModel;
+  }, {
+    sequelize,
+    tableName: 'reaction',
+    schema: 'public',
+    timestamps: false,
+    indexes: [
+      {
+        name: "reaction_pkey",
+        unique: true,
+        fields: [
+          { name: "react_on" },
+          { name: "react_by" },
+        ]
+      },
+    ]
+  });
 };

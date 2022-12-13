@@ -1,40 +1,38 @@
-const {
-  DataTypes
-} = require('sequelize');
-module.exports = sequelize => {
-  const attributes = {
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('user_blocked', {
     username: {
-      type: DataTypes.CHAR(50),
+      type: DataTypes.STRING(50),
       allowNull: false,
-      defaultValue: null,
-      comment: null,
       primaryKey: true,
-      field: "username",
-      autoIncrement: false,
       references: {
-        key: "username",
-        model: "user_info_model"
+        model: 'user_info',
+        key: 'username'
       }
     },
     user_blocked: {
-      type: DataTypes.CHAR(50),
+      type: DataTypes.STRING(50),
       allowNull: false,
-      defaultValue: null,
-      comment: null,
       primaryKey: true,
-      field: "user_blocked",
-      autoIncrement: false,
       references: {
-        key: "username",
-        model: "user_profile_model"
+        model: 'user_profile',
+        key: 'username'
       }
     }
-  };
-  const options = {
-    tableName: "user_blocked",
-    comment: "",
-    indexes: []
-  };
-  const UserBlockedModel = sequelize.define("user_blocked_model", attributes, options);
-  return UserBlockedModel;
+  }, {
+    sequelize,
+    tableName: 'user_blocked',
+    schema: 'public',
+    timestamps: false,
+    indexes: [
+      {
+        name: "user_blocked_pkey",
+        unique: true,
+        fields: [
+          { name: "username" },
+          { name: "user_blocked" },
+        ]
+      },
+    ]
+  });
 };

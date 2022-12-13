@@ -1,41 +1,33 @@
-const {
-  DataTypes
-} = require('sequelize');
-module.exports = sequelize => {
-  const attributes = {
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('group_info', {
     group_id: {
-      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      type: DataTypes.BIGINT,
       allowNull: false,
-      defaultValue: null,
-      comment: null,
-      primaryKey: true,
-      field: "group_id",
-      autoIncrement: false
+      primaryKey: true
     },
     group_name: {
-      type: DataTypes.CHAR(100),
-      allowNull: false,
-      defaultValue: null,
-      comment: null,
-      primaryKey: false,
-      field: "group_name",
-      autoIncrement: false
+      type: DataTypes.STRING(100),
+      allowNull: false
     },
     description: {
-      type: DataTypes.CHAR(250),
-      allowNull: true,
-      defaultValue: null,
-      comment: null,
-      primaryKey: false,
-      field: "description",
-      autoIncrement: false
+      type: DataTypes.STRING(250),
+      allowNull: true
     }
-  };
-  const options = {
-    tableName: "group_info",
-    comment: "",
-    indexes: []
-  };
-  const GroupInfoModel = sequelize.define("group_info_model", attributes, options);
-  return GroupInfoModel;
+  }, {
+    sequelize,
+    tableName: 'group_info',
+    schema: 'public',
+    timestamps: false,
+    indexes: [
+      {
+        name: "group_info_pkey",
+        unique: true,
+        fields: [
+          { name: "group_id" },
+        ]
+      },
+    ]
+  });
 };
