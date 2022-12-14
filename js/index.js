@@ -23,7 +23,7 @@ const render_users_other = () => {
    }
 };
 
-// image
+// render images
 const render_images = () => {
    const image_list = document.querySelector('.image-list');
    const htmls = data_images.map((item) => {
@@ -35,7 +35,7 @@ const render_images = () => {
    return (image_list.innerHTML = htmls.join(''));
 };
 
-//
+// add event click image
 const event_click_image = () => {
    const images = document.querySelectorAll('.images');
    images.forEach((item, index) => {
