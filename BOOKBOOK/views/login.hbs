@@ -1,15 +1,23 @@
 <div class="content-form login isActive p-4 px-5 container">
-   <form>
-         <label class="form-check-label mb-3 fs-3 fw-bold" for="exampleCheck1">Log in</label>
+   <form class="needs-validation" novalidate>
+         <label class="form-check-label mb-3 fs-3 fw-bold">Log in</label>
          <div class="mb-3">
-            <input type="email" class="form-control p-3" id="exampleInputEmail1" placeholder="Username"
-            aria-describedby="emailHelp" />
+            <input type="text" class="form-control p-3 pr-28px" id="username" placeholder="Username"
+            name="username" required/>
+            {{!-- <div class="valid-feedback">Valid</div> --}}
+            <div class="invalid-feedback"><small>Not begin with a digit and contain 
+               at least 6 characters, including alphabet letters, numbers or _ (underscore)</small></div>
          </div>
+         
          <div class="mb-3">
-            <input type="password" class="form-control p-3" placeholder="Password"
-            id="exampleInputPassword1" />
+            <input type="password" class="form-control p-3 pr-28px" placeholder="Password"
+            id="password" name="password" required/>
+            {{!-- <div class="valid-feedback">Valid</div> --}}
+            <div class="invalid-feedback"><small>At least 8 characters,
+                1 uppercase, 1 lowercase and 1 number</small></div>
          </div>
-         <button class="btn btn-primary fw-bold btn-login w-100 my-2">Log In</button>
+         
+         <button class="btn btn-primary fw-bold btn-login w-100 my-2" type="submit">Log In</button>
    </form>
    <hr style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
    <div class="mt-3 d-flex justify-content-center gap-2">
@@ -22,3 +30,5 @@
          </label>
    </div>
 </div>
+
+<script src="./js/login.js"></script>

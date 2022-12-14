@@ -2,14 +2,17 @@ const express = require("express")
 const userRouter = require("./routers/user.r")
 //const profileRouter = require("./routers/profile.r")
 const feedRouter = require("./routers/feed.r")
-//const adminRouter = require("./routers/admin.r")
+const postRouter = require("./routers/post.r")
 const bodyParser = require("body-parser")
 
 const app = express()
 const port = 3000
 
+// using public folder
+app.use('/post', express.static(__dirname + '/public'))
 app.use('/user', express.static(__dirname + '/public'))
 app.use('/', express.static(__dirname + '/public'))
+
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(bodyParser.urlencoded({extended:true}))
@@ -20,22 +23,14 @@ require("./configs/hbs") (app)
 // Session
 require("./configs/session") (app)
 
+// Passport
+require("./configs/passport") (app)
+
 // Router
 app.use('/', userRouter)
-//app.use('/', profileRouter)
 app.use('/', feedRouter)
-//app.use('/admin', adminRouter)
+app.use('/post', postRouter)
 
-// Root
-// app.get('/', (req, res, next) => {
-//     try {
-//         res.render('index', {
-//             title: "Home",
-//         })
-//     } catch(error) {
-//         next(error)
-//     }
-// })
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode | 500

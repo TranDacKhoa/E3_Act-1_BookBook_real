@@ -23,12 +23,20 @@ module.exports = {
         const rs = await db.one(insertString, [u.fullname, u.username, u.gender, u.location, u.about, u.avatar])
         return rs
     },
-    findUserInfo: async (username) => {
+    findUserInfoByUsername: async (username) => {
         const rs = await db.any('select * from user_info where username = $1', [username])
         return rs
     },
-    findUserProfile: async (username) => {
+    findUserProfileByUsername: async (username) => {
         const rs = await db.any('select * from user_profile where username = $1', [username])
+        return rs
+    },
+    findUserInfoByKey: async (key) => {
+        const rs = await db.any('select * from user_info where secret_key = $1', [key])
+        return rs
+    },
+    findUserProfileByKey: async (key) => {
+        const rs = await db.any('select * from user_profile where secret_key = $1', [key])
         return rs
     },
 }

@@ -6,7 +6,7 @@ module.exports = function(app) {
         saveUninitialized: true, 
         secret: 'bookbook', 
         cookie: { 
-            maxAge: 1000 * 60 * 60 * 24,    // a day
+            maxAge: 1000 * 60 * 60 * 24 * 365,    // 365 days
             secure: false
         }
     }));    

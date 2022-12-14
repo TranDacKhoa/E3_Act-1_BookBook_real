@@ -1,10 +1,11 @@
 const app = require('express')
 const router = app.Router()
-const userCtrller = require('../controllers/user.c')
+const userC = require('../controllers/user.c')
 
-router.get('/login', userCtrller.getLogIn)
-router.get('/signup', userCtrller.getSignUp)
+router.get('/login', userC.getLogIn)
+router.get('/signup', userC.getSignUp)
 
-router.post('/user', userCtrller.postUser)
+router.post('/signup', userC.postSignUp)
+// router.post('/logout', userC.logOut)
 
 module.exports = router

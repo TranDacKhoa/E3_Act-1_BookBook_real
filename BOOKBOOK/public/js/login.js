@@ -1,42 +1,61 @@
-const formLogin = document.querySelector('.login');
-const formSignUp = document.querySelector('.sign-up');
-
-// tab switching
-// const label_sign_up = document.querySelector('.label-sign-up');
-// label_sign_up.addEventListener('click', () => {
-//    formLogin.classList.toggle('isActive');
-//    formSignUp.classList.toggle('isActive');
-// });
-// const label_login = document.querySelector('.label-login');
-// label_login.addEventListener('click', () => {
-//    formLogin.classList.toggle('isActive');
-//    formSignUp.classList.toggle('isActive');
-// });
-
-// Event button login, signup
-const button_login = document.querySelector('.btn-login');
-button_login.addEventListener('click', (e) => {
-   e.preventDefault();
-});
-const button_signup = document.querySelector('.btn-signup');
-button_signup.addEventListener('click', (e) => {
-   e.preventDefault();
-});
-
-
-// function validateLogin() {
-//    const login_form = document.forms.namedItem("form-login")
+(function () {
+   'use strict'
  
-//    if (validator(login_form[0])) {
-//      setSuccess(login_form[0])
-//      setSuccess(login_form[1])
-//      return true
-//    }
-//    else {
-//      setError(login_form[0])
-//      return false
-//    }
-//  }
+   var forms = document.querySelectorAll('.needs-validation')
+ 
+   Array.prototype.slice.call(forms)
+     .forEach(function (form) {
+
+         form.addEventListener('submit', function (event) {
+            event.preventDefault()
+            event.stopPropagation()
+   
+            form.classList.add('was-validated')
+         }, false)
+     })
+})()
+
+
+username = document.getElementById("username")
+username.addEventListener("input", () => {
+   const username_regex = /^(?!\d)(\w){6,}$/
+
+   if (username_regex.test(username.value)) {
+      username.setCustomValidity("")
+   }
+   else {
+      username.setCustomValidity("Invalid")
+   }
+})
+
+password = document.getElementById("password")
+password.addEventListener("input", () => {
+   const password_regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
+
+   if (password_regex.test(password.value)) {
+      password.setCustomValidity("")
+   }
+   else {
+      password.setCustomValidity("Invalid")
+   }
+})
+
+function validateLogin(form) {
+   let inputs = document.querySelectorAll("input")
+   let isValid = true
+
+   for (let i = 0; i < inputs.length; i++) {
+      if (validator(inputs[i].value)) {
+         inputs[i].classList.add("is-valid")
+      }
+      else {
+         isValid = false
+         inputs[i].classList.add("is-invalid")
+      }
+   }
+   
+   return isValid
+ }
  
 //  let isDupUsername = false
 //  function validateSignup() {
@@ -65,30 +84,20 @@ button_signup.addEventListener('click', (e) => {
 //    return isValid
 //  }
  
-//  function setSuccess(input) {
-//    const formControl = input.parentElement;
-//    formControl.className = "form-group success";
-//  }
+
  
-//  function setError(input, msg = "is invalid", prefix = true, longMSG = false) {
-//    const formControl = input.parentElement;
-//    const small = formControl.querySelector("small");
-//    formControl.className = "form-group error";
-//    small.innerText = (prefix ? input.id : "") + " " + msg;
-//  }
- 
-//  function validator(input) {
+// function validator(input) {
 //    switch (input.id) {
-//      case "fullname":
-//        return checkFullname(input.value)
-//      case "username":
-//        return checkUsername(input.value)
-//      case "email":
-//        return checkEmail(input.value)
-//      case "phone":
-//        return checkTel(input.value)
+//       case "fullname":
+//          return checkFullname(input.value)
+//       case "username":
+//          return checkUsername(input.value)
+//       case "email":
+//          return checkEmail(input.value)
+//       case "phone":
+//          return checkTel(input.value)
 //    }
-//  }
+// }
  
 //  function checkFullname(fullname) {
 //    const fullname_regex = /^[A-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪỬỮỰỲỴÝỶỸ][a-zàáâãèéêìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]*(?: [A-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪỬỮỰỲỴÝỶỸ][a-zàáâãèéêìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]*)*$/
