@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
    <head>
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,6 +12,7 @@
       <link rel="stylesheet" href="../build/bootstrap-5.2.3-dist/css/bootstrap.min.css" />
       <link rel="stylesheet" href="../public/sass/css/styleIndex.css" />
    </head>
+
    <body>
       <div class="base-layout position-relative d-flex justify-content-center w-100 h-auto">
          <div class="header position-fixed top-0 w-100">
@@ -18,21 +20,18 @@
                <div class="header-left">
                   <div class="left-logo">
                      <img src="../public/image/logo1.png" alt="" />
-                     <span><h5 class="fw-bold">BOOKBOOK</h5></span>
+                     <span>
+                        <h5 class="fw-bold">BOOKBOOK</h5>
+                     </span>
                   </div>
                </div>
-               <div
-                  class="header-center d-flex gap-3 justify-content-center align-items-center w-100">
+               <div class="header-center d-flex gap-3 justify-content-center align-items-center w-100">
                   <ul class="nav justify-content-center m-0 p-0 w-100 gap-4">
                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#"
-                           ><i class="fa-solid fa-house"></i
-                        ></a>
+                        <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-house"></i></a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="#"
-                           ><i class="fa-solid fa-magnifying-glass"></i
-                        ></a>
+                        <a class="nav-link" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
                      </li>
                      <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa-solid fa-store"></i></a>
@@ -56,60 +55,66 @@
             <div class="content-left">
                <div class="left-child h-100">
                   <div class="card rounded-5 rounded-bottom overflow-hidden">
-                     <div
-                        class="bgr-image d-flex flex-column justify-content-center align-items-center">
+                     <div class="bgr-image d-flex flex-column justify-content-center align-items-center">
                         <div>
                            <img src="../public/image/nguyen.png" alt="" />
                         </div>
                         <span><b>Nguyen Hoang</b> </span>
-                        <span>Developers</span>
-                     </div>
+                        <span class="small">@nguyenhoang</span>
 
+                     </div>
+                     <div class="flex-column">
+                        <div class="d-flex justify-content-around">
+                           <div class="ports d-flex flex-column justify-content-center">
+                              <span>
+                                 <h6 class="m-0">543</h6>
+                              </span>
+                              <span class="fw-light fst-italic">posts</span>
+                           </div>
+                           <div class="followers d-flex flex-column justify-content-center">
+                              <span>
+                                 <h6 class="m-0">543</h6>
+                              </span>
+                              <span class="fw-light fst-italic">followers</span>
+                           </div>
+                           <div class="following d-flex flex-column justify-content-center">
+                              <span>
+                                 <h6 class="m-0">543</h6>
+                              </span>
+                              <span class="fw-light fst-italic">following</span>
+                           </div>
+                        </div>
+                     </div>
                      <div class="card-body overflow-auto d-flex flex-column">
-                        <div class="d-flex flex-column mb-3">
-                           <div class="d-flex justify-content-around mb-3">
-                              <div class="ports d-flex flex-column justify-content-center">
-                                 <span><h5 class="m-0">543</h5></span>
-                                 <span class="fw-light fst-italic">ports</span>
-                              </div>
-                              <div class="followers d-flex flex-column justify-content-center">
-                                 <span><h5 class="m-0">543</h5></span>
-                                 <span class="fw-light fst-italic">followers</span>
-                              </div>
-                              <div class="following d-flex flex-column justify-content-center">
-                                 <span><h5 class="m-0">543</h5></span>
-                                 <span class="fw-light fst-italic">following</span>
-                              </div>
-                           </div>
-                           <div class="d-flex flex-column justify-content-between gap-3">
-                              <button type="button" class="btn btn-outline-info w-100">
-                                 New port
-                              </button>
-                              <button type="button" class="btn btn-outline-primary w-100">
-                                 Edit profile
-                              </button>
-                           </div>
+
+
+
+
+                        <hr style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" />
+                        <div class="about-box d-flex gap-2 pt-2 pb-2 align-items-start flex-column">
+                           <span>Travel, Adventure & Lifestyle</span>
+                           <span>Photographer</span>
+                           <span>Sony Imaging Ambassador</span>
+                           <span>Currently in Edinburgh</span>
                         </div>
-                        <span class="d-flex justify-content-flex-start"><h5>Jack Harding</h5></span>
-                        <div class="about d-flex flex-column gap-2 mb-3">
-                           <div
-                              class="about-box d-flex gap-2 pt-2 pb-2 align-items-start flex-column">
-                              <span>Travel, Adventure & Lifestyle</span>
-                              <span>Photographer</span>
-                              <span>Sony Imaging Ambassador</span>
-                              <span>Currently in Edinburgh</span>
-                           </div>
+                        <hr style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" />
+                        <div class="d-flex flex-column justify-content-between gap-3">
+                           <button type="button" class="btn btn-outline-info w-100">
+                              New post
+                           </button>
+                           <button type="button" class="btn btn-outline-primary w-100">
+                              Edit profile
+                           </button>
                         </div>
-                        <span class="d-flex justify-content-flex-start"
-                           ><h5>Recommended account</h5></span
-                        >
+                        <span class="d-flex justify-content-flex-start">
+                           <h5>Recommended account</h5>
+                        </span>
                         <div class="users-other d-flex flex-column gap-2">
                            <div class="user-box d-flex gap-2 pt-2 pb-2 align-items-center">
                               <div class="box-image">
                                  <img src="../public/image/nguyen.png" alt="" />
                               </div>
-                              <div
-                                 class="box-name d-flex flex-column justify-content-center align-items-flex-start">
+                              <div class="box-name d-flex flex-column justify-content-center align-items-flex-start">
                                  <span><b>Nguyen Hoang</b></span>
                                  <span>@nguyenhoang</span>
                               </div>
@@ -135,4 +140,5 @@
    </body>
    <script type="module" src="../build/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
    <script type="module" src="../js/index.js"></script>
+
 </html>

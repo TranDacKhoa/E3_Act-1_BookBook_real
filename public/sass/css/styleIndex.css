@@ -128,9 +128,13 @@ body {
 }
 
 .card .bgr-image {
-  height: 230px;
+  height: 300px;
   width: 100%;
-  background-image: linear-gradient(0deg, rgb(8, 174, 234) 0%, rgb(42, 245, 152) 100%);
+  background-image: linear-gradient(
+    0deg,
+    rgb(8, 174, 234) 0%,
+    rgb(42, 245, 152) 100%
+  );
 }
 .card .bgr-image div {
   width: 100px;
