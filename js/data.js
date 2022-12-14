@@ -1,0 +1,363 @@
+export const data_images = [
+   {
+      image: '../public/image/nguyen.png',
+      id: 1,
+      user: 'tuan',
+      id_user: '@tuanle',
+      avatar: '../public/image/nguyen.png',
+      contents: 'Các bạn thông cảm, anh qua Qatar coi đá banh dới mét si dới rô nán đồ gòi',
+      data: [
+         {
+            name: 'Tuan Le',
+            avatar: '../public/image/nguyen.png',
+            comment: 'Các bạn thông cảm, anh qua Qatar coi đá banh dới mét si dới rô nán đồ gòi',
+         },
+         {
+            name: 'Nguyen Hoang',
+            avatar: '../public/image/new.jpg',
+            comment: 'Aisshh chít tịt sao Rosé (BlackPink) lại xinh như vậy chứ 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+      ],
+   },
+   {
+      image: '../public/image/new.jpg',
+      id: 2,
+      user: 'tuan',
+      id_user: '@tuanle',
+      avatar: '../public/image/nguyen.png',
+      contents: 'Em đẹp lắm Ichika 💗',
+      data: [
+         {
+            name: 'Tuan Le',
+            avatar: '../public/image/nguyen.png',
+            comment: 'Các bạn thông cảm, anh qua Qatar coi đá banh dới mét si dới rô nán đồ gòi',
+         },
+         {
+            name: 'Nguyen Hoang',
+            avatar: '../public/image/new.jpg',
+            comment: 'Aisshh chít tịt sao Rosé (BlackPink) lại xinh như vậy chứ 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+      ],
+   },
+   {
+      image: '../public/image/nguyen.png',
+      id: 3,
+      user: 'tuan',
+      id_user: '@tuanle',
+      avatar: '../public/image/nguyen.png',
+      contents:
+         'CHÚ CHÓ MAY MẮN KHI CÓ MỘT GIA ĐÌNH YÊU THƯƠNG Một người mẹ tên Joely Eaton, 29 tuổi tại Anh Quốc có nuôi một chú chó tên Buddy, nhưng không may nó lại mắc một loại u.ng t.hư xương ác tính. Vì thế Joely đã phải chi trả một hoá đơn lên đến hơn 8000 bảng Anh (hơn 200 triệu đồng) cho việc c-ắ-t b-ỏ ch-ân của chú chó này.',
+      data: [
+         {
+            name: 'Tuan Le',
+            avatar: '../public/image/nguyen.png',
+            comment: 'Các bạn thông cảm, anh qua Qatar coi đá banh dới mét si dới rô nán đồ gòi',
+         },
+         {
+            name: 'Nguyen Hoang',
+            avatar: '../public/image/new.jpg',
+            comment: 'Aisshh chít tịt sao Rosé (BlackPink) lại xinh như vậy chứ 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+      ],
+   },
+   {
+      image: '../public/image/new.jpg',
+      id: 4,
+      user: 'tuan',
+      id_user: '@tuanle',
+      avatar: '../public/image/nguyen.png',
+      contents: 'Hôm qua bắt Argen ăn được 500k nên sáng sớm đưa vợ đi uống cafe 🐧',
+      data: [
+         {
+            name: 'Tuan Le',
+            avatar: '../public/image/nguyen.png',
+            comment: 'Các bạn thông cảm, anh qua Qatar coi đá banh dới mét si dới rô nán đồ gòi',
+         },
+         {
+            name: 'Nguyen Hoang',
+            avatar: '../public/image/new.jpg',
+            comment: 'Aisshh chít tịt sao Rosé (BlackPink) lại xinh như vậy chứ 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+      ],
+   },
+   {
+      image: '../public/image/nguyen.png',
+      id: 5,
+      user: 'tuan',
+      id_user: '@tuanle',
+      avatar: '../public/image/nguyen.png',
+      contents: 'Các bạn thông cảm, anh qua Qatar coi đá banh dới mét si dới rô nán đồ gòi',
+      data: [
+         {
+            name: 'Tuan Le',
+            avatar: '../public/image/nguyen.png',
+            comment: 'Các bạn thông cảm, anh qua Qatar coi đá banh dới mét si dới rô nán đồ gòi',
+         },
+         {
+            name: 'Nguyen Hoang',
+            avatar: '../public/image/new.jpg',
+            comment: 'Aisshh chít tịt sao Rosé (BlackPink) lại xinh như vậy chứ 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+      ],
+   },
+   {
+      image: '../public/image/new.jpg',
+      id: 6,
+      user: 'tuan',
+      id_user: '@tuanle',
+      avatar: '../public/image/nguyen.png',
+      contents: 'Các bạn thông cảm, anh qua Qatar coi đá banh dới mét si dới rô nán đồ gòi',
+      data: [
+         {
+            name: 'Tuan Le',
+            avatar: '../public/image/nguyen.png',
+            comment: 'Các bạn thông cảm, anh qua Qatar coi đá banh dới mét si dới rô nán đồ gòi',
+         },
+         {
+            name: 'Nguyen Hoang',
+            avatar: '../public/image/new.jpg',
+            comment: 'Aisshh chít tịt sao Rosé (BlackPink) lại xinh như vậy chứ 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+      ],
+   },
+   {
+      image: '../public/image/nguyen.png',
+      id: 7,
+      user: 'tuan',
+      id_user: '@tuanle',
+      avatar: '../public/image/nguyen.png',
+      contents: 'Các bạn thông cảm, anh qua Qatar coi đá banh dới mét si dới rô nán đồ gòi',
+      data: [
+         {
+            name: 'Tuan Le',
+            avatar: '../public/image/nguyen.png',
+            comment: 'Các bạn thông cảm, anh qua Qatar coi đá banh dới mét si dới rô nán đồ gòi',
+         },
+         {
+            name: 'Nguyen Hoang',
+            avatar: '../public/image/new.jpg',
+            comment: 'Aisshh chít tịt sao Rosé (BlackPink) lại xinh như vậy chứ 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+      ],
+   },
+   {
+      image: '../public/image/new.jpg',
+      id: 8,
+      user: 'tuan',
+      id_user: '@tuanle',
+      avatar: '../public/image/nguyen.png',
+      contents: 'Các bạn thông cảm, anh qua Qatar coi đá banh dới mét si dới rô nán đồ gòi',
+      data: [
+         {
+            name: 'Tuan Le',
+            avatar: '../public/image/nguyen.png',
+            comment: 'Các bạn thông cảm, anh qua Qatar coi đá banh dới mét si dới rô nán đồ gòi',
+         },
+         {
+            name: 'Nguyen Hoang',
+            avatar: '../public/image/new.jpg',
+            comment: 'Aisshh chít tịt sao Rosé (BlackPink) lại xinh như vậy chứ 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+      ],
+   },
+   {
+      image: '../public/image/nguyen.png',
+      id: 9,
+      user: 'tuan',
+      id_user: '@tuanle',
+      avatar: '../public/image/nguyen.png',
+      contents: 'Các bạn thông cảm, anh qua Qatar coi đá banh dới mét si dới rô nán đồ gòi',
+      data: [
+         {
+            name: 'Tuan Le',
+            avatar: '../public/image/nguyen.png',
+            comment: 'Các bạn thông cảm, anh qua Qatar coi đá banh dới mét si dới rô nán đồ gòi',
+         },
+         {
+            name: 'Nguyen Hoang',
+            avatar: '../public/image/new.jpg',
+            comment: 'Aisshh chít tịt sao Rosé (BlackPink) lại xinh như vậy chứ 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+         {
+            name: 'Huy Huynh',
+            avatar: '../public/image/logo1.png',
+            comment: 'Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹',
+         },
+      ],
+   },
+];

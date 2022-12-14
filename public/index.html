@@ -41,13 +41,61 @@
                      </li>
                   </ul>
                </div>
-               <div class="header-right d-flex justify-content-center align-items-center gap-4">
-                  <div class="right-message">
+               <div class="header-right d-flex justify-content-center align-items-center gap-3">
+                  <div
+                     class="right-message p-2 px-3"
+                     data-bs-toggle="dropdown"
+                     aria-expanded="false">
                      <i class="fa-regular fa-comments"></i>
                   </div>
-                  <div class="right-user">
+                  <ul class="dropdown-menu w-25">
+                     <span class="text-center"
+                        ><h3><b>Chat</b></h3></span
+                     >
+                     <li class="dropdown-item">
+                        <div class="user-chat d-flex flex-row justify-content-between gap-2 p-2">
+                           <div class="img-user">
+                              <img src="../public/image/new.jpg" alt="" />
+                           </div>
+                           <div class="chat-text">
+                              <span><b>Tuan</b></span>
+                              <span><p class="m-0">Dang lam gi day.</p></span>
+                           </div>
+                        </div>
+                     </li>
+                     <li class="dropdown-item">
+                        <div class="user-chat d-flex flex-row justify-content-between gap-2 p-2">
+                           <div class="img-user">
+                              <img src="../public/image/new.jpg" alt="" />
+                           </div>
+                           <div class="chat-text">
+                              <span><b>Tuan</b></span>
+                              <span><p class="m-0">Dang lam gi day.</p></span>
+                           </div>
+                        </div>
+                     </li>
+                     <li class="dropdown-item">
+                        <div class="user-chat d-flex flex-row justify-content-between gap-2 p-2">
+                           <div class="img-user">
+                              <img src="../public/image/new.jpg" alt="" />
+                           </div>
+                           <div class="chat-text">
+                              <span><b>Tuan</b></span>
+                              <span><p class="m-0">Dang lam gi day.</p></span>
+                           </div>
+                        </div>
+                     </li>
+                  </ul>
+                  <div class="right-user" data-bs-toggle="dropdown" aria-expanded="false">
                      <img src="../public/image/nguyen.png" alt="" />
                   </div>
+                  <ul class="dropdown-menu">
+                     <li><a class="dropdown-item" href="#">Setting</a></li>
+                     <li><a class="dropdown-item" href="#">Following</a></li>
+                     <li><a class="dropdown-item" href="#">Report</a></li>
+                     <li><hr class="dropdown-divider" /></li>
+                     <li><a class="dropdown-item" href="#">Logout</a></li>
+                  </ul>
                </div>
             </div>
          </div>
@@ -130,12 +178,123 @@
             <div class="content-right h-100">
                <div class="image-list d-grid gap-2">
                   <div class="images">
-                     <img src="../public/image/nguyen.png" alt="" />
+                     <!-- <img src="../public/image/nguyen.png" alt="" /> -->
                   </div>
                </div>
             </div>
          </div>
          <div class="footer"></div>
+         <div class="modal-image">
+            <div
+               class="modal fade"
+               id="exampleModal"
+               tabindex="-1"
+               data-bs-backdrop="static"
+               data-bs-keyboard="false"
+               aria-labelledby="exampleModalLabel"
+               aria-hidden="true">
+               <button
+                  type="button"
+                  class="btn-close position-absolute d-flex align-items-center"
+                  data-bs-dismiss="modal"
+                  aria-label="Close">
+                  <i class="fa-solid fa-xmark"></i>
+               </button>
+               <div
+                  class="modal-dialog modal-fullscreen-md-down modal-dialog-centered modal-container">
+                  <div class="modal-content flex-row m-0 gap-1">
+                     <div class="w-75 position-relative">
+                        <div class="modal-header position-absolute w-100">
+                           <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        </div>
+                        <div class="modal-body h-100">
+                           <img src="../public/image/nguyen.png" alt="" />
+                        </div>
+                     </div>
+                     <div class="modal-port w-25 position-relative">
+                        <div class="port-container overflow-auto pt-3 px-2">
+                           <div class="container-contents d-flex flex-column">
+                              <div
+                                 class="contents-header d-flex gap-3 align-items-center justify-content-between pt-2 pb-2 px-1 pe-1">
+                                 <!-- <div class="header-img">
+                                    <img src="../public/image/nguyen.png" alt="" />
+                                 </div>
+                                 <div class="header-name d-flex flex-column">
+                                    <span>Nguyen Hoang</span>
+                                    <span class="fst-italic fw-lighter">@nguyenhoang</span>
+                                 </div>
+                                 <div class="header-setting">
+                                    <i class="fa-solid fa-grip"></i>
+                                 </div> -->
+                              </div>
+                              <div class="contents-body mb-3">
+                                 <!-- <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere
+                                    ullam, veritatis illum culpa et officiis eius, consequuntur
+                                    tenetur eveniet molestiae, itaque neque in ipsam illo autem!
+                                    Necessitatibus enim amet quis. Lorem ipsum dolor sit amet
+                                    consectetur adipisicing elit.
+                                 </p> -->
+                              </div>
+                              <div
+                                 class="contents-footer pt-1 pb-1 d-flex justify-content-between gap-2 mb-4">
+                                 <div
+                                    class="d-flex justify-content-center align-items-center gap-3 pt-2 pb-2">
+                                    <i class="fa-regular fa-thumbs-up"></i>
+                                    <span>Like</span>
+                                 </div>
+                                 <div
+                                    class="d-flex justify-content-center align-items-center gap-3 pt-2 pb-2">
+                                    <i class="fa-regular fa-message"></i> Comments
+                                 </div>
+                              </div>
+                              <div class="contents-comments">
+                                 <div class="comments-list d-flex flex-column gap-1">
+                                    <!-- <div
+                                       class="user-other d-flex flex-row justify-content-between gap-2 mb-3">
+                                       <div class="img-user">
+                                          <img src="../public/image/nguyen.png" alt="" />
+                                       </div>
+                                       <div
+                                          class="user-comment d-flex flex-column justify-content-between">
+                                          <div class="p-2">
+                                             <span><b>Nguyen Hoang</b></span>
+                                             <span
+                                                ><p class="m-0">
+                                                   Lorem ipsum dolor sit amet, consectetur
+                                                   adipisicing elit. Dolorem, fuga aperiam. Officiis
+                                                   possimus eligendi illum iusto nisi beatae laborum
+                                                   amet culpa ullam officia? Nihil, ex nobis cum
+                                                   ipsum dignissimos aliquam.
+                                                </p></span
+                                             >
+                                          </div>
+                                          <div class="d-flex gap-4 fw-semibold px-3 pe-3">
+                                             <span>Like</span>
+                                             <span>Comments</span>
+                                          </div>
+                                       </div>
+                                    </div> -->
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="input-comment position-absolute bottom-0 w-100">
+                           <div class="pt-2 pb-2 px-3 d-flex justify-content-between gap-2">
+                              <input
+                                 type="text"
+                                 class="form-control"
+                                 id="inputComment"
+                                 placeholder="New comments..." />
+                              <i
+                                 class="fa-solid fa-paper-plane px-3 d-flex align-items-center justify-content-center"></i>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
    </body>
    <script type="module" src="../build/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
