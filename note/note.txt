@@ -1,0 +1,14 @@
+Tổng kết :
++ sửa trang profile( show modal) : edit profile, new post, change password
++ làm trang feed
+
+Bấm vào nút cmt -> đổi màu nút(đỏ) -> fetch ->hiện tất cả cmt
+Đang đỏ -> bấm -> (đổi sang xanh) -> trở lại trạng thái 1
+
+edit profile form : fullname(string),gender(radio),location(string),about("string),avatar (uploadfile),dayofbirth(input date) + save button
+
+new post form : content(string), img(uploadfile) + post button
+
+thêm nút change password -> bấm modal 1 form đổi pass: current password, new password, confirm password + change button
+
+nav ở feed: new feed,profile,group,market..
