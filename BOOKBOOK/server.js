@@ -1,42 +1,69 @@
-const express = require("express")
-const userRouter = require("./routers/user.r")
+const express = require("express");
+const userRouter = require("./routers/user.r");
 //const profileRouter = require("./routers/profile.r")
-const feedRouter = require("./routers/feed.r")
-const postRouter = require("./routers/post.r")
-const bodyParser = require("body-parser")
-
-const app = express()
-const port = 3000
+const feedRouter = require("./routers/feed.r");
+const postRouter = require("./routers/post.r");
+const bodyParser = require("body-parser");
+//
+const user = require("./services/userServices");
+//
+const app = express();
+const port = 3000;
 
 // using public folder
-app.use('/post', express.static(__dirname + '/public'))
-app.use('/user', express.static(__dirname + '/public'))
-app.use('/', express.static(__dirname + '/public'))
+app.use("/post", express.static(__dirname + "/public"));
+app.use("/user", express.static(__dirname + "/public"));
+app.use("/", express.static(__dirname + "/public"));
 
-app.use(express.json())
-app.use(express.urlencoded({extended:true}))
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Handlebars config
-require("./configs/hbs") (app)
+require("./configs/hbs")(app);
 
 // Session
-require("./configs/session") (app)
+require("./configs/session")(app);
 
 // Passport
-require("./configs/passport") (app)
+require("./configs/passport")(app);
 
 // Router
-app.use('/', userRouter)
-app.use('/', feedRouter)
-app.use('/post', postRouter)
-
+app.use("/", userRouter);
+app.use("/", feedRouter);
+app.use("/post", postRouter);
 
 app.use((err, req, res, next) => {
-    const statusCode = err.statusCode | 500
-    res.status(statusCode).send(err.message)
-})
+  const statusCode = err.statusCode | 500;
+  res.status(statusCode).send(err.message);
+});
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`)
-})
+// app.listen(port, () => {
+//   console.log(`Server is running on port ${port}`);
+// });
+
+app.listen(port, async () => {
+  console.log("server started!");
+
+  var data = {
+    username: "user10",
+    password: "11",
+    secretkey: "1",
+    email: "user10@gmail.com",
+  };
+  const text = await user.createNewUser(data);
+
+  console.log(text);
+  // const text1 = await user.creatDefaultProfile("user4");
+  // const text1 = await user.startFollow("user2", "user1");
+  var postdata = {
+    img: "./public/avt1.png",
+    content: "test post on wall",
+  };
+  var cmt = {
+    username: "user2",
+    post_id: "17",
+    text: "tôi test cmt phát",
+  };
+  // const text1 = await user.deleteOnWall(17);
+});

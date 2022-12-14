@@ -1,0 +1,3 @@
+database: lưu cấu hình kết nối với postgres
+models: chứa các models
+services: 
