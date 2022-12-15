@@ -90,12 +90,6 @@ body {
       & li {
          border-radius: 7px;
          cursor: pointer;
-         &:hover {
-            & a i {
-               color: var(--dark-orange);
-            }
-            background-color: var(--bgr-light-gray);
-         }
          & a {
             color: black;
             text-decoration: none;
@@ -108,12 +102,6 @@ body {
    & .right-message {
       border-radius: 7px;
       cursor: pointer;
-      &:hover {
-         & i {
-            color: var(--dark-orange);
-         }
-         background-color: var(--bgr-light-gray);
-      }
    }
    & .right-user {
       width: 50px;
@@ -132,19 +120,19 @@ body {
    }
 }
 .user-chat {
-   & .img-user {
-      height: 50px;
-      width: 50px;
-      border-radius: 100rem;
-      overflow: hidden;
-      & img {
-         width: 100%;
-         height: 100%;
-         object-fit: cover;
-      }
-   }
    & .chat-text {
       flex: 1;
+   }
+}
+.img-user {
+   height: 50px;
+   width: 50px;
+   border-radius: 100rem;
+   overflow: hidden;
+   & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
    }
 }
 //
@@ -253,7 +241,6 @@ body {
       top: 2%;
       background-image: none;
       & i {
-         color: white;
          font-size: 25px;
       }
    }
@@ -262,7 +249,6 @@ body {
    max-width: 70%;
 }
 .modal-content {
-   background-color: black;
    border-radius: 10px;
    overflow: hidden;
 }
@@ -374,8 +360,90 @@ body {
       }
    }
 }
+.modal-delete {
+   display: none;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   z-index: 2000;
+   background-color: rgba(0, 0, 0, 0.187);
+   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+   & > div {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+   }
+   & .header-delete {
+      & button {
+         border: none;
+         & i {
+            font-size: 18px;
+         }
+      }
+   }
+}
+#modalNewPost {
+   & div div div > button {
+      border: none;
+      & i {
+      }
+   }
+   & .modal-body {
+      & form {
+         & .input-wrap {
+            border: 3px var(--dark-orange) dashed;
+            border-radius: 7px;
+            cursor: pointer;
+            & > div {
+               width: 382px;
+               height: 290px;
+               overflow: hidden;
+               & img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  z-index: 4;
+               }
+            }
+
+            &:hover {
+               background-color: var(--bgr-light-gray);
+            }
+         }
+         & textarea {
+            min-height: 40vh;
+         }
+      }
+   }
+}
+//
+.modal-edit-profile {
+   & .modal-content {
+      & .modal-body {
+         & form {
+            & .label-change {
+               color: var(--dark-orange);
+               cursor: pointer;
+            }
+         }
+      }
+   }
+}
 /////////////////////////////////////////////////
 
+//class hover
+.hover-icon {
+   border-radius: 7px;
+   &:hover {
+      background-color: var(--bgr-light-gray);
+      & i {
+         color: var(--dark-orange);
+      }
+   }
+}
+
+/////////////////////////////////////////////////
 @media (max-width: 1200px) {
    .left-child {
       max-width: 25%;

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
    <head>
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -25,25 +24,30 @@
                      </span>
                   </div>
                </div>
-               <div class="header-center d-flex gap-3 justify-content-center align-items-center w-100">
+               <div
+                  class="header-center d-flex gap-3 justify-content-center align-items-center w-100">
                   <ul class="nav justify-content-center m-0 p-0 w-100 gap-4">
-                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-house"></i></a>
+                     <li class="nav-item hover-icon">
+                        <a class="nav-link active" aria-current="page" href="#"
+                           ><i class="fa-solid fa-house"></i
+                        ></a>
                      </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                     <li class="nav-item hover-icon">
+                        <a class="nav-link" href="#"
+                           ><i class="fa-solid fa-magnifying-glass"></i
+                        ></a>
                      </li>
-                     <li class="nav-item">
+                     <li class="nav-item hover-icon">
                         <a class="nav-link" href="#"><i class="fa-solid fa-store"></i></a>
                      </li>
-                     <li class="nav-item">
+                     <li class="nav-item hover-icon">
                         <a class="nav-link"><i class="fa-regular fa-heart"></i></a>
                      </li>
                   </ul>
                </div>
                <div class="header-right d-flex justify-content-center align-items-center gap-3">
                   <div
-                     class="right-message p-2 px-3"
+                     class="right-message p-2 px-3 hover-icon"
                      data-bs-toggle="dropdown"
                      aria-expanded="false">
                      <i class="fa-regular fa-comments"></i>
@@ -90,7 +94,7 @@
                      <img src="../public/image/nguyen.png" alt="" />
                   </div>
                   <ul class="dropdown-menu">
-                     <li><a class="dropdown-item" href="#">Setting</a></li>
+                     <li><a class="dropdown-item" href="#">Change password</a></li>
                      <li><a class="dropdown-item" href="#">Following</a></li>
                      <li><a class="dropdown-item" href="#">Report</a></li>
                      <li><hr class="dropdown-divider" /></li>
@@ -103,16 +107,16 @@
             <div class="content-left">
                <div class="left-child h-100">
                   <div class="card rounded-5 rounded-bottom overflow-hidden">
-                     <div class="bgr-image d-flex flex-column justify-content-center align-items-center">
+                     <div
+                        class="bgr-image d-flex flex-column justify-content-center align-items-center">
                         <div>
                            <img src="../public/image/nguyen.png" alt="" />
                         </div>
                         <span><b>Nguyen Hoang</b> </span>
                         <span class="small">@nguyenhoang</span>
-
                      </div>
-                     <div class="flex-column">
-                        <div class="d-flex justify-content-around">
+                     <div class="flex-column mt-3">
+                        <div class="d-flex justify-content-around text-center">
                            <div class="ports d-flex flex-column justify-content-center">
                               <span>
                                  <h6 class="m-0">543</h6>
@@ -134,11 +138,9 @@
                         </div>
                      </div>
                      <div class="card-body overflow-auto d-flex flex-column">
-
-
-
-
-                        <hr style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" />
+                        <hr
+                           class="mt-0"
+                           style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" />
                         <div class="about-box d-flex gap-2 pt-2 pb-2 align-items-start flex-column">
                            <span>Travel, Adventure & Lifestyle</span>
                            <span>Photographer</span>
@@ -146,11 +148,19 @@
                            <span>Currently in Edinburgh</span>
                         </div>
                         <hr style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" />
-                        <div class="d-flex flex-column justify-content-between gap-3">
-                           <button type="button" class="btn btn-outline-info w-100">
+                        <div class="d-flex flex-column justify-content-between gap-3 mb-3">
+                           <button
+                              type="button"
+                              class="btn btn-outline-info w-100"
+                              data-bs-toggle="modal"
+                              data-bs-target="#modalNewPost">
                               New post
                            </button>
-                           <button type="button" class="btn btn-outline-primary w-100">
+                           <button
+                              type="button"
+                              class="btn btn-outline-primary w-100"
+                              data-bs-toggle="modal"
+                              data-bs-target="#modalEditProfile">
                               Edit profile
                            </button>
                         </div>
@@ -162,7 +172,8 @@
                               <div class="box-image">
                                  <img src="../public/image/nguyen.png" alt="" />
                               </div>
-                              <div class="box-name d-flex flex-column justify-content-center align-items-flex-start">
+                              <div
+                                 class="box-name d-flex flex-column justify-content-center align-items-flex-start">
                                  <span><b>Nguyen Hoang</b></span>
                                  <span>@nguyenhoang</span>
                               </div>
@@ -184,108 +195,87 @@
             </div>
          </div>
          <div class="footer"></div>
-         <div class="modal-image">
+      </div>
+      <div class="modal-wrap">
+         <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            data-bs-keyboard="false"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <button
+               type="button"
+               class="btn-close position-absolute d-flex align-items-center"
+               data-bs-dismiss="modal"
+               aria-label="Close">
+               <i class="fa-solid fa-xmark"></i>
+            </button>
             <div
-               class="modal fade"
-               id="exampleModal"
-               tabindex="-1"
-               data-bs-backdrop="static"
-               data-bs-keyboard="false"
-               aria-labelledby="exampleModalLabel"
-               aria-hidden="true">
-               <button
-                  type="button"
-                  class="btn-close position-absolute d-flex align-items-center"
-                  data-bs-dismiss="modal"
-                  aria-label="Close">
-                  <i class="fa-solid fa-xmark"></i>
-               </button>
-               <div
-                  class="modal-dialog modal-fullscreen-md-down modal-dialog-centered modal-container">
-                  <div class="modal-content flex-row m-0 gap-1">
-                     <div class="w-75 position-relative">
-                        <div class="modal-header position-absolute w-100">
-                           <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                        </div>
-                        <div class="modal-body h-100">
-                           <img src="../public/image/nguyen.png" alt="" />
-                        </div>
+               class="modal-dialog modal-fullscreen-md-down modal-dialog-centered modal-container">
+               <div class="modal-content flex-row m-0 gap-1 bg-black">
+                  <div class="w-75 position-relative">
+                     <div class="modal-body h-100">
+                        <!-- <img src="${data_images.image}" alt="" /> -->
                      </div>
-                     <div class="modal-port w-25 position-relative">
-                        <div class="port-container overflow-auto pt-3 px-2">
-                           <div class="container-contents d-flex flex-column">
-                              <div
-                                 class="contents-header d-flex gap-3 align-items-center justify-content-between pt-2 pb-2 px-1 pe-1">
-                                 <!-- <div class="header-img">
-                                    <img src="../public/image/nguyen.png" alt="" />
-                                 </div>
-                                 <div class="header-name d-flex flex-column">
-                                    <span>Nguyen Hoang</span>
-                                    <span class="fst-italic fw-lighter">@nguyenhoang</span>
-                                 </div>
-                                 <div class="header-setting">
-                                    <i class="fa-solid fa-grip"></i>
-                                 </div> -->
+                  </div>
+                  <div class="modal-port w-25 position-relative">
+                     <div class="port-container overflow-auto pt-3 px-2">
+                        <div class="container-contents d-flex flex-column">
+                           <div
+                              class="contents-header d-flex gap-3 align-items-center justify-content-between pt-2 pb-2 px-1 pe-1">
+                              <div class="header-img">
+                                 <img src="${data_images.avatar}" alt="" />
                               </div>
-                              <div class="contents-body mb-3">
-                                 <!-- <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere
-                                    ullam, veritatis illum culpa et officiis eius, consequuntur
-                                    tenetur eveniet molestiae, itaque neque in ipsam illo autem!
-                                    Necessitatibus enim amet quis. Lorem ipsum dolor sit amet
-                                    consectetur adipisicing elit.
-                                 </p> -->
+                              <div class="header-name d-flex flex-column">
+                                 <span>${data_images.user}</span>
+                                 <span class="fst-italic fw-lighter">${data_images.id_user}</span>
                               </div>
                               <div
-                                 class="contents-footer pt-1 pb-1 d-flex justify-content-between gap-2 mb-4">
-                                 <div
-                                    class="d-flex justify-content-center align-items-center gap-3 pt-2 pb-2">
-                                    <i class="fa-regular fa-thumbs-up"></i>
-                                    <span>Like</span>
-                                 </div>
-                                 <div
-                                    class="d-flex justify-content-center align-items-center gap-3 pt-2 pb-2">
-                                    <i class="fa-regular fa-message"></i> Comments
-                                 </div>
+                                 class="header-setting hover-icon"
+                                 data-bs-toggle="dropdown"
+                                 aria-expanded="false">
+                                 <i class="fa-solid fa-grip"></i>
                               </div>
-                              <div class="contents-comments">
-                                 <div class="comments-list d-flex flex-column gap-1">
-                                    <!-- <div
-                                       class="user-other d-flex flex-row justify-content-between gap-2 mb-3">
-                                       <div class="img-user">
-                                          <img src="../public/image/nguyen.png" alt="" />
-                                       </div>
-                                       <div
-                                          class="user-comment d-flex flex-column justify-content-between">
-                                          <div class="p-2">
-                                             <span><b>Nguyen Hoang</b></span>
-                                             <span
-                                                ><p class="m-0">
-                                                   Lorem ipsum dolor sit amet, consectetur
-                                                   adipisicing elit. Dolorem, fuga aperiam. Officiis
-                                                   possimus eligendi illum iusto nisi beatae laborum
-                                                   amet culpa ullam officia? Nihil, ex nobis cum
-                                                   ipsum dignissimos aliquam.
-                                                </p></span
-                                             >
-                                          </div>
-                                          <div class="d-flex gap-4 fw-semibold px-3 pe-3">
-                                             <span>Like</span>
-                                             <span>Comments</span>
-                                          </div>
-                                       </div>
-                                    </div> -->
-                                 </div>
+                              <ul class="dropdown-menu">
+                                 <li class="d-flex align-items-center px-2 hover-icon">
+                                    <i class="fa-solid fa-circle-exclamation px-2"></i
+                                    ><span class="dropdown-item px-0">Report</span>
+                                 </li>
+                                 <li class="d-flex align-items-center px-2 hover-icon btn-delete">
+                                    <i class="fa-regular fa-trash-can px-2"></i
+                                    ><spam class="dropdown-item px-0">Delete</spam>
+                                 </li>
+                              </ul>
+                           </div>
+                           <div class="contents-body mb-3">
+                              <!--  -->
+                           </div>
+                           <div
+                              class="contents-footer pt-1 pb-1 d-flex justify-content-between gap-2 mb-4">
+                              <div
+                                 class="d-flex justify-content-center align-items-center gap-3 pt-2 pb-2">
+                                 <i class="fa-regular fa-thumbs-up"></i>
+                                 <span>Like</span>
+                              </div>
+                              <div
+                                 class="d-flex justify-content-center align-items-center gap-3 pt-2 pb-2">
+                                 <i class="fa-regular fa-message"></i> Comments
                               </div>
                            </div>
+                           <div class="contents-comments">
+                              <!--  -->
+                           </div>
                         </div>
-                        <div class="input-comment position-absolute bottom-0 w-100">
-                           <div class="pt-2 pb-2 px-3 d-flex justify-content-between gap-2">
-                              <input
-                                 type="text"
-                                 class="form-control"
-                                 id="inputComment"
-                                 placeholder="New comments..." />
+                     </div>
+                     <div class="input-comment position-absolute bottom-0 w-100">
+                        <div class="pt-2 pb-2 px-3 d-flex justify-content-between gap-2">
+                           <input
+                              type="text"
+                              class="form-control"
+                              id="inputComment"
+                              placeholder="New comments..." />
+                           <div class="hover-icon d-flex justify-content-between">
                               <i
                                  class="fa-solid fa-paper-plane px-3 d-flex align-items-center justify-content-center"></i>
                            </div>
@@ -296,8 +286,211 @@
             </div>
          </div>
       </div>
+      <div class="modal-delete position-fixed">
+         <div
+            class="modal-dialog modal-dialog-centered position-fixed"
+            id="staticBackdrop"
+            data-bs-backdrop="static">
+            <div class="modal-dialog">
+               <div class="modal-content bg-light px-3 py-2">
+                  <div class="modal-header header-delete" style="color: black">
+                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Message</h1>
+                     <button type="button" class="hover-icon px-3 py-1 btn-close-modal">
+                        <i class="fa-regular fa-circle-xmark"></i>
+                     </button>
+                  </div>
+                  <div class="modal-body">Do you want delete ??</div>
+                  <div class="modal-footer gap-2">
+                     <button type="button" class="btn btn-secondary btn-no">No</button>
+                     <button type="button" class="btn btn-primary btn-yes">Yes</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="modal-new-post">
+         <div
+            class="modal fade"
+            id="modalNewPost"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+               <div class="modal-content">
+                  <div class="modal-header position-relative d-flex" style="color: black">
+                     <h1
+                        class="modal-title fs-5 text-center"
+                        style="flex: 1"
+                        id="exampleModalLabel">
+                        New post
+                     </h1>
+                     <button
+                        type="button"
+                        class="hover-icon py-1 px-3 position-absolute"
+                        style="top: 15%"
+                        data-bs-dismiss="modal"
+                        aria-label="Close">
+                        <i class="fa-solid fa-xmark"></i>
+                     </button>
+                  </div>
+                  <div class="modal-body px-2">
+                     <form class="d-flex justify-content-between gap-1">
+                        <div class="w-50 input-wrap position-relative">
+                           <div class="d-flex align-items-center justify-content-center">
+                              <!-- <img src="../public/image/new.jpg" alt="" /> -->
+                              <span class="m-0">Select file image...</span>
+                           </div>
+                           <input type="file" class="input-file d-none" />
+                        </div>
+                        <div class="d-flex flex-column justify-content-around w-50 px-4">
+                           <div class="">
+                              <textarea
+                                 class="form-control"
+                                 id="message-text"
+                                 placeholder="What you're thinking?"></textarea>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                     </button>
+                     <button type="button" class="btn btn-primary">Post</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="modal-edit-profile">
+         <div
+            class="modal fade"
+            id="modalEditProfile"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen-sm-down modal-dialog-centered">
+               <div class="modal-content">
+                  <div class="modal-header position-relative d-flex" style="color: black">
+                     <h1
+                        class="modal-title fs-5 text-center"
+                        style="flex: 1"
+                        id="exampleModalLabel">
+                        Edit profile
+                     </h1>
+                     <button
+                        type="button"
+                        class="hover-icon py-1 px-3 position-absolute"
+                        style="top: 15%; border: none"
+                        data-bs-dismiss="modal"
+                        aria-label="Close">
+                        <i class="fa-solid fa-xmark"></i>
+                     </button>
+                  </div>
+                  <div class="modal-body px-2">
+                     <form id="form-edit">
+                        <div>
+                           <div class="mb-3 d-flex gap-2">
+                              <div class="img-user avatar-wrap">
+                                 <img src="../public/image/new.jpg" alt="" />
+                              </div>
+                              <div id="emailHelp" class="form-text d-flex flex-column m-0">
+                                 <label for="exampleInputEmail1" class="form-label m-0 id-user"
+                                    ><i>@nguyenhoang</i></label
+                                 >
+                                 <span class="m-0 label-change fw-bold"> Change avatar </span>
+                                 <input type="file" class="input-file-avatar d-none" />
+                              </div>
+                           </div>
+                           <div class="mb-3 d-flex gap-3">
+                              <input
+                                 type="text"
+                                 class="form-control p-3"
+                                 id="exampleInputFullName"
+                                 placeholder="Full Name" />
+                           </div>
+
+                           <div class="mb-3 d-flex gap-3">
+                              <input
+                                 type="text"
+                                 class="form-control p-3"
+                                 placeholder="About"
+                                 id="exampleInputAbout" />
+                           </div>
+
+                           <div class="mb-3 d-flex gap-3 justify-content-around">
+                              <div
+                                 class="position-relative d-flex justify-content-center text-center w-50">
+                                 <label
+                                    class="position-absolute form-check-label text-decoration-none gray-text"
+                                    style="top: 10px; left: 20px"
+                                    for="exampleInputDoB"
+                                    >Birthday</label
+                                 >
+                                 <input
+                                    type="date"
+                                    class="col form-control text-end pe-3 gap-2"
+                                    id="exampleInputDayOfBirth"
+                                    value="2022-12-12" />
+                              </div>
+
+                              <div class="d-flex flex-column justify-content-center w-50">
+                                 <label
+                                    class="form-check-label text-decoration-none gray-text"
+                                    for="exampleCheck1"
+                                    >Gender</label
+                                 >
+                                 <div class="d-flex gap-3">
+                                    <div class="form-check">
+                                       <input
+                                          class="form-check-input"
+                                          type="radio"
+                                          name="flexRadioDefault"
+                                          id="male"
+                                          value="male"
+                                          checked />
+                                       <label class="form-check-label" for="flexRadioDefault1">
+                                          Male
+                                       </label>
+                                    </div>
+                                    <div class="form-check">
+                                       <input
+                                          class="form-check-input"
+                                          type="radio"
+                                          name="flexRadioDefault"
+                                          value="female"
+                                          id="female" />
+                                       <label class="form-check-label" for="flexRadioDefault2">
+                                          Female
+                                       </label>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="mb-3 d-flex gap-3">
+                              <input
+                                 type="text"
+                                 class="form-control p-3"
+                                 id="exampleInputuserCity"
+                                 placeholder="Lồ cấy sần(location)?" />
+                           </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2">
+                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                              Close
+                           </button>
+                           <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                              Save
+                           </button>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
    </body>
    <script type="module" src="../build/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
    <script type="module" src="../js/index.js"></script>
-
 </html>

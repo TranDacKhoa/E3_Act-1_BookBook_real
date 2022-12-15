@@ -2,8 +2,8 @@ export const data_images = [
    {
       image: '../public/image/nguyen.png',
       id: 1,
-      user: 'tuan',
-      id_user: '@tuanle',
+      user: 'Nguyen Hoang',
+      id_user: '@nguyenhoang',
       avatar: '../public/image/nguyen.png',
       contents: 'Các bạn thông cảm, anh qua Qatar coi đá banh dới mét si dới rô nán đồ gòi',
       data: [
@@ -42,8 +42,8 @@ export const data_images = [
    {
       image: '../public/image/new.jpg',
       id: 2,
-      user: 'tuan',
-      id_user: '@tuanle',
+      user: 'Nguyen Hoang',
+      id_user: '@nguyenhoang',
       avatar: '../public/image/nguyen.png',
       contents: 'Em đẹp lắm Ichika 💗',
       data: [
@@ -82,8 +82,8 @@ export const data_images = [
    {
       image: '../public/image/nguyen.png',
       id: 3,
-      user: 'tuan',
-      id_user: '@tuanle',
+      user: 'Nguyen Hoang',
+      id_user: '@nguyenhoang',
       avatar: '../public/image/nguyen.png',
       contents:
          'CHÚ CHÓ MAY MẮN KHI CÓ MỘT GIA ĐÌNH YÊU THƯƠNG Một người mẹ tên Joely Eaton, 29 tuổi tại Anh Quốc có nuôi một chú chó tên Buddy, nhưng không may nó lại mắc một loại u.ng t.hư xương ác tính. Vì thế Joely đã phải chi trả một hoá đơn lên đến hơn 8000 bảng Anh (hơn 200 triệu đồng) cho việc c-ắ-t b-ỏ ch-ân của chú chó này.',
@@ -123,8 +123,8 @@ export const data_images = [
    {
       image: '../public/image/new.jpg',
       id: 4,
-      user: 'tuan',
-      id_user: '@tuanle',
+      user: 'Nguyen Hoang',
+      id_user: '@nguyenhoang',
       avatar: '../public/image/nguyen.png',
       contents: 'Hôm qua bắt Argen ăn được 500k nên sáng sớm đưa vợ đi uống cafe 🐧',
       data: [
@@ -163,8 +163,8 @@ export const data_images = [
    {
       image: '../public/image/nguyen.png',
       id: 5,
-      user: 'tuan',
-      id_user: '@tuanle',
+      user: 'Nguyen Hoang',
+      id_user: '@nguyenhoang',
       avatar: '../public/image/nguyen.png',
       contents: 'Các bạn thông cảm, anh qua Qatar coi đá banh dới mét si dới rô nán đồ gòi',
       data: [
@@ -203,8 +203,8 @@ export const data_images = [
    {
       image: '../public/image/new.jpg',
       id: 6,
-      user: 'tuan',
-      id_user: '@tuanle',
+      user: 'Nguyen Hoang',
+      id_user: '@nguyenhoang',
       avatar: '../public/image/nguyen.png',
       contents: 'Các bạn thông cảm, anh qua Qatar coi đá banh dới mét si dới rô nán đồ gòi',
       data: [
@@ -243,8 +243,8 @@ export const data_images = [
    {
       image: '../public/image/nguyen.png',
       id: 7,
-      user: 'tuan',
-      id_user: '@tuanle',
+      user: 'Nguyen Hoang',
+      id_user: '@nguyenhoang',
       avatar: '../public/image/nguyen.png',
       contents: 'Các bạn thông cảm, anh qua Qatar coi đá banh dới mét si dới rô nán đồ gòi',
       data: [
@@ -283,8 +283,8 @@ export const data_images = [
    {
       image: '../public/image/new.jpg',
       id: 8,
-      user: 'tuan',
-      id_user: '@tuanle',
+      user: 'Nguyen Hoang',
+      id_user: '@nguyenhoang',
       avatar: '../public/image/nguyen.png',
       contents: 'Các bạn thông cảm, anh qua Qatar coi đá banh dới mét si dới rô nán đồ gòi',
       data: [
@@ -323,8 +323,8 @@ export const data_images = [
    {
       image: '../public/image/nguyen.png',
       id: 9,
-      user: 'tuan',
-      id_user: '@tuanle',
+      user: 'Nguyen Hoang',
+      id_user: '@nguyenhoang',
       avatar: '../public/image/nguyen.png',
       contents: 'Các bạn thông cảm, anh qua Qatar coi đá banh dới mét si dới rô nán đồ gòi',
       data: [
@@ -361,3 +361,13 @@ export const data_images = [
       ],
    },
 ];
+
+export const data_user = {
+   name: 'Nguyen Hoang',
+   id: '@nguyenhoang',
+   avatar: '../public/image/new.jpg',
+   location: 'deo biet :)',
+   about: 'deo co',
+   gender: 'male',
+   dayOfBirth: '2005-11-11',
+};
