@@ -4,6 +4,8 @@ const userRouter = require("./routers/user.r");
 const feedRouter = require("./routers/feed.r");
 const postRouter = require("./routers/post.r");
 const bodyParser = require("body-parser");
+const sequelize = require("./database/db").sequelize;
+
 //
 const user = require("./services/userServices");
 //
@@ -44,14 +46,16 @@ app.use((err, req, res, next) => {
 
 app.listen(port, async () => {
   console.log("server started!");
+  //Note chỉ lần đầu tiên chạy server mới chạy dòng sequelize.sync này để đồng bộ model và db
+  await sequelize.sync({ alter: true });
 
   var data = {
-    username: "user10",
-    password: "11",
+    username: "user2",
+    password: "1",
     secretkey: "1",
-    email: "user10@gmail.com",
+    email: "user2@gmail.com",
   };
-  const text = await user.createNewUser(data);
+  const text = await user.createDefaultProfile("user2");
 
   console.log(text);
   // const text1 = await user.creatDefaultProfile("user4");

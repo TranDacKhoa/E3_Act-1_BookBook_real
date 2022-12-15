@@ -1,37 +1,38 @@
 const Sequelize = require("sequelize");
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define(
-    "group_wall",
+    "reported_user",
     {
-      group_id: {
+      report_id: {
+        autoIncrement: true,
         type: DataTypes.BIGINT,
         allowNull: false,
         primaryKey: true,
+      },
+      reported_user: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
         references: {
-          model: "group_info",
-          key: "group_id",
+          model: "user_info",
+          key: "username",
         },
       },
-      post_id: {
-        type: DataTypes.BIGINT,
-        allowNull: false,
-        primaryKey: true,
-        references: {
-          model: "general_post",
-          key: "post_id",
-        },
+      reason: {
+        type: DataTypes.STRING(250),
+        allowNull: true,
+        defaultValue: "toxic user",
       },
     },
     {
       sequelize,
-      tableName: "group_wall",
+      tableName: "reported_user",
       schema: "public",
       timestamps: false,
       indexes: [
         {
-          name: "group_wall_pkey",
+          name: "reported_user_pkey",
           unique: true,
-          fields: [{ name: "group_id" }, { name: "post_id" }],
+          fields: [{ name: "report_id" }],
         },
       ],
     }

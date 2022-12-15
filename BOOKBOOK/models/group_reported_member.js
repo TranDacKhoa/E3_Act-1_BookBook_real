@@ -1,51 +1,48 @@
 const Sequelize = require("sequelize");
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define(
-    "market_comment",
+    "group_reported_member",
     {
-      cmt_id: {
+      report_id: {
         autoIncrement: true,
         type: DataTypes.BIGINT,
         allowNull: false,
         primaryKey: true,
       },
-      cmt_on: {
+      group_id: {
         type: DataTypes.BIGINT,
         allowNull: false,
-        references: {
-          model: "market_post",
-          key: "post_id",
-        },
+        // unique: true,
+        // references: {
+        //   model: "group_member",
+        //   key: "group_id",
+        // },
       },
-      cmt_by: {
+      member: {
         type: DataTypes.STRING(50),
         allowNull: false,
-        references: {
-          model: "user_profile",
-          key: "username",
-        },
+        unique: true,
+        // references: {
+        //   model: "group_member",
+        //   key: "username",
+        // },
       },
-      cmt_time: {
-        type: DataTypes.DATE,
-        allowNull: true,
-        defaultValue: Sequelize.Sequelize.fn("now"),
-      },
-      text: {
+      reason: {
         type: DataTypes.STRING(250),
         allowNull: true,
-        defaultValue: "your comment",
+        defaultValue: "toxic member",
       },
     },
     {
       sequelize,
-      tableName: "market_comment",
+      tableName: "group_reported_member",
       schema: "public",
       timestamps: false,
       indexes: [
         {
-          name: "market_comment_pkey",
+          name: "group_reported_member_pkey",
           unique: true,
-          fields: [{ name: "cmt_id" }],
+          fields: [{ name: "report_id" }],
         },
       ],
     }

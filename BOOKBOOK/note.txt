@@ -1,3 +1,12 @@
-database: lưu cấu hình kết nối với postgres
-models: chứa các models
-services: 
+update: 15/12/2022
+- update script generate db mới
+-thêm 5 table mới trong db
+-sửa 1 vài table cũ
+-đổi tên các model
+-xóa relationship cũ của các model (do làm biếng viết quá lấy tool genarate ra cho lẹ)
+
+Note: cách dùng db (nếu chạy server gặp lỗi thì làm theo những bước này):
+- generate bằng script mới trong folder database 
+- ở lần đầu tiên chạy server phải sync sequelize bằng câu lệnh có ghi chú trong app.listen
+- chạy xong lần đầu thì cmt câu lệnh đó lại đễ những lần sau khỏi sync nặng máy
+

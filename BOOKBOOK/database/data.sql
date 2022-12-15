@@ -1,10 +1,10 @@
 
 -- thêm người dùng
 BEGIN;
-INSERT INTO user_info(username,pwd,secret_key,email,admin) VALUES ('admin1','1','1','admin@bookbook.com','true');
-INSERT INTO user_info(username,pwd,secret_key,email,admin) VALUES ('user1','1','1','user1@bookbook.com','false');
-INSERT INTO user_info(username,pwd,secret_key,email,admin) VALUES ('user2','1','1','user2@bookbook.com','false');
-INSERT INTO user_info(username,pwd,secret_key,email,admin) VALUES ('user3','1','1','user3@bookbook.com','false');
+INSERT INTO user_info(username,pwd,secret_key,email) VALUES ('admin1','1','1','admin@bookbook.com');
+INSERT INTO user_info(username,pwd,secret_key,email) VALUES ('user1','1','1','user1@bookbook.com');
+INSERT INTO user_info(username,pwd,secret_key,email) VALUES ('user2','1','1','user2@bookbook.com');
+INSERT INTO user_info(username,pwd,secret_key,email) VALUES ('user3','1','1','user3@bookbook.com');
 COMMIT;
 
 -- thêm trang cá nhân
@@ -21,8 +21,8 @@ COMMIT;
 
 -- tạo 2 group
 BEGIN;
-INSERT INTO group_info(group_id,group_name,description) VALUES (1,'group 101','Nhóm này để test group');
-INSERT INTO group_info(group_id,group_name,description) VALUES (2,'group thứ 2','Đây là 1 group xàm');
+INSERT INTO group_info(group_id,group_name,description) VALUES ('group 101','Nhóm này để test group');
+INSERT INTO group_info(group_id,group_name,description) VALUES ('group thứ 2','Đây là 1 group xàm');
 COMMIT;
 
 -- group 1 : user1-admin, user2-member

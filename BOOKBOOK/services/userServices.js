@@ -6,7 +6,7 @@ const userServices = {
   //get all user in database
   getList: async () => {
     try {
-      const result = await models.User.findAll({
+      const result = await models.user_info.findAll({
         raw: true,
       });
       return result;
@@ -18,14 +18,14 @@ const userServices = {
 
   //login signup services
   checkExistUser: async (username) => {
-    const result = await models.User.findByPk(username);
+    const result = await models.user_info.findByPk(username);
     if (result === null) return false;
     else {
       return true;
     }
   },
   checkAdmin: async (username) => {
-    const result = await models.User.findByPk(username, {
+    const result = await models.user_info.findByPk(username, {
       attributes: ["admin"],
     });
     if (result === null || !result.admin) {
@@ -35,7 +35,7 @@ const userServices = {
     }
   },
   checkLogin: async (username, usrpw) => {
-    const result = await models.User.findByPk(username, {
+    const result = await models.user_info.findByPk(username, {
       attributes: ["pwd"],
     });
     // hash usrpw before compare
@@ -50,7 +50,7 @@ const userServices = {
     //hash pwd before insert
     //user.password=hashedpwd
     try {
-      result = await models.User.create({
+      result = await models.user_info.create({
         username: user.username,
         pwd: user.password,
         secret_key: user.secretkey,
@@ -63,10 +63,10 @@ const userServices = {
       return false;
     }
   },
-  creatDefaultProfile: async (username) => {
+  createDefaultProfile: async (username) => {
     if (await userServices.checkExistUser(username)) {
       try {
-        const result = await models.UserProfile.create({
+        const result = await models.user_profile.create({
           username: username,
           fullname: username,
         });
@@ -84,7 +84,7 @@ const userServices = {
 
   //profile services
   getProfile: async (username) => {
-    const result = await models.UserProfile.findAll({
+    const result = await models.user_profile.findAll({
       raw: true,
       where: {
         username: username,
@@ -93,7 +93,7 @@ const userServices = {
     return result;
   },
   getFollowersList: async (username) => {
-    const result = await models.Follow.findAll({
+    const result = await models.follow.findAll({
       include: {
         model: models.UserProfile,
         as: "following",
@@ -108,7 +108,7 @@ const userServices = {
     return result;
   },
   getFollowingList: async (username) => {
-    const result = await models.Follow.findAll({
+    const result = await models.follow.findAll({
       include: {
         model: models.UserProfile,
         as: "followed",
@@ -122,7 +122,7 @@ const userServices = {
     return result;
   },
   getLibrary: async (username) => {
-    const result = await models.UserWall.findAll({
+    const result = await models.user_wall.findAll({
       include: {
         model: models.GeneralPost,
         required: true,
@@ -137,7 +137,7 @@ const userServices = {
   updateProfile: async (user, newUpdate) => {
     if (await userServices.checkExistUser(user)) {
       try {
-        const result = await models.UserProfile.update(
+        const result = await models.user_profile.update(
           {
             fullname: newUpdate.fullname,
             gender: newUpdate.gender,
@@ -164,12 +164,12 @@ const userServices = {
   },
   postOnWall: async (data) => {
     try {
-      const post = await models.GeneralPost.create({
+      const post = await models.general_post.create({
         author_username: data.username,
         img: data.img,
         text: data.content,
       });
-      const reslt = await models.UserWall.create({
+      const reslt = await models.user_wall.create({
         username: post.author_username,
         post_id: post.post_id,
       });
@@ -183,17 +183,17 @@ const userServices = {
   },
   deleteOnWall: async (postID) => {
     try {
-      const delCmt = await models.GeneralComment.destroy({
+      const delCmt = await models.general_comment.destroy({
         where: {
           cmt_on: postID,
         },
       });
-      const delOnWall = await models.UserWall.destroy({
+      const delOnWall = await models.user_wall.destroy({
         where: {
           post_id: postID,
         },
       });
-      const delPost = await models.GeneralPost.destroy({
+      const delPost = await models.general_post.destroy({
         where: {
           post_id: postID,
         },
@@ -209,7 +209,7 @@ const userServices = {
   },
   comment: async (cmt) => {
     try {
-      const result = await models.GeneralComment.create({
+      const result = await models.general_comment.create({
         cmt_by: cmt.username,
         cmt_on: cmt.post_id,
         text: cmt.text,
@@ -230,7 +230,7 @@ const userServices = {
       (await userServices.checkExistUser(followed))
     ) {
       try {
-        const result = await models.Follow.create({
+        const result = await models.follow.create({
           usr_follow: follower,
           usr_followed: followed,
         });
@@ -251,7 +251,7 @@ const userServices = {
       (await userServices.checkExistUser(followed))
     ) {
       try {
-        const result = await models.Follow.destroy({
+        const result = await models.follow.destroy({
           where: {
             usr_follow: follower,
             usr_followed: followed,
