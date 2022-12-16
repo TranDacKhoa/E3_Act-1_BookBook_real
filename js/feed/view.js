@@ -97,8 +97,7 @@ export const post = (data_images) => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        `;
+                        </div>`;
                        })
                        .join('')}
                     </div>
