@@ -361,7 +361,38 @@ export const data_images = [
       ],
    },
 ];
-
+export const data_user_other = [
+   {
+      name: 'Nhat Huy',
+      id: '@nhathuy',
+      avatar: '../public/image/nguyen.png',
+      about: 'dev lỏd',
+   },
+   {
+      name: 'Tuan le',
+      id: '@tuanle',
+      avatar: '../public/image/new.jpg',
+      about: 'dev lỏd',
+   },
+   {
+      name: 'Toi Di Code Dao',
+      id: '@toidicodedao',
+      avatar: '../public/image/nguyen.png',
+      about: '...',
+   },
+   {
+      name: 'MTP',
+      id: '@mtp',
+      avatar: '../public/image/new.jpg',
+      about: 'singer',
+   },
+   {
+      name: 'Sugar Daddy',
+      id: '@sugardaddy',
+      avatar: '../public/image/nguyen.png',
+      about: 'trap boy',
+   },
+];
 export const data_user = {
    name: 'Nguyen Hoang',
    id: '@nguyenhoang',
@@ -371,3 +402,23 @@ export const data_user = {
    gender: 'male',
    dayOfBirth: '2005-11-11',
 };
+export const data_blog = [
+   {
+      url: 'https://shopee.vn',
+      image: '../public/image/shopee.png',
+      date: '20-10-2022',
+      content: 'shopeeasdh asjdh nkja sdkjha skjdkjash dkajshdakjshd kajhsd',
+   },
+   {
+      url: 'https://shopee.vn',
+      image: '../public/image/shopee.png',
+      date: '20-10-2022',
+      content: 'shopee',
+   },
+   {
+      url: 'https://shopee.vn',
+      image: '../public/image/shopee.png',
+      date: '20-10-2022',
+      content: 'shopee',
+   },
+];

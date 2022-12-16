@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link href="../build/fontawesome-free-6.2.1-web/css/all.min.css" rel="stylesheet" />
+      <link rel="stylesheet" href="../build/bootstrap-5.2.3-dist/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="../public/sass/css/styleFeed.css" />
+      <link rel="website icon" type="png" href="../public/image/logo1.png" />
+      <title>BookBook</title>
+   </head>
+   <body>
+      <div class="base-layout position-relative d-flex justify-content-center w-100 h-100">
+         <div class="header position-fixed top-0 w-100">
+            <div class="header-container d-flex justify-content-around">
+               <div class="header-left">
+                  <div class="left-logo">
+                     <img src="../public/image/logo1.png" alt="" />
+                     <span>
+                        <h5 class="fw-bold">BOOKBOOK</h5>
+                     </span>
+                  </div>
+               </div>
+               <div
+                  class="header-center d-flex gap-3 justify-content-center align-items-center w-100">
+                  <ul class="nav justify-content-center m-0 p-0 w-100 gap-4">
+                     <li class="nav-item hover-icon active">
+                        <a class="nav-link" aria-current="page" href="#"
+                           ><i class="fa-solid fa-house"></i
+                        ></a>
+                     </li>
+                     <li class="nav-item hover-icon">
+                        <a class="nav-link" href="#"
+                           ><i class="fa-solid fa-magnifying-glass"></i
+                        ></a>
+                     </li>
+                     <li class="nav-item hover-icon">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-store"></i></a>
+                     </li>
+                     <li class="nav-item hover-icon">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-users-line"></i></a>
+                     </li>
+                     <li class="nav-item hover-icon">
+                        <a class="nav-link"><i class="fa-regular fa-heart"></i></a>
+                     </li>
+                  </ul>
+               </div>
+               <div class="header-right d-flex justify-content-center align-items-center gap-3">
+                  <div
+                     class="right-message p-2 px-3 hover-icon"
+                     data-bs-toggle="dropdown"
+                     aria-expanded="false">
+                     <i class="fa-regular fa-comments"></i>
+                  </div>
+                  <ul class="dropdown-menu w-25 dropdown-menu-end">
+                     <span class="text-center"
+                        ><h3><b>Chat</b></h3></span
+                     >
+                     <li class="dropdown-item">
+                        <div class="user-chat d-flex flex-row justify-content-between gap-2 p-2">
+                           <div class="img-user">
+                              <img src="../public/image/new.jpg" alt="" />
+                           </div>
+                           <div class="chat-text">
+                              <span><b>Tuan</b></span>
+                              <span><p class="m-0">Dang lam gi day.</p></span>
+                           </div>
+                        </div>
+                     </li>
+                     <li class="dropdown-item">
+                        <div class="user-chat d-flex flex-row justify-content-between gap-2 p-2">
+                           <div class="img-user">
+                              <img src="../public/image/new.jpg" alt="" />
+                           </div>
+                           <div class="chat-text">
+                              <span><b>Tuan</b></span>
+                              <span><p class="m-0">Dang lam gi day.</p></span>
+                           </div>
+                        </div>
+                     </li>
+                     <li class="dropdown-item">
+                        <div class="user-chat d-flex flex-row justify-content-between gap-2 p-2">
+                           <div class="img-user">
+                              <img src="../public/image/new.jpg" alt="" />
+                           </div>
+                           <div class="chat-text">
+                              <span><b>Tuan</b></span>
+                              <span><p class="m-0">Dang lam gi day.</p></span>
+                           </div>
+                        </div>
+                     </li>
+                  </ul>
+                  <div class="right-user" data-bs-toggle="dropdown" aria-expanded="false">
+                     <img src="../public/image/nguyen.png" alt="" />
+                  </div>
+                  <ul class="dropdown-menu">
+                     <li><a class="dropdown-item" href="#">Change password</a></li>
+                     <li><a class="dropdown-item" href="#">Following</a></li>
+                     <li><a class="dropdown-item" href="#">Report</a></li>
+                     <li><hr class="dropdown-divider" /></li>
+                     <li><a class="dropdown-item" href="#">Logout</a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         <div class="body-container">
+            <div class="d-flex h-100">
+               <div class="nav-bar-left">
+                  <div class="nav-container h-100 overflow-hidden">
+                     <div class="h-100 overflow-auto">
+                        <ul
+                           class="nav h-100 d-flex flex-column align-items-center justify-content-start w-75 py-4 gap-3 ul-wrap">
+                           <li class="nav-item hover-icon active">
+                              <a
+                                 class="nav-link d-flex gap-3 align-items-center"
+                                 aria-current="page"
+                                 href="#"
+                                 ><i class="fa-solid fa-house"></i> <span>Home</span></a
+                              >
+                           </li>
+                           <li class="nav-item hover-icon">
+                              <a class="nav-link d-flex gap-3 align-items-center" href="#"
+                                 ><i class="fa-solid fa-magnifying-glass"></i>
+                                 <span>Search</span></a
+                              >
+                           </li>
+                           <li class="nav-item hover-icon">
+                              <a class="nav-link d-flex gap-3 align-items-center" href="#"
+                                 ><i class="fa-solid fa-store"></i><span>Market</span></a
+                              >
+                           </li>
+                           <li class="nav-item hover-icon">
+                              <a class="nav-link d-flex gap-3 align-items-center"
+                                 ><i class="fa-solid fa-users-line"></i><span>Group</span></a
+                              >
+                           </li>
+                           <li class="nav-item hover-icon">
+                              <a class="nav-link d-flex gap-3 align-items-center"
+                                 ><i class="fa-regular fa-heart"></i><span>Like</span></a
+                              >
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="container-main">
+                  <div class="h-100">
+                     <div class="main-content d-flex h-100">
+                        <div
+                           class="content-wrap overflow-hidden w-75 h-100 px-3 pt-2 d-flex flex-column align-items-center">
+                           <div class="content-feed overflow-auto h-100 w-75">
+                              <div class="feed-posts d-flex flex-column gap-3 pb-3">
+                                 <!-- <div class="post bg-light">
+                                    <div class="d-flex flex-column gap-1">
+                                       <div
+                                          class="post-header d-flex justify-content-between gap-2 px-3 pt-3 pb-2">
+                                          <div class="post-avatar img-user">
+                                             <img src="../public/image/nguyen.png" alt="" />
+                                          </div>
+                                          <div class="post-name d-flex flex-column">
+                                             <span><b>Nguyen Hoang</b></span>
+                                             <span class="fw-lighter" style="font-size: 13px"
+                                                >21 hours ago</span
+                                             >
+                                          </div>
+                                          <div
+                                             class="post-options hover-icon d-flex align-items-center px-3"
+                                             data-bs-toggle="dropdown"
+                                             aria-expanded="false">
+                                             <i class="fa-solid fa-ellipsis"></i>
+                                          </div>
+                                          <ul class="dropdown-menu">
+                                             <li><a class="dropdown-item" href="#">Action</a></li>
+                                             <li>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                             </li>
+                                             <li>
+                                                <a class="dropdown-item" href="#"
+                                                   >Something else here</a
+                                                >
+                                             </li>
+                                             <li><hr class="dropdown-divider" /></li>
+                                             <li>
+                                                <a class="dropdown-item" href="#">Separated link</a>
+                                             </li>
+                                          </ul>
+                                       </div>
+                                       <div class="post-body mb-3">
+                                          <img
+                                             class="img-fill"
+                                             src="../public/image/new.jpg"
+                                             alt="" />
+                                       </div>
+                                       <div class="post-footer">
+                                          <div class="contents-footer px-4 mb-2">
+                                             <div class="py-1 d-flex justify-content-around gap-3">
+                                                <div
+                                                   class="d-flex justify-content-center align-items-center gap-3 pt-2 pb-2 px-3 hover-icon w-50 btn-like">
+                                                   <i class="fa-regular fa-thumbs-up"></i>
+                                                   <span>Like</span>
+                                                </div>
+                                                <div
+                                                   class="d-flex justify-content-center align-items-center gap-3 pt-2 pb-2 px-3 hover-icon w-50 btn-comments">
+                                                   <i class="fa-regular fa-message"></i>
+                                                   <span>Comments</span>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="post-content px-3">
+                                             <p>Tương tư ❤ ❤</p>
+                                          </div>
+                                          <div class="post-comments" style="display: none">
+                                             <div class="input-wrap px-3 mb-3">
+                                                <div class="d-flex gap-2">
+                                                   <div class="img-user">
+                                                      <img src="../public/image/new.jpg" alt="" />
+                                                   </div>
+                                                   <input
+                                                      type="email"
+                                                      class="form-control shadow-none"
+                                                      id="exampleFormControlInput1"
+                                                      placeholder="Your comment..." />
+                                                   <button
+                                                      type="button"
+                                                      class="btn btn-primary px-3">
+                                                      <i class="fa-regular fa-comment-dots"></i>
+                                                   </button>
+                                                </div>
+                                             </div>
+                                             <div
+                                                class="comments-wrap px-3 d-flex flex-column gap-3 mb-2">
+                                                <div class="comment">
+                                                   <div class="user-other d-flex flex-row gap-2">
+                                                      <div class="img-user">
+                                                         <img
+                                                            src="../public/image/nguyen.png"
+                                                            alt="" />
+                                                      </div>
+                                                      <div
+                                                         class="user-comment d-flex flex-column justify-content-between w-75">
+                                                         <div class="p-2">
+                                                            <span><b>${item.name}</b></span>
+                                                            <p class="m-0">
+                                                               Lorem ipsum dolor sit amet
+                                                               consectetur adipisicing elit. Modi
+                                                               distinctio nihil excepturi eum earum
+                                                               vel iure temporibus quos voluptatem
+                                                               ipsa fugit, reiciendis commodi, cum
+                                                               saepe nesciunt, aut repellat
+                                                               consequuntur quo!
+                                                            </p>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <div class="comment">
+                                                   <div class="user-other d-flex flex-row gap-2">
+                                                      <div class="img-user">
+                                                         <img
+                                                            src="../public/image/nguyen.png"
+                                                            alt="" />
+                                                      </div>
+                                                      <div
+                                                         class="user-comment d-flex flex-column justify-content-between w-75">
+                                                         <div class="p-2">
+                                                            <span><b>${item.name}</b></span>
+                                                            <p class="m-0">
+                                                               Lorem ipsum dolor sit amet
+                                                               consectetur adipisicing elit. Modi
+                                                               distinctio nihil excepturi eum earum
+                                                               vel iure temporibus quos voluptatem
+                                                               ipsa fugit, reiciendis commodi, cum
+                                                               saepe nesciunt, aut repellat
+                                                               consequuntur quo!
+                                                            </p>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="post bg-light">
+                                    <div class="d-flex flex-column gap-1">
+                                       <div
+                                          class="post-header d-flex justify-content-between gap-2 px-3 pt-3 pb-2">
+                                          <div class="post-avatar img-user">
+                                             <img src="../public/image/nguyen.png" alt="" />
+                                          </div>
+                                          <div class="post-name d-flex flex-column">
+                                             <span><b>Nguyen Hoang</b></span>
+                                             <span class="fw-lighter" style="font-size: 13px"
+                                                >21 hours ago</span
+                                             >
+                                          </div>
+                                          <div
+                                             class="post-options hover-icon d-flex align-items-center px-3"
+                                             data-bs-toggle="dropdown"
+                                             aria-expanded="false">
+                                             <i class="fa-solid fa-ellipsis"></i>
+                                          </div>
+                                          <ul class="dropdown-menu">
+                                             <li><a class="dropdown-item" href="#">Action</a></li>
+                                             <li>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                             </li>
+                                             <li>
+                                                <a class="dropdown-item" href="#"
+                                                   >Something else here</a
+                                                >
+                                             </li>
+                                             <li><hr class="dropdown-divider" /></li>
+                                             <li>
+                                                <a class="dropdown-item" href="#">Separated link</a>
+                                             </li>
+                                          </ul>
+                                       </div>
+                                       <div class="post-body mb-3">
+                                          <img
+                                             class="img-fill"
+                                             src="../public/image/new.jpg"
+                                             alt="" />
+                                       </div>
+                                       <div class="post-footer">
+                                          <div class="contents-footer px-4 mb-2">
+                                             <div class="py-1 d-flex justify-content-around gap-3">
+                                                <div
+                                                   class="d-flex justify-content-center align-items-center gap-3 pt-2 pb-2 px-3 hover-icon w-50 btn-like">
+                                                   <i class="fa-regular fa-thumbs-up"></i>
+                                                   <span>Like</span>
+                                                </div>
+                                                <div
+                                                   class="d-flex justify-content-center align-items-center gap-3 pt-2 pb-2 px-3 hover-icon w-50 btn-comments">
+                                                   <i class="fa-regular fa-message"></i>
+                                                   <span>Comments</span>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="post-content px-3">
+                                             <p>Tương tư ❤ ❤</p>
+                                          </div>
+                                          <div class="post-comments" style="display: none">
+                                             <div class="input-wrap px-3 mb-3">
+                                                <div class="d-flex gap-2">
+                                                   <div class="img-user">
+                                                      <img src="../public/image/new.jpg" alt="" />
+                                                   </div>
+                                                   <input
+                                                      type="email"
+                                                      class="form-control shadow-none"
+                                                      id="exampleFormControlInput1"
+                                                      placeholder="Your comment..." />
+                                                   <button
+                                                      type="button"
+                                                      class="btn btn-primary px-3">
+                                                      <i class="fa-regular fa-comment-dots"></i>
+                                                   </button>
+                                                </div>
+                                             </div>
+                                             <div
+                                                class="comments-wrap px-3 d-flex flex-column gap-3 mb-2">
+                                                <div class="comment">
+                                                   <div class="user-other d-flex flex-row gap-2">
+                                                      <div class="img-user">
+                                                         <img
+                                                            src="../public/image/nguyen.png"
+                                                            alt="" />
+                                                      </div>
+                                                      <div
+                                                         class="user-comment d-flex flex-column justify-content-between w-75">
+                                                         <div class="p-2">
+                                                            <span><b>${item.name}</b></span>
+                                                            <p class="m-0">
+                                                               Lorem ipsum dolor sit amet
+                                                               consectetur adipisicing elit. Modi
+                                                               distinctio nihil excepturi eum earum
+                                                               vel iure temporibus quos voluptatem
+                                                               ipsa fugit, reiciendis commodi, cum
+                                                               saepe nesciunt, aut repellat
+                                                               consequuntur quo!
+                                                            </p>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <div class="comment">
+                                                   <div class="user-other d-flex flex-row gap-2">
+                                                      <div class="img-user">
+                                                         <img
+                                                            src="../public/image/nguyen.png"
+                                                            alt="" />
+                                                      </div>
+                                                      <div
+                                                         class="user-comment d-flex flex-column justify-content-between w-75">
+                                                         <div class="p-2">
+                                                            <span><b>${item.name}</b></span>
+                                                            <p class="m-0">
+                                                               Lorem ipsum dolor sit amet
+                                                               consectetur adipisicing elit. Modi
+                                                               distinctio nihil excepturi eum earum
+                                                               vel iure temporibus quos voluptatem
+                                                               ipsa fugit, reiciendis commodi, cum
+                                                               saepe nesciunt, aut repellat
+                                                               consequuntur quo!
+                                                            </p>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div> -->
+                              </div>
+                           </div>
+                        </div>
+                        <div class="content-right w-25">
+                           <div class="right-wrap overflow-hidden h-100">
+                              <div class="overflow-auto h-100">
+                                 <div class="suggest-friends mb-3">
+                                    <span class="mb-2"><h4>Suggest friends</h4></span>
+                                    <div class="friends-wrap d-flex flex-column gap-3">
+                                       <!-- <div
+                                          class="friend d-flex gap-2 justify-content-center align-items-center">
+                                          <div class="img-user">
+                                             <img src="../public/image/nguyen.png" alt="" />
+                                          </div>
+                                          <div
+                                             class="d-flex flex-column justify-content-center user-name">
+                                             <span><b>Nguyen Hoang</b></span>
+                                             <span>ạt phờ ren tao đi :)</span>
+                                          </div>
+                                          <div>
+                                             <button type="button" class="btn btn-info">Add</button>
+                                          </div>
+                                       </div>
+                                       <div
+                                          class="friend d-flex gap-2 justify-content-center align-items-center">
+                                          <div class="img-user">
+                                             <img src="../public/image/nguyen.png" alt="" />
+                                          </div>
+                                          <div
+                                             class="d-flex flex-column justify-content-center user-name">
+                                             <span><b>Nguyen Hoang</b></span>
+                                             <span>ạt phờ ren tao đi :)</span>
+                                          </div>
+                                          <div>
+                                             <button type="button" class="btn btn-info">Add</button>
+                                          </div>
+                                       </div>
+                                       <div
+                                          class="friend d-flex gap-2 justify-content-center align-items-center">
+                                          <div class="img-user">
+                                             <img src="../public/image/nguyen.png" alt="" />
+                                          </div>
+                                          <div
+                                             class="d-flex flex-column justify-content-center user-name">
+                                             <span><b>Nguyen Hoang</b></span>
+                                             <span>ạt phờ ren tao đi :)</span>
+                                          </div>
+                                          <div>
+                                             <button type="button" class="btn btn-info">Add</button>
+                                          </div>
+                                       </div> -->
+                                    </div>
+                                 </div>
+                                 <div class="blog pb-3">
+                                    <span class="mb-2"><h4>Blog</h4></span>
+                                    <div class="d-flex flex-column gap-3 blog-wrap">
+                                       <!-- <div class="d-flex gap-2 align-items-center">
+                                          <div class="blog-img">
+                                             <img src="../public/image/1111.jpg" alt="" />
+                                          </div>
+                                          <div class="d-flex flex-column blog-link px-1">
+                                             <span
+                                                ><b
+                                                   ><a href="#" class="text-decoration-none"
+                                                      >Link sộp pi nè mấy em</a
+                                                   ></b
+                                                ></span
+                                             >
+                                             <span class="fw-lighter" style="font-size: 15px"
+                                                ><i>20-10-2010</i></span
+                                             >
+                                          </div>
+                                       </div>
+                                       <div class="d-flex gap-2 align-items-center">
+                                          <div class="blog-img">
+                                             <img src="../public/image/1111.jpg" alt="" />
+                                          </div>
+                                          <div class="d-flex flex-column blog-link px-1">
+                                             <span
+                                                ><b><a href="#">Link sộp pi nè mấy em</a></b></span
+                                             >
+                                             <span class="fw-lighter" style="font-size: 15px"
+                                                ><i>20-10-2010</i></span
+                                             >
+                                          </div>
+                                       </div> -->
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+   <script type="module" src="../build/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
+   <script type="module" src="../js/feed/feed.js"></script>
+</html>

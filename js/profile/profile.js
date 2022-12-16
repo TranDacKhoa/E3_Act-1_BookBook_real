@@ -1,5 +1,5 @@
-import { showModal } from './modal.js'; // modal show image
-import { data_images, data_user } from './data.js'; // data fake
+import { showModal } from '../profile/modal.js'; // modal show image
+import { data_images, data_user } from '../data.js'; // data fake
 // users-other
 const render_users_other = () => {
    const users_other = document.querySelector('.user-box');
