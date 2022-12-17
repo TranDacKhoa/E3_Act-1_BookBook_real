@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
    <head>
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -15,8 +16,8 @@
    <body>
       <div class="base-layout position-relative d-flex justify-content-center w-100 h-auto">
          <div class="header position-fixed top-0 w-100">
-            <div class="header-container d-flex justify-content-around">
-               <div class="header-left">
+            <div class="header-container d-flex justify-content-between">
+               <div class="header-left col-3 d-flex justify-content-center">
                   <div class="left-logo">
                      <img src="../public/image/logo1.png" alt="" />
                      <span>
@@ -24,41 +25,36 @@
                      </span>
                   </div>
                </div>
-               <div
-                  class="header-center d-flex gap-3 justify-content-center align-items-center w-100">
+               <div class="header-center d-flex gap-3 justify-content-center align-items-center w-100">
                   <ul class="nav justify-content-center m-0 p-0 w-100 gap-4">
                      <li class="nav-item hover-icon">
-                        <a class="nav-link active" aria-current="page" href="#"
-                           ><i class="fa-solid fa-house"></i
-                        ></a>
+                        <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-house"></i></a>
                      </li>
                      <li class="nav-item hover-icon">
-                        <a class="nav-link" href="#"
-                           ><i class="fa-solid fa-magnifying-glass"></i
-                        ></a>
-                     </li>
-                     <li class="nav-item hover-icon">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-store"></i></a>
+                        <a class="nav-link" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
                      </li>
                      <li class="nav-item hover-icon">
                         <a class="nav-link" href="#"><i class="fa-solid fa-users-line"></i></a>
                      </li>
                      <li class="nav-item hover-icon">
-                        <a class="nav-link"><i class="fa-regular fa-heart"></i></a>
+                        <a class="nav-link" href="#"><i class="fa-solid fa-store"></i></a>
                      </li>
+
+                     <!-- <li class="nav-item hover-icon">
+                        <a class="nav-link"><i class="fa-regular fa-heart"></i></a>
+                     </li> -->
                   </ul>
                </div>
-               <div class="header-right d-flex justify-content-center align-items-center gap-3">
-                  <div
-                     class="right-message p-2 px-3 hover-icon"
-                     data-bs-toggle="dropdown"
-                     aria-expanded="false">
-                     <i class="fa-regular fa-comments"></i>
+               <div class="header-right d-flex justify-content-center align-items-center gap-2">
+                  <i class="fa-solid fa-bell"></i>
+                  <div class="right-message p-2 px-3 hover-icon" data-bs-toggle="dropdown" aria-expanded="false">
+
+                     <i class="fa-regular fa-comment"></i>
                   </div>
                   <ul class="dropdown-menu w-25">
-                     <span class="text-center"
-                        ><h3><b>Chat</b></h3></span
-                     >
+                     <span class="text-center">
+                        <h3><b>Chat</b></h3>
+                     </span>
                      <li class="dropdown-item">
                         <div class="user-chat d-flex flex-row justify-content-between gap-2 p-2">
                            <div class="img-user">
@@ -66,7 +62,9 @@
                            </div>
                            <div class="chat-text">
                               <span><b>Tuan</b></span>
-                              <span><p class="m-0">Dang lam gi day.</p></span>
+                              <span>
+                                 <p class="m-0">Dang lam gi day.</p>
+                              </span>
                            </div>
                         </div>
                      </li>
@@ -77,7 +75,9 @@
                            </div>
                            <div class="chat-text">
                               <span><b>Tuan</b></span>
-                              <span><p class="m-0">Dang lam gi day.</p></span>
+                              <span>
+                                 <p class="m-0">Dang lam gi day.</p>
+                              </span>
                            </div>
                         </div>
                      </li>
@@ -88,7 +88,9 @@
                            </div>
                            <div class="chat-text">
                               <span><b>Tuan</b></span>
-                              <span><p class="m-0">Dang lam gi day.</p></span>
+                              <span>
+                                 <p class="m-0">Dang lam gi day.</p>
+                              </span>
                            </div>
                         </div>
                      </li>
@@ -96,130 +98,165 @@
                   <div class="right-user" data-bs-toggle="dropdown" aria-expanded="false">
                      <img src="../public/image/nguyen.png" alt="" />
                   </div>
+
                   <ul class="dropdown-menu">
-                     <li><a class="dropdown-item" href="#">Change password</a></li>
-                     <li><a class="dropdown-item" href="#">Following</a></li>
-                     <li><a class="dropdown-item" href="#">Report</a></li>
-                     <li><hr class="dropdown-divider" /></li>
-                     <li><a class="dropdown-item" href="#">Logout</a></li>
+                     <li><a class="dropdown-item" href="#"><i class="fa-solid fa-wrench"></i> Change password</a></li>
+                     <li>
+                        <hr class="dropdown-divider" />
+                     </li>
+                     <li><a class="dropdown-item " href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                           Logout</a></li>
                   </ul>
                </div>
             </div>
          </div>
-         <div class="content w-100 d-flex gap-0 h-auto pb-4">
-            <div class="content-left">
-               <div class="left-child h-100">
-                  <div class="card rounded-5 rounded-bottom overflow-hidden">
-                     <div
-                        class="bgr-image d-flex flex-column justify-content-center align-items-center">
-                        <div>
-                           <img src="../public/image/nguyen.png" alt="" />
-                        </div>
-                        <span><b>Nguyen Hoang</b> </span>
-                        <span class="small">@nguyenhoang</span>
+         <div class="content w-100 d-flex gap-0 h-auto pb-4 gap-3">
+
+
+            <div class="left-side col-3 card rounded-5 rounded-bottom overflow-hidden pb-3">
+               <div>
+                  <div class="bgr-cover d-flex flex-column justify-content-center align-items-center">
+                     <div class="profile-avt" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img class="d-block big-avt" src="../public/image/nguyen.png" alt="" />
+
                      </div>
-                     <div class="flex-column mt-3">
-                        <div class="d-flex justify-content-around text-center">
-                           <div class="ports d-flex flex-column justify-content-center">
-                              <span>
-                                 <h6 class="m-0">543</h6>
-                              </span>
-                              <span class="fw-light fst-italic">posts</span>
-                           </div>
-                           <div class="followers d-flex flex-column justify-content-center">
-                              <span>
-                                 <h6 class="m-0">543</h6>
-                              </span>
-                              <span class="fw-light fst-italic">followers</span>
-                           </div>
-                           <div class="following d-flex flex-column justify-content-center">
-                              <span>
-                                 <h6 class="m-0">543</h6>
-                              </span>
-                              <span class="fw-light fst-italic">following</span>
-                           </div>
+                     <ul class="dropdown-menu ">
+                        <li class="text-center"><a class="dropdown-item small" href="#"><i
+                                 class="fa-regular fa-flag"></i>
+                              Report</a></li>
+                     </ul>
+                  </div>
+                  <div style="height: 50px;"></div>
+                  <div class="profile-info px-4">
+                     <div><b>Nguyen Hoang</b> </div>
+                     <h5 class="small text-center ">@nguyenhoang
+                        <i class="fa-solid fa-circle-check small " style="color: var( --light-blue);"></i>
+                     </h5>
+
+
+                     <div class="d-flex text-center mt-3 pe-2 gap-2 mb-3 ">
+
+                        <div class="followers d-flex col flex-column justify-content-center ">
+                           <span class="small-label">
+                              543
+                           </span>
+                           <span class="small-label">followers</span>
                         </div>
-                     </div>
-                     <div class="card-body overflow-auto d-flex flex-column">
-                        <hr
-                           class="mt-0"
-                           style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" />
-                        <div class="about-box d-flex gap-2 pt-2 pb-2 align-items-start flex-column">
-                           <span>Travel, Adventure & Lifestyle</span>
-                           <span>Photographer</span>
-                           <span>Sony Imaging Ambassador</span>
-                           <span>Currently in Edinburgh</span>
+                        <div class="divider"></div>
+                        <div class="posts d-flex col flex-column justify-content-center ">
+                           <span class="small-label">
+                              543
+                           </span>
+                           <span class="small-label">posts</span>
                         </div>
-                        <hr style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" />
-                        <div class="d-flex flex-column justify-content-between gap-3 mb-3">
-                           <button
-                              type="button"
-                              class="btn btn-outline-info w-100"
-                              data-bs-toggle="modal"
-                              data-bs-target="#modalNewPost">
-                              New post
-                           </button>
-                           <button
-                              type="button"
-                              class="btn btn-outline-primary w-100"
-                              data-bs-toggle="modal"
-                              data-bs-target="#modalEditProfile">
-                              Edit profile
-                           </button>
-                        </div>
-                        <span class="d-flex justify-content-flex-start">
-                           <h5>Recommended account</h5>
-                        </span>
-                        <div class="users-other d-flex flex-column gap-2">
-                           <div class="user-box d-flex gap-2 pt-2 pb-2 align-items-center">
-                              <div class="box-image">
-                                 <img src="../public/image/nguyen.png" alt="" />
-                              </div>
-                              <div
-                                 class="box-name d-flex flex-column justify-content-center align-items-flex-start">
-                                 <span><b>Nguyen Hoang</b></span>
-                                 <span>@nguyenhoang</span>
-                              </div>
-                              <div class="box-follow">
-                                 <button type="button" class="btn btn-warning w-100">Follow</button>
-                              </div>
-                           </div>
+                        <div class="divider"></div>
+                        <div class="following d-flex col flex-column justify-content-center ">
+                           <span class="small-label">
+                              543
+
+                           </span>
+                           <span class="small-label">following</span>
                         </div>
                      </div>
                   </div>
+
+               </div>
+               <hr class="my-2 mx-3" style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" />
+
+               <div class="bio card-body ">
+                  <div class="small text-center"><i class="fa-solid fa-location-dot small text-success"></i> Ho Chi Minh
+                     Vietnam
+                  </div>
+                  <div class="about-box d-flex    flex-column px-2">
+
+                     <span class="small mt-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod animi
+                        rerum qui, odio, dolorem nesciunt e</span>
+
+                  </div>
+
+               </div>
+               <hr class="my-2 mx-3" style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" />
+               <div class="card-body overflow-auto d-flex flex-column">
+
+                  <div class="d-flex flex-column justify-content-between gap-3 mb-3">
+                     <button type="button" class="btn btn-outline-info w-100" data-bs-toggle="modal"
+                        data-bs-target="#modalNewPost">
+                        New post
+                     </button>
+                     <button type="button" class="btn btn-outline-primary w-100" data-bs-toggle="modal"
+                        data-bs-target="#modalEditProfile">
+                        Edit profile
+                     </button>
+                  </div>
+               </div>
+
+               <hr class="my-2 mx-3" style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" />
+
+               <div class="card-body">
+                  <div class="list-other-users gap-2">
+                     <h5 id="followers-list">Followers</h5>
+                     <!-- <div class="user-box d-flex gap-2 pt-2 pb-2 align-items-center">
+                        <div class="box-image">
+                           <img src="../public/image/nguyen.png" alt="" />
+                        </div>
+                        <div class="box-name d-flex flex-column justify-content-center align-items-flex-start">
+                           <span><b>Nguyen Hoang</b></span>
+                           <span>@nguyenhoang</span>
+                        </div>
+                        <div class="box-follow">
+                           <button type="button" class="btn btn-success w-100">Follow</button>
+                        </div>
+                     </div> -->
+                  </div>
+               </div>
+
+               <hr class="my-2 mx-3" style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" />
+
+               <div class="card-body">
+                  <div class="list-other-users gap-2">
+                     <h5 id="following-list">Following</h5>
+                     <!-- <div class="user-box d-flex gap-2 pt-2 pb-2 align-items-center">
+                        <div class="box-image">
+                           <img src="../public/image/nguyen.png" alt="" />
+                        </div>
+                        <div class="box-name d-flex flex-column justify-content-center align-items-flex-start">
+                           <span><b>Nguyen Hoang</b></span>
+                           <span>@nguyenhoang</span>
+                        </div>
+                        <div class="box-follow">
+                           <button type="button" class="btn btn-info w-100">Follow</button>
+                        </div>
+                     </div> -->
+                  </div>
                </div>
             </div>
-            <div class="content-right h-100">
-               <div class="image-list d-grid gap-2">
+
+            <div class="content-right col-9">
+               <div class="image-list p-3">
                   <div class="images">
                      <!-- <img src="../public/image/nguyen.png" alt="" /> -->
+                     <div class="images" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <img src="../public/image/nguyen.png" alt="" />
+                     </div>`;
+
                   </div>
                </div>
             </div>
          </div>
-         <div class="footer"></div>
+         <footer class="footer small">Bookbook team</footer>
       </div>
       <div class="modal-wrap">
-         <div
-            class="modal fade"
-            id="exampleModal"
-            tabindex="-1"
-            data-bs-keyboard="false"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <button
-               type="button"
-               class="btn-close position-absolute d-flex align-items-center"
-               data-bs-dismiss="modal"
+         <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-keyboard="false"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <button type="button" class="btn-close position-absolute d-flex align-items-center" data-bs-dismiss="modal"
                aria-label="Close">
                <i class="fa-solid fa-xmark"></i>
             </button>
-            <div
-               class="modal-dialog modal-fullscreen-md-down modal-dialog-centered modal-container">
-               <div class="modal-content flex-row m-0 gap-1 bg-black">
+            <div class="modal-dialog modal-fullscreen-md-down modal-dialog-centered modal-container">
+               <div class="modal-content flex-row m-0 bg-black">
                   <div class="w-75 position-relative">
                      <div class="modal-body h-100">
-                        <!-- <img src="${data_images.image}" alt="" /> -->
+
                      </div>
                   </div>
                   <div class="modal-port w-25 position-relative">
@@ -234,35 +271,29 @@
                                  <span>${data_images.user}</span>
                                  <span class="fst-italic fw-lighter">${data_images.id_user}</span>
                               </div>
-                              <div
-                                 class="header-setting hover-icon"
-                                 data-bs-toggle="dropdown"
-                                 aria-expanded="false">
+                              <div class="header-setting hover-icon" data-bs-toggle="dropdown" aria-expanded="false">
                                  <i class="fa-solid fa-ellipsis"></i>
                               </div>
                               <ul class="dropdown-menu">
                                  <li class="d-flex align-items-center px-2 hover-icon">
-                                    <i class="fa-solid fa-circle-exclamation px-2"></i
-                                    ><span class="dropdown-item px-0">Report</span>
+                                    <i class="fa-solid fa-circle-exclamation px-2"></i><span
+                                       class="dropdown-item px-0">Report</span>
                                  </li>
                                  <li class="d-flex align-items-center px-2 hover-icon btn-delete">
-                                    <i class="fa-regular fa-trash-can px-2"></i
-                                    ><spam class="dropdown-item px-0">Delete</spam>
+                                    <i class="fa-regular fa-trash-can px-2"></i>
+                                    <spam class="dropdown-item px-0">Delete</spam>
                                  </li>
                               </ul>
                            </div>
                            <div class="contents-body mb-3">
                               <!--  -->
                            </div>
-                           <div
-                              class="contents-footer pt-1 pb-1 d-flex justify-content-between gap-2 mb-4">
-                              <div
-                                 class="d-flex justify-content-center align-items-center gap-3 pt-2 pb-2">
+                           <div class="contents-footer pt-1 pb-1 d-flex justify-content-between gap-2 mb-4">
+                              <div class="d-flex justify-content-center align-items-center gap-3 pt-2 pb-2">
                                  <i class="fa-regular fa-thumbs-up"></i>
                                  <span>Like</span>
                               </div>
-                              <div
-                                 class="d-flex justify-content-center align-items-center gap-3 pt-2 pb-2">
+                              <div class="d-flex justify-content-center align-items-center gap-3 pt-2 pb-2">
                                  <i class="fa-regular fa-message"></i> Comments
                               </div>
                            </div>
@@ -273,11 +304,7 @@
                      </div>
                      <div class="input-comment position-absolute bottom-0 w-100">
                         <div class="pt-2 pb-2 px-3 d-flex justify-content-between gap-2">
-                           <input
-                              type="text"
-                              class="form-control"
-                              id="inputComment"
-                              placeholder="New comments..." />
+                           <input type="text" class="form-control" id="inputComment" placeholder="New comments..." />
                            <div class="hover-icon d-flex justify-content-between">
                               <i
                                  class="fa-solid fa-paper-plane px-3 d-flex align-items-center justify-content-center"></i>
@@ -290,10 +317,7 @@
          </div>
       </div>
       <div class="modal-delete position-fixed">
-         <div
-            class="modal-dialog modal-dialog-centered position-fixed"
-            id="staticBackdrop"
-            data-bs-backdrop="static">
+         <div class="modal-dialog modal-dialog-centered position-fixed" id="staticBackdrop" data-bs-backdrop="static">
             <div class="modal-dialog">
                <div class="modal-content bg-light px-3 py-2">
                   <div class="modal-header header-delete" style="color: black">
@@ -312,27 +336,15 @@
          </div>
       </div>
       <div class="modal-new-post">
-         <div
-            class="modal fade"
-            id="modalNewPost"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+         <div class="modal fade" id="modalNewPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                <div class="modal-content">
                   <div class="modal-header position-relative d-flex" style="color: black">
-                     <h1
-                        class="modal-title fs-5 text-center"
-                        style="flex: 1"
-                        id="exampleModalLabel">
+                     <h1 class="modal-title fs-5 text-center" style="flex: 1" id="exampleModalLabel">
                         New post
                      </h1>
-                     <button
-                        type="button"
-                        class="hover-icon py-1 px-3 position-absolute"
-                        style="top: 15%"
-                        data-bs-dismiss="modal"
-                        aria-label="Close">
+                     <button type="button" class="hover-icon py-1 px-3 position-absolute" style="top: 15%"
+                        data-bs-dismiss="modal" aria-label="Close">
                         <i class="fa-solid fa-xmark"></i>
                      </button>
                   </div>
@@ -347,9 +359,7 @@
                         </div>
                         <div class="d-flex flex-column justify-content-around w-50 px-4">
                            <div class="">
-                              <textarea
-                                 class="form-control"
-                                 id="message-text"
+                              <textarea class="form-control" id="message-text"
                                  placeholder="What you're thinking?"></textarea>
                            </div>
                         </div>
@@ -366,27 +376,16 @@
          </div>
       </div>
       <div class="modal-edit-profile">
-         <div
-            class="modal fade"
-            id="modalEditProfile"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
+         <div class="modal fade" id="modalEditProfile" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-fullscreen-sm-down modal-dialog-centered">
                <div class="modal-content">
                   <div class="modal-header position-relative d-flex" style="color: black">
-                     <h1
-                        class="modal-title fs-5 text-center"
-                        style="flex: 1"
-                        id="exampleModalLabel">
+                     <h1 class="modal-title fs-5 text-center" style="flex: 1" id="exampleModalLabel">
                         Edit profile
                      </h1>
-                     <button
-                        type="button"
-                        class="hover-icon py-1 px-3 position-absolute"
-                        style="top: 15%; border: none"
-                        data-bs-dismiss="modal"
-                        aria-label="Close">
+                     <button type="button" class="hover-icon py-1 px-3 position-absolute" style="top: 15%; border: none"
+                        data-bs-dismiss="modal" aria-label="Close">
                         <i class="fa-solid fa-xmark"></i>
                      </button>
                   </div>
@@ -398,71 +397,43 @@
                                  <img src="../public/image/new.jpg" alt="" />
                               </div>
                               <div id="emailHelp" class="form-text d-flex flex-column m-0">
-                                 <label for="exampleInputEmail1" class="form-label m-0 id-user"
-                                    ><i>@nguyenhoang</i></label
-                                 >
+                                 <label for="exampleInputEmail1"
+                                    class="form-label m-0 id-user"><i>@nguyenhoang</i></label>
                                  <span class="m-0 label-change fw-bold"> Change avatar </span>
                                  <input type="file" class="input-file-avatar d-none" />
                               </div>
                            </div>
                            <div class="mb-3 d-flex gap-3">
-                              <input
-                                 type="text"
-                                 class="form-control p-3"
-                                 id="exampleInputFullName"
+                              <input type="text" class="form-control p-3" id="exampleInputFullName"
                                  placeholder="Full Name" />
                            </div>
 
                            <div class="mb-3 d-flex gap-3">
-                              <input
-                                 type="text"
-                                 class="form-control p-3"
-                                 placeholder="About"
-                                 id="exampleInputAbout" />
+                              <input type="text" class="form-control p-3" placeholder="About" id="exampleInputAbout" />
                            </div>
 
                            <div class="mb-3 d-flex gap-3 justify-content-around">
-                              <div
-                                 class="position-relative d-flex justify-content-center text-center w-50">
-                                 <label
-                                    class="position-absolute form-check-label text-decoration-none gray-text"
-                                    style="top: 10px; left: 20px"
-                                    for="exampleInputDoB"
-                                    >Birthday</label
-                                 >
-                                 <input
-                                    type="date"
-                                    class="col form-control text-end pe-3 gap-2"
-                                    id="exampleInputDayOfBirth"
-                                    value="2022-12-12" />
+                              <div class="position-relative d-flex justify-content-center text-center w-50">
+                                 <label class="position-absolute form-check-label text-decoration-none gray-text"
+                                    style="top: 10px; left: 20px" for="exampleInputDoB">Birthday</label>
+                                 <input type="date" class="col form-control text-end pe-3 gap-2"
+                                    id="exampleInputDayOfBirth" value="2022-12-12" />
                               </div>
 
                               <div class="d-flex flex-column justify-content-center w-50">
-                                 <label
-                                    class="form-check-label text-decoration-none gray-text"
-                                    for="exampleCheck1"
-                                    >Gender</label
-                                 >
+                                 <label class="form-check-label text-decoration-none gray-text"
+                                    for="exampleCheck1">Gender</label>
                                  <div class="d-flex gap-3">
                                     <div class="form-check">
-                                       <input
-                                          class="form-check-input"
-                                          type="radio"
-                                          name="flexRadioDefault"
-                                          id="male"
-                                          value="male"
-                                          checked />
+                                       <input class="form-check-input" type="radio" name="flexRadioDefault" id="male"
+                                          value="male" checked />
                                        <label class="form-check-label" for="flexRadioDefault1">
                                           Male
                                        </label>
                                     </div>
                                     <div class="form-check">
-                                       <input
-                                          class="form-check-input"
-                                          type="radio"
-                                          name="flexRadioDefault"
-                                          value="female"
-                                          id="female" />
+                                       <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                          value="female" id="female" />
                                        <label class="form-check-label" for="flexRadioDefault2">
                                           Female
                                        </label>
@@ -471,10 +442,7 @@
                               </div>
                            </div>
                            <div class="mb-3 d-flex gap-3">
-                              <input
-                                 type="text"
-                                 class="form-control p-3"
-                                 id="exampleInputuserCity"
+                              <input type="text" class="form-control p-3" id="exampleInputuserCity"
                                  placeholder="Lồ cấy sần(location)?" />
                            </div>
                         </div>
@@ -493,7 +461,10 @@
             </div>
          </div>
       </div>
+
    </body>
+
    <script type="module" src="../build/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
    <script type="module" src="../js/profile/profile.js"></script>
+
 </html>
