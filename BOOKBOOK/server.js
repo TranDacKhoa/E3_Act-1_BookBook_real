@@ -6,9 +6,6 @@ const postRouter = require("./routers/post.r");
 const bodyParser = require("body-parser");
 const sequelize = require("./database/db").sequelize;
 
-//
-const user = require("./services/userServices");
-//
 const app = express();
 const port = 3000;
 
@@ -45,29 +42,30 @@ app.use((err, req, res, next) => {
 // });
 
 app.listen(port, async () => {
-  console.log("server started!");
-  //Note chỉ lần đầu tiên chạy server mới chạy dòng sequelize.sync này để đồng bộ model và db
-  await sequelize.sync({ alter: true });
+  console.log(`Server is running on port ${port}`);
 
-  var data = {
-    username: "user2",
-    password: "1",
-    secretkey: "1",
-    email: "user2@gmail.com",
-  };
-  const text = await user.createDefaultProfile("user2");
+  // Note chỉ lần đầu tiên chạy server mới chạy dòng sequelize.sync này để đồng bộ model và db
+  // await sequelize.sync({ alter: true });
 
-  console.log(text);
-  // const text1 = await user.creatDefaultProfile("user4");
-  // const text1 = await user.startFollow("user2", "user1");
-  var postdata = {
-    img: "./public/avt1.png",
-    content: "test post on wall",
-  };
-  var cmt = {
-    username: "user2",
-    post_id: "17",
-    text: "tôi test cmt phát",
-  };
+  // var data = {
+  //   username: "user2",
+  //   password: "1",
+  //   secretkey: "1",
+  //   email: "user2@gmail.com",
+  // };
+  // const text = await user.createDefaultProfile("user2");
+
+  // console.log(text);
+  // // const text1 = await user.creatDefaultProfile("user4");
+  // // const text1 = await user.startFollow("user2", "user1");
+  // var postdata = {
+  //   img: "./public/avt1.png",
+  //   content: "test post on wall",
+  // };
+  // var cmt = {
+  //   username: "user2",
+  //   post_id: "17",
+  //   text: "tôi test cmt phát",
+  // };
   // const text1 = await user.deleteOnWall(17);
 });

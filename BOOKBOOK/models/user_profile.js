@@ -3,10 +3,6 @@ module.exports = function (sequelize, DataTypes) {
   return sequelize.define(
     "user_profile",
     {
-      fullname: {
-        type: DataTypes.STRING(50),
-        allowNull: false,
-      },
       username: {
         type: DataTypes.STRING(50),
         allowNull: false,
@@ -16,15 +12,17 @@ module.exports = function (sequelize, DataTypes) {
           key: "username",
         },
       },
+      fullname: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+      },
+      email: {
+        type: DataTypes.STRING(250),
+        allowNull: true,
+      },
       gender: {
         type: DataTypes.STRING(10),
         allowNull: true,
-        defaultValue: "female",
-      },
-      dob: {
-        type: DataTypes.DATEONLY,
-        allowNull: true,
-        defaultValue: Sequelize.Sequelize.fn("now"),
       },
       location: {
         type: DataTypes.STRING(50),
@@ -38,7 +36,12 @@ module.exports = function (sequelize, DataTypes) {
       avatar: {
         type: DataTypes.STRING(300),
         allowNull: true,
-        defaultValue: "./public/defaultAvt.png",
+        defaultValue: "./images/user/default_avt.png",
+      },
+      dob: {
+        type: DataTypes.DATEONLY,
+        allowNull: true,
+        defaultValue: Sequelize.Sequelize.fn("now"),
       },
     },
     {

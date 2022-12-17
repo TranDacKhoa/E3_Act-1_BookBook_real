@@ -1,6 +1,4 @@
-const userM = require('../models/user.m')
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
+const userS = require('../services/userServices')
 
 exports.getLogIn = (req, res, next) => {
     try {
@@ -8,9 +6,21 @@ exports.getLogIn = (req, res, next) => {
             res.redirect('/')
         }
         else {
+            errorUnMsg = ""
+            errorPwMsg = ""
+            if (req.session.errorUnMsg) {
+                errorUnMsg = req.session.errorUnMsg
+            }
+            if (req.session.errorPwMsg) {
+                errorPwMsg = req.session.errorPwMsg
+            }
+            delete req.session.errorUnMsg
+            delete req.session.errorPwMsg
             res.render('login', {
                 title: "Log In | BookBook",
-                layout: "account.hbs"
+                layout: "account.hbs",
+                errorUnMsg: errorUnMsg,
+                errorPwMsg: errorPwMsg,
             })
         }
     } catch(error) {
@@ -20,50 +30,57 @@ exports.getLogIn = (req, res, next) => {
 
 exports.getSignUp = (req, res, next) => {
     try {
-        // if (req.session.errorMsg) {
-        //     errorMsg = req.session.errorMsg
-        //     delete req.session.errorMsg
-        //     res.render('signup', {
-        //         title: "Sign Up",
-        //         errorMsg: errorMsg
-        //     })
-        // }
-        // else {
-            res.render('signup', {
-                title: "Sign Up | BookBook",
-                layout: "account.hbs",
-            })
-        //}
+        res.render('signup', {
+            title: "Sign Up | BookBook",
+            layout: "account.hbs",
+        })
     } catch(error) {
         next(error)
     }
 }
 
-
-
-exports.postLogIn = (req, res, next) => {
+exports.postLogIn = async (req, res, next) => {
     if (req.isAuthenticated()) {
-        if (req.user.admin) {
+        
+        // if this is admin account
+        if (req.user.permission == 1) {
             res.redirect('/admin')
         }
-        else {
+        // if this is user account
+        else if (req.user.permission == 0) {
             res.redirect('/')
+        }
+        // if account has been blocked
+        else {
+            req.logout(err => {
+                if (err) {
+                    return next(err)
+                }
+            })
+            res.redirect('/block')
         }
     }
     else {
+        console.log("not authenticated")
+        let isExist = await userS.checkExistUser(req.body.username)
+        if (!isExist) {
+            req.session.errorUnMsg = "Username does not exist"
+        }
+        else {
+            req.session.errorPwMsg = "Wrong password"
+        }
+        
         res.redirect('/login')
     }
 }
 
 exports.postSignUp = async (req, res, next) => {
     try {
-        const un = req.body.username
-        console.log(req.body)
-        
         switch (req.body.todo) {
             case "checkusername": {
-                const unDb = await userM.findUserInfoByUsername(un)
-                if (unDb.length > 0) {
+                const isExist = await userS.checkExistUser(req.body.username)
+
+                if (isExist) {
                     res.send(JSON.stringify({result: 0}))
                 }
                 else {
@@ -74,35 +91,26 @@ exports.postSignUp = async (req, res, next) => {
             }
 
             case "signup": {
-                const pw = req.body.password
-                const key = req.body.secretkey
-                const pwHashed = await bcrypt.hash(pw, saltRounds)
-                const keyHashed = await bcrypt.hash(key, saltRounds)
-                const fullname = req.body.fullname
-                const email = req.body.email
-                const dob = req.body.dob
-                const gender = req.body.gender
+                const user = {
+                    username: req.body.username,
+                    password: req.body.password,
+                    fullname: req.body.fullname,
+                    dob: req.body.dob,
+                    gender: req.body.gender,
+                    secretkey: req.body.secretkey,
+                }
+                console.log(user)
+                const uNewInfo = await userS.createUserInfo(user)
+                const uNewProfile = await userS.createDefaultProfile(user)
                 
-                const uInfo = {
-                    email: email,
-                    password: pwHashed,
-                    username: un,
-                    admin: false,
-                    secretkey: keyHashed
+                // if sign up successfully
+                if (uNewInfo && uNewProfile) {
+                    res.send(JSON.stringify({result: 1}))
                 }
-                const uProfile = {
-                    fullname: fullname,
-                    username: username,
-                    gender: gender,
-                    location: null,
-                    about: null,
-                    avatar: '/images/user/user-default.png',
-                    dob: dob
+                // if error
+                else {
+                    res.send(JSON.stringify({result: 0}))
                 }
-                const uInfoNew = await userM.addUserInfo(uInfo)
-                const uProfileNew = await userM.addUserProfile(uProfile)
-
-                res.redirect('/login')
             }
         }
     } catch (err) {
@@ -110,7 +118,7 @@ exports.postSignUp = async (req, res, next) => {
     }
 }
 
-exports.postLogOut = (req, res, next) => {
+exports.logOut = (req, res, next) => {
     if (req.isAuthenticated()) {
         req.logout(err => {
             if (err) {

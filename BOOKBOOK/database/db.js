@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const initModels = require("../models/init-models");
-const sequelize = new Sequelize("db_bookbook", "postgres", "1", {
+const sequelize = new Sequelize("db_bookbook", "postgres", "Sunrise1", {
   host: "localhost",
   dialect: "postgres",
 });

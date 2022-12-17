@@ -1,6 +1,8 @@
 const seq = require("../database/db");
 const models = seq.models;
-const sequelize = seq.sequelize;
+//const sequelize = seq.sequelize;
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const userServices = {
   //get all user in database
@@ -11,7 +13,7 @@ const userServices = {
       });
       return result;
     } catch (err) {
-      console.log(err);
+      console.error(err);
       return "error";
     }
   },
@@ -19,7 +21,9 @@ const userServices = {
   //login signup services
   checkExistUser: async (username) => {
     const result = await models.user_info.findByPk(username);
-    if (result === null) return false;
+    if (result === null) {
+      return false;
+    }
     else {
       return true;
     }
@@ -34,51 +38,67 @@ const userServices = {
       return true;
     }
   },
-  checkLogin: async (username, usrpw) => {
+  createHash: async (plain_text) => {
+    return await bcrypt.hash(plain_text, saltRounds)
+  },
+  checkLogin: async (username, pw) => {
     const result = await models.user_info.findByPk(username, {
       attributes: ["pwd"],
     });
-    // hash usrpw before compare
     if (result !== null) {
-      const dbpw = result.pwd;
-      return usrpw === dbpw;
+      const dbpw = result.dataValues.pwd;
+      const cmp = await bcrypt.compare(pw, dbpw)
+      return cmp;
     } else {
       return false;
     }
   },
-  createNewUser: async (user) => {
-    //hash pwd before insert
-    //user.password=hashedpwd
+  createUserInfo: async (user) => {
+    const pwHashed = await module.exports.createHash(user.password)
+    const keyHashed = await module.exports.createHash(user.secretkey)
     try {
       result = await models.user_info.create({
         username: user.username,
-        pwd: user.password,
-        secret_key: user.secretkey,
-        email: user.email,
+        pwd: pwHashed,
+        secret_key: keyHashed,
       });
-      console.log(`created new user ${user.username} successfully\n`);
+      console.log(`created new user info of ${user.username} successfully\n`);
       return true;
     } catch (err) {
-      console.log(`raise error when create new user ${user.username}\n` + err);
+      console.log(`raise error when create new user info of ${user.username}\n` + err);
       return false;
     }
   },
-  createDefaultProfile: async (username) => {
-    if (await userServices.checkExistUser(username)) {
-      try {
-        const result = await models.user_profile.create({
-          username: username,
-          fullname: username,
-        });
-        console.log(`created user ${username} profile successfully\n`);
-        return true;
-      } catch (err) {
-        console.log(`raise error when creat user ${username} profile\n`);
-        return false;
-      }
-    } else {
-      console.log(`user ${username} is not exist\n`);
+  createDefaultProfile: async (user) => {
+    try {
+      result = await models.user_profile.create({
+        username: user.username,
+        fullname: user.fullname,
+        email: user.email,
+        gender: user.gender,
+        dob: user.dob,
+      });
+      console.log(`created new default profile of ${user.username} successfully\n`);
+      return true;
+    } catch (err) {
+      console.log(`raise error when create new default profile of ${user.username}\n` + err);
       return false;
+    }
+  },
+  getUserInfo: async (username) => {
+    try {
+      const result = await models.user_info.findByPk(username)
+      return result.dataValues;
+    } catch (err) {
+      return null;
+    }
+  },
+  getUserProfile: async (username) => {
+    try {
+      const result = await models.user_profile.findByPk(username)
+      return result.dataValues;
+    } catch (err) {
+      return null;
     }
   },
 

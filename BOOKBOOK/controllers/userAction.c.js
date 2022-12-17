@@ -1,17 +1,20 @@
-// const userM = require('../models/user.m')
+const userS = require('../services/userServices')
 
-exports.getFeed = (req, res, next) => {
+exports.getFeed = async (req, res, next) => {
     try {
         if (req.isAuthenticated()) {
-            if (!req.user.admin) {
-                console.log("getfeed\n", userAvatar)
+            if (req.user.permission == 0) {
+                const uProfile = await userS.getUserProfile(req.user.username)
                 res.render('index', {
                     title: "BookBook",
-                    userAvatar: req.user.avatar
+                    userAvatar: uProfile.avatar
                 })
             }
-            else {
+            else if (req.user.permission == 1) {
                 res.redirect('/admin')
+            }
+            else {
+                res.redirect('/login')
             }
         }
         else {
