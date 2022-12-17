@@ -10,6 +10,7 @@ body {
    margin-top: 100px;
    width: 100%;
    max-width: 1200px;
+   margin-bottom: 10px;
 }
 .nav-bar-left {
    min-width: 20%;
@@ -19,6 +20,8 @@ body {
 }
 .nav-container {
    min-width: 200px;
+   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+   border-radius: 10px;
    & div {
       & ul {
          margin: 0 auto;
@@ -100,12 +103,15 @@ body {
    min-width: 200px;
 }
 .right-wrap {
+   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+   border-radius: 10px;
    &:hover > div {
       &::-webkit-scrollbar-thumb {
          display: block;
       }
    }
-   & div {
+   & > div {
+      padding: 10px;
       &::-webkit-scrollbar {
          width: 7px;
       }

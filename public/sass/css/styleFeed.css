@@ -179,6 +179,7 @@ body {
   margin-top: 100px;
   width: 100%;
   max-width: 1200px;
+  margin-bottom: 10px;
 }
 
 .nav-bar-left {
@@ -191,6 +192,8 @@ body {
 
 .nav-container {
   min-width: 200px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
 }
 .nav-container div ul {
   margin: 0 auto;
@@ -265,13 +268,20 @@ body {
   min-width: 200px;
 }
 
+.right-wrap {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+}
 .right-wrap:hover > div::-webkit-scrollbar-thumb {
   display: block;
 }
-.right-wrap div::-webkit-scrollbar {
+.right-wrap > div {
+  padding: 10px;
+}
+.right-wrap > div::-webkit-scrollbar {
   width: 7px;
 }
-.right-wrap div::-webkit-scrollbar-thumb {
+.right-wrap > div::-webkit-scrollbar-thumb {
   display: none;
   background-image: linear-gradient(-45deg, #6a5af9, #d66efd);
   border-radius: 50px;
