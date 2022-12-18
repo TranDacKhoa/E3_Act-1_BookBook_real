@@ -4,9 +4,8 @@ update 18/12/2022
 - tách server và app
 - update creatNewUser = (createUserInfo + createDefaultProfile)
 - các middleware phải dùng nhiều lần --> nên viết chia nhỏ ra từng hàm, không nên viết trong 1 hàm rồi dùng switch case.
-- app đang gặp lỗi  vì 1 middleware trong app.js ,thử sign up để  check lỗi này
-- đã thêm 1 middleware chung của "/"
-- giữ nguyên middleware
+- app đang gặp lỗi thử sign up để  check lỗi này
+
 
 update 15/12/2022
 - update script generate db mới
