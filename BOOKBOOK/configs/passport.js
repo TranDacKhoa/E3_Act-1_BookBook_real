@@ -1,4 +1,3 @@
-const bcrypt = require("bcrypt")
 const passport = require("passport")
 const LocalStrategy = require("passport-local").Strategy
 const userS = require("../services/userServices")
@@ -24,12 +23,18 @@ module.exports = app => {
         {
             usernameField: "username",
             passwordField: "password",
-            //passReqToCallback: true     // add more params
+            passReqToCallback: true     // add more params
         },
-        async (username, password, done) => {
+        async (req, username, password, done) => {
             try {
                 const checkLogin = await userS.checkLogin(username, password)
-                if (!checkLogin) {
+                
+                if (checkLogin == -1) {
+                    req.session.errorUnMsg = 'Username does not exist'
+                    return done(null, false)
+                }
+                if (checkLogin == 0) {
+                    req.session.errorPwMsg = 'Wrong password'
                     return done(null, false)
                 }
                 const user = await userS.getUserInfo(username)

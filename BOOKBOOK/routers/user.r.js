@@ -7,13 +7,20 @@ const passport = require("passport");
 
 router
   .route("/login")
-  .get(userC.getLogIn)
-  .post(passport.authenticate("local"), userC.postLogIn);
+  .get(userC.renderHome, userC.getLogIn)
+  .post(
+    userC.renderHome,
+    userC.validateLogIn, 
+    passport.authenticate("local", { 
+      failureRedirect: "/login"
+    }), 
+    userC.postLogIn
+  );
 
 router
   .route("/signup")
   .get(userC.renderHome, userC.getSignUp)
-  .post(userC.renderHome, userC.postSignUp);
+  .post(userC.renderHome, userC.validateSignUp, userC.postSignUp);
 
 router.post("/logout", userC.logOut);
 

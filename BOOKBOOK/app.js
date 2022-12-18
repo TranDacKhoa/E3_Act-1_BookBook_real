@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
+
 const userRouter = require("./routers/user.r");
 //const profileRouter = require("./routers/profile.r")
 const feedRouter = require("./routers/feed.r");
@@ -31,7 +32,7 @@ app.use("/", userRouter);
 app.use("/", feedRouter);
 app.use("/post", postRouter);
 
-//
+
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode | 500;
   res.status(statusCode).send(err.message);

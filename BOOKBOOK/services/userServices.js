@@ -47,23 +47,32 @@ const userServices = {
     if (result !== null) {
       const dbpw = result.dataValues.pwd;
       const cmp = await bcrypt.compare(pw, dbpw);
-      return cmp;
-    } else {
-      return false;
+      
+      // if username and password match
+      if (cmp) {
+        return 1;
+      }
+      // if password doesn't match
+      else {
+        return 0;
+      }
+    }
+    // if username doesn't exist 
+    else {
+      return -1;
     }
   },
-
   createNewUser: async (user) => {
     const pwHashed = await module.exports.createHash(user.password);
     const keyHashed = await module.exports.createHash(user.secretkey);
     try {
-      result = await models.user_info.create({
+      const result = await models.user_info.create({
         username: user.username,
         pwd: pwHashed,
         secret_key: keyHashed,
       });
       console.log(`created new user info of ${user.username} successfully\n`);
-      return userServices.createDefaultProfile(user.username);
+      return await userServices.createDefaultProfile(user);
     } catch (err) {
       console.log(
         `raise error when create new user info of ${user.username}\n` + err
@@ -71,11 +80,14 @@ const userServices = {
       return false;
     }
   },
-  createDefaultProfile: async (username) => {
+  createDefaultProfile: async (user) => {
     try {
-      result = await models.user_profile.create({
-        username: username,
-        fullname: username,
+      const result = await models.user_profile.create({
+        username: user.username,
+        fullname: user.fullname,
+        email: user.email,
+        gender: user.gender,
+        dob: user.dob,
       });
       console.log(
         `created new default profile of ${user.username} successfully\n`

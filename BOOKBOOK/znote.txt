@@ -1,8 +1,16 @@
+update 19/12/2022 by Thùy
+- fix bug màn hình error login/signup (sửa trong service + controller)
+- thêm validate login/signup backend
+- thêm xử lý renderHome ở đầu các routes login/signup
+- xử lý khi người dùng nhập username, password sai ở login page, redirect lại login page và alert lỗi
+- thêm log out (= icon ở nav bar)
+- xong login/signup/logout (hiện chưa phát hiện lỗi gì)
+
 update 18/12/2022
 - restructure cây thư mục
 - tạo các file config và sửa 1 chút các biến trong những hàm init --> những biến environment bỏ vào .env và gọi lại trong config.js
 - tách server và app
-- update creatNewUser = (createUserInfo + createDefaultProfile)
+- update createNewUser = (createUserInfo + createDefaultProfile)
 - các middleware phải dùng nhiều lần --> nên viết chia nhỏ ra từng hàm, không nên viết trong 1 hàm rồi dùng switch case.
 - app đang gặp lỗi thử sign up để  check lỗi này
 

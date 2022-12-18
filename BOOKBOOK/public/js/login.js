@@ -1,45 +1,61 @@
-(function () {
-   'use strict'
- 
-   var forms = document.querySelectorAll('.needs-validation')
- 
-   Array.prototype.slice.call(forms)
-     .forEach(function (form) {
+let form = document.getElementById("login-form")
+let username = document.getElementById("username")
+let password = document.getElementById("password")
+let error_un = document.getElementById("errorUn")
+let error_pw = document.getElementById("errorPw")
 
-         form.addEventListener('submit', function (event) {
+const username_regex = /^(?!\d)(\w){6,}$/
+const password_regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
 
-            if (!form.checkValidity()) {
-               document.getElementById("un-fb").innerHTML = "<small>Not begin with a digit and contain at least 6 characters, including alphabet letters, numbers or _ (underscore)</small>"
-               document.getElementById("pw-fb").innerHTML = "<small>At least 8 characters, 1 uppercase, 1 lowercase and 1 number</small>"
-               event.preventDefault()
-               event.stopPropagation()
-            }
+
+if (error_un.innerText != "") {
+   alert(error_un.innerText)
+}
+if (error_pw.innerText != "") {
+   alert(error_pw.innerText)
+}
+
+
+let inputs = document.querySelectorAll("input")
+inputs.forEach((input) => {
+   input.addEventListener("input", () => {
+      switch(input.name) {
+         case "username":
+            checkUsername(input)
+            break
+         case "password":
+            checkPassword(input)
+            break
+      }
+   })
+})
+
    
-            form.classList.add('was-validated')
-         }, false)
-     })
-})()
+form.addEventListener('submit', function (event) {
 
-username = document.getElementById("username")
-username.addEventListener("input", () => {
-   const username_regex = /^(?!\d)(\w){6,}$/
+   if (!form.checkValidity()) {
+      event.preventDefault()
+      event.stopPropagation()
+   }
 
+   form.classList.add('was-validated')
+}, false)
+
+
+function checkUsername(username) {
    if (username_regex.test(username.value)) {
       username.setCustomValidity("")
    }
    else {
       username.setCustomValidity("Invalid")
    }
-})
+}
 
-password = document.getElementById("password")
-password.addEventListener("input", () => {
-   const password_regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
-
+function checkPassword(password) {
    if (password_regex.test(password.value)) {
       password.setCustomValidity("")
    }
    else {
       password.setCustomValidity("Invalid")
    }
-})
+}

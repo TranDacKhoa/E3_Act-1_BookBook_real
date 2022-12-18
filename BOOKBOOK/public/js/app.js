@@ -56,3 +56,7 @@ const formatTime = timeCreated => {
   return 'Just now';
 };
 // console.log(formatTime('2020-01-29T13:01:56.446Z'));
+
+async function logOut() {
+  document.getElementById("logout-form").submit();
+}
