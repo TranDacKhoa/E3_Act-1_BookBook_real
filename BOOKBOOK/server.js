@@ -47,7 +47,7 @@ app.use((err, req, res, next) => {
 app.listen(port, async () => {
   console.log("server started!");
   //Note chỉ lần đầu tiên chạy server mới chạy dòng sequelize.sync này để đồng bộ model và db
-  await sequelize.sync({ alter: true });
+  //await sequelize.sync({ alter: true });
 
   var data = {
     username: "user2",
@@ -55,9 +55,9 @@ app.listen(port, async () => {
     secretkey: "1",
     email: "user2@gmail.com",
   };
-  const text = await user.createDefaultProfile("user2");
+  //const text = await user.createDefaultProfile("user2");
 
-  console.log(text);
+  //console.log(text);
   // const text1 = await user.creatDefaultProfile("user4");
   // const text1 = await user.startFollow("user2", "user1");
   var postdata = {
