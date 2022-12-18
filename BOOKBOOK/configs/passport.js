@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt")
 const passport = require("passport")
 const LocalStrategy = require("passport-local").Strategy
-const userM = require("../models/user.m")
+const userS = require("../services/userServices")
 
 module.exports = app => {
     app.use(passport.initialize())
@@ -13,8 +13,8 @@ module.exports = app => {
 
     passport.deserializeUser(async (username, done) => {
         try {
-            const user = await userM.findUserInfo(username)
-            done(null, user[0])
+            const user = await userS.getUserInfo(username)
+            done(null, user)
         } catch (err) {
             done(err, null)
         }
@@ -24,26 +24,17 @@ module.exports = app => {
         {
             usernameField: "username",
             passwordField: "password",
-            passReqToCallback: true     // add more params
+            //passReqToCallback: true     // add more params
         },
-        async (req, username, password, done) => {
+        async (username, password, done) => {
             try {
-                const user = await userM.findUserInfo(username)
-
-                // if user with this username does not exist
-                if (user.length == 0) {
+                const checkLogin = await userS.checkLogin(username, password)
+                if (!checkLogin) {
                     return done(null, false)
                 }
+                const user = await userS.getUserInfo(username)
 
-                const cmp_pw = await bcrypt.compare(password, user[0].password)
-                const cmp_key = await bcrypt.compare(req.body.secretkey, user[0].secret_key)
-
-                // if password or secret key don't match
-                if (!cmp_pw || !cmp_key) {
-                    return done(null, false)
-                }
-
-                return done(null, user[0])
+                return done(null, user)
             } catch (err) {
                 return done(err)
             }

@@ -22,6 +22,7 @@ SET default_table_access_method = heap;
 -- Name: follow; Type: TABLE; Schema: public; Owner: -
 --
 
+DROP TABLE IF EXISTS public.follow CASCADE;
 CREATE TABLE public.follow (
     usr_follow character varying(50) NOT NULL,
     usr_followed character varying(50) NOT NULL
@@ -32,6 +33,7 @@ CREATE TABLE public.follow (
 -- Name: general_comment; Type: TABLE; Schema: public; Owner: -
 --
 
+DROP TABLE IF EXISTS public.general_comment CASCADE;
 CREATE TABLE public.general_comment (
     cmt_id bigint NOT NULL,
     cmt_on bigint NOT NULL,
@@ -83,6 +85,7 @@ ALTER SEQUENCE public.general_comment_cmt_on_seq OWNED BY public.general_comment
 -- Name: general_post; Type: TABLE; Schema: public; Owner: -
 --
 
+DROP TABLE IF EXISTS public.general_post CASCADE;
 CREATE TABLE public.general_post (
     post_id bigint NOT NULL,
     author_username character varying(50) NOT NULL,
@@ -115,6 +118,7 @@ ALTER SEQUENCE public.general_post_post_id_seq OWNED BY public.general_post.post
 -- Name: group_info; Type: TABLE; Schema: public; Owner: -
 --
 
+DROP TABLE IF EXISTS public.group_info CASCADE;
 CREATE TABLE public.group_info (
     group_id bigint NOT NULL,
     group_name character varying(100) NOT NULL,
@@ -145,6 +149,7 @@ ALTER SEQUENCE public.group_info_group_id_seq OWNED BY public.group_info.group_i
 -- Name: group_member; Type: TABLE; Schema: public; Owner: -
 --
 
+DROP TABLE IF EXISTS public.group_member CASCADE;
 CREATE TABLE public.group_member (
     group_id bigint NOT NULL,
     username character varying(50) NOT NULL,
@@ -176,6 +181,7 @@ ALTER SEQUENCE public.group_member_group_id_seq OWNED BY public.group_member.gro
 -- Name: group_reported_member; Type: TABLE; Schema: public; Owner: -
 --
 
+DROP TABLE IF EXISTS public.group_reported_member CASCADE;
 CREATE TABLE public.group_reported_member (
     report_id bigint NOT NULL,
     group_id bigint NOT NULL,
@@ -208,6 +214,7 @@ ALTER SEQUENCE public.group_reported_member_report_id_seq OWNED BY public.group_
 -- Name: group_reported_post; Type: TABLE; Schema: public; Owner: -
 --
 
+DROP TABLE IF EXISTS public.group_reported_post CASCADE;
 CREATE TABLE public.group_reported_post (
     report_id bigint NOT NULL,
     group_id bigint NOT NULL,
@@ -239,6 +246,7 @@ ALTER SEQUENCE public.group_reported_post_report_id_seq OWNED BY public.group_re
 -- Name: group_wall; Type: TABLE; Schema: public; Owner: -
 --
 
+DROP TABLE IF EXISTS public.group_wall CASCADE;
 CREATE TABLE public.group_wall (
     group_id bigint NOT NULL,
     post_id bigint NOT NULL
@@ -287,6 +295,7 @@ ALTER SEQUENCE public.group_wall_post_id_seq OWNED BY public.group_wall.post_id;
 -- Name: market_comment; Type: TABLE; Schema: public; Owner: -
 --
 
+DROP TABLE IF EXISTS public.market_comment CASCADE;
 CREATE TABLE public.market_comment (
     cmt_id bigint NOT NULL,
     cmt_on bigint NOT NULL,
@@ -338,6 +347,7 @@ ALTER SEQUENCE public.market_comment_cmt_on_seq OWNED BY public.market_comment.c
 -- Name: market_post; Type: TABLE; Schema: public; Owner: -
 --
 
+DROP TABLE IF EXISTS public.market_post CASCADE;
 CREATE TABLE public.market_post (
     post_id bigint NOT NULL,
     post_by character varying(50) NOT NULL,
@@ -373,6 +383,7 @@ ALTER SEQUENCE public.market_post_post_id_seq OWNED BY public.market_post.post_i
 -- Name: reaction; Type: TABLE; Schema: public; Owner: -
 --
 
+DROP TABLE IF EXISTS public.reaction CASCADE;
 CREATE TABLE public.reaction (
     react_on bigint NOT NULL,
     react_type integer DEFAULT 0,
@@ -403,6 +414,7 @@ ALTER SEQUENCE public.reaction_react_on_seq OWNED BY public.reaction.react_on;
 -- Name: reported_group; Type: TABLE; Schema: public; Owner: -
 --
 
+DROP TABLE IF EXISTS public.reported_group CASCADE;
 CREATE TABLE public.reported_group (
     report_id bigint NOT NULL,
     group_id bigint NOT NULL,
@@ -433,6 +445,7 @@ ALTER SEQUENCE public.reported_group_report_id_seq OWNED BY public.reported_grou
 -- Name: reported_post; Type: TABLE; Schema: public; Owner: -
 --
 
+DROP TABLE IF EXISTS public.reported_post CASCADE;
 CREATE TABLE public.reported_post (
     report_id bigint NOT NULL,
     post_id bigint NOT NULL,
@@ -463,6 +476,7 @@ ALTER SEQUENCE public.reported_post_report_id_seq OWNED BY public.reported_post.
 -- Name: reported_user; Type: TABLE; Schema: public; Owner: -
 --
 
+DROP TABLE IF EXISTS public.reported_user CASCADE;
 CREATE TABLE public.reported_user (
     report_id bigint NOT NULL,
     reported_user character varying(50) NOT NULL,
@@ -493,6 +507,7 @@ ALTER SEQUENCE public.reported_user_report_id_seq OWNED BY public.reported_user.
 -- Name: user_blocked; Type: TABLE; Schema: public; Owner: -
 --
 
+DROP TABLE IF EXISTS public.user_blocked CASCADE;
 CREATE TABLE public.user_blocked (
     username character varying(50) NOT NULL,
     user_blocked character varying(50) NOT NULL
@@ -503,13 +518,12 @@ CREATE TABLE public.user_blocked (
 -- Name: user_info; Type: TABLE; Schema: public; Owner: -
 --
 
+DROP TABLE IF EXISTS public.user_info CASCADE;
 CREATE TABLE public.user_info (
-    email character varying(250),
-    pwd character varying(250) NOT NULL,
     username character varying(50) NOT NULL,
+    pwd character varying(250) NOT NULL,
     permission integer DEFAULT 0,
-    secret_key character varying(250) NOT NULL,
-    dob date DEFAULT now()
+    secret_key character varying(250) NOT NULL
 );
 
 
@@ -517,13 +531,15 @@ CREATE TABLE public.user_info (
 -- Name: user_profile; Type: TABLE; Schema: public; Owner: -
 --
 
+DROP TABLE IF EXISTS public.user_profile CASCADE;
 CREATE TABLE public.user_profile (
-    fullname character varying(50) NOT NULL,
     username character varying(50) NOT NULL,
-    gender character varying(10) DEFAULT 'female'::character varying,
+    fullname character varying(50) NOT NULL,
+    email character varying(250),
+    gender character varying(10),
     location character varying(250),
     about character varying(250),
-    avatar character varying(300) DEFAULT './public/defaultAvt.png'::character varying,
+    avatar character varying(300) DEFAULT './images/user/default_avt.png'::character varying,
     dob date DEFAULT now()
 );
 
@@ -532,6 +548,7 @@ CREATE TABLE public.user_profile (
 -- Name: user_wall; Type: TABLE; Schema: public; Owner: -
 --
 
+DROP TABLE IF EXISTS public.user_wall CASCADE;
 CREATE TABLE public.user_wall (
     username character varying(50) NOT NULL,
     post_id bigint NOT NULL

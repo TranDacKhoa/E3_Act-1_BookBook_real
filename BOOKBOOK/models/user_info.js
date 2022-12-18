@@ -3,18 +3,14 @@ module.exports = function (sequelize, DataTypes) {
   return sequelize.define(
     "user_info",
     {
-      email: {
-        type: DataTypes.STRING(250),
-        allowNull: true,
-      },
-      pwd: {
-        type: DataTypes.STRING(250),
-        allowNull: false,
-      },
       username: {
         type: DataTypes.STRING(50),
         allowNull: false,
         primaryKey: true,
+      },
+      pwd: {
+        type: DataTypes.STRING(250),
+        allowNull: false,
       },
       permission: {
         type: DataTypes.INTEGER,
@@ -24,11 +20,6 @@ module.exports = function (sequelize, DataTypes) {
       secret_key: {
         type: DataTypes.STRING(250),
         allowNull: false,
-      },
-      dob: {
-        type: DataTypes.DATEONLY,
-        allowNull: true,
-        defaultValue: Sequelize.Sequelize.fn("now"),
       },
     },
     {
