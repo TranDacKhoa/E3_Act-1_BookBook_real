@@ -120,11 +120,7 @@
                         <img class="d-block big-avt" src="../public/image/nguyen.png" alt="" />
 
                      </div>
-                     <ul class="dropdown-menu ">
-                        <li class="text-center"><a class="dropdown-item small" href="#"><i
-                                 class="fa-regular fa-flag"></i>
-                              Report</a></li>
-                     </ul>
+
                   </div>
                   <div style="height: 50px;"></div>
                   <div class="profile-info px-4">
@@ -181,6 +177,10 @@
                   <div class="d-flex flex-column justify-content-between gap-3 mb-3">
                      <button type="button" class="btn btn-outline-info w-100" data-bs-toggle="modal"
                         data-bs-target="#modalNewPost">
+                        Follow/Unfollow
+                     </button>
+                     <button type="button" class="btn btn-outline-info w-100" data-bs-toggle="modal"
+                        data-bs-target="#modalNewPost">
                         New post
                      </button>
                      <button type="button" class="btn btn-outline-primary w-100" data-bs-toggle="modal"
@@ -232,12 +232,20 @@
             </div>
 
             <div class="content-right col-9">
+               <div class="header-setting hover-icon action-dot" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa-solid fa-ellipsis"></i>
+               </div>
+
+               <ul class="dropdown-menu">
+                  <li class="d-flex align-items-center px-2 hover-icon">
+                     <i class="fa-regular fa-flag px-2">
+                     </i><span class="dropdown-item px-0"> Report user</span>
+                  </li>
+
+               </ul>
                <div class="image-list p-3">
                   <div class="images">
-                     <!-- <img src="../public/image/nguyen.png" alt="" /> -->
-                     <div class="images" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <img src="../public/image/nguyen.png" alt="" />
-                     </div>`;
+
 
                   </div>
                </div>
