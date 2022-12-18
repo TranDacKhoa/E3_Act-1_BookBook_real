@@ -31,8 +31,7 @@ app.use("/", userRouter);
 app.use("/", feedRouter);
 app.use("/post", postRouter);
 
-//middleware này đang tạo ra lỗi nếu res không có statusCode
-
+//
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode | 500;
   res.status(statusCode).send(err.message);

@@ -122,3 +122,11 @@ exports.logOut = (req, res, next) => {
   }
   res.redirect("/login");
 };
+
+exports.renderHome = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    res.redirect("/");
+  } else {
+    next();
+  }
+};
