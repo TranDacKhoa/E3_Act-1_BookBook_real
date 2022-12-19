@@ -3,8 +3,6 @@ const router = app.Router();
 const userC = require("../controllers/user.c");
 const passport = require("passport");
 
-// router.route("/").get(userC.getLogIn);
-
 router
   .route("/login")
   .get(userC.renderHome, userC.getLogIn)

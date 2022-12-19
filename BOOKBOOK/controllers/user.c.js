@@ -8,9 +8,7 @@ const dob_regex = /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/
 
 exports.getLogIn = (req, res, next) => {
   try {
-    // if (req.isAuthenticated()) {
-    //   res.redirect("/");
-    // } else {
+    // render error message if user failed to log in
     errorUnMsg = "";
     errorPwMsg = "";
     if (req.session.errorUnMsg) {
@@ -28,7 +26,6 @@ exports.getLogIn = (req, res, next) => {
       errorUnMsg: errorUnMsg,
       errorPwMsg: errorPwMsg,
     });
-    //}
   } catch (error) {
     next(error);
   }
@@ -88,7 +85,7 @@ exports.validateSignUp = async (req, res, next) => {
         else {
           next();
         }
-        
+
         break;
       }
       case "signup": {
@@ -113,6 +110,7 @@ exports.validateSignUp = async (req, res, next) => {
 exports.postSignUp = async (req, res, next) => {
   try {
     switch (req.body.todo) {
+      // check if username already exists
       case "checkusername": {
         const isExist = await userS.checkExistUser(req.body.username);
 
@@ -125,6 +123,7 @@ exports.postSignUp = async (req, res, next) => {
         break;
       }
 
+      // user sign up
       case "signup": {
         const user = {
           username: req.body.username,

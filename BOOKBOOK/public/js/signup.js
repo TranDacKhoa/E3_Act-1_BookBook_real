@@ -1,6 +1,8 @@
 let form = document.getElementById("signup-form")
 
 let inputs = document.querySelectorAll("input")
+
+// validate input
 inputs.forEach((input) => {
    input.addEventListener("input", () => {
       switch(input.name) {
@@ -28,7 +30,10 @@ form.addEventListener('submit', async function (event) {
    event.stopPropagation()
    let username = document.getElementById("username")
    
+   // if validate successfully
    if (form.checkValidity()) {
+      
+      // check if username has already been registered
       let data_received = await fetch('/signup', {
          method: 'post',
          headers: {
@@ -38,11 +43,14 @@ form.addEventListener('submit', async function (event) {
          body: JSON.stringify({ todo: "checkusername", username: username.value })
       }).then(res => res.json())
 
+      // if username hasn't been registered
       if (data_received.result == 1) {
          username.setCustomValidity("")
          document.getElementById("un-fb").innerHTML = "<small>Not begin with a digit and contain at least 6 characters, including alphabet letters, numbers or _ (underscore)</small>"
          signUp(form)
       }
+
+      // if username has been registered
       else {
          username.setCustomValidity("Invalid")
          document.getElementById("un-fb").innerHTML = "<small>This username has been used</small>"
@@ -58,6 +66,7 @@ const username_regex = /^(?!\d)(\w){6,}$/
 const password_regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
 const email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
+// user sign up
 async function signUp(form) {
    let data_send = {
       todo: "signup",
@@ -79,9 +88,12 @@ async function signUp(form) {
       body: JSON.stringify(data_send)
    }).then(res => res.json())
 
+   // if sign up successfully
    if (data_received.result == 1) {
       window.location.href = '/login'
-   } else {
+   }
+   // if fail to sign up 
+   else {
       alert("Error occurs while creating new account, please try again!")
    }
 }
