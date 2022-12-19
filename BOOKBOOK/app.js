@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 
 const userRouter = require("./routers/user.r");
-//const profileRouter = require("./routers/profile.r")
+const profileRouter = require("./routers/profile.r")
 const feedRouter = require("./routers/feed.r");
 const postRouter = require("./routers/post.r");
 
@@ -11,7 +11,6 @@ const app = express();
 app.use(morgan("dev"));
 // using public folder
 app.use("/post", express.static(__dirname + "/public"));
-app.use("/user", express.static(__dirname + "/public"));
 app.use("/", express.static(__dirname + "/public"));
 
 app.use(express.json());
@@ -31,6 +30,7 @@ require("./configs/passport")(app);
 app.use("/", userRouter);
 app.use("/", feedRouter);
 app.use("/post", postRouter);
+app.use("/profile", profileRouter);
 
 
 app.use((err, req, res, next) => {

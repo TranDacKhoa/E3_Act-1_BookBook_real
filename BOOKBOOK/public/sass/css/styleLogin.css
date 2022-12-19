@@ -120,12 +120,4 @@ body {
   }
 }
 
-.pr-28px {
-  padding-right: 28px !important;
-}
-
-input::-webkit-input-placeholder {
-  overflow: visible;
-}
-
 /*# sourceMappingURL=styleLogin.css.map */

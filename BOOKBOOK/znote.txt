@@ -1,3 +1,10 @@
+update 20/12/2022 by Thùy
+- cập nhật các file front-end (feed, profile) mới vào
+- thêm file hbs_helpers (trong folder helpers) chứa các hàm helpers xử lý cho handlebars
+- chỉnh sửa profile.hbs để render các biến, tách một số phần thành các partials
+- với route "/profile", user sử dụng phương thức GET với biến username để truy cập tới profile cần xem
+- mặc định ko có username trong req.query thì truy cập tới chính profile của user đang đăng nhập
+
 update 19/12/2022 by Thùy
 - fix bug màn hình error login/signup (sửa trong service + controller)
 - thêm validate login/signup backend
