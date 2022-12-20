@@ -544,7 +544,7 @@ export const data_user = {
   gender: "male",
   dayOfBirth: "2005-11-11",
 };
-export const data_blog = [
+export const data_sponsor = [
   {
     url: "https://shopee.vn",
     image: "../public/image/shopee.png",

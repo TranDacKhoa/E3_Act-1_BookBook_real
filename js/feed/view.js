@@ -1,7 +1,7 @@
 export const post = (data_images) => {
-   const feed_posts = document.querySelector('.feed-posts');
-   const html = data_images.map((item) => {
-      return `
+  const feed_posts = document.querySelector(".feed-posts");
+  const html = data_images.map((item) => {
+    return `
         <div class="post bg-light">
             <div class="d-flex flex-column gap-1">
             <div
@@ -36,7 +36,13 @@ export const post = (data_images) => {
                         <a class="dropdown-item" href="#">Separated link</a>
                     </li>
                 </ul>
+                
             </div>
+                 
+             <div class="post-content px-3">
+                    <p>${item.contents}</p>
+                </div>
+                
             <div class="post-body mb-3">
                 <img
                     class="img-fill"
@@ -58,9 +64,7 @@ export const post = (data_images) => {
                         </div>
                     </div>
                 </div>
-                <div class="post-content px-3">
-                    <p>${item.contents}</p>
-                </div>
+               
                 <div class="post-comments" style="display: none">
                     <div class="input-wrap px-3 mb-3">
                         <div class="d-flex gap-2">
@@ -80,8 +84,8 @@ export const post = (data_images) => {
                     </div>
                     <div class="comments-wrap px-3 d-flex flex-column gap-3 mb-2">
                     ${item.data
-                       .map((comment) => {
-                          return `
+                      .map((comment) => {
+                        return `
                         <div class="comment">
                             <div class="user-other d-flex flex-row gap-2">
                                 <div class="img-user">
@@ -98,19 +102,19 @@ export const post = (data_images) => {
                                 </div>
                             </div>
                         </div>`;
-                       })
-                       .join('')}
+                      })
+                      .join("")}
                     </div>
                 </div>
             </div>
             </div>
         </div>
         `;
-   });
-   feed_posts.innerHTML = html.join('');
+  });
+  feed_posts.innerHTML = html.join("");
 };
 export const comment = (location, data, user) => {
-   const html = `
+  const html = `
     <div class="comment">
         <div class="user-other d-flex flex-row gap-2">
             <div class="img-user">
@@ -126,48 +130,46 @@ export const comment = (location, data, user) => {
         </div>
     </div>
     `;
-   location.insertAdjacentHTML('afterbegin', html);
+  location.insertAdjacentHTML("afterbegin", html);
 };
-export const suggest_friends = (data) => {
-   const friends_wrap = document.querySelector('.friends-wrap');
-   const html = data.map((item) => {
-      return `
-       <div
-           class="friend d-flex gap-2 justify-content-center align-items-center">
+export const suggest_people = (data) => {
+  const suggest_list = document.querySelector("#suggest-list");
+  for (let index = 0; index < 5; index++) {
+    let html = `
+            <div
+           class="suggest-user d-flex gap-2 justify-content-center align-items-center m-2">
            <div class="img-user">
-               <img src="${item.avatar}" alt="" />
+               <img src="./image/nguyen.png" alt="" />
            </div>
            <div
                class="d-flex flex-column justify-content-center user-name" style="flex:1">
-               <span><b>${item.name}</b></span>
-               <span>${item.about}</span>
+               <span><b>Nguyen Hoang</b></span>
+               <span>@nguyenhoang</span>
            </div>
            <div>
-               <button type="button" class="btn btn-info">Add</button>
+               <button type="button" class="btn btn-success text-dark"><i class="fa-solid fa-user-plus"></i></button>
            </div>
-       </div>
-       `;
-   });
-   friends_wrap.innerHTML = html.join('');
+       </div>`;
+    suggest_list.insertAdjacentHTML("afterend", html);
+  }
 };
-export const blog = (data) => {
-   const blog_wrap = document.querySelector('.blog-wrap');
-   const html = data.map((item) => {
-      return `
-        <div class="d-flex gap-2 align-items-center">
-            <div class="blog-img">
-                <img src="${item.image}" alt="" />
-            </div>
-            <div class="d-flex flex-column blog-link px-1">
-                <span><b>
-                    <a href="${item.url}" class="text-decoration-none">${item.content}</a>
-                </b></span>
-                <span class="fw-lighter" style="font-size: 15px">
-                    <i>${item.date}</i>
-                </span>
-            </div>
-        </div>
-        `;
-   });
-   blog_wrap.innerHTML = html.join('');
+export const sponsor = (data) => {
+  const sponsor_list = document.querySelector("#sponsors-list");
+  for (let index = 0; index < 5; index++) {
+    let html = `
+            <div class="d-flex gap-2 align-items-center">
+                <div class="spn-img">
+                    <img src="../public/image/shopee.png" alt="" />
+                </div>
+                <div class="d-flex flex-column spn-link px-1">
+                    <span><b>
+                        <a href="https://shopee.vn" class="text-decoration-none">shopeeasdh asjdh nkja sdkjha skjdkjash dkajshdakjshd kajhsd</a>
+                    </b></span>
+                    <span class="fw-lighter" style="font-size: 15px">
+                        <i>20-10-2022</i>
+                    </span>
+                </div>
+            </div>`;
+    sponsor_list.insertAdjacentHTML("afterend", html);
+  }
 };
