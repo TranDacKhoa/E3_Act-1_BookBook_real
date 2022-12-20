@@ -486,4 +486,8 @@ body {
   }
 }
 
+.profile-card-body {
+  flex: none !important;
+}
+
 /*# sourceMappingURL=styleProfile.css.map */

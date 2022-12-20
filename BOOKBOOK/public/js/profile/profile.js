@@ -1,5 +1,6 @@
 import { showModal } from "../profile/modal.js"; // modal show image
 import { data_images, data_user } from "../data.js"; // data fake
+
 // users-other
 const render_followers = () => {
   const followers_list = document.querySelector("#followers-list");
@@ -150,14 +151,85 @@ form_edit.addEventListener("submit", (e) => {
   console.log("form_data", form_data);
 });
 
+//*************************************************************
 // main
 const main = async () => {
-  render_followers();
-  render_following();
+ // render_followers();
+  //render_following();
   render_images();
   //load_modal_edit();
   event_click_image();
 };
 main();
 
+// ************************************************************
+let follow_btns = document.getElementsByName("follow")
+let unfollow_btns = document.getElementsByName("unfollow")
+const username = document.getElementById("user").innerText
+const uViewed_username = document.getElementById("userViewed").innerText
 
+console.log(username)
+console.log(uViewed_username)
+
+
+for (let i = 0; i < follow_btns.length; i++) {
+  console.log(follow_btns[i].id)
+  if (follow_btns[i].id == "flw-viewedUser-btn") {
+    console.log(2)
+    follow_btns[i].addEventListener('click', async () => {
+      await follow(uViewed_username)
+    })
+    
+  }
+  else {
+    // user_to_follow = ?
+    // follow(user_to_follow)
+  }
+}
+
+for (let i = 0; i < unfollow_btns.length; i++) {
+  console.log(unfollow_btns[i].id)
+  if (unfollow_btns[i].id == "unflw-viewedUser-btn") {
+    console.log(3)
+    unfollow_btns[i].addEventListener('click', async () => {
+      await unfollow(uViewed_username)
+    })
+    
+  }
+  else {
+    // user_to_unfollow = ?
+    // unfollow(user_to_unfollow)
+  }
+}
+
+async function follow(user_to_follow) {
+  await fetch("/profile/follow", {
+    method: 'post',
+    body: JSON.stringify({ user_to_follow: user_to_follow })
+  })
+  .then(res => res.json())
+  .then(data_received => {
+    if (data_received.result == 1) {
+      console.log(`start following ${user_to_follow}`)
+    }
+    else {
+      console.log(`error occurs when try to follow ${user_to_follow}`)
+    }
+  })
+}
+
+async function unfollow(user_to_unfollow) {
+  await fetch("/profile/unfollow", {
+    method: 'post',
+    body: JSON.stringify({ user_to_unfollow: user_to_unfollow })
+  })
+  .then(res => res.json())
+  .then(data_received => {
+    if (data_received.result == 1) {
+      console.log(`unfollow ${user_to_unfollow}`)
+    }
+    else {
+      console.log(`error occurs when try to unfollow ${user_to_unfollow}`)
+    }
+  })
+}
