@@ -300,6 +300,10 @@ body {
   border-radius: 5px;
   overflow: hidden;
 }
+.newpost-container {
+  width: 400px;
+  margin: 0 auto;
+}
 
 .modal-header {
   z-index: 10;
@@ -317,15 +321,17 @@ body {
   overflow: hidden;
 }
 
-.modal-port {
+.modal-post {
   min-width: 360px;
   background-color: var(--white);
 }
 
-.port-container {
+.post-container {
   max-height: 90vh;
+  position: absolute;
+  top: 0px;
 }
-.port-container::-webkit-scrollbar {
+.post-container::-webkit-scrollbar {
   display: none;
 }
 
@@ -459,7 +465,7 @@ body {
   background-color: var(--bgr-light-gray);
 }
 #modalNewPost .modal-body form textarea {
-  min-height: 40vh;
+  height: 100px;
 }
 
 .modal-edit-profile .modal-content .modal-body form .label-change {
