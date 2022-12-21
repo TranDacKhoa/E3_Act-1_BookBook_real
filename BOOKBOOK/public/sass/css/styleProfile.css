@@ -459,9 +459,12 @@ body {
   background-color: var(--bgr-light-gray);
 }
 #modalNewPost .modal-body form textarea {
-  min-height: 40vh;
+  height: 100px;
 }
-
+.newpost-container {
+  width: 400px;
+  margin: 0 auto;
+}
 .modal-edit-profile .modal-content .modal-body form .label-change {
   color: var(--dark-orange);
   cursor: pointer;

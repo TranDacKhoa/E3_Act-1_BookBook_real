@@ -34,11 +34,12 @@ exports.checkPermission = async (req, res, next) => {
 exports.handleMyProfile = async (req, res, next) => {
   try {
     if (
-      req.user.username === req.query.username ||
-      req.query.username === undefined
+      req.query.username === undefined ||
+      req.user.username === req.query.username
     ) {
       const uProfile = await userS.getUserProfile(req.user.username);
-      res.render("profile", {
+      console.log(uProfile);
+      return res.render("profile", {
         title: uProfile.fullname + " | BookBook",
         user: uProfile,
         userViewed: uProfile,

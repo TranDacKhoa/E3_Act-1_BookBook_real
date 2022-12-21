@@ -1,6 +1,7 @@
 update 21/12/2022 by Nguyên:
 - Đổi default avatar sang hình khác có nền khác màu trắng cho dễ nhìn.
 - upload fe của feed trên branch front
+- done edit profile upload avatar.
 
 update 20/12/2022 by Lộc:
 - add adminServices.js

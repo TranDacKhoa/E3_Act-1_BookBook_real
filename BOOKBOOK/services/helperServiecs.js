@@ -25,6 +25,7 @@ const valid_dob = (dob) => {
 const valid_password = (pwd) => {
   return password_regex.test(pwd);
 };
+const updatePassPort = (pUser, bUser) => {};
 
 module.exports.validFullName = valid_fullName;
 module.exports.validUserName = valid_username;

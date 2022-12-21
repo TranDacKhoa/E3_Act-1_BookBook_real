@@ -175,17 +175,16 @@ const userServices = {
       const userInfo = await models.user_profile.findByPk(user);
       if (userInfo !== null) {
         const infoValided = await userInfo.validUpdate(newUpdate);
-        const result = userInfo
-          .set({
-            fullname: infoValided.fullname,
-            email: infoValided.email,
-            dob: infoValided.dob,
-            gender: infoValided.gender,
-            location: infoValided.location,
-            about: infoValided.about,
-            avatar: infoValided.avatar,
-          })
-          .then(userInfo.save());
+        const result = await userInfo.set({
+          fullname: infoValided.fullname,
+          email: infoValided.email,
+          dob: infoValided.dob,
+          gender: infoValided.gender,
+          location: infoValided.location,
+          about: infoValided.about,
+          avatar: infoValided.avatar,
+        });
+        await userInfo.save();
         console.log(`updated user ${user} profile successfully\n`);
         return true;
       } else {
@@ -193,7 +192,7 @@ const userServices = {
         return false;
       }
     } catch (err) {
-      console.log(`raise error when update user ${user} profile\n`);
+      console.log(`raise error when update user ${user} profile\n${err}`);
       return false;
     }
   },

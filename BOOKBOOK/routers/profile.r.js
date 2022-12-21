@@ -10,7 +10,7 @@ router
   .post(
     upload_avt.single("avatar"),
     userActionC.updateProfile,
-    userActionC.getFeed
+    userActionC.handleMyProfile
   );
 
 module.exports = router;
