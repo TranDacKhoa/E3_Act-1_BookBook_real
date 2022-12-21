@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize");
+const validator = require("../services/helperServiecs");
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define(
+  var user_profile = sequelize.define(
     "user_profile",
     {
       username: {
@@ -31,6 +32,7 @@ module.exports = function (sequelize, DataTypes) {
       },
       about: {
         type: DataTypes.STRING(250),
+        defaultValue: "Nothing to say!",
         allowNull: true,
       },
       avatar: {
@@ -58,4 +60,30 @@ module.exports = function (sequelize, DataTypes) {
       ],
     }
   );
+  user_profile.prototype.validUpdate = function (newUpdate) {
+    let result = {};
+    if (validator.validFullName(newUpdate.fullname)) {
+      result.fullname = newUpdate.fullname;
+    } else {
+      result.fullname = this.fullname;
+    }
+
+    if (validator.validEmail(newUpdate.email)) {
+      result.email = newUpdate.email;
+    } else {
+      result.email = this.email;
+    }
+    if (validator.validDOB(newUpdate.dob)) {
+      result.dob = newUpdate.dob;
+    } else {
+      result.email = this.email;
+    }
+    result.gender = newUpdate.gender;
+    result.location = newUpdate.location;
+    result.about = newUpdate.about;
+    result.avatar = newUpdate.avatar;
+    return result;
+  };
+
+  return user_profile;
 };

@@ -1,3 +1,11 @@
+update 21/12/2022 by Nguyên:
+- Đổi default avatar sang hình khác có nền khác màu trắng cho dễ nhìn.
+- upload fe của feed trên branch front
+
+update 20/12/2022 by Lộc:
+- add adminServices.js
+- add adminGroupServices.js
+
 update 20/12/2022 by Thùy
 - cập nhật các file front-end (feed, profile) mới vào
 - thêm file hbs_helpers (trong folder helpers) chứa các hàm helpers xử lý cho handlebars
@@ -13,16 +21,15 @@ update 19/12/2022 by Thùy
 - thêm log out (= icon ở nav bar)
 - xong login/signup/logout (hiện chưa phát hiện lỗi gì)
 
-update 18/12/2022
+update 18/12/2022 by Nguyên
 - restructure cây thư mục
 - tạo các file config và sửa 1 chút các biến trong những hàm init --> những biến environment bỏ vào .env và gọi lại trong config.js
 - tách server và app
 - update createNewUser = (createUserInfo + createDefaultProfile)
-- các middleware phải dùng nhiều lần --> nên viết chia nhỏ ra từng hàm, không nên viết trong 1 hàm rồi dùng switch case.
-- app đang gặp lỗi thử sign up để  check lỗi này
+- app đang gặp lỗi thử sign up để check lỗi này
 
 
-update 15/12/2022
+update 15/12/2022 by Nguyên
 - update script generate db mới
 -thêm 5 table mới trong db
 -sửa 1 vài table cũ

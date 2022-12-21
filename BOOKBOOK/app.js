@@ -3,15 +3,24 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 
 const userRouter = require("./routers/user.r");
-const profileRouter = require("./routers/profile.r")
+const profileRouter = require("./routers/profile.r");
 const feedRouter = require("./routers/feed.r");
 const postRouter = require("./routers/post.r");
+const e = require("express");
 
 const app = express();
 app.use(morgan("dev"));
 // using public folder
-app.use("/post", express.static(__dirname + "/public"));
-app.use("/", express.static(__dirname + "/public"));
+app.use(
+  "/",
+  express.static(__dirname + "/public"),
+  express.static(__dirname + "/uploads")
+);
+app.use(
+  "/profile",
+  express.static(__dirname + "/public"),
+  express.static(__dirname + "/uploads")
+);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -27,11 +36,11 @@ require("./configs/session")(app);
 require("./configs/passport")(app);
 
 // Router
-app.use("/", userRouter);
+
 app.use("/", feedRouter);
+app.use("/", userRouter);
 app.use("/post", postRouter);
 app.use("/profile", profileRouter);
-
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode | 500;

@@ -8,10 +8,10 @@ router
   .get(userC.renderHome, userC.getLogIn)
   .post(
     userC.renderHome,
-    userC.validateLogIn, 
-    passport.authenticate("local", { 
-      failureRedirect: "/login"
-    }), 
+    userC.validateLogIn,
+    passport.authenticate("local", {
+      failureRedirect: "/login",
+    }),
     userC.postLogIn
   );
 

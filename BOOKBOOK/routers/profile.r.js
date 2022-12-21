@@ -1,7 +1,16 @@
-const app = require('express')
-const router = app.Router()
-const userActionC = require('../controllers/userAction.c')
+const app = require("express");
+const upload_avt = require("../uploads/storage").upload_avt;
+const router = app.Router();
+const userActionC = require("../controllers/userAction.c");
 
-router.get('/', userActionC.checkPermission, userActionC.checkUser, userActionC.getProfile)
+router
+  .route("/")
+  .all(userActionC.checkPermission)
+  .get(userActionC.handleMyProfile, userActionC.handleOtherProfile)
+  .post(
+    upload_avt.single("avatar"),
+    userActionC.updateProfile,
+    userActionC.getFeed
+  );
 
-module.exports = router
+module.exports = router;

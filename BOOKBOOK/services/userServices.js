@@ -47,7 +47,7 @@ const userServices = {
     if (result !== null) {
       const dbpw = result.dataValues.pwd;
       const cmp = await bcrypt.compare(pw, dbpw);
-      
+
       // if username and password match
       if (cmp) {
         return 1;
@@ -57,7 +57,7 @@ const userServices = {
         return 0;
       }
     }
-    // if username doesn't exist 
+    // if username doesn't exist
     else {
       return -1;
     }
@@ -171,30 +171,29 @@ const userServices = {
     return result;
   },
   updateProfile: async (user, newUpdate) => {
-    if (await userServices.checkExistUser(user)) {
-      try {
-        const result = await models.user_profile.update(
-          {
-            fullname: newUpdate.fullname,
-            gender: newUpdate.gender,
-            location: newUpdate.location,
-            about: newUpdate.about,
-            avatar: newUpdate.avatar,
-          },
-          {
-            where: {
-              username: user,
-            },
-          }
-        );
-      } catch (err) {
-        console.log(`raise error when update user ${user} profile\n`);
+    try {
+      const userInfo = await models.user_profile.findByPk(user);
+      if (userInfo !== null) {
+        const infoValided = await userInfo.validUpdate(newUpdate);
+        const result = userInfo
+          .set({
+            fullname: infoValided.fullname,
+            email: infoValided.email,
+            dob: infoValided.dob,
+            gender: infoValided.gender,
+            location: infoValided.location,
+            about: infoValided.about,
+            avatar: infoValided.avatar,
+          })
+          .then(userInfo.save());
+        console.log(`updated user ${user} profile successfully\n`);
+        return true;
+      } else {
+        console.log(`user ${user} is not exist\n`);
         return false;
       }
-      console.log(`updated user ${user} profile successfully\n`);
-      return true;
-    } else {
-      console.log(`user ${user} is not exist\n`);
+    } catch (err) {
+      console.log(`raise error when update user ${user} profile\n`);
       return false;
     }
   },

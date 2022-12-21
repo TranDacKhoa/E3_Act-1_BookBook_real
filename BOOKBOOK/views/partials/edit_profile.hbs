@@ -1,53 +1,103 @@
 <div class="modal-edit-profile">
-   <div class="modal fade" id="modalEditProfile" tabindex="-1" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-fullscreen-sm-down modal-dialog-centered">
-         <div class="modal-content">
-            <div class="modal-header position-relative d-flex" style="color: black">
-               <h1 class="modal-title fs-5 text-center" style="flex: 1" id="exampleModalLabel">
-                  Edit profile
-               </h1>
-               <button type="button" class="hover-icon py-1 px-3 position-absolute" style="top: 15%; border: none"
-                  data-bs-dismiss="modal" aria-label="Close">
-                  <i class="fa-solid fa-xmark"></i>
-               </button>
-            </div>
-            <div class="modal-body px-2">
-               <form id="form-edit">
-                  <div>
-                     <div class="mb-3 d-flex gap-2">
-                        <div class="img-user avatar-wrap">
-                           <img src="{{ user.avatar }}" alt="" />
-                        </div>
-                        <div id="emailHelp" class="form-text d-flex flex-column m-0">
-                           <label for="exampleInputEmail1"
-                              class="form-label m-0 id-user"><i>@{{ user.username }}</i></label>
-                           <span class="m-0 label-change fw-bold"> Change avatar </span>
-                           <input type="file" class="input-file-avatar d-none" />
-                        </div>
-                     </div>
-                     <div class="mb-3 d-flex gap-3">
-                        <input type="text" class="form-control p-3" id="exampleInputFullName"
-                           placeholder="Full Name" value="{{ user.fullname }}"/>
-                     </div>
+  <div
+    class="modal fade"
+    id="modalEditProfile"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-fullscreen-sm-down modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header position-relative d-flex" style="color: black">
+          <h1
+            class="modal-title fs-5 text-center"
+            style="flex: 1"
+            id="exampleModalLabel"
+          >
+            Edit profile
+          </h1>
+          <button
+            type="button"
+            class="hover-icon py-1 px-3 position-absolute"
+            style="top: 15%; border: none"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="modal-body px-2">
+          <form
+            id="form-edit"
+            method="post"
+            acction="/update/"
+            enctype="multipart/form-data"
+          >
+            <div>
+              <div class="mb-3 d-flex gap-2">
+                <div class="img-user avatar-wrap">
+                  <img src="avatar/{{user.avatar}}" alt="" />
+                </div>
+                <div id="emailHelp" class="form-text d-flex flex-column m-0">
+                  <label
+                    for="exampleInputEmail1"
+                    class="form-label m-0 id-user"
+                  ><i>@{{user.username}}</i></label>
+                  <span class="m-0 label-change fw-bold"> Change avatar </span>
+                  <input
+                    type="file"
+                    class="input-file-avatar d-none"
+                    name="avatar"
+                  />
+                </div>
+              </div>
+              <div class="mb-3 d-flex gap-3">
+                <input
+                  type="text"
+                  class="form-control p-3"
+                  id="exampleInputFullName"
+                  placeholder="Full Name"
+                  name="fullname"
+                  value="{{user.fullname}}"
+                />
+              </div>
 
-                     <div class="mb-3 d-flex gap-3">
-                        <input type="text" class="form-control p-3" placeholder="About" id="exampleInputAbout" value="{{ user.about }}" />
-                     </div>
+              <div class="mb-3 d-flex gap-3">
+                <input
+                  type="text"
+                  class="form-control p-3"
+                  placeholder="About"
+                  name="about"
+                  id="exampleInputAbout"
+                  value="{{user.about}}"
+                />
+              </div>
 
-                     <div class="mb-3 d-flex gap-3 justify-content-around">
-                        <div class="position-relative d-flex justify-content-center text-center w-50">
-                           <label class="position-absolute form-check-label text-decoration-none gray-text"
-                              style="top: 13px; left: 16px" for="exampleInputDoB">DOB</label>
-                           <input type="date" class="col form-control text-end pe-3 gap-2"
-                              id="exampleInputDayOfBirth" value="{{ user.dob }}" />
-                        </div>
+              <div class="mb-3 d-flex gap-3 justify-content-around">
+                <div
+                  class="position-relative d-flex justify-content-center text-center w-50"
+                >
+                  <label
+                    class="position-absolute form-check-label text-decoration-none gray-text"
+                    style="top: 13px; left: 16px"
+                    for="exampleInputDoB"
+                  >DOB</label>
+                  <input
+                    type="date"
+                    name="dob"
+                    class="col form-control text-end pe-3 gap-2"
+                    id="exampleInputDayOfBirth"
+                    value="{{user.dob}}"
+                  />
+                </div>
 
-                        <div class="d-flex flex-column justify-content-center w-50">
-                           <label class="form-check-label text-decoration-none gray-text"
-                              for="exampleCheck1">Gender</label>
-                           <div class="d-flex gap-3">
-                              {{!-- <div class="form-check">
+                <div class="d-flex flex-column justify-content-center w-50">
+                  <label
+                    class="form-check-label text-decoration-none gray-text"
+                    for="exampleCheck1"
+                  >Gender</label>
+                  <div class="d-flex gap-3">
+                    {{! <div class="form-check">
                                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="male"
                                     value="male" checked />
                                  <label class="form-check-label" for="flexRadioDefault1">
@@ -60,28 +110,44 @@
                                  <label class="form-check-label" for="flexRadioDefault2">
                                     Female
                                  </label>
-                              </div> --}}
-                              {{{ gender user.gender }}}
-                           </div>
-                        </div>
-                     </div>
-                     <div class="mb-3 d-flex gap-3">
-                        <input type="text" class="form-control p-3" id="exampleInputuserCity"
-                           placeholder="Location" />
-                     </div>
+                              </div> }}
+                    {{{gender user.gender}}}
                   </div>
-
-                  <div class="d-flex justify-content-end gap-2">
-                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        Close
-                     </button>
-                     <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
-                        Save
-                     </button>
-                  </div>
-               </form>
+                </div>
+              </div>
+              <div class="mb-3 d-flex gap-3">
+                <input
+                  type="text"
+                  class="form-control p-3"
+                  id="exampleInputuserCity"
+                  name="location"
+                  placeholder="Location"
+                  value="{{user.location}}"
+                />
+              </div>
             </div>
-         </div>
+
+            <div class="d-flex justify-content-end gap-2">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                Save
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+
+            </div>
+
+          </form>
+        </div>
       </div>
-   </div>
+    </div>
+  </div>
 </div>

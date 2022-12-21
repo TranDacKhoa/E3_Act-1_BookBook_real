@@ -104,8 +104,7 @@ input_file_avatar.addEventListener("change", (e) => {
   if (file_avatar) {
     file_avatar.preview = URL.createObjectURL(file_avatar);
     avatar_wrap.innerHTML = `<img src="${file_avatar?.preview}" alt="" />`;
-  } 
-  else {
+  } else {
     avatar_wrap.innerHTML = `<img src="./images/new.jpg" alt="" />`;
   }
 });
@@ -133,22 +132,22 @@ input_file_avatar.addEventListener("change", (e) => {
 // };
 const form_edit = document.querySelector("#form-edit");
 // event submit form
-form_edit.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const form_value = form_edit.querySelectorAll("input");
-  let form_data = [];
+// form_edit.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   const form_value = form_edit.querySelectorAll("input");
+//   let form_data = [];
 
-  form_value.forEach((item) => {
-    if (item.attributes[1].value == "radio") {
-      if (item.checked) {
-        form_data = [...form_data, item.value];
-      }
-    } else {
-      form_data = [...form_data, item.value];
-    }
-  });
-  console.log("form_data", form_data);
-});
+//   form_value.forEach((item) => {
+//     if (item.attributes[1].value == "radio") {
+//       if (item.checked) {
+//         form_data = [...form_data, item.value];
+//       }
+//     } else {
+//       form_data = [...form_data, item.value];
+//     }
+//   });
+//   console.log("form_data", form_data);
+// });
 
 // main
 const main = async () => {
@@ -159,5 +158,3 @@ const main = async () => {
   event_click_image();
 };
 main();
-
-

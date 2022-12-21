@@ -1,11 +1,5 @@
 const userS = require("../services/userServices");
-
-const fullname_regex = /^[A-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪỬỮỰỲỴÝỶỸ][a-zàáâãèéêìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]*(?: [A-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪỬỮỰỲỴÝỶỸ][a-zàáâãèéêìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]*)*$/
-const username_regex = /^(?!\d)(\w){6,}$/
-const password_regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
-const email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-const dob_regex = /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/
-
+const validator = require("../services/helperServiecs");
 exports.getLogIn = (req, res, next) => {
   try {
     // render error message if user failed to log in
@@ -19,7 +13,7 @@ exports.getLogIn = (req, res, next) => {
     }
     delete req.session.errorUnMsg;
     delete req.session.errorPwMsg;
-    
+
     res.render("login", {
       title: "Log In | BookBook",
       layout: "account.hbs",
@@ -64,48 +58,51 @@ exports.postLogIn = async (req, res, next) => {
 
 exports.validateLogIn = async (req, res, next) => {
   try {
-    if (!username_regex.test(req.body.username) || !password_regex.test(req.body.password)) {
+    if (
+      !validator.validUserName(req.body.username) ||
+      !validator.validPassword(req.body.password)
+    ) {
       res.redirect("/login");
-    }
-    else {
+    } else {
       next();
     }
   } catch (err) {
     next(err);
   }
-}
+};
 
 exports.validateSignUp = async (req, res, next) => {
   try {
-    switch (req.body.todo){
+    switch (req.body.todo) {
       case "checkusername": {
-        if (!username_regex.test(req.body.username)) {
+        if (!validator.validUserName(req.body.username)) {
           res.send(JSON.stringify({ result: 0 }));
-        }
-        else {
+        } else {
           next();
         }
 
         break;
       }
       case "signup": {
-        if (!username_regex.test(req.body.username) || !password_regex.test(req.body.password)
-        || !fullname_regex.test(req.body.fullname) || !email_regex.test(req.body.email)
-        || !dob_regex.test(req.body.dob)) {
+        if (
+          !validator.validUserName(req.body.username) ||
+          !validator.validPassword(req.body.password) ||
+          !validator.validFullName(req.body.fullname) ||
+          !validator.validEmail(req.body.email) ||
+          !validator.validDOB(req.body.dob)
+        ) {
           res.send(JSON.stringify({ result: 0 }));
-        }
-        else {
+        } else {
           next();
         }
 
         break;
       }
     }
-    
   } catch (err) {
     next(err);
   }
-}
+};
 
 exports.postSignUp = async (req, res, next) => {
   try {
@@ -165,8 +162,7 @@ exports.logOut = (req, res, next) => {
 exports.renderHome = (req, res, next) => {
   if (req.isAuthenticated()) {
     res.redirect("/");
-  } 
-  else {
+  } else {
     next();
   }
 };
