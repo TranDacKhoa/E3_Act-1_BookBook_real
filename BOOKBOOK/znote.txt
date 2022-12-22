@@ -1,6 +1,9 @@
 update 22/12/2022 by Thùy
 - render followers và following trong profile
 - sửa lại script sql + script model của general_post -> bắt buộc phải có image khi đăng bài
+- merge profile branch (làm render follow) với main branch
+- copy default_avt.png sang folder upload để đồng bộ đường dẫn khi render handlebars, tránh lỗi đường dẫn
+- thay đổi đường dẫn của default_avt trong script model và sql
 
 update 21/12/2022 by Nguyên:
 - Đổi default avatar sang hình khác có nền khác màu trắng cho dễ nhìn.

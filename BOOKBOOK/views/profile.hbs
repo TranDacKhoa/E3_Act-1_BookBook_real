@@ -14,7 +14,7 @@
             </div>
             <div style="height: 50px;"></div>
 
-            <div class="profile-info px-4">
+            <div class="profile-info px-4 pt-2">
                   <div><b>{{ userViewed.fullname }}</b> </div>
                   <h5 class="small text-center ">@{{ userViewed.username }}
                      <i class="fa-solid fa-circle-check small " style="color: var( --light-blue);"></i>
@@ -98,7 +98,7 @@
                   {{#each (smallFollowersList followers)}}
                   <div class="user-box d-flex gap-2 pt-2 pb-2 align-items-center">
                      <div class="box-image">
-                        <img src="{{ avatar }}" alt="" />
+                        <img src="avatar/{{ avatar }}" alt="" />
                      </div>
                      <div class="box-name d-flex flex-column justify-content-center align-items-flex-start">
                         <span><b>{{ fullname }}</b></span>
@@ -137,13 +137,14 @@
                   {{#each (smallFollowingList following)}}
                   <div class="user-box d-flex gap-2 pt-2 pb-2 align-items-center">
                      <div class="box-image">
-                        <img src="{{ avatar }}" alt="" />
+                        <img src="avatar/{{ avatar }}" alt="" />
                      </div>
                      <div class="box-name d-flex flex-column justify-content-center align-items-flex-start">
                         <span><b>{{ fullname }}</b></span>
                         <span class="other-user-username">@{{ username }}</span>
                      </div>
                      {{#if (notEq username ../user.username)}}
+                     {{#if (notEq ../userViewed.username ../user.username)}}
                         {{#if (isFollowedByUser username ../followedByUser)}}
                         <div class="box-follow">
                            <button type="button" class="btn btn-success btn-sm" data-bs-toggle="dropdown" aria-expanded="false">
@@ -162,6 +163,7 @@
                            <button type="button" class="btn btn-outline-success" name="follow">Follow</button>
                         </div>
                         {{/if}}
+                     {{/if}}
                      {{/if}}
                   </div>
                   {{/each}}

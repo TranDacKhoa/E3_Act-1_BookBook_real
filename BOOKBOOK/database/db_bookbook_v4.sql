@@ -539,7 +539,7 @@ CREATE TABLE public.user_profile (
     gender character varying(10),
     location character varying(250),
     about character varying(250),
-    avatar character varying(300) DEFAULT './images/user/default_avt.png'::character varying,
+    avatar character varying(300) DEFAULT 'default_avt.png'::character varying,
     dob date DEFAULT now()
 );
 
