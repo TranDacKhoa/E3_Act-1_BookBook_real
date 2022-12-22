@@ -1,6 +1,7 @@
-update dd/mm/yyyy by Thùy
+update 23/12/2022 by Thùy
 - sửa route post cho edit profile
-- sửa lỗi front-end nút close khi edit profile
+- sửa front-end edit profile
+- thêm chuyển hướng tới profile khác khi click vào user box ở followers, following
 
 update 22/12/2022 by Thùy
 - render followers và following trong profile
