@@ -40,12 +40,14 @@ exports.checkUser = async (req, res, next) => {
             const uProfile = await userS.getUserProfile(req.user.username)
             const followers = await userS.getFollowersList(req.user.username)
             const following = await userS.getFollowingList(req.user.username)
+
             res.render('profile', {
                 title: uProfile.fullname + " | BookBook",
                 user: uProfile,
                 userViewed: uProfile,
                 followers: followers,
                 following: following,
+                followedByUser: following,
                 helpers: hbsHelpers,
             })
         }
@@ -63,8 +65,7 @@ exports.getProfile = async (req, res, next) => {
         const uViewedProfile = await userS.getUserProfile(req.query.username)
         const followers = await userS.getFollowersList(req.query.username)
         const following = await userS.getFollowingList(req.query.username)
-        // console.log(followers)
-        // console.log(following)
+        const followedByUser = await userS.getFollowingList(req.user.username)
 
         res.render('profile', {
             title: uViewedProfile.fullname + " | BookBook",
@@ -72,6 +73,7 @@ exports.getProfile = async (req, res, next) => {
             userViewed: uViewedProfile,
             followers: followers,
             following: following,
+            followedByUser: followedByUser,
             helpers: hbsHelpers,
         })
     } catch (error) {

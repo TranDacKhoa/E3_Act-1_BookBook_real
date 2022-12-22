@@ -70,15 +70,15 @@
                      Edit profile
                   </button>
                   {{else}}
-                     {{#if (isFollowing user.username followers) }}
+                     {{#if (isFollowedByUser userViewed.username followedByUser) }}
                      <button type="button" class="btn btn-info w-100" data-bs-toggle="dropdown" aria-expanded="false" id="following-btn">
                         Following <i class="fa fa-check"></i>
                      </button>
                      <ul class="dropdown-menu dropdown-menu-end">
                         <li>
-                           <a class="dropdown-item" href="#" name="unfollow" id="unflw-viewedUser-btn">
+                           <button type="button" class="dropdown-item" name="unfollow" id="unflw-viewedUser-btn">
                               Unfollow
-                           </a>
+                           </button>
                         </li>
                      </ul>
                      {{else}}
@@ -95,20 +95,37 @@
          <div class="card-body profile-card-body">
             <div class="list-other-users gap-2">
                   <h5 id="followers-list">Followers</h5>
-                  {{#eachFollowers followers}}
-                  <div class="user-box d-flex gap-2 pt-2 pb-2 align-items-center" id="">
+                  {{#each (smallFollowersList followers)}}
+                  <div class="user-box d-flex gap-2 pt-2 pb-2 align-items-center">
                      <div class="box-image">
-                        <img src="{{ usr_follow.avatar }}" alt="" />
+                        <img src="{{ avatar }}" alt="" />
                      </div>
                      <div class="box-name d-flex flex-column justify-content-center align-items-flex-start">
-                        <span><b>{{ usr_follow.fullname }}</b></span>
-                        <span>@{{ usr_follow.username }}</span>
+                        <span><b>{{ fullname }}</b></span>
+                        <span class="other-user-username">@{{ username }}</span>
                      </div>
-                     <div class="box-follow">
-                        <button type="button" class="btn btn-success w-100">Follow</button>
-                     </div>
+                     {{#if (notEq username ../user.username)}}
+                        {{#if (isFollowedByUser username ../followedByUser)}}
+                        <div class="box-follow">
+                           <button type="button" class="btn btn-success btn-sm" data-bs-toggle="dropdown" aria-expanded="false">
+                              Following <i class="fa fa-check"></i>
+                           </button>
+                           <ul class="dropdown-menu dropdown-menu-end dropdown-sm">
+                              <li>
+                                 <button type="button" class="btn dropdown-item" name="unfollow">
+                                    Unfollow
+                                 </button>
+                              </li>
+                           </ul>
+                        </div>
+                        {{else}}
+                        <div class="box-follow">
+                           <button type="button" class="btn btn-outline-success" name="follow">Follow</button>
+                        </div>
+                        {{/if}}
+                     {{/if}}
                   </div>
-                  {{/eachFollowers}}
+                  {{/each}}
             </div>
          </div>
 
@@ -117,20 +134,37 @@
          <div class="card-body profile-card-body">
             <div class="list-other-users gap-2">
                   <h5 id="following-list">Following</h5>
-                  {{#eachFollowing following}}
-                  <div class="user-box d-flex gap-2 pt-2 pb-2 align-items-center" id="">
+                  {{#each (smallFollowingList following)}}
+                  <div class="user-box d-flex gap-2 pt-2 pb-2 align-items-center">
                      <div class="box-image">
-                        <img src="{{ usr_followed.avatar }}" alt="" />
+                        <img src="{{ avatar }}" alt="" />
                      </div>
                      <div class="box-name d-flex flex-column justify-content-center align-items-flex-start">
-                        <span><b>{{ usr_followed.fullname }}</b></span>
-                        <span>@{{ usr_followed.username }}</span>
+                        <span><b>{{ fullname }}</b></span>
+                        <span class="other-user-username">@{{ username }}</span>
                      </div>
-                     <div class="box-follow">
-                        <button type="button" class="btn btn-success w-100">Follow</button>
-                     </div>
+                     {{#if (notEq username ../user.username)}}
+                        {{#if (isFollowedByUser username ../followedByUser)}}
+                        <div class="box-follow">
+                           <button type="button" class="btn btn-success btn-sm" data-bs-toggle="dropdown" aria-expanded="false">
+                              Following <i class="fa fa-check"></i>
+                           </button>
+                           <ul class="dropdown-menu dropdown-menu-end dropdown-sm">
+                              <li>
+                                 <button type="button" class="btn dropdown-item" name="unfollow">
+                                    Unfollow
+                                 </button>
+                              </li>
+                           </ul>
+                        </div>
+                        {{else}}
+                        <div class="box-follow">
+                           <button type="button" class="btn btn-outline-success" name="follow">Follow</button>
+                        </div>
+                        {{/if}}
+                     {{/if}}
                   </div>
-                  {{/eachFollowing}}
+                  {{/each}}
             </div>
          </div>
       </div>

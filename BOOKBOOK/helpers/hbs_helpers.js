@@ -36,36 +36,43 @@ module.exports = {
     eq: (str1, str2) => {
         return str1 === str2
     },
-    eachFollowers: (arr, options) => {
-        let ret = "";
-        for (let i = 0; i < arr.length; i++) {
-            if (i == 3) {
-                break;
-            }
-            console.log(arr[i].dataValues.usr_follow_user_profile.dataValues)
-            ret += options.fn({usr_follow: arr[i].dataValues.usr_follow_user_profile.dataValues})
-        }
-        return ret
+    notEq: (str1, str2) => {
+        return str1 !== str2
     },
-    eachFollowing: (arr, options) => {
-        let ret = "";
-        for (let i = 0; i < arr.length; i++) {
-            if (i == 3) {
-                break;
-            }
-            console.log(arr[i].dataValues.usr_followed_user_profile.dataValues)
-            ret += options.fn({usr_followed: arr[i].dataValues.usr_followed_user_profile.dataValues})
-        }
-        return ret
-    },
-    isFollowing: (username, followers) => {
-        for (let i = 0; i < followers.length; i++) {
-            console.log(followers[i].dataValues.usr_follow)
-            if (username === followers[i].dataValues.usr_follow) {
-                return true
+    isFollowedByUser: (username, followedByUser) => {
+        if (followedByUser) {
+            for (let i = 0; i < followedByUser.length; i++) {
+                if (username === followedByUser[i].dataValues.usr_followed) {
+                    return true
+                }
             }
         }
-
+        
         return false
-    }
+    },
+    smallFollowersList: (followers) => {
+        let arr = []
+        if (followers) {
+            for (let i = followers.length - 1; i >= 0; i--) {
+                if (i == followers.length - 1 - 3) {
+                    break;
+                }
+                arr.push(followers[i].dataValues.usr_follow_user_profile.dataValues)
+            }
+        }
+        return arr
+    },
+    smallFollowingList: (following) => {
+        let arr = []
+        if (following) {
+            for (let i = following.length - 1; i >= 0; i--) {
+                if (i == following.length - 1 - 3) {
+                    break;
+                }
+                arr.push(following[i].dataValues.usr_followed_user_profile.dataValues)
+            }
+        }
+        return arr
+    },
+
 }
