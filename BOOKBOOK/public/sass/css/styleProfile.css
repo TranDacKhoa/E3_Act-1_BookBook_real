@@ -231,6 +231,11 @@ body {
   font-size: 0.95em;
 }
 
+.list-other-users .user-box:hover {
+  background-color: var(--bgr-light-gray);
+  border-radius: 0.8em;
+}
+
 .list-other-users .user-box .box-name .other-user-username {
   font-size: 0.85em;
 }

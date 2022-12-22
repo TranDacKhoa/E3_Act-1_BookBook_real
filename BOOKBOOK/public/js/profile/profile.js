@@ -1,47 +1,9 @@
 import { showModal } from "../profile/modal.js"; // modal show image
 import { data_images, data_user } from "../data.js"; // data fake
 
-// users-other
-const render_followers = () => {
-  const followers_list = document.querySelector("#followers-list");
-  for (let index = 0; index < 2; index++) {
-    let html = `
-           <div class="user-box d-flex gap-2 pt-2 pb-2 align-items-center">
-               <div class="box-image">
-               <img src="./images/nguyen.png" alt="" />
-               </div>
-               <div
-               class="box-name d-flex flex-column justify-content-center align-items-flex-start">
-               <span><b>Nguyen Hoang</b></span>
-               <span>@nguyenhoang</span>
-               </div>
-               <div class="box-follow">
-               <button type="button" class="btn btn-success w-100">Follow</button>
-               </div>
-           </div>`;
-    followers_list.insertAdjacentHTML("afterend", html);
-  }
-};
-const render_following = () => {
-  const following_list = document.querySelector("#following-list");
-  for (let index = 0; index < 2; index++) {
-    let html = `
-           <div class="user-box d-flex gap-2 pt-2 pb-2 align-items-center">
-               <div class="box-image">
-               <img src="./images/nguyen.png" alt="" />
-               </div>
-               <div
-               class="box-name d-flex flex-column justify-content-center align-items-flex-start">
-               <span><b>Nguyen Hoang</b></span>
-               <span>@nguyenhoang</span>
-               </div>
-               <div class="box-follow">
-               <button type="button" class="btn btn-info w-100">Follow</button>
-               </div>
-           </div>`;
-    following_list.insertAdjacentHTML("afterend", html);
-  }
-};
+const username = document.getElementById("user").innerText
+const uViewed_username = document.getElementById("userViewed").innerText
+
 // render images
 const render_images = () => {
   const image_list = document.querySelector(".image-list");
@@ -77,6 +39,30 @@ const input_file = document.querySelector(".input-file");
 input_wrap.addEventListener("click", () => {
   input_file.click();
 });
+
+
+
+
+// *************************************************************
+// edit profile
+
+const form_edit = document.querySelector("#form-edit");
+const fullname_regex = /^[A-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪỬỮỰỲỴÝỶỸ][a-zàáâãèéêìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]*(?: [A-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪỬỮỰỲỴÝỶỸ][a-zàáâãèéêìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]*)*$/
+
+const avatar = document.getElementById("edit-avatar")
+const fullname = document.getElementById("exampleInputFullName")
+const about = document.getElementById("exampleInputAbout")
+const gender = document.querySelector('input[name="gender"]:checked')
+const dob = document.getElementById("exampleInputDayOfBirth")
+const location = document.getElementById("exampleInputuserCity")
+
+let avatar_cur_src = avatar.src
+let fullname_cur_value = fullname.value
+let about_cur_value = about.value
+let gender_cur_value = gender.value
+let dob_cur_value = dob.value
+let location_cur_value = location.value
+
 // preview file image
 let file_image;
 input_file.addEventListener("change", (e) => {
@@ -100,71 +86,68 @@ label_change.addEventListener("click", () => {
 let file_avatar;
 input_file_avatar.addEventListener("change", (e) => {
   file_avatar && URL.revokeObjectURL(file_avatar.preview);
-  const avatar_wrap = document.querySelector(".avatar-wrap");
+  //const avatar_wrap = document.querySelector(".avatar-wrap");
   file_avatar = e.target.files[0];
   if (file_avatar) {
     file_avatar.preview = URL.createObjectURL(file_avatar);
-    avatar_wrap.innerHTML = `<img src="${file_avatar?.preview}" alt="" />`;
+    avatar.src = `${file_avatar?.preview}`
+    //avatar_wrap.innerHTML = `<img src="${file_avatar?.preview}" alt="" />`;
   } else {
-    avatar_wrap.innerHTML = `<img src="./images/new.jpg" alt="" />`;
+    avatar.src = avatar_cur_src
+    //avatar_wrap.innerHTML = `<img src="${avatar_cur_src}" alt="" />`;
   }
 });
 
-// /// load user data modal
-// const load_modal_edit = () => {
-//   const id_user = document.querySelector(".id-user i");
-//   const fullName = document.querySelector("#exampleInputFullName");
-//   const about = document.querySelector("#exampleInputAbout");
-//   const dayOfBirth = document.querySelector("#exampleInputDayOfBirth");
-//   const male = document.querySelector("#male");
-//   const female = document.querySelector("#female");
-//   const location = document.querySelector("#exampleInputuserCity");
+fullname.addEventListener('input', () =>{
+  if (fullname_regex.test(fullname.value)) {
+    fullname.setCustomValidity("")
+  }
+  else {
+    fullname.setCustomValidity("Invalid")
+  }
+})
 
-//   id_user.textContent = data_user.id;
-//   fullName.value = data_user.name;
-//   about.value = data_user.about;
-//   dayOfBirth.value = data_user.dayOfBirth;
-//   data_user.gender === "male"
-//     ? male.setAttribute("checked", true) &&
-//       female.setAttribute("checked", false)
-//     : female.setAttribute("checked", true) &&
-//       male.setAttribute("checked", false);
-//   location.value = data_user.location;
-// };
-const form_edit = document.querySelector("#form-edit");
+document.getElementById("submit-btn").addEventListener('click', () => {
+  if (form_edit.checkValidity()) {
+    $("#modalEditProfile").modal('hide')
+  }
+  form_edit.classList.add('was-validated')
+})
+
+document.getElementById("close-btn").addEventListener('click', () => {
+  form_edit.classList.remove("was-validated")
+
+  avatar.src = avatar_cur_src
+  fullname.value = fullname_cur_value
+  about.value = about_cur_value
+  gender.value = gender_cur_value
+  dob.value = dob_cur_value 
+  location.value = location_cur_value
+})
+
 // event submit form
 form_edit.addEventListener("submit", (e) => {
   e.preventDefault();
   const edit_data = new FormData(form_edit);
   console.log(edit_data);
   form_edit.submit();
+
+  avatar_cur_src = avatar.value
+  fullname_cur_value = fullname.value
+  about_cur_value = about.value
+  gender_cur_value = gender.value
+  dob_cur_value = dob.value
+  location_cur_value = location.value
 });
 
-//*************************************************************
-// main
-const main = async () => {
- // render_followers();
-  //render_following();
-  render_images();
-  //load_modal_edit();
-  event_click_image();
-};
-main();
 
-// ************************************************************
+// *************************************************************
+// follow
 let follow_btns = document.getElementsByName("follow")
 let unfollow_btns = document.getElementsByName("unfollow")
-const username = document.getElementById("user").innerText
-const uViewed_username = document.getElementById("userViewed").innerText
-
-console.log(username)
-console.log(uViewed_username)
-
 
 for (let i = 0; i < follow_btns.length; i++) {
-  console.log(follow_btns[i].id)
   if (follow_btns[i].id == "flw-viewedUser-btn") {
-    console.log(2)
     follow_btns[i].addEventListener('click', async () => {
       await follow(uViewed_username)
     })
@@ -177,9 +160,7 @@ for (let i = 0; i < follow_btns.length; i++) {
 }
 
 for (let i = 0; i < unfollow_btns.length; i++) {
-  console.log(unfollow_btns[i].id)
   if (unfollow_btns[i].id == "unflw-viewedUser-btn") {
-    console.log(3)
     unfollow_btns[i].addEventListener('click', async () => {
       await unfollow(uViewed_username)
     })
@@ -222,3 +203,31 @@ async function unfollow(user_to_unfollow) {
     }
   })
 }
+
+// go to other profile when click on user box
+// $('.user-box').each(() => {
+//   $(this).on('click', () => {
+//     $(this > div:)
+//   })
+// })
+let user_boxs = document.querySelectorAll(".user-box")
+user_boxs.forEach((user_box) => {
+  user_box.addEventListener('click', async () => {
+    let other_username = user_box.children[1].children[1].innerText
+    other_username = other_username.substring(1)        // remove '@'
+    console.log(other_username)
+    window.location.href = `/profile/?username=${other_username}`
+  })
+})
+
+// *************************************************************
+// main
+const main = async () => {
+ // render_followers();
+  //render_following();
+  render_images();
+  //load_modal_edit();
+  event_click_image();
+};
+main();
+

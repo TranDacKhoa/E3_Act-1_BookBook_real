@@ -5,6 +5,7 @@
     tabindex="-1"
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
+    data-bs-backdrop="static" data-bs-keyboard="false"
   >
     <div class="modal-dialog modal-fullscreen-sm-down modal-dialog-centered">
       <div class="modal-content">
@@ -32,11 +33,12 @@
             method="post"
             action="/profile/edit"
             enctype="multipart/form-data"
+            class="needs-validation"
           >
             <div>
               <div class="mb-3 d-flex gap-2">
                 <div class="img-user avatar-wrap">
-                  <img src="avatar/{{user.avatar}}" alt="" />
+                  <img src="avatar/{{user.avatar}}" alt="" id="edit-avatar"/>
                 </div>
                 <div id="emailHelp" class="form-text d-flex flex-column m-0">
                   <label
@@ -51,7 +53,7 @@
                   />
                 </div>
               </div>
-              <div class="mb-3 d-flex gap-3">
+              <div class="mb-3 d-flex flex-column">
                 <input
                   type="text"
                   class="form-control p-3"
@@ -61,6 +63,8 @@
                   value="{{user.fullname}}"
                   required
                 />
+                <div class="invalid-feedback mx-2 mt-2"><small>Require to capitalize the first
+                  letter of each word</small></div>
               </div>
 
               <div class="mb-3 d-flex gap-3">
@@ -87,6 +91,7 @@
                     type="date"
                     name="dob"
                     class="col form-control text-end pe-3 gap-2"
+                    style="padding-right: 28px !important;"
                     id="exampleInputDayOfBirth"
                     value="{{user.dob}}"
                     required
@@ -99,20 +104,6 @@
                     for="exampleCheck1"
                   >Gender</label>
                   <div class="d-flex gap-3">
-                    {{! <div class="form-check">
-                                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="male"
-                                    value="male" checked />
-                                 <label class="form-check-label" for="flexRadioDefault1">
-                                    Male
-                                 </label>
-                              </div>
-                              <div class="form-check">
-                                 <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                    value="female" id="female" />
-                                 <label class="form-check-label" for="flexRadioDefault2">
-                                    Female
-                                 </label>
-                              </div> }}
                     {{{gender user.gender}}}
                   </div>
                 </div>
@@ -133,15 +124,15 @@
               <button
                 type="submit"
                 class="btn btn-primary"
-                data-bs-dismiss="modal"
-              >
+                {{!-- data-bs-dismiss="modal" --}}
+                id="submit-btn">
                 Save
               </button>
               <button
                 type="button"
                 class="btn btn-secondary"
                 data-bs-dismiss="modal"
-              >
+                id="close-btn">
                 Close
               </button>
 
