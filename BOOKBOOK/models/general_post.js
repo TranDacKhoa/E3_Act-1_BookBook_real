@@ -22,12 +22,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     img: {
       type: DataTypes.STRING(250),
-      allowNull: true
+      allowNull: false,
     },
     text: {
       type: DataTypes.STRING(250),
-      allowNull: true,
-      defaultValue: "insert your caption"
+      allowNull: true
     }
   }, {
     sequelize,

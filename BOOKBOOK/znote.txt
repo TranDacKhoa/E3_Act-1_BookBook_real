@@ -1,3 +1,7 @@
+update 22/12/2022 by Thùy
+- render followers và following trong profile
+- sửa lại script sql + script model của general_post -> bắt buộc phải có image khi đăng bài
+
 update 20/12/2022 by Thùy
 - cập nhật các file front-end (feed, profile) mới vào
 - thêm file hbs_helpers (trong folder helpers) chứa các hàm helpers xử lý cho handlebars
