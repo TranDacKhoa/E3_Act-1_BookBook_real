@@ -98,7 +98,7 @@ exports.updateProfile = async (req, res, next) => {
       req.body.avatar = list[list.length - 1];
     }
     const result = await userS.updateProfile(req.user.username, req.body);
-    next();
+    res.redirect('/profile')
   } catch (error) {
     next(error);
   }

@@ -7,10 +7,12 @@ router
   .route("/")
   .all(userActionC.checkPermission)
   .get(userActionC.handleMyProfile, userActionC.handleOtherProfile)
+
+router
+  .route("/edit")
   .post(
     upload_avt.single("avatar"),
-    userActionC.updateProfile,
-    userActionC.handleMyProfile
+    userActionC.updateProfile
   );
 
 

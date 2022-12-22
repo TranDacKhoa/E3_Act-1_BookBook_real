@@ -30,7 +30,7 @@
           <form
             id="form-edit"
             method="post"
-            acction="/"
+            action="/profile/edit"
             enctype="multipart/form-data"
           >
             <div>
@@ -59,6 +59,7 @@
                   placeholder="Full Name"
                   name="fullname"
                   value="{{user.fullname}}"
+                  required
                 />
               </div>
 
@@ -88,6 +89,7 @@
                     class="col form-control text-end pe-3 gap-2"
                     id="exampleInputDayOfBirth"
                     value="{{user.dob}}"
+                    required
                   />
                 </div>
 

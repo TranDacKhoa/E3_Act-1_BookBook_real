@@ -1,3 +1,7 @@
+update dd/mm/yyyy by Thùy
+- sửa route post cho edit profile
+- sửa lỗi front-end nút close khi edit profile
+
 update 22/12/2022 by Thùy
 - render followers và following trong profile
 - sửa lại script sql + script model của general_post -> bắt buộc phải có image khi đăng bài

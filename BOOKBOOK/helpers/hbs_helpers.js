@@ -4,7 +4,7 @@ module.exports = {
         return (
             '<div class="form-check">' +
             '<input class="form-check-input" type="radio" name="gender" id="male"' +
-            'value="male" checked />' +
+            'value="male" required checked />' +
             '<label class="form-check-label" for="gender1">' +
             "Male" +
             "</label>" +
@@ -21,7 +21,7 @@ module.exports = {
         return (
             '<div class="form-check">' +
             '<input class="form-check-input" type="radio" name="gender" id="male"' +
-            'value="male"/>' +
+            'value="male" required/>' +
             '<label class="form-check-label" for="gender1">' +
             "Male" +
             "</label>" +
