@@ -1,3 +1,7 @@
+update 22/12/2022 by Thùy
+- render followers và following trong profile
+- sửa lại script sql + script model của general_post -> bắt buộc phải có image khi đăng bài
+
 update 21/12/2022 by Nguyên:
 - Đổi default avatar sang hình khác có nền khác màu trắng cho dễ nhìn.
 - upload fe của feed trên branch front

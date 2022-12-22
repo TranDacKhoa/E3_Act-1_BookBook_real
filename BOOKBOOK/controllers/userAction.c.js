@@ -31,22 +31,26 @@ exports.checkPermission = async (req, res, next) => {
   }
 };
 
+
 exports.handleMyProfile = async (req, res, next) => {
   try {
-    if (
-      req.query.username === undefined ||
-      req.user.username === req.query.username
-    ) {
-      const uProfile = await userS.getUserProfile(req.user.username);
-      console.log(uProfile);
-      return res.render("profile", {
-        title: uProfile.fullname + " | BookBook",
-        user: uProfile,
-        userViewed: uProfile,
-        helpers: hbsHelpers,
-      });
-    } else {
-      next();
+    if (req.user.username === req.query.username || req.query.username === undefined) {
+        const uProfile = await userS.getUserProfile(req.user.username)
+        const followers = await userS.getFollowersList(req.user.username)
+        const following = await userS.getFollowingList(req.user.username)
+
+        res.render('profile', {
+            title: uProfile.fullname + " | BookBook",
+            user: uProfile,
+            userViewed: uProfile,
+            followers: followers,
+            following: following,
+            followedByUser: following,
+            helpers: hbsHelpers,
+        })
+    }
+    else {
+        next()
     }
   } catch (error) {
     next(error);
@@ -55,18 +59,26 @@ exports.handleMyProfile = async (req, res, next) => {
 
 exports.handleOtherProfile = async (req, res, next) => {
   try {
-    const myProfile = await userS.getUserProfile(req.user.username);
-    const otherUserProfile = await userS.getUserProfile(req.query.username);
-    res.render("profile", {
-      title: otherUserProfile.fullname + " | BookBook",
-      user: myProfile,
-      userViewed: otherUserProfile,
-      helpers: hbsHelpers,
-    });
+    const myProfile = await userS.getUserProfile(req.user.username)
+    const otherProfile = await userS.getUserProfile(req.query.username)
+    const followers = await userS.getFollowersList(req.query.username)
+    const following = await userS.getFollowingList(req.query.username)
+    const followedByUser = await userS.getFollowingList(req.user.username)
+
+    res.render('profile', {
+        title: otherProfile.fullname + " | BookBook",
+        user: myProfile,
+        userViewed: otherProfile,
+        followers: followers,
+        following: following,
+        followedByUser: followedByUser,
+        helpers: hbsHelpers,
+    })
   } catch (error) {
     next(error);
   }
 };
+
 exports.checkOwner = async (req, res, next) => {
   try {
     if (req.user.username) {
@@ -91,3 +103,48 @@ exports.updateProfile = async (req, res, next) => {
     next(error);
   }
 };
+
+
+exports.followUser = async (req, res, next) => {
+    try {
+        const result = await userS.follow(req.user.username, req.body.user_to_follow)
+        if (result) {
+            res.send(JSON.stringify({ result: 1 }))
+        }
+        else {
+            res.send(JSON.stringify({ result: 0 }))
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.unfollowUser = async (req, res, next) => {
+    try {
+        const result = await userS.follow(req.user.username, req.body.user_to_unfollow)
+        if (result) {
+            res.send(JSON.stringify({ result: 1 }))
+        }
+        else {
+            res.send(JSON.stringify({ result: 0 }))
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+
+// exports.getFollow = async (req, res, next) => {
+//     try {
+//         const followers = await userS.countFollowers(req.user.username)
+//         const following = await userS.countFollowing(req.user.username)
+
+//         if (followers != null && following != null) {
+//             res.send(JSON.stringify({ result: 1 }))
+//         }
+//         else {
+//             res.send(JSON.stringify({ result: 0 }))
+//         }
+//     } catch (error) {
+//         next(error)
+//     }
+// }

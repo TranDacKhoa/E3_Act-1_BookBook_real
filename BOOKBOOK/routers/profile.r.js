@@ -13,4 +13,8 @@ router
     userActionC.handleMyProfile
   );
 
-module.exports = router;
+
+// router.post('/follow', userActionC.checkPermission, userActionC.follow)
+// router.post('/unfollow', userActionC.checkPermission, userActionC.unfollow)
+
+module.exports = router

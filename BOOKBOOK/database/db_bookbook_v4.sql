@@ -90,8 +90,8 @@ CREATE TABLE public.general_post (
     post_id bigint NOT NULL,
     author_username character varying(50) NOT NULL,
     date_post timestamp with time zone DEFAULT now(),
-    img character varying(250),
-    text character varying(250) DEFAULT 'insert your caption'::character varying
+    img character varying(250) NOT NULL,
+    text character varying(250)
 );
 
 
