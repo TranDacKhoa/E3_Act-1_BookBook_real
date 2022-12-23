@@ -1,0 +1,5 @@
+update 24/12 by Nguyên:
+- gần xong market.
+- còn phần fetch data chưa làm (xem market.js).
+- chưa làm nút post in market.
+- chưa xử lý data cái slide (data lấy trong /db/top-sell.json).

@@ -7,7 +7,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link href="../build/fontawesome-free-6.2.1-web/css/all.min.css" rel="stylesheet" />
       <link rel="stylesheet" href="../build/bootstrap-5.2.3-dist/css/bootstrap.min.css" />
-      <link rel="stylesheet" href="../public/sass/css/styleFeed.css" />
+      <link rel="stylesheet" href="../public/sass/css/styleMarket.css" />
       <link rel="website icon" type="png" href="../public/image/logo1.png" />
       <title>BookBook</title>
    </head>
@@ -109,7 +109,7 @@
                </div>
             </div>
          </div>
-         <div class="content w-100 d-flex gap-0 h-auto pb-4 gap-3">
+         <div class="content w-100 d-flex gap-0 h-auto pb-4 gap-3 ">
             <div class="col-3 overflow-hidden pb-3 nav-container bg-light pt-4 px-2">
                <div class="left-nav ">
                   <ul
@@ -143,68 +143,149 @@
                </div>
 
             </div>
-            <div class="col-9 content-right">
-               <div class="content-wrap overflow-hidden h-100 px-3   align-items-center">
-                  <div class="feed-posts d-flex flex-column gap-3 pb-3">
+            <div class="col-9 prod-container px-3 py-2 bg-light">
+               <div class="p-3" id="top-selling">
+                  <h5>Top science by New York Time</h5>
+                  <hr style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" />
+                  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
 
+                     <div class="carousel-inner">
+                        <div class="carousel-item active">
+
+                           <div class="d-flex justify-content-center align-items-center">
+                              <div class="col carousel-img-container">
+                                 <img src="https://storage.googleapis.com/du-prd/books/images/9781429969352.jpg"
+                                    alt="...">
+
+                              </div>
+                              <div class="col carousel-des p-3">
+                                 <h1 class="display-1">#1</h1>
+                                 <h3 style=" letter-spacing: 3px;">
+                                    <a href="http://www.amazon.com/Being-Mortal-Medicine-What-Matters/dp/0805095152?tag=NYTBSREV-20"
+                                       target="_blank">
+                                       BEING
+                                       MORTAL
+                                    </a>
+                                 </h3>
+                                 <strong>
+                                    by Bessel van der
+                                    Kolk
+                                 </strong>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="carousel-item active">
+                           <div class="d-flex justify-content-center align-items-center h-100">
+                              <div class="col carousel-img-container">
+                                 <img src="https://storage.googleapis.com/du-prd/books/images/9780805095159.jpg"
+                                    alt="...">
+                              </div>
+                              <div class="col carousel-des p-3">
+                                 <h1 class="display-1">#1</h1>
+                                 <h3 style=" letter-spacing: 3px;">BEING MORTAL</h3>
+                                 <strong> van der
+                                    Kolk</strong>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                     </button>
+                     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                     </button>
                   </div>
+
                </div>
-               <div class=" right-side">
-                  <div class="poll right-wrap mb-5">
-                     <div class="span6">
-                        <h4>Book of the week</h4>
-                        <hr class="my-2 mx-2" style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" />
-                        <strong>Cơ sở trí tuệ nhân tạo</strong>
-                        <div class="progress progress-danger active">
-                           <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75"
-                              aria-valuemin="0" aria-valuemax="100"></div>
+               <div class="mt-2 gap-2 p-3">
+                  <h5>Selling by users</h5>
+                  <hr style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" />
+                  <div class="grid-prod">
+                     <!-- {{#each main.prod}} -->
+                     <div class="card list-item-group zoom-in-card" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        <h5 class="card-header" style="font-size: 15px;">
+                           <!-- {{this.proname}} -->
+                           prod-name
+                        </h5>
+                        <div class="card-body to-hover">
+                           <img src="./image/shopee.png" class="card-img-top zoom-in-img" alt="..." />
+                           <hr />
+
+                           <div class="card border-success align-items-center price-card" id="tinyprice">
+                              <!-- {{this.price}} -->
+                              100
+                           </div>
+                           <div class="display-on-hover">
+                              <p class="card-text tinydes" style="height:70px">
+                                 <!-- {{this.tinydes}} -->
+                                 tiny descriptiontiny descriptiontiny descriptiontiny description
+                                 descriptiondescription
+                                 description
+                              </p>
+
+                           </div>
+                           <div class="post_id" style="display: none;">1</div>
                         </div>
-                        <strong>Phương pháp lập trình hướng đối tượng</strong>
-                        <div class="progress progress-info active">
-                           <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <strong>Nhập môn lập trình</strong>
-                        <div class="progress progress-striped active">
-                           <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <strong>Cơ sở dữ liệu</strong>
-                        <div class="progress progress-success active">
-                           <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <strong>Others</strong>
-                        <div class="progress progress-warning active">
-                           <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <button class="btn btn-large btn-success w-100 mt-4">Vote</button>
                      </div>
-                  </div>
 
-                  <div class="right-wrap list-other-users  mb-5">
-                     <div class="suggest-wrap mb-3">
-                        <h4>Suggested people</h4>
-                        <hr id="suggest-list" class="my-2 mx-2"
-                           style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" />
-
-                     </div>
-                  </div>
-
-                  <div class="right-wrap spn-container pb-3">
-                     <h4 class="ps-3">Sponsors</h4>
-                     <hr id="sponsors-list" class="my-2 mx-3"
-                        style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" />
+                     <!-- {{/each}} -->
                   </div>
                </div>
             </div>
          </div>
       </div>
-      </div>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header p-2">
+                  <h5 class="modal-title px-2" id="exampleModalLabel" id="item-title">1 nùi sách rẻ vcl</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+                  <div class="d-flex">
+                     <div class="post-header d-flex justify-content-between gap-2 px-2 col pb-2">
+                        <div class="post-avatar img-user">
+                           <img id="seller-avt" src="./image/nguyen.png" alt="" />
+                        </div>
+                        <div class="post-name d-flex flex-column">
+                           <span><b id="seller-name"> seller name</b></span>
+                           <span class="fw-lighter" style="font-size: 13px" id="time-post-item">21 hours ago</span>
+                        </div>
+                     </div>
+                     <div class="w-50">
+                        <div class=" w-100 card bg-success text-light align-items-center" id="item-price">
+                           <!-- {{this.price}} -->
+                           100 VND
+                        </div>
+                     </div>
+                  </div>
+                  <div class="post-content px-3">
+                     <p id="item-des">Đã qua môn cần bán gấp 1 nùi sách</p>
+                  </div>
+
+                  <div class="post-body mb-3">
+                     <img class="img-fill" id="item-img" src="./image/marketbg.jpg" alt="" />
+                  </div>
+                  <div class="pt-2 pb-2 px-3 d-flex justify-content-between gap-2">
+                     <input type="text" class="form-control" id="inputComment"
+                        placeholder="Send message to seller..." />
+                     <div class="hover-icon d-flex justify-content-between">
+                        <i class="fa-solid fa-paper-plane px-3 d-flex align-items-center justify-content-center"></i>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
    </body>
    <script type="module" src="../build/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
-   <script type="module" src="../js/feed/feed.js"></script>
+   <script type="module" src="../js/market/market.js"></script>
 
 </html>
