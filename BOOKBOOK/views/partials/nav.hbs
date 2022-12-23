@@ -1,3 +1,5 @@
+<div id="user" style="display: none;">{{ user.username }}</div>
+
 <div class="header position-fixed top-0 w-100">
   <div class="header-container d-flex justify-content-between">
     <div class="header-left col-3 d-flex justify-content-center">
@@ -23,17 +25,13 @@
             ></i></a>
         </li>
         <li class="nav-item hover-icon">
-          <a class="nav-link" href="#"><i
+          <a class="nav-link" href="/group"><i
               class="fa-solid fa-users-line"
             ></i></a>
         </li>
         <li class="nav-item hover-icon">
-          <a class="nav-link" href="#"><i class="fa-solid fa-store"></i></a>
+          <a class="nav-link" href="/market"><i class="fa-solid fa-store"></i></a>
         </li>
-
-        <!-- <li class="nav-item hover-icon">
-                <a class="nav-link"><i class="fa-regular fa-heart"></i></a>
-                </li> -->
       </ul>
     </div>
     <div
@@ -98,11 +96,11 @@
 
       <ul class="dropdown-menu">
         <li>
-          <a class="dropdown-item" href="/profile"><i class="fa fa-user" style="margin-right: 3px !important;"></i>
+          <a class="dropdown-item" href="/profile"><i class="fa fa-user fa-fw"></i>
             Profile</a>
         </li>
         <li>
-          <a class="dropdown-item" href="#"><i class="fa-solid fa-wrench"></i>
+          <a class="dropdown-item" href="#"><i class="fa-solid fa-wrench fa-fw"></i>
             Change password</a>
         </li>
         <li>
@@ -110,7 +108,8 @@
         </li>
         <li>
           <a class="dropdown-item" href="#" onclick="logOut()"><i
-              class="fa-solid fa-arrow-right-from-bracket"
+              class="fa-solid fa-arrow-right-from-bracket fa-fw"
+
             ></i>
             Log out</a>
         </li>

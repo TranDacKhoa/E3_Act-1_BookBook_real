@@ -21,25 +21,25 @@ export const data_images = [
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
@@ -66,25 +66,25 @@ export const data_images = [
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
@@ -112,25 +112,25 @@ export const data_images = [
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
@@ -158,25 +158,25 @@ export const data_images = [
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
@@ -204,25 +204,25 @@ export const data_images = [
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
@@ -250,25 +250,25 @@ export const data_images = [
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
@@ -296,25 +296,25 @@ export const data_images = [
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
@@ -342,25 +342,25 @@ export const data_images = [
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
@@ -388,25 +388,25 @@ export const data_images = [
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
       {
         name: "Huy Huynh",
-        avatar: "./images/logo/logo1.png",
+        avatar: "./images/logo1.png",
         comment:
           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
       },
@@ -433,25 +433,25 @@ export const data_images = [
   //       },
   //       {
   //         name: "Huy Huynh",
-  //         avatar: "./images/logo/logo1.png",
+  //         avatar: "./images/logo1.png",
   //         comment:
   //           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
   //       },
   //       {
   //         name: "Huy Huynh",
-  //         avatar: "./images/logo/logo1.png",
+  //         avatar: "./images/logo1.png",
   //         comment:
   //           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
   //       },
   //       {
   //         name: "Huy Huynh",
-  //         avatar: "./images/logo/logo1.png",
+  //         avatar: "./images/logo1.png",
   //         comment:
   //           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
   //       },
   //       {
   //         name: "Huy Huynh",
-  //         avatar: "./images/logo/logo1.png",
+  //         avatar: "./images/logo1.png",
   //         comment:
   //           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
   //       },
@@ -478,25 +478,25 @@ export const data_images = [
   //       },
   //       {
   //         name: "Huy Huynh",
-  //         avatar: "./images/logo/logo1.png",
+  //         avatar: "./images/logo1.png",
   //         comment:
   //           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
   //       },
   //       {
   //         name: "Huy Huynh",
-  //         avatar: "./images/logo/logo1.png",
+  //         avatar: "./images/logo1.png",
   //         comment:
   //           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
   //       },
   //       {
   //         name: "Huy Huynh",
-  //         avatar: "./images/logo/logo1.png",
+  //         avatar: "./images/logo1.png",
   //         comment:
   //           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
   //       },
   //       {
   //         name: "Huy Huynh",
-  //         avatar: "./images/logo/logo1.png",
+  //         avatar: "./images/logo1.png",
   //         comment:
   //           "Hình ảnh cảm lạnh cùng những tiếng gào thét bất lực khi dạy bài cho em 🥹",
   //       },
@@ -544,7 +544,7 @@ export const data_user = {
   gender: "male",
   dayOfBirth: "2005-11-11",
 };
-export const data_blog = [
+export const data_sponsor = [
   {
     url: "https://shopee.vn",
     image: "./images/shopee.png",

@@ -142,33 +142,49 @@ form_edit.addEventListener("submit", (e) => {
 
 
 // *************************************************************
-// follow
+// follow/unfollow
 let follow_btns = document.getElementsByName("follow")
 let unfollow_btns = document.getElementsByName("unfollow")
 
 for (let i = 0; i < follow_btns.length; i++) {
   if (follow_btns[i].id == "flw-viewedUser-btn") {
-    follow_btns[i].addEventListener('click', async () => {
+    follow_btns[i].addEventListener('click', async (event) => {
+      event.stopPropagation()
       await follow(uViewed_username)
     })
     
   }
   else {
-    // user_to_follow = ?
-    // follow(user_to_follow)
+    follow_btns[i].addEventListener('click', async (event) => {
+      event.stopPropagation()
+
+      // user_to_follow = ?
+      // follow(user_to_follow)
+    })
+    
   }
+  
 }
 
 for (let i = 0; i < unfollow_btns.length; i++) {
   if (unfollow_btns[i].id == "unflw-viewedUser-btn") {
-    unfollow_btns[i].addEventListener('click', async () => {
+    unfollow_btns[i].addEventListener('click', async (event) => {
+      // prevent go to other profile
+      event.stopPropagation()
+
       await unfollow(uViewed_username)
     })
     
   }
   else {
-    // user_to_unfollow = ?
-    // unfollow(user_to_unfollow)
+    unfollow_btns[i].addEventListener('click', async (event) => {
+      // prevent go to other profile
+      event.stopPropagation()
+      
+      // user_to_unfollow = ?
+      // unfollow(user_to_unfollow)
+    })
+    
   }
 }
 
@@ -204,12 +220,17 @@ async function unfollow(user_to_unfollow) {
   })
 }
 
+
+
+// prevent go to other profile when clicking following button in user box
+let following_btns = document.getElementsByName("following")
+for (let i = 0; i < following_btns.length; i++) {
+  following_btns[i].addEventListener('click', (e) => {
+    e.stopPropagation()
+  })
+}
+
 // go to other profile when click on user box
-// $('.user-box').each(() => {
-//   $(this).on('click', () => {
-//     $(this > div:)
-//   })
-// })
 let user_boxs = document.querySelectorAll(".user-box")
 user_boxs.forEach((user_box) => {
   user_box.addEventListener('click', async () => {

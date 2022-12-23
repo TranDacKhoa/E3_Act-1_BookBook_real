@@ -1,7 +1,6 @@
 <link rel="stylesheet" href="./sass/css/styleProfile.css" />
 
 <div id="userViewed" style="display: none;">{{ userViewed.username }}</div>
-<div id="user" style="display: none;">{{ user.username }}</div>
 <div class="base-layout position-relative d-flex justify-content-center w-100 h-auto">
    {{> nav}}
 
@@ -17,7 +16,7 @@
 
             <div class="profile-info px-4 pt-2">
                   <div><b>{{ userViewed.fullname }}</b> </div>
-                  <h5 class="small text-center ">@{{ userViewed.username }}</h5>
+                  <h5 class="small text-center">@{{ userViewed.username }}</h5>
 
                   <div class="d-flex text-center mt-3 pe-2 gap-2 mb-3 ">
 
@@ -106,7 +105,8 @@
                      {{#if (notEq username ../user.username)}}
                         {{#if (isFollowedByUser username ../followedByUser)}}
                         <div class="box-follow">
-                           <button type="button" class="btn btn-success btn-sm" data-bs-toggle="dropdown" aria-expanded="false">
+                           <button type="button" class="btn btn-success btn-sm" data-bs-toggle="dropdown" aria-expanded="false"
+                              name="following">
                               Following <i class="fa fa-check"></i>
                            </button>
                            <ul class="dropdown-menu dropdown-menu-end dropdown-sm">
