@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link href="../build/fontawesome-free-6.2.1-web/css/all.min.css" rel="stylesheet" />
+   <link rel="stylesheet" href="../build/bootstrap-5.2.3-dist/css/bootstrap.min.css" />
+   <link rel="stylesheet" href="../public/sass/css/styleFeed.css" />
+   <link rel="stylesheet" href="../public/sass/css/styleReport.css" />
+   <link rel="website icon" type="png" href="../public/image/logo1.png" />
+   <title>BookBook</title>
+</head>
+
+<body>
+   <div class="base-layout position-relative d-flex justify-content-center w-100 h-100" id="idOfReport">
+      <div class="header position-fixed top-0 w-100">
+         <div class="header-container d-flex justify-content-between">
+            <div class="header-left col-3 d-flex justify-content-center">
+               <div class="left-logo">
+                  <img src="../public/image/logo1.png" alt="" />
+                  <span>
+                     <h5 class="fw-bold">BOOKBOOK</h5>
+                  </span>
+               </div>
+            </div>
+            <div class="header-center d-flex gap-3 justify-content-center align-items-center w-100">
+               <ul class="nav justify-content-center m-0 p-0 w-100 gap-4">
+                  <li class="nav-item hover-icon active">
+                     <a class="nav-link " aria-current="page" href="#"><i class="fa-solid fa-house"></i></a>
+                  </li>
+                  <li class="nav-item hover-icon">
+                     <a class="nav-link" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                  </li>
+                  <li class="nav-item hover-icon">
+                     <a class="nav-link" href="#"><i class="fa-solid fa-users-line"></i></a>
+                  </li>
+                  <li class="nav-item hover-icon">
+                     <a class="nav-link" href="#"><i class="fa-solid fa-store"></i></a>
+                  </li>
+
+                  <!-- <li class="nav-item hover-icon">
+                                 <a class="nav-link"><i class="fa-regular fa-heart"></i></a>
+                              </li> -->
+               </ul>
+            </div>
+            <div class="header-right d-flex justify-content-center align-items-center gap-2">
+               <i class="fa-solid fa-bell"></i>
+               <div class="right-message p-2 px-3 hover-icon" data-bs-toggle="dropdown" aria-expanded="false">
+
+                  <i class="fa-regular fa-comment"></i>
+               </div>
+               <ul class="dropdown-menu w-25">
+                  <span class="text-center">
+                     <h3><b>Chat</b></h3>
+                  </span>
+                  <li class="dropdown-item">
+                     <div class="user-chat d-flex flex-row justify-content-between gap-2 p-2">
+                        <div class="img-user">
+                           <img src="../public/image/new.jpg" alt="" />
+                        </div>
+                        <div class="chat-text">
+                           <span><b>Tuan</b></span>
+                           <span>
+                              <p class="m-0">Dang lam gi day.</p>
+                           </span>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="dropdown-item">
+                     <div class="user-chat d-flex flex-row justify-content-between gap-2 p-2">
+                        <div class="img-user">
+                           <img src="../public/image/new.jpg" alt="" />
+                        </div>
+                        <div class="chat-text">
+                           <span><b>Tuan</b></span>
+                           <span>
+                              <p class="m-0">Dang lam gi day.</p>
+                           </span>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="dropdown-item">
+                     <div class="user-chat d-flex flex-row justify-content-between gap-2 p-2">
+                        <div class="img-user">
+                           <img src="../public/image/new.jpg" alt="" />
+                        </div>
+                        <div class="chat-text">
+                           <span><b>Tuan</b></span>
+                           <span>
+                              <p class="m-0">Dang lam gi day.</p>
+                           </span>
+                        </div>
+                     </div>
+                  </li>
+               </ul>
+               <div class="right-user" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="../public/image/nguyen.png" alt="" />
+               </div>
+
+               <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#"><i class="fa-solid fa-wrench"></i> Change password</a></li>
+                  <li>
+                     <hr class="dropdown-divider" />
+                  </li>
+                  <li><a class="dropdown-item " href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        Logout</a></li>
+               </ul>
+            </div>
+         </div>
+      </div>
+      <div class="content w-100 d-flex gap-0 h-auto pb-4 gap-3">
+         <div class="col-3 rounded-bottom overflow-hidden pb-3 nav-container">
+            <div class="left-nav">
+               <ul
+                  class="nav h-100 d-flex flex-column align-items-center justify-content-start py-3 px-3 gap-3 ul-wrap">
+                  <li class="nav-item-left hover-icon">
+                     <a class="nav-link d-flex gap-3 align-items-center" :class="{active: reportposts}"
+                        @click="reportposts=true">
+                        <i class="fa-solid fa-clipboard-user"></i>
+                        <span>Report Post</span></a>
+                  </li>
+                  <li class="nav-item-left hover-icon">
+                     <a class="nav-link d-flex gap-3 align-items-center" :class="{active: !reportposts}"
+                        @click="reportposts=false">
+                        <i class="fa-solid fa-user-tag"></i>
+                        <span>Report User</span></a>
+                  </li>
+
+                  <div class="small position-absolute " style="bottom:10px">copy right &copy; group 22</div>
+
+               </ul>
+
+            </div>
+
+         </div>
+         <div class="col-9 content-right">
+            <div class="content-wrap overflow-hidden h-100 px-3   align-items-center">
+               <!--Những cái reports-->
+               <!--reports của post-->
+               <template v-if="reportposts">
+                  <div id="report">
+                     <div><a href="#">ID post: 00000001</a></div>
+                     <div><button @click="SkipPost()" class=" button-33-skip">Skip</button></div>
+                     <div><button @click="DeletePost()" class="button-33-delete">Delete</button></div>
+                     <div><a href="#">ID post: 00000002</a></div>
+                     <div><button @click="SkipPost()" class=" button-33-skip">Skip</button></div>
+                     <div><button @click="DeletePost()" class="button-33-delete">Delete</button></div>
+                     <div><a href="#">ID post: 00000003</a></div>
+                     <div><button @click="SkipPost()" class=" button-33-skip">Skip</button></div>
+                     <div><button @click="DeletePost()" class="button-33-delete">Delete</button></div>
+                     <div><a href="#">ID post: 00000004</a></div>
+                     <div><button @click="SkipPost()" class=" button-33-skip">Skip</button></div>
+                     <div><button @click="DeletePost()" class="button-33-delete">Delete</button></div>
+                     <div><a href="#">ID post: 00000005</a></div>
+                     <div><button @click="SkipPost()" class=" button-33-skip">Skip</button></div>
+                     <div><button @click="DeletePost()" class="button-33-delete">Delete</button></div>
+                  </div>
+               </template>
+               <template v-else>
+                  <div id="report">
+                     <div>
+                        <img class="report-img" src="../public/image/new.jpg" />
+                        <a href="#">Đắc Khoa</a>
+                     </div>
+                     <div><button @click="SkipUser()" class=" button-33-skip">Skip</button></div>
+                     <div><button @click="DeleteUser()" class="button-33-delete">Delete</button></div>
+                     <div>
+                        <img class="report-img" src="../public/image/new.jpg" />
+                        <a href="#">Giá Như</a>
+                     </div>
+                     <div><button @click="SkipUser()" class=" button-33-skip">Skip</button></div>
+                     <div><button @click="DeleteUser()" class="button-33-delete">Delete</button></div>
+                     <div>
+                        <img class="report-img" src="../public/image/new.jpg" />
+                        <a href="#">Công Văn</a>
+                     </div>
+                     <div><button @click="SkipUser()" class=" button-33-skip">Skip</button></div>
+                     <div><button @click="DeleteUser()" class="button-33-delete">Delete</button></div>
+                     <div>
+                        <img class="report-img" src="../public/image/new.jpg" />
+                        <a href="#">Lợi Lạc</a>
+                     </div>
+                     <div><button @click="SkipUser()" class=" button-33-skip">Skip</button></div>
+                     <div><button @click="DeleteUser()" class="button-33-delete">Delete</button></div>
+                     <div>
+                        <img class="report-img" src="../public/image/new.jpg" />
+                        <a href="#">Lê Văn Hưu</a>
+                     </div>
+                     <div><button @click="SkipUser()" class=" button-33-skip">Skip</button></div>
+                     <div><button @click="DeleteUser()" class="button-33-delete">Delete</button></div>
+                  </div>
+               </template>
+               <!-- <div class="feed-posts d-flex flex-column gap-3 pb-3">
+                  <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+               </div> -->
+               <div class=" right-side">
+                  <!-- Deleted -->
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   </div>
+</body>
+<script type="module" src="../build/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="../js/feed/feed.js"></script>
+<script type="module" src="../js/report/vue.js"></script>
+<script type="module" src="../js/report/report.js"></script>
+
+</html>
