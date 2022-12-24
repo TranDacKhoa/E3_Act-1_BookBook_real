@@ -112,49 +112,32 @@ exports.updateProfile = async (req, res, next) => {
 };
 
 exports.followUser = async (req, res, next) => {
-  try {
-    const result = await userS.follow(
-      req.user.username,
-      req.body.user_to_follow
-    );
-    if (result) {
-      res.send(JSON.stringify({ result: 1 }));
-    } else {
-      res.send(JSON.stringify({ result: 0 }));
+    try {
+      console.log(req.body)
+      const result = await userS.follow(req.user.username, req.body.user_to_follow)
+      if (result) {
+          res.send(JSON.stringify({ result: 1 }))
+      }
+      else {
+          res.send(JSON.stringify({ result: 0 }))
+      }
+    } catch (error) {
+        next(error)
     }
-  } catch (error) {
-    next(error);
-  }
 };
 
 exports.unfollowUser = async (req, res, next) => {
-  try {
-    const result = await userS.follow(
-      req.user.username,
-      req.body.user_to_unfollow
-    );
-    if (result) {
-      res.send(JSON.stringify({ result: 1 }));
-    } else {
-      res.send(JSON.stringify({ result: 0 }));
+    try {
+      console.log(req.body)
+      const result = await userS.unfollow(req.user.username, req.body.user_to_unfollow)
+      if (result) {
+          res.send(JSON.stringify({ result: 1 }))
+      }
+      else {
+          res.send(JSON.stringify({ result: 0 }))
+      }
+    } catch (error) {
+        next(error)
     }
-  } catch (error) {
-    next(error);
-  }
-};
+}
 
-// exports.getFollow = async (req, res, next) => {
-//     try {
-//         const followers = await userS.countFollowers(req.user.username)
-//         const following = await userS.countFollowing(req.user.username)
-
-//         if (followers != null && following != null) {
-//             res.send(JSON.stringify({ result: 1 }))
-//         }
-//         else {
-//             res.send(JSON.stringify({ result: 0 }))
-//         }
-//     } catch (error) {
-//         next(error)
-//     }
-// }

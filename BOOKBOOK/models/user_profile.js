@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const validator = require("../services/helperServiecs");
+const validator = require("../services/helperServices");
 module.exports = function (sequelize, DataTypes) {
   var user_profile = sequelize.define(
     "user_profile",

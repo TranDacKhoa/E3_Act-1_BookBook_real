@@ -119,30 +119,31 @@ const userServices = {
   },
 
   //profile services
-  getProfile: async (username) => {
-    const result = await models.user_profile.findAll({
-      raw: true,
+  getFollowersList: async (username) => {
+    const result = await models.follow.findAll({
+      attributes: ['usr_follow'],
+      distinct: false,
+      include: [{
+        model: models.user_profile,
+        required: true,
+        as: 'usr_follow_user_profile',
+        attributes: ['username', 'fullname', 'avatar'],
+      }],
       where: {
         username: username,
       },
     });
     return result;
   },
-  getFollowersList: async (username) => {
-    const result = await models.follow.findAll({
-      include: {
-        model: models.UserProfile,
-        as: "following",
-        required: true,
-      },
-
-      raw: true,
-      where: {
-        usr_followed: username,
-      },
-    });
-    return result;
-  },
+  // countFollowers: async (username) => {
+  //   const result = await models.follow.count({
+  //     distinct: false,
+  //     where: {
+  //       usr_followed: username,
+  //     },
+  //   });
+  //   return result;
+  // },
   getFollowingList: async (username) => {
     const result = await models.follow.findAll({
       include: {
@@ -150,13 +151,18 @@ const userServices = {
         as: "followed",
         required: true,
       },
-      raw: true,
-      where: {
-        usr_follow: username,
-      },
     });
     return result;
   },
+  // countFollowing: async (username) => {
+  //   const result = await models.follow.count({
+  //     distinct: false,
+  //     where: {
+  //       usr_follow: username,
+  //     },
+  //   });
+  //   return result;
+  // },
   getLibrary: async (username) => {
     const result = await models.user_wall.findAll({
       include: {
@@ -197,6 +203,15 @@ const userServices = {
       console.log(`user ${user} is not exist\n`);
       return false;
     }
+  },
+  getAllPosts: async (username) => {
+    const result = await models.general_post.findAll({
+      where: {
+        author_username: username,
+      }
+    });
+
+    return result;
   },
   postOnWall: async (data) => {
     try {

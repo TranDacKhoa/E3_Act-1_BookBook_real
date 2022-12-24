@@ -1,5 +1,5 @@
 const userS = require("../services/userServices");
-const validator = require("../services/helperServiecs");
+const validator = require("../services/helperServices");
 exports.getLogIn = (req, res, next) => {
   try {
     // render error message if user failed to log in

@@ -15,8 +15,13 @@ router
     userActionC.updateProfile
   );
 
+router
+  .route("/follow")
+  .post(userActionC.followUser)
 
-// router.post('/follow', userActionC.checkPermission, userActionC.follow)
-// router.post('/unfollow', userActionC.checkPermission, userActionC.unfollow)
+router
+  .route("/unfollow")
+  .post(userActionC.unfollowUser)
+
 
 module.exports = router
