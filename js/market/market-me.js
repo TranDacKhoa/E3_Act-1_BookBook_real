@@ -20,23 +20,14 @@ const event_click_image = () => {
   const items = document.querySelectorAll(".list-item-group");
   items.forEach((item, index) => {
     item.onclick = () => {
-      // let id = item.querySelector(".post_id");
-      // id = id.innerHTML;
+      //   let id = item.querySelector(".post_id");
+      //   id = id.innerHTML;
       //fetch here to take item data
       // const res =???;
       // changeData(res);
-      // console.log(item.getAttribute("mine"));
-    };
-  });
-};
-const click_btn_del = () => {
-  const items = document.querySelectorAll(".btn-del-item");
-  items.forEach((item, index) => {
-    item.onclick = () => {
-      console.log(item.getAttribute("post_id"));
+      console.log(item);
     };
   });
 };
 
 event_click_image();
-click_btn_del();
