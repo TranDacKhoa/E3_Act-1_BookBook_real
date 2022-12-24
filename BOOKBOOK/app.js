@@ -39,7 +39,7 @@ require("./configs/passport")(app);
 
 app.use("/", feedRouter);
 app.use("/", userRouter);
-app.use("/post", postRouter);
+app.use("/", postRouter);
 app.use("/profile", profileRouter);
 
 app.use((err, req, res, next) => {
