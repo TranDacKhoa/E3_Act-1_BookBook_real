@@ -119,15 +119,6 @@ const userServices = {
   },
 
   //profile services
-  // getProfile: async (username) => {
-  //   const result = await models.user_profile.findAll({
-  //     raw: true,
-  //     where: {
-  //       username: username,
-  //     },
-  //   });
-  //   return result;
-  // },
   getFollowersList: async (username) => {
     const result = await models.follow.findAll({
       attributes: ['usr_follow'],
@@ -144,15 +135,15 @@ const userServices = {
     });
     return result;
   },
-  countFollowers: async (username) => {
-    const result = await models.follow.count({
-      distinct: false,
-      where: {
-        usr_followed: username,
-      },
-    });
-    return result;
-  },
+  // countFollowers: async (username) => {
+  //   const result = await models.follow.count({
+  //     distinct: false,
+  //     where: {
+  //       usr_followed: username,
+  //     },
+  //   });
+  //   return result;
+  // },
   getFollowingList: async (username) => {
     const result = await models.follow.findAll({
       attributes: ['usr_followed'],
@@ -169,15 +160,15 @@ const userServices = {
     });
     return result;
   },
-  countFollowing: async (username) => {
-    const result = await models.follow.count({
-      distinct: false,
-      where: {
-        usr_follow: username,
-      },
-    });
-    return result;
-  },
+  // countFollowing: async (username) => {
+  //   const result = await models.follow.count({
+  //     distinct: false,
+  //     where: {
+  //       usr_follow: username,
+  //     },
+  //   });
+  //   return result;
+  // },
   getLibrary: async (username) => {
     const result = await models.user_wall.findAll({
       include: {
@@ -216,6 +207,15 @@ const userServices = {
       console.log(`raise error when update user ${user} profile\n${err}`);
       return false;
     }
+  },
+  getAllPosts: async (username) => {
+    const result = await models.general_post.findAll({
+      where: {
+        author_username: username,
+      }
+    });
+
+    return result;
   },
   postOnWall: async (data) => {
     try {

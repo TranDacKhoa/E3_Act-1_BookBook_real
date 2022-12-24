@@ -1,3 +1,6 @@
+update 24/12/2022 by Thùy
+- người dùng đã có thể follow, unfollow ở profile
+
 update 23/12/2022 by Thùy
 - sửa route post cho edit profile
 - sửa front-end edit profile

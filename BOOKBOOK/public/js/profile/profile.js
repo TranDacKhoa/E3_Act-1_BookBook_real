@@ -143,86 +143,188 @@ form_edit.addEventListener("submit", (e) => {
 
 // *************************************************************
 // follow/unfollow
+
+const htmlSmallFollowing = `<button type="button" class="btn btn-success btn-sm" data-bs-toggle="dropdown" aria-expanded="false">
+                              Following <i class="fa fa-check"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-sm">
+                              <li>
+                                  <button type="button" class="btn dropdown-item" name="unfollow">
+                                    Unfollow
+                                  </button>
+                              </li>
+                            </ul>`
+const htmlSmallNotFollow = `<button type="button" class="btn btn-outline-success" name="follow">Follow</button>`
+
+const htmlFollowing = `<button type="button" class="btn btn-info w-100" data-bs-toggle="dropdown" aria-expanded="false" id="following-btn">
+                        Following <i class="fa fa-check"></i>
+                      </button>
+                      <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                          <button type="button" class="dropdown-item" name="unfollow" id="unflw-viewedUser-btn">
+                              Unfollow
+                          </button>
+                        </li>
+                      </ul>`
+
+const htmlNotFollowing = `<button type="button" class="btn btn-outline-info w-100" name="follow" id="flw-viewedUser-btn">
+                            Follow
+                          </button>`
+
+async function handleFollowViewedUser(event) {
+  let result = await follow(uViewed_username)
+  if (!result) {
+    alert(`Error occurs when following ${uViewed_username}`)
+  }
+  else {
+    // replace button
+    let parent = this.parentElement
+    this.outerHTML = htmlFollowing
+
+    // set event listener for unfollow button
+    let newBtn = parent.children[1].children[0].children[0]
+    newBtn.addEventListener('click', handleUnfollowViewedUser)
+  }
+}
+
+async function handleUnfollowViewedUser(event) {
+  let result = await unfollow(uViewed_username)
+  if (!result) {
+    alert(`Error occurs when unfollowing ${uViewed_username}`)
+  }
+  else {
+    // replace button
+    let ul = this.parentElement.parentElement
+    let divParent = ul.parentElement
+    let following_btn = ul.previousElementSibling
+    ul.outerHTML = ''
+    following_btn.outerHTML = htmlNotFollowing
+
+    // set event listener for follow button
+    let newBtn = divParent.children[0]
+    newBtn.addEventListener('click', handleFollowViewedUser)
+  }
+}
+
+async function handleFollow(event) {
+  let user_to_follow = event.currentTarget.user_to_follow
+  let result = await follow(user_to_follow)
+  if (!result) {
+    alert(`Error occurs when following ${user_to_follow}`)
+  }
+  else {
+    // replace button
+    let parent = this.parentElement
+    parent.innerHTML = htmlSmallFollowing
+
+    // set event listener for unfollow button
+    let newBtn = parent.children[1].children[0].children[0]
+    newBtn.addEventListener('click', handleUnfollow)
+    newBtn.user_to_unfollow = user_to_follow
+  }
+}
+
+async function handleUnfollow(event) {
+  let user_to_unfollow = event.currentTarget.user_to_unfollow
+  let result = await unfollow(user_to_unfollow)
+  if (!result) {
+    alert(`Error occurs when unfollowing ${user_to_unfollow}`)
+  }
+  else {
+    // replace button
+    let divParent = this.parentElement.parentElement.parentElement
+    divParent.innerHTML = htmlSmallNotFollow
+
+    // set event listener for follow button
+    let newBtn = divParent.children[0]
+    newBtn.addEventListener('click', handleFollow)
+    newBtn.user_to_follow = user_to_unfollow
+  }
+}
+
 let follow_btns = document.getElementsByName("follow")
 let unfollow_btns = document.getElementsByName("unfollow")
 
 for (let i = 0; i < follow_btns.length; i++) {
+
   if (follow_btns[i].id == "flw-viewedUser-btn") {
-    follow_btns[i].addEventListener('click', async (event) => {
-      event.stopPropagation()
-      await follow(uViewed_username)
-    })
-    
+    follow_btns[i].addEventListener('click', handleFollowViewedUser)
   }
   else {
-    follow_btns[i].addEventListener('click', async (event) => {
-      event.stopPropagation()
-
-      // user_to_follow = ?
-      // follow(user_to_follow)
-    })
-    
+    follow_btns[i].addEventListener('click', handleFollow)
+    let username_span = follow_btns[i].parentElement.previousElementSibling.lastElementChild
+    follow_btns[i].user_to_follow = username_span.innerText.substring(1)
+    //console.log(follow_btns[i].user_to_follow)
   }
   
 }
 
 for (let i = 0; i < unfollow_btns.length; i++) {
-  if (unfollow_btns[i].id == "unflw-viewedUser-btn") {
-    unfollow_btns[i].addEventListener('click', async (event) => {
-      // prevent go to other profile
-      event.stopPropagation()
 
-      await unfollow(uViewed_username)
-    })
-    
+  if (unfollow_btns[i].id == "unflw-viewedUser-btn") {
+    unfollow_btns[i].addEventListener('click', handleUnfollowViewedUser)
   }
   else {
-    unfollow_btns[i].addEventListener('click', async (event) => {
-      // prevent go to other profile
-      event.stopPropagation()
-      
-      // user_to_unfollow = ?
-      // unfollow(user_to_unfollow)
-    })
-    
+    unfollow_btns[i].addEventListener('click', handleUnfollow)
+    let username_span = unfollow_btns[i].parentElement.parentElement.parentElement.previousElementSibling.lastElementChild
+    unfollow_btns[i].user_to_unfollow = username_span.innerText.substring(1)
+    //console.log(unfollow_btns[i].user_to_unfollow)
   }
 }
 
 async function follow(user_to_follow) {
-  await fetch("/profile/follow", {
+  return await fetch("/profile/follow", {
     method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
     body: JSON.stringify({ user_to_follow: user_to_follow })
   })
   .then(res => res.json())
   .then(data_received => {
     if (data_received.result == 1) {
       console.log(`start following ${user_to_follow}`)
+      return true
     }
     else {
       console.log(`error occurs when try to follow ${user_to_follow}`)
+      return false
     }
   })
 }
 
 async function unfollow(user_to_unfollow) {
-  await fetch("/profile/unfollow", {
+  return await fetch("/profile/unfollow", {
     method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
     body: JSON.stringify({ user_to_unfollow: user_to_unfollow })
   })
   .then(res => res.json())
   .then(data_received => {
     if (data_received.result == 1) {
       console.log(`unfollow ${user_to_unfollow}`)
+      return true
     }
     else {
       console.log(`error occurs when try to unfollow ${user_to_unfollow}`)
+      return false
     }
   })
 }
 
+// prevent go to other profile when clicking on follow box
+let follow_boxes = document.querySelectorAll(".box-follow")
+follow_boxes.forEach((box) => {
+  box.addEventListener('click', (e) => {
+    e.stopPropagation()
+  })
+})
 
-
-// prevent go to other profile when clicking following button in user box
+// prevent go to other profile when clicking on following button in user box
 let following_btns = document.getElementsByName("following")
 for (let i = 0; i < following_btns.length; i++) {
   following_btns[i].addEventListener('click', (e) => {
@@ -236,7 +338,6 @@ user_boxs.forEach((user_box) => {
   user_box.addEventListener('click', async () => {
     let other_username = user_box.children[1].children[1].innerText
     other_username = other_username.substring(1)        // remove '@'
-    console.log(other_username)
     window.location.href = `/profile/?username=${other_username}`
   })
 })
