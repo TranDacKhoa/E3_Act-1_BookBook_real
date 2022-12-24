@@ -1,8 +1,8 @@
 import { showModal } from "../profile/modal.js"; // modal show image
 import { data_images, data_user } from "../data.js"; // data fake
 
-const username = document.getElementById("user").innerText
-const uViewed_username = document.getElementById("userViewed").innerText
+const username = document.getElementById("user").innerText;
+const uViewed_username = document.getElementById("userViewed").innerText;
 
 // render images
 const render_images = () => {
@@ -40,28 +40,26 @@ input_wrap.addEventListener("click", () => {
   input_file.click();
 });
 
-
-
-
 // *************************************************************
 // edit profile
 
 const form_edit = document.querySelector("#form-edit");
-const fullname_regex = /^[A-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪỬỮỰỲỴÝỶỸ][a-zàáâãèéêìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]*(?: [A-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪỬỮỰỲỴÝỶỸ][a-zàáâãèéêìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]*)*$/
+const fullname_regex =
+  /^[A-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪỬỮỰỲỴÝỶỸ][a-zàáâãèéêìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]*(?: [A-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪỬỮỰỲỴÝỶỸ][a-zàáâãèéêìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]*)*$/;
 
-const avatar = document.getElementById("edit-avatar")
-const fullname = document.getElementById("exampleInputFullName")
-const about = document.getElementById("exampleInputAbout")
-const gender = document.querySelector('input[name="gender"]:checked')
-const dob = document.getElementById("exampleInputDayOfBirth")
-const location = document.getElementById("exampleInputuserCity")
+const avatar = document.getElementById("edit-avatar");
+const fullname = document.getElementById("exampleInputFullName");
+const about = document.getElementById("exampleInputAbout");
+const gender = document.querySelector('input[name="gender"]:checked');
+const dob = document.getElementById("exampleInputDayOfBirth");
+const location = document.getElementById("exampleInputuserCity");
 
-let avatar_cur_src = avatar.src
-let fullname_cur_value = fullname.value
-let about_cur_value = about.value
-let gender_cur_value = gender.value
-let dob_cur_value = dob.value
-let location_cur_value = location.value
+let avatar_cur_src = avatar.src;
+let fullname_cur_value = fullname.value;
+let about_cur_value = about.value;
+let gender_cur_value = gender.value;
+let dob_cur_value = dob.value;
+let location_cur_value = location.value;
 
 // preview file image
 let file_image;
@@ -90,40 +88,39 @@ input_file_avatar.addEventListener("change", (e) => {
   file_avatar = e.target.files[0];
   if (file_avatar) {
     file_avatar.preview = URL.createObjectURL(file_avatar);
-    avatar.src = `${file_avatar?.preview}`
+    avatar.src = `${file_avatar?.preview}`;
     //avatar_wrap.innerHTML = `<img src="${file_avatar?.preview}" alt="" />`;
   } else {
-    avatar.src = avatar_cur_src
+    avatar.src = avatar_cur_src;
     //avatar_wrap.innerHTML = `<img src="${avatar_cur_src}" alt="" />`;
   }
 });
 
-fullname.addEventListener('input', () =>{
+fullname.addEventListener("input", () => {
   if (fullname_regex.test(fullname.value)) {
-    fullname.setCustomValidity("")
+    fullname.setCustomValidity("");
+  } else {
+    fullname.setCustomValidity("Invalid");
   }
-  else {
-    fullname.setCustomValidity("Invalid")
-  }
-})
+});
 
-document.getElementById("submit-btn").addEventListener('click', () => {
+document.getElementById("submit-btn").addEventListener("click", () => {
   if (form_edit.checkValidity()) {
-    $("#modalEditProfile").modal('hide')
+    $("#modalEditProfile").modal("hide");
   }
-  form_edit.classList.add('was-validated')
-})
+  form_edit.classList.add("was-validated");
+});
 
-document.getElementById("close-btn").addEventListener('click', () => {
-  form_edit.classList.remove("was-validated")
+document.getElementById("close-btn").addEventListener("click", () => {
+  form_edit.classList.remove("was-validated");
 
-  avatar.src = avatar_cur_src
-  fullname.value = fullname_cur_value
-  about.value = about_cur_value
-  gender.value = gender_cur_value
-  dob.value = dob_cur_value 
-  location.value = location_cur_value
-})
+  avatar.src = avatar_cur_src;
+  fullname.value = fullname_cur_value;
+  about.value = about_cur_value;
+  gender.value = gender_cur_value;
+  dob.value = dob_cur_value;
+  location.value = location_cur_value;
+});
 
 // event submit form
 form_edit.addEventListener("submit", (e) => {
@@ -132,123 +129,110 @@ form_edit.addEventListener("submit", (e) => {
   console.log(edit_data);
   form_edit.submit();
 
-  avatar_cur_src = avatar.value
-  fullname_cur_value = fullname.value
-  about_cur_value = about.value
-  gender_cur_value = gender.value
-  dob_cur_value = dob.value
-  location_cur_value = location.value
+  avatar_cur_src = avatar.value;
+  fullname_cur_value = fullname.value;
+  about_cur_value = about.value;
+  gender_cur_value = gender.value;
+  dob_cur_value = dob.value;
+  location_cur_value = location.value;
 });
-
 
 // *************************************************************
 // follow/unfollow
-let follow_btns = document.getElementsByName("follow")
-let unfollow_btns = document.getElementsByName("unfollow")
+let follow_btns = document.getElementsByName("follow");
+let unfollow_btns = document.getElementsByName("unfollow");
 
 for (let i = 0; i < follow_btns.length; i++) {
   if (follow_btns[i].id == "flw-viewedUser-btn") {
-    follow_btns[i].addEventListener('click', async (event) => {
-      event.stopPropagation()
-      await follow(uViewed_username)
-    })
-    
-  }
-  else {
-    follow_btns[i].addEventListener('click', async (event) => {
-      event.stopPropagation()
+    follow_btns[i].addEventListener("click", async (event) => {
+      event.stopPropagation();
+      await follow(uViewed_username);
+    });
+  } else {
+    follow_btns[i].addEventListener("click", async (event) => {
+      event.stopPropagation();
 
       // user_to_follow = ?
       // follow(user_to_follow)
-    })
-    
+    });
   }
-  
 }
 
 for (let i = 0; i < unfollow_btns.length; i++) {
   if (unfollow_btns[i].id == "unflw-viewedUser-btn") {
-    unfollow_btns[i].addEventListener('click', async (event) => {
+    unfollow_btns[i].addEventListener("click", async (event) => {
       // prevent go to other profile
-      event.stopPropagation()
+      event.stopPropagation();
 
-      await unfollow(uViewed_username)
-    })
-    
-  }
-  else {
-    unfollow_btns[i].addEventListener('click', async (event) => {
+      await unfollow(uViewed_username);
+    });
+  } else {
+    unfollow_btns[i].addEventListener("click", async (event) => {
       // prevent go to other profile
-      event.stopPropagation()
-      
+      event.stopPropagation();
+
       // user_to_unfollow = ?
       // unfollow(user_to_unfollow)
-    })
-    
+    });
   }
 }
 
 async function follow(user_to_follow) {
   await fetch("/profile/follow", {
-    method: 'post',
-    body: JSON.stringify({ user_to_follow: user_to_follow })
+    method: "post",
+    body: JSON.stringify({ user_to_follow: user_to_follow }),
   })
-  .then(res => res.json())
-  .then(data_received => {
-    if (data_received.result == 1) {
-      console.log(`start following ${user_to_follow}`)
-    }
-    else {
-      console.log(`error occurs when try to follow ${user_to_follow}`)
-    }
-  })
+    .then((res) => res.json())
+    .then((data_received) => {
+      if (data_received.result == 1) {
+        console.log(`start following ${user_to_follow}`);
+      } else {
+        console.log(`error occurs when try to follow ${user_to_follow}`);
+      }
+    });
 }
 
 async function unfollow(user_to_unfollow) {
   await fetch("/profile/unfollow", {
-    method: 'post',
-    body: JSON.stringify({ user_to_unfollow: user_to_unfollow })
+    method: "post",
+    body: JSON.stringify({ user_to_unfollow: user_to_unfollow }),
   })
-  .then(res => res.json())
-  .then(data_received => {
-    if (data_received.result == 1) {
-      console.log(`unfollow ${user_to_unfollow}`)
-    }
-    else {
-      console.log(`error occurs when try to unfollow ${user_to_unfollow}`)
-    }
-  })
+    .then((res) => res.json())
+    .then((data_received) => {
+      if (data_received.result == 1) {
+        console.log(`unfollow ${user_to_unfollow}`);
+      } else {
+        console.log(`error occurs when try to unfollow ${user_to_unfollow}`);
+      }
+    });
 }
 
-
-
 // prevent go to other profile when clicking following button in user box
-let following_btns = document.getElementsByName("following")
+let following_btns = document.getElementsByName("following");
 for (let i = 0; i < following_btns.length; i++) {
-  following_btns[i].addEventListener('click', (e) => {
-    e.stopPropagation()
-  })
+  following_btns[i].addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
 }
 
 // go to other profile when click on user box
-let user_boxs = document.querySelectorAll(".user-box")
+let user_boxs = document.querySelectorAll(".user-box");
 user_boxs.forEach((user_box) => {
-  user_box.addEventListener('click', async () => {
-    let other_username = user_box.children[1].children[1].innerText
-    other_username = other_username.substring(1)        // remove '@'
-    console.log(other_username)
-    window.location.href = `/profile/?username=${other_username}`
-  })
-})
+  user_box.addEventListener("click", async () => {
+    let other_username = user_box.children[1].children[1].innerText;
+    other_username = other_username.substring(1); // remove '@'
+    console.log(other_username);
+    window.location.href = `/profile/?username=${other_username}`;
+  });
+});
 
 // *************************************************************
 // main
 const main = async () => {
- // render_followers();
+  // render_followers();
   //render_following();
   render_images();
   //load_modal_edit();
   event_click_image();
 };
 main();
-

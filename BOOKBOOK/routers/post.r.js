@@ -1,8 +1,8 @@
-const app = require('express')
-const router = app.Router()
+const app = require("express");
+const router = app.Router();
+const { upload_post } = require("../uploads/storage");
+const postC = require("../controllers/post.c");
 
-router.get('/', (req, res, next) => {
-    res.render("post_main")
-})
+router.route("/newpost").post(upload_post.single("img_upload"), postC.savePost);
 
-module.exports = router
+module.exports = router;
