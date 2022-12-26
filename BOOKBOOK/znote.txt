@@ -1,3 +1,10 @@
+update 27/12/2022 by Nguyên
+- Xong router cơ bản cho market
+- xong index market
+- Xong chức năng sell item
+- chưa làm chức năng xóa item + search item
+- Chỉnh 1 chút file css của feed với profile do bị nhảy màu background
+
 update 24/12/2022 by Thùy
 - người dùng đã có thể follow, unfollow ở profile
 

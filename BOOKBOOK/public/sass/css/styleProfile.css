@@ -9,6 +9,8 @@
   --border-light-gray: rgb(226, 226, 226);
   --bgr-light-gray: rgba(226, 226, 226, 0.652);
   --text-dart-orange: rgb(255, 117, 47);
+  --dark-gray: #dedede;
+  --bg-light-gray: #f0f0f0;
   --font: "Font Awesome 6 Free";
 }
 
@@ -24,6 +26,7 @@ body {
   height: auto;
   box-sizing: border-box;
   font-family: "Open Sans", sans-serif;
+  /* background-color: var(--dark-gray); */
 }
 
 .base-layout {
@@ -53,6 +56,20 @@ body {
   right: 5%;
   transform: translateY(-50%);
   filter: blur(100px);
+}
+
+.header {
+  /* background-color: var(--white); */
+  background-color: #f0f0f0;
+  z-index: 10;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.header {
+  /* background-color: var(--white); */
+  background-color: #f0f0f0;
+  z-index: 10;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .header {
@@ -269,6 +286,7 @@ body {
   /* overflow: hidden; */
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding-top: 30px;
+  background-color: #ffffff;
 }
 .action-dot {
   position: absolute;

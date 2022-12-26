@@ -1,7 +1,7 @@
 export const post = (data_images) => {
-    const feed_posts = document.querySelector(".feed-posts");
-    const html = data_images.map((item) => {
-      return `
+  const feed_posts = document.querySelector(".feed-posts");
+  const html = data_images.map((item) => {
+    return `
           <div class="post bg-light">
               <div class="d-flex flex-column gap-1">
               <div
@@ -53,12 +53,12 @@ export const post = (data_images) => {
                   <div class="contents-footer px-4 mb-2">
                       <div class="py-1 d-flex justify-content-around gap-3">
                           <div
-                          class="d-flex justify-content-center align-items-center gap-3 pt-2 pb-2 px-3 hover-icon w-50 btn-like">
-                          <i class="fa-regular fa-thumbs-up"></i>
-                          <span>Like</span>
+                          class="d-flex justify-content-center align-items-center gap-1 pt-2 pb-2 px-3 hover-icon w-50 btn-like">
+                         <i class="fa-regular fa-heart"></i>
+                          <span>Awsome</span>
                           </div>
                           <div
-                          class="d-flex justify-content-center align-items-center gap-3 pt-2 pb-2 px-3 hover-icon w-50 btn-show-comments">
+                          class="d-flex justify-content-center align-items-center gap-1 pt-2 pb-2 px-3 hover-icon w-50 btn-show-comments">
                           <i class="fa-regular fa-message"></i>
                           <span>Comments</span>
                           </div>
@@ -110,11 +110,11 @@ export const post = (data_images) => {
               </div>
           </div>
           `;
-    });
-    feed_posts.innerHTML = html.join("");
-  };
-  export const comment = (location, data, user) => {
-    const html = `
+  });
+  feed_posts.innerHTML = html.join("");
+};
+export const comment = (location, data, user) => {
+  const html = `
       <div class="comment">
           <div class="user-other d-flex flex-row gap-2">
               <div class="img-user">
@@ -130,12 +130,12 @@ export const post = (data_images) => {
           </div>
       </div>
       `;
-    location.insertAdjacentHTML("afterbegin", html);
-  };
-  export const suggest_people = (data) => {
-    const suggest_list = document.querySelector("#suggest-list");
-    for (let index = 0; index < 5; index++) {
-      let html = `
+  location.insertAdjacentHTML("afterbegin", html);
+};
+export const suggest_people = (data) => {
+  const suggest_list = document.querySelector("#suggest-list");
+  for (let index = 0; index < 5; index++) {
+    let html = `
               <div
              class="suggest-user d-flex gap-2 justify-content-center align-items-center m-2">
              <div class="img-user">
@@ -150,13 +150,13 @@ export const post = (data_images) => {
                  <button type="button" class="btn btn-outline-success">Follow</button>
              </div>
          </div>`;
-      suggest_list.insertAdjacentHTML("afterend", html);
-    }
-  };
-  export const sponsor = (data) => {
-    const sponsor_list = document.querySelector("#sponsors-list");
-    for (let index = 0; index < 5; index++) {
-      let html = `
+    suggest_list.insertAdjacentHTML("afterend", html);
+  }
+};
+export const sponsor = (data) => {
+  const sponsor_list = document.querySelector("#sponsors-list");
+  for (let index = 0; index < 5; index++) {
+    let html = `
               <div class="d-flex gap-2 align-items-center">
                   <div class="spn-img">
                       <img src="./images/shopee.png" alt="" />
@@ -170,6 +170,6 @@ export const post = (data_images) => {
                       </span>
                   </div>
               </div>`;
-      sponsor_list.insertAdjacentHTML("afterend", html);
-    }
-  };
+    sponsor_list.insertAdjacentHTML("afterend", html);
+  }
+};

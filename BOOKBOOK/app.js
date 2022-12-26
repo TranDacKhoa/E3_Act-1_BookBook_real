@@ -6,6 +6,7 @@ const userRouter = require("./routers/user.r");
 const profileRouter = require("./routers/profile.r");
 const feedRouter = require("./routers/feed.r");
 const postRouter = require("./routers/post.r");
+const marketRouter = require("./routers/market.r");
 const e = require("express");
 
 const app = express();
@@ -18,6 +19,16 @@ app.use(
 );
 app.use(
   "/profile",
+  express.static(__dirname + "/public"),
+  express.static(__dirname + "/uploads")
+);
+app.use(
+  "/market",
+  express.static(__dirname + "/public"),
+  express.static(__dirname + "/uploads")
+);
+app.use(
+  "/market/me",
   express.static(__dirname + "/public"),
   express.static(__dirname + "/uploads")
 );
@@ -41,6 +52,7 @@ app.use("/", feedRouter);
 app.use("/", userRouter);
 app.use("/post", postRouter);
 app.use("/profile", profileRouter);
+app.use("/market", marketRouter);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode | 500;

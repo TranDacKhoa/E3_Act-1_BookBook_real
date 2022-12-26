@@ -1,5 +1,4 @@
-<link rel="stylesheet" href="./sass/css/styleMarket.css" />
-
+<link rel="stylesheet" href="../sass/css/styleMarket.css" />
 <div
   class="base-layout position-relative d-flex justify-content-center w-100 h-100"
 >
@@ -7,7 +6,7 @@
     <div class="header-container d-flex justify-content-between">
       <div class="header-left col-3 d-flex justify-content-center">
         <div class="left-logo">
-          <img src="../image/logo1.png" alt="" />
+          <img src="../public/image/logo1.png" alt="" />
           <span>
             <h5 class="fw-bold">BOOKBOOK</h5>
           </span>
@@ -35,6 +34,10 @@
           <li class="nav-item hover-icon active">
             <a class="nav-link" href="#"><i class="fa-solid fa-store"></i></a>
           </li>
+
+          <!-- <li class="nav-item hover-icon">
+                        <a class="nav-link"><i class="fa-regular fa-heart"></i></a>
+                     </li> -->
         </ul>
       </div>
       <div
@@ -107,7 +110,8 @@
           <li><a class="dropdown-item" href="#"><i
                 class="fa-solid fa-wrench"
               ></i>
-              Change password</a></li>
+              Change password</a>
+          </li>
           <li>
             <hr class="dropdown-divider" />
           </li>
@@ -138,15 +142,16 @@
           class="nav h-100 d-flex flex-column align-items-center justify-content-start py-3 px-3 gap-3 ul-wrap"
         >
 
-          <li class="nav-item-left hover-icon active">
-            <a class="nav-link d-flex gap-3 align-items-center" href="./"><i
-                class="fa-solid fa-store"
-              ></i><span>Market</span></a>
-          </li>
           <li class="nav-item-left hover-icon">
             <a
               class="nav-link d-flex gap-3 align-items-center"
-              href="./me/"
+              href="/market"
+            ><i class="fa-solid fa-store"></i><span>Market</span></a>
+          </li>
+          <li class="nav-item-left hover-icon active">
+            <a
+              class="nav-link d-flex gap-3 align-items-center"
+              href="./market-me.html"
             >
               <i class="fa-solid fa-user"></i>
               <span>My items</span></a>
@@ -160,124 +165,52 @@
 
     </div>
     <div class="col-9 prod-container px-3 py-2 bg-light">
-      <div class="p-3" id="top-selling">
-        <h5>Top science by the New York Time</h5>
-        <hr style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" />
-        <div
-          id="carouselExampleCaptions"
-          class="carousel slide"
-          data-bs-ride="carousel"
-        >
-
-          <div class="carousel-inner">
-            {{#each ads}}
-              {{#if @first}}
-                <div class="carousel-item active">
-                  
-              {{else}}
-                <div class="carousel-item ">
-              {{/if}}
-                    <div class="d-flex justify-content-center align-items-center">
-                    <div class="col carousel-img-container">
-                      <img src="{{this.book_image}}" alt="{{this.title}}" />
-
-                    </div>
-                    <div class="col carousel-des p-3">
-                      <h1 class="display-1">#{{this.rank}}</h1>
-                      <h3 style=" letter-spacing: 3px;">
-                        <a
-                          href="{{this.amazon_product_url}}"
-                          target="_blank"
-                        >
-                         {{this.title}}
-                        </a>
-                      </h3>
-                      <strong>
-                        by {{this.author}}
-                      </strong>
-                    </div>
-                  </div>
-                </div>
-              {{!-- <div class="carousel-item active">
-
-                <div class="d-flex justify-content-center align-items-center">
-                  <div class="col carousel-img-container">
-                    <img
-                      src="https://storage.googleapis.com/du-prd/books/images/9781429969352.jpg"
-                      alt="..."
-                    />
-
-                  </div>
-                  <div class="col carousel-des p-3">
-                    <h1 class="display-1">#1</h1>
-                    <h3 style=" letter-spacing: 3px;">
-                      <a
-                        href="http://www.amazon.com/Being-Mortal-Medicine-What-Matters/dp/0805095152?tag=NYTBSREV-20"
-                        target="_blank"
-                      >
-                        BEING MORTAL
-                      </a>
-                    </h3>
-                    <strong>
-                      by Bessel van der Kolk
-                    </strong>
-                  </div>
-                </div>
-              </div> --}}
-            {{/each}}
-          </div>
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-
-      </div>
       <div class="mt-2 gap-2 p-3">
-        <h5>Selling by users</h5>
+        <div class="d-flex justify-content-between align-items-center">
+          <h4>Selling by {{seller}}</h4>
+          <button
+            class="btn btn-success"
+            data-bs-toggle="modal"
+            data-bs-target="#modal-sell-item"
+          ><i class="fa-solid fa-plus"></i></button>
+        </div>
         <hr style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" />
         <div class="grid-prod">
-          {{#each itemList}} 
-                     <div class="card list-item-group zoom-in-card">
-                        <h5 class="card-header" style="font-size: 15px;">
-                         {{this.title}} 
-                        
-                        </h5>
+          {{#each itemList}}
+            <div class="card list-item-group" post_id="1">
+              <h5
+                class="card-header d-flex justify-content-between align-items-center"
+                style="font-size: 15px;"
+              >
+                {{this.title}}
 
-                        <div class="card-body to-hover" data-bs-toggle="modal" data-bs-target="#modal-user-item">
-                           <img src="./market/{{this.img}}" class="card-img-top zoom-in-img item-img" alt="..." />
-                           <hr />
+                <button class="btn btn-danger btn-sm btn-del-item" post_id="1">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </h5>
+              <div
+                class="card-body"
+                data-bs-toggle="modal"
+                data-bs-target="#modal-user-item"
+              >
+                <img src="market/{{this.img}}" class="card-img-top item-img" alt="..." />
+                <hr />
 
-                           <div class="card border-success align-items-center price-card" id="tinyprice">
-                             {{displayVND this.price}} 
-                           
-                           </div>
-                           <div class="display-on-hover">
-                              <p class="card-text tinydes" style="height:70px">
-                                 {{this.text}} 
-                                
-                              </p>
+                <p class="card-text tinydes" style="height:70px">
+                  {{this.text}}
 
-                           </div>
-                           <div class="post_id" style="display: none;">1</div>
-                        </div>
-                     </div>
+                </p>
+                <div
+                  class="card border-success align-items-center price-card"
+                  id="tinyprice"
+                >
+                  {{displayVND this.price}}
 
-                    {{/each}} 
+                </div>
+              </div>
+            </div>
+
+          {{/each}}
         </div>
       </div>
 
@@ -300,19 +233,12 @@
           id="modal-user-item-Label"
           id="item-title"
         >1 nùi sách rẻ vcl</h5>
-        <div
-          class="hover-icon d-flex align-items-center px-3"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <i class="fa-solid fa-ellipsis"></i>
-        </div>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Report seller</a></li>
-          <li>
-            <a class="dropdown-item" href="#">Report post</a>
-          </li>
-        </ul>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <div class="d-flex">
@@ -354,27 +280,95 @@
           />
         </div>
         <div class="pt-2 pb-2 px-3">
-          <div id="cmt-container" class="d-flex justify-content-between gap-2">
+          <button class="btn btn-danger w-100 btn-del-item" post_id="1">
+            <i class="fa-solid fa-trash-can">
+            </i>
+            Delete post
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal add item to sell -->
+<div
+  class="modal fade"
+  id="modal-sell-item"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content newpost-container">
+      <div class="modal-header position-relative d-flex" style="color: black">
+        <h1
+          class="modal-title fs-5 text-center"
+          style="flex: 1"
+          id="exampleModalLabel"
+        >
+          Selling item
+        </h1>
+      </div>
+      <div class="modal-body px-2">
+        <form id="new-item-form" class="justify-content-between gap-1" action="./" method="post" enctype="multipart/form-data">
+
+          <div class="preview">
+            <img
+              id="img-preview"
+              src="./image/marketbg.jpg"
+              style="visibility: hidden ;"
+            />
+
+            <label for="file-input"><i class="fa-solid fa-plus"></i>
+              Upload item image...</label>
+            <input accept="image/*" type="file" id="file-input" name="item-img" required/>
+          </div>
+          <div class="px-5 pt-3">
+            <label for="sell-title" class="form-label">Title</label>
             <input
               type="text"
               class="form-control"
-              id="inputComment"
-              placeholder="Send message to seller..."
+              id="sell-title"
+              name="title"
+              required
             />
-            <div class="hover-icon d-flex justify-content-between">
-              <i
-                class="fa-solid fa-paper-plane px-3 d-flex align-items-center justify-content-center"
-              ></i>
-            </div>
-            <button
-              id="btn-del-item"
-              style="display: none;"
-              class="btn btn-danger w-100"
-            ><i class="fa-solid fa-trash-can"></i>
-              Delete post
-            </button>
+            <label for="sell-des" class="form-label">Description</label>
+            <input
+              type="text"
+              class="form-control"
+              id="sell-des"
+              name="description"
+              required
+            />
+            <label for="sell-price" class="form-label" >price</label>
+            <input
+              type="number"
+              class="form-control"
+              id="sell-price"
+              name="price"
+              required
+            />
           </div>
-        </div>
+       
+      </div>
+      <div class="modal-footer">
+
+        <input type="submit"
+          id="btn-post-item"
+          type="button"
+          style="width: 100px;"
+          class="btn btn-primary"
+          value="Sell"
+        ></input>
+         </form>
+        <button
+          id="btn-cancel-post"
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Cancel
+        </button>
       </div>
     </div>
   </div>
