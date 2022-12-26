@@ -9,7 +9,7 @@ export const showModal = (data_images) => {
   const html_image = `<img src="${data_images.image}" alt="" />`;
   // user
   //const html_avatar = `<img src="${data_images.avatar}" alt="" />`;
-  // const html_user = `                                 
+  // const html_user = `
   //  <span><b>${data_images.user}</b></span>
   //  <span class="fst-italic fw-lighter">${data_images.id_user}</span>`;
   // content

@@ -1,3 +1,7 @@
+update 26/12/2022 by Thư
+- thêm post ở profile, bắt buộc phải có ảnh mới được đăng bài
+- render view post
+
 update 24/12/2022 by Thùy
 - người dùng đã có thể follow, unfollow ở profile
 

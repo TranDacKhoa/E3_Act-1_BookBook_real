@@ -229,7 +229,6 @@ const userServices = {
         author_username: username,
       },
     });
-
     return result;
   },
   postOnWall: async (data) => {

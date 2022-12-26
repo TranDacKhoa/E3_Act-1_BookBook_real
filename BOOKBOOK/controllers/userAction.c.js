@@ -41,6 +41,7 @@ exports.handleMyProfile = async (req, res, next) => {
       const uProfile = await userS.getUserProfile(req.user.username);
       const followers = await userS.getFollowersList(req.user.username);
       const following = await userS.getFollowingList(req.user.username);
+      const posts = await userS.getAllPosts(req.user.username);
 
       res.render("profile", {
         title: uProfile.fullname + " | BookBook",
@@ -50,6 +51,8 @@ exports.handleMyProfile = async (req, res, next) => {
         following: following,
         followedByUser: following,
         helpers: hbsHelpers,
+        number_of_posts: posts.length,
+        post: posts,
       });
     } else {
       next();
@@ -135,6 +138,21 @@ exports.unfollowUser = async (req, res, next) => {
     } else {
       res.send(JSON.stringify({ result: 0 }));
     }
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.getPostView = async (req, res, next) => {
+  try {
+    const index = req.body.view;
+    const posts = await userS.getAllPosts(req.user.username);
+    const post_view = posts[index];
+    console.log(post_view);
+    res.json({
+      img: post_view.dataValues.img,
+      content: post_view.dataValues.text,
+    });
   } catch (error) {
     next(error);
   }

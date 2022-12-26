@@ -6,22 +6,16 @@ const userActionC = require("../controllers/userAction.c");
 router
   .route("/")
   .all(userActionC.checkPermission)
-  .get(userActionC.handleMyProfile, userActionC.handleOtherProfile)
+  .get(userActionC.handleMyProfile, userActionC.handleOtherProfile);
 
 router
   .route("/edit")
-  .post(
-    upload_avt.single("avatar"),
-    userActionC.updateProfile
-  );
+  .post(upload_avt.single("avatar"), userActionC.updateProfile);
 
-router
-  .route("/follow")
-  .post(userActionC.followUser)
+router.route("/follow").post(userActionC.followUser);
 
-router
-  .route("/unfollow")
-  .post(userActionC.unfollowUser)
+router.route("/unfollow").post(userActionC.unfollowUser);
 
+router.route("/view").post(userActionC.getPostView);
 
-module.exports = router
+module.exports = router;

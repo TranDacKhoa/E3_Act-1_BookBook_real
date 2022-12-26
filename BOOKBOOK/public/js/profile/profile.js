@@ -5,26 +5,49 @@ const username = document.getElementById("user").innerText;
 const uViewed_username = document.getElementById("userViewed").innerText;
 
 // render images
-const render_images = () => {
-  const image_list = document.querySelector(".image-list");
-  const htmls = data_images.map((item) => {
-    return `
-      <div class="images" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <img src="${item.image}" id="${item.id}" alt="" />
-      </div>`;
+// const render_images = () => {
+//   const image_list = document.querySelector(".image-list");
+//   const htmls = data_images.map((item) => {
+//     return `
+// <div class="images" data-bs-toggle="modal" data-bs-target="#exampleModal">
+//       <img src="${item.image}" id="${item.id}" alt="" />
+// </div>`;
+//   });
+//   return (image_list.innerHTML = htmls.join(""));
+// };
+
+async function sendViewRequest(url = "/view", index) {
+  const data = {
+    view: index,
+  };
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
   });
-  return (image_list.innerHTML = htmls.join(""));
-};
+  return response.json();
+}
 
 // add event click image
 const event_click_image = () => {
   const images = document.querySelectorAll(".images");
   images.forEach((item, index) => {
-    item.onclick = () => {
-      showModal(data_images[index]); // data, nơi đặt modal
+    item.onclick = (e) => {
+      sendViewRequest("http://localhost:3000/profile/view", index).then(
+        (data) => {
+          const html_image = `<img src="post/${data.img}" alt="" />`;
+          const html_contents = `<p>${data.content}</p>`;
+          document.querySelector(".modal-body").innerHTML = html_image;
+          document.querySelector(".contents-body").innerHTML = html_contents;
+        }
+      );
+      e.preventDefault();
     };
   });
 };
+
 const event_report_user = () => {
   const images = document.querySelectorAll(".big-avt");
   images.forEach((item, index) => {
@@ -350,7 +373,7 @@ user_boxs.forEach((user_box) => {
 const main = async () => {
   // render_followers();
   //render_following();
-  render_images();
+  // render_images();
   //load_modal_edit();
   event_click_image();
 };
