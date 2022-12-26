@@ -141,7 +141,11 @@
                 </div>
                 <div class="col-9 prod-container px-3 py-2 bg-light">
                     <div class="mt-2 gap-2 p-3">
-                        <h5>Selling by fullname</h5>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4>Selling by fullname</h4>
+                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-sell-item"><i
+                                    class="fa-solid fa-plus"></i></button>
+                        </div>
                         <hr style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" />
                         <div class="grid-prod">
                             <!-- {{#each main.prod}} -->
@@ -220,6 +224,46 @@
                                 </i>
                                 Delete post </button>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal add item to sell -->
+        <div class="modal fade" id="modal-sell-item" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content newpost-container">
+                    <div class="modal-header position-relative d-flex" style="color: black">
+                        <h1 class="modal-title fs-5 text-center" style="flex: 1" id="exampleModalLabel">
+                            Selling item
+                        </h1>
+                    </div>
+                    <div class="modal-body px-2">
+                        <form id="new-item-form" class="justify-content-between gap-1">
+
+                            <div class="preview">
+                                <img id="img-preview" src="./image/marketbg.jpg" style="visibility: hidden ;" />
+
+                                <label for="file-input"><i class="fa-solid fa-plus"></i> Upload item image...</label>
+                                <input accept="image/*" type="file" id="file-input" />
+                            </div>
+                            <div class="px-5 pt-3">
+                                <label for="sell-title" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="sell-title" name="title">
+                                <label for="sell-des" class="form-label">Description</label>
+                                <input type="text" class="form-control" id="sell-des" name="description">
+                                <label for="sell-price" class="form-label">price</label>
+                                <input type="number" class="form-control" id="sell-price" name="price">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button id="btn-post-item" type="button" style="width: 100px;"
+                            class="btn btn-primary">Sell</button>
+                        <button id="btn-cancel-post" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Cancel
+                        </button>
                     </div>
                 </div>
             </div>

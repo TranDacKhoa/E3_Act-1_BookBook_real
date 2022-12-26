@@ -39,5 +39,29 @@ const click_btn_del = () => {
   });
 };
 
+const input = document.getElementById("file-input");
+const image = document.getElementById("img-preview");
+
+input.addEventListener("change", (e) => {
+  if (e.target.files.length) {
+    const src = URL.createObjectURL(e.target.files[0]);
+    image.src = src;
+    image.style.visibility = "visible";
+  }
+});
+const new_item_form = document.querySelector("#new-item-form");
+
+const resetForm = () => {
+  new_item_form.reset();
+  image.style.visibility = "hidden";
+};
+const btn_post_item = document.querySelector("#btn-post-item");
+const btn_cancel_post = document.querySelector("#btn-cancel-post");
+btn_cancel_post.addEventListener("click", (e) => {
+  resetForm();
+});
+btn_post_item.addEventListener("click", (e) => {
+  resetForm();
+});
 event_click_image();
 click_btn_del();
