@@ -33,7 +33,8 @@ const click_btn_del = () => {
   const items = document.querySelectorAll(".btn-del-item");
   items.forEach((item, index) => {
     item.onclick = () => {
-      console.log(item.getAttribute("post_id"));
+      let id = item.getAttribute("post_id");
+      confirm(`Confirm to delete item #${id}`);
     };
   });
 };

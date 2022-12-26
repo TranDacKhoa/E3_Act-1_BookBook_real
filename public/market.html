@@ -202,15 +202,14 @@
                   <hr style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" />
                   <div class="grid-prod">
                      <!-- {{#each main.prod}} -->
-                     <div class="card list-item-group zoom-in-card" data-bs-toggle="modal"
-                        data-bs-target="#modal-user-item">
+                     <div class="card list-item-group zoom-in-card">
                         <h5 class="card-header" style="font-size: 15px;">
                            <!-- {{this.proname}} -->
                            prod-name
                         </h5>
 
-                        <div class="card-body to-hover">
-                           <img src="./image/shopee.png" class="card-img-top zoom-in-img" alt="..." />
+                        <div class="card-body to-hover" data-bs-toggle="modal" data-bs-target="#modal-user-item">
+                           <img src="./image/shopee.png" class="card-img-top zoom-in-img item-img" alt="..." />
                            <hr />
 
                            <div class="card border-success align-items-center price-card" id="tinyprice">
@@ -237,7 +236,7 @@
             </div>
          </div>
       </div>
-      <!-- Modal -->
+      <!-- Modal see item detail -->
       <div class="modal fade" id="modal-user-item" tabindex="-1" aria-labelledby="modal-user-item-Label"
          aria-hidden="true">
          <div class="modal-dialog">
@@ -296,6 +295,8 @@
             </div>
          </div>
       </div>
+
+
       <script type="module" src="../build/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
       <script type="module" src="../js/market/market.js"></script>
    </body>
