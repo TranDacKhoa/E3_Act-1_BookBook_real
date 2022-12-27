@@ -1,3 +1,13 @@
+update 27/12/2022 by Thư
+- xóa post
+- report post
+
+
+update 28/12/2022 by Thư
+- thêm post ở profile, bắt buộc phải có ảnh mới được đăng bài
+- render list posts ở profile
+- render view detailed post
+
 update 27/12/2022 by Nguyên
 - Xong router cơ bản cho market
 - xong index market

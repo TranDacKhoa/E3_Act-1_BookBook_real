@@ -119,56 +119,69 @@ const userServices = {
   },
 
   //profile services
+  // getProfile: async (username) => {
+  //   const result = await models.user_profile.findAll({
+  //     raw: true,
+  //     where: {
+  //       username: username,
+  //     },
+  //   });
+  //   return result;
+  // },
   getFollowersList: async (username) => {
     const result = await models.follow.findAll({
-      attributes: ['usr_follow'],
+      attributes: ["usr_follow"],
       distinct: false,
-      include: [{
-        model: models.user_profile,
-        required: true,
-        as: 'usr_follow_user_profile',
-        attributes: ['username', 'fullname', 'avatar'],
-      }],
+      include: [
+        {
+          model: models.user_profile,
+          required: true,
+          as: "usr_follow_user_profile",
+          attributes: ["username", "fullname", "avatar"],
+        },
+      ],
       where: {
         usr_followed: username,
       },
     });
     return result;
   },
-  // countFollowers: async (username) => {
-  //   const result = await models.follow.count({
-  //     distinct: false,
-  //     where: {
-  //       usr_followed: username,
-  //     },
-  //   });
-  //   return result;
-  // },
+  countFollowers: async (username) => {
+    const result = await models.follow.count({
+      distinct: false,
+      where: {
+        usr_followed: username,
+      },
+    });
+    return result;
+  },
   getFollowingList: async (username) => {
     const result = await models.follow.findAll({
-      attributes: ['usr_followed'],
+      attributes: ["usr_followed"],
       distinct: false,
-      include: [{
-        model: models.user_profile,
-        required: true,
-        as: 'usr_followed_user_profile',
-        attributes: ['username', 'fullname', 'avatar'],
-      }],
+      include: [
+        {
+          model: models.user_profile,
+          required: true,
+          as: "usr_followed_user_profile",
+          attributes: ["username", "fullname", "avatar"],
+        },
+      ],
       where: {
         usr_follow: username,
       },
     });
     return result;
   },
-  // countFollowing: async (username) => {
-  //   const result = await models.follow.count({
-  //     distinct: false,
-  //     where: {
-  //       usr_follow: username,
-  //     },
-  //   });
-  //   return result;
-  // },
+  countFollowing: async (username) => {
+    const result = await models.follow.count({
+      distinct: false,
+      where: {
+        usr_follow: username,
+      },
+    });
+    return result;
+  },
   getLibrary: async (username) => {
     const result = await models.user_wall.findAll({
       include: {
@@ -183,28 +196,30 @@ const userServices = {
     return result;
   },
   updateProfile: async (user, newUpdate) => {
-    try {
-      const userInfo = await models.user_profile.findByPk(user);
-      if (userInfo !== null) {
-        const infoValided = await userInfo.validUpdate(newUpdate);
-        const result = await userInfo.set({
-          fullname: infoValided.fullname,
-          email: infoValided.email,
-          dob: infoValided.dob,
-          gender: infoValided.gender,
-          location: infoValided.location,
-          about: infoValided.about,
-          avatar: infoValided.avatar,
-        });
-        await userInfo.save();
-        console.log(`updated user ${user} profile successfully\n`);
-        return true;
-      } else {
-        console.log(`user ${user} is not exist\n`);
+    if (await userServices.checkExistUser(user)) {
+      try {
+        const result = await models.user_profile.update(
+          {
+            fullname: newUpdate.fullname,
+            gender: newUpdate.gender,
+            location: newUpdate.location,
+            about: newUpdate.about,
+            avatar: newUpdate.avatar,
+          },
+          {
+            where: {
+              username: user,
+            },
+          }
+        );
+      } catch (err) {
+        console.log(`raise error when update user ${user} profile\n`);
         return false;
       }
-    } catch (err) {
-      console.log(`raise error when update user ${user} profile\n${err}`);
+      console.log(`updated user ${user} profile successfully\n`);
+      return true;
+    } else {
+      console.log(`user ${user} is not exist\n`);
       return false;
     }
   },
@@ -212,9 +227,8 @@ const userServices = {
     const result = await models.general_post.findAll({
       where: {
         author_username: username,
-      }
+      },
     });
-
     return result;
   },
   postOnWall: async (data) => {
@@ -277,49 +291,62 @@ const userServices = {
       return false;
     }
   },
+  reportPost: async (post_id) => {
+    try {
+      const result = await models.reported_post.create({
+        post_id: post_id,
+      });
+      console.log(`report post ${post_id}\n`);
+      return true;
+    } catch (err) {
+      console.log(`raise error when report post ${post_id}\n `);
+      console.log(err);
+      return false;
+    }
+  },
 
   //interact services
-  follow: async (follower, user_followed) => {
+  startFollow: async (follower, followed) => {
     if (
       (await userServices.checkExistUser(follower)) &&
-      (await userServices.checkExistUser(user_followed))
+      (await userServices.checkExistUser(followed))
     ) {
       try {
         const result = await models.follow.create({
           usr_follow: follower,
-          usr_followed: user_followed,
+          usr_followed: followed,
         });
-        console.log(`${follower} starts following ${user_followed}\n`);
+        console.log(`${follower} start following ${followed}\n`);
         return true;
       } catch (err) {
-        console.log(`raise error when starting follow\n`);
+        console.log(`raise error when start follow\n`);
         return false;
       }
     } else {
-      console.log(`one or both users not exist\n`);
+      console.log(`user is not exist\n`);
       return false;
     }
   },
-  unfollow: async (follower, user_followed) => {
+  unfollow: async (follower, followed) => {
     if (
       (await userServices.checkExistUser(follower)) &&
-      (await userServices.checkExistUser(user_followed))
+      (await userServices.checkExistUser(followed))
     ) {
       try {
         const result = await models.follow.destroy({
           where: {
             usr_follow: follower,
-            usr_followed: user_followed,
+            usr_followed: followed,
           },
         });
-        console.log(`${follower} unfollows ${user_followed}\n`);
+        console.log(`${follower} unfollow ${followed}\n`);
         return true;
       } catch (err) {
-        console.log(`raise error when unfollowing\n`);
+        console.log(`raise error when unfollow\n`);
         return false;
       }
     } else {
-      console.log(`one or both users not exist\n`);
+      console.log(`user is not exist\n`);
       return false;
     }
   },

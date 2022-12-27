@@ -55,7 +55,7 @@ export const post = (data_images) => {
                           <div
                           class="d-flex justify-content-center align-items-center gap-1 pt-2 pb-2 px-3 hover-icon w-50 btn-like">
                          <i class="fa-regular fa-heart"></i>
-                          <span>Awsome</span>
+                          <span>Awesome</span>
                           </div>
                           <div
                           class="d-flex justify-content-center align-items-center gap-1 pt-2 pb-2 px-3 hover-icon w-50 btn-show-comments">

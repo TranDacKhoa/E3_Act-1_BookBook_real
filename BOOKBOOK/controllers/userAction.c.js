@@ -1,5 +1,6 @@
 const userS = require("../services/userServices");
 const hbsHelpers = require("../helpers/hbs_helpers.js");
+const chalk = require("chalk");
 
 exports.getFeed = async (req, res, next) => {
   try {
@@ -40,6 +41,7 @@ exports.handleMyProfile = async (req, res, next) => {
       const uProfile = await userS.getUserProfile(req.user.username);
       const followers = await userS.getFollowersList(req.user.username);
       const following = await userS.getFollowingList(req.user.username);
+      const posts = await userS.getAllPosts(req.user.username);
 
       res.render("profile", {
         title: uProfile.fullname + " | BookBook",
@@ -49,6 +51,8 @@ exports.handleMyProfile = async (req, res, next) => {
         following: following,
         followedByUser: following,
         helpers: hbsHelpers,
+        number_of_posts: posts.length,
+        post: posts,
       });
     } else {
       next();
@@ -65,6 +69,7 @@ exports.handleOtherProfile = async (req, res, next) => {
     const followers = await userS.getFollowersList(req.query.username);
     const following = await userS.getFollowingList(req.query.username);
     const followedByUser = await userS.getFollowingList(req.user.username);
+    const posts = await userS.getAllPosts(req.user.username);
 
     res.render("profile", {
       title: otherProfile.fullname + " | BookBook",
@@ -74,6 +79,8 @@ exports.handleOtherProfile = async (req, res, next) => {
       following: following,
       followedByUser: followedByUser,
       helpers: hbsHelpers,
+      number_of_posts: posts.length,
+      post: posts,
     });
   } catch (error) {
     next(error);
@@ -134,6 +141,46 @@ exports.unfollowUser = async (req, res, next) => {
     } else {
       res.send(JSON.stringify({ result: 0 }));
     }
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.getPostView = async (req, res, next) => {
+  try {
+    const index = req.body.view;
+    const posts = await userS.getAllPosts(req.user.username);
+    const post_view = posts[index];
+    res.json({
+      img: post_view.dataValues.img,
+      content: post_view.dataValues.text,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.deletePost = async (req, res, next) => {
+  try {
+    const index = req.body.view;
+    const posts = await userS.getAllPosts(req.user.username);
+    const delete_post = posts[index];
+    const del_post_id = delete_post.post_id;
+    await userS.deleteOnWall(del_post_id);
+    res.json({ status: "success" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.reportPost = async (req, res, next) => {
+  try {
+    const index = req.body.view;
+    const posts = await userS.getAllPosts(req.user.username);
+    const post_reported = posts[index];
+    const post_reported_id = post_reported.post_id;
+    await userS.reportPost(post_reported_id);
+    res.json({ status: "success" });
   } catch (error) {
     next(error);
   }
