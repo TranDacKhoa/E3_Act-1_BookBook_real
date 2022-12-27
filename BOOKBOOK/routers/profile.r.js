@@ -18,4 +18,8 @@ router.route("/unfollow").post(userActionC.unfollowUser);
 
 router.route("/view").post(userActionC.getPostView);
 
+router.route("/deletePost").post(userActionC.deletePost);
+
+router.route("/reportPost").post(userActionC.reportPost);
+
 module.exports = router;

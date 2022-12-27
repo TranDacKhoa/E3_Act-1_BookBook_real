@@ -291,6 +291,19 @@ const userServices = {
       return false;
     }
   },
+  reportPost: async (post_id) => {
+    try {
+      const result = await models.reported_post.create({
+        post_id: post_id,
+      });
+      console.log(`report post ${post_id}\n`);
+      return true;
+    } catch (err) {
+      console.log(`raise error when report post ${post_id}\n `);
+      console.log(err);
+      return false;
+    }
+  },
 
   //interact services
   startFollow: async (follower, followed) => {

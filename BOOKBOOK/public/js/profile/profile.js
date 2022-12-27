@@ -30,11 +30,14 @@ async function sendViewRequest(url = "/view", index) {
   return response.json();
 }
 
+let current_post = -1;
+
 // add event click image
 const event_click_image = () => {
   const images = document.querySelectorAll(".images");
   images.forEach((item, index) => {
     item.onclick = (e) => {
+      current_post = index;
       sendViewRequest("http://localhost:3000/profile/view", index).then(
         (data) => {
           const html_image = `<img src="post/${data.img}" alt="" />`;
@@ -44,6 +47,32 @@ const event_click_image = () => {
         }
       );
       e.preventDefault();
+    };
+  });
+};
+
+const event_delete_post = () => {
+  const del_btn = document.querySelectorAll(".delete-post");
+  del_btn.forEach((item, index) => {
+    item.onclick = (e) => {
+      sendViewRequest(
+        "http://localhost:3000/profile/deletePost",
+        current_post
+      ).then((data) => {
+        window.location.href = "/profile";
+      });
+    };
+  });
+};
+
+const event_report_post = () => {
+  const del_btn = document.querySelectorAll(".report-post");
+  del_btn.forEach((item, index) => {
+    item.onclick = (e) => {
+      sendViewRequest(
+        "http://localhost:3000/profile/reportPost",
+        current_post
+      ).then((data) => {});
     };
   });
 };
@@ -376,5 +405,7 @@ const main = async () => {
   // render_images();
   //load_modal_edit();
   event_click_image();
+  event_delete_post();
+  event_report_post();
 };
 main();
