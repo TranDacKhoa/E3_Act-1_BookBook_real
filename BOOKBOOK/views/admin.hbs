@@ -1,0 +1,152 @@
+
+<link rel="stylesheet" href="./sass/css/styleAdmin.css" />
+
+<div class="base-layout position-relative d-flex justify-content-center w-100 h-100" id="idOfReport">
+    {{> adminNav}}
+    
+    <div class="modal-wrap">
+        <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-keyboard="false"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <button type="button" class="btn-close position-absolute d-flex align-items-center" data-bs-dismiss="modal"
+                aria-label="Close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-dialog modal-fullscreen-md-down modal-dialog-centered modal-container">
+                <div class="modal-content flex-row m-0 bg-black">
+                    <div class="w-75 position-relative">
+                        <div class="modal-body h-100">
+
+                        </div>
+                    </div>
+                    <div class="modal-post w-25 position-relative">
+                        <div class="post-container overflow-auto pt-3 px-2">
+                            <div class="container-contents d-flex flex-column">
+                                <div
+                                    class="contents-header d-flex gap-3 align-items-center justify-content-between pt-2 pb-2 px-1 pe-1">
+                                    <div class="header-img">
+                                        <img src="${data_images.avatar}" alt="" />
+                                    </div>
+                                    <div class="header-name d-flex flex-column">
+                                        <span>${data_images.user}</span>
+                                        <span class="fst-italic fw-lighter">${data_images.id_user}</span>
+                                    </div>
+                                </div>
+                                <div class="contents-body mb-3">
+                                    <!--  -->
+                                </div>
+                                <div class="contents-footer pt-1 pb-1 d-flex justify-content-between gap-2 mb-4">
+                                    <div class="d-flex justify-content-center align-items-center gap-3 pt-2 pb-2">
+                                        <i class="fa-regular fa-message"></i> Comments
+                                    </div>
+                                </div>
+                                <div class="contents-comments">
+                                    <!--  -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content w-100 d-flex gap-0 h-auto pb-4 gap-3">
+        <div class="col-3 rounded-bottom overflow-hidden pb-3 nav-container">
+            <div class="left-nav">
+                <ul
+                    class="nav h-100 d-flex flex-column align-items-center justify-content-start py-3 px-3 gap-3 ul-wrap">
+                    <li class="nav-item-left hover-icon">
+                        <a class="nav-link d-flex gap-3 align-items-center" :class="{active: reportposts==1}"
+                        @click="reportposts=1">
+                        <i class="fa-solid fa-clipboard-user"></i>
+                        <span>Report Post</span></a>
+                    </li>
+                    <li class="nav-item-left hover-icon">
+                        <a class="nav-link d-flex gap-3 align-items-center" :class="{active: reportposts==2}"
+                        @click="reportposts=2">
+                        <i class="fa-solid fa-user-tag"></i>
+                        <span>Report User</span></a>
+                    </li>
+
+                    <div class="small position-absolute " style="bottom:10px">Copyright &copy; Group 22</div>
+
+                </ul>
+
+            </div>
+
+        </div>
+        <div>
+            <!--Những cái reports-->
+            <!--reports của post-->
+            <template v-if="reportposts==1">
+                <div id="report">
+                    <div class="images" data-bs-toggle="modal" data-bs-target="#exampleModal" id="1"><a href="#">ID post:
+                        00000001</a></div>
+                    <div><button @click="SkipPost()" class=" button-33-skip">Skip</button></div>
+                    <div><button @click="DeletePost()" class="button-33-delete">Delete</button></div>
+                    <div class="images" data-bs-toggle="modal" data-bs-target="#exampleModal" id="1"><a href="#">ID post:
+                        00000001</a></div>
+                    <div><button @click="SkipPost()" class=" button-33-skip">Skip</button></div>
+                    <div><button @click="DeletePost()" class="button-33-delete">Delete</button></div>
+                    <div class="images" data-bs-toggle="modal" data-bs-target="#exampleModal" id="1"><a href="#">ID post:
+                        00000001</a></div>
+                    <div><button @click="SkipPost()" class=" button-33-skip">Skip</button></div>
+                    <div><button @click="DeletePost()" class="button-33-delete">Delete</button></div>
+                    <div class="images" data-bs-toggle="modal" data-bs-target="#exampleModal" id="1"><a href="#">ID post:
+                        00000001</a></div>
+                    <div><button @click="SkipPost()" class=" button-33-skip">Skip</button></div>
+                    <div><button @click="DeletePost()" class="button-33-delete">Delete</button></div>
+                    <div class="images" data-bs-toggle="modal" data-bs-target="#exampleModal" id="1"><a href="#">ID post:
+                        00000001</a></div>
+                    <div><button @click="SkipPost()" class=" button-33-skip">Skip</button></div>
+                    <div><button @click="DeletePost()" class="button-33-delete">Delete</button></div>
+                    <!-- Tu day -->
+                    <!-- Den day -->
+                </div>
+            </template>
+
+            <template v-if="reportposts==2">
+                <div id="report">
+                    <div>
+                        <img class="report-img" src="./images/new.jpg" />
+                        <a href="#">Đắc Khoa</a>
+                    </div>
+                    <div><button @click="SkipUser()" class=" button-33-skip">Skip</button></div>
+                    <div><button @click="DeleteUser()" class="button-33-delete">Delete</button></div>
+                    <div>
+                        <img class="report-img" src="./images/new.jpg" />
+                        <a href="#">Giá Như</a>
+                    </div>
+                    <div><button @click="SkipUser()" class=" button-33-skip">Skip</button></div>
+                    <div><button @click="DeleteUser()" class="button-33-delete">Delete</button></div>
+                    <div>
+                        <img class="report-img" src="./images/new.jpg" />
+                        <a href="#">Công Văn</a>
+                    </div>
+                    <div><button @click="SkipUser()" class=" button-33-skip">Skip</button></div>
+                    <div><button @click="DeleteUser()" class="button-33-delete">Delete</button></div>
+                    <div>
+                        <img class="report-img" src="./images/new.jpg" />
+                        <a href="#">Lợi Lạc</a>
+                    </div>
+                    <div><button @click="SkipUser()" class=" button-33-skip">Skip</button></div>
+                    <div><button @click="DeleteUser()" class="button-33-delete">Delete</button></div>
+                    <div>
+                        <img class="report-img" src="./images/new.jpg" />
+                        <a href="#">Lê Văn Hưu</a>
+                    </div>
+                    <div><button @click="SkipUser()" class=" button-33-skip">Skip</button></div>
+                    <div><button @click="DeleteUser()" class="button-33-delete">Delete</button></div>
+                </div>
+            </template>
+
+            <div class="feed-posts d-flex flex-column gap-3 pb-3">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="./js/admin/vue.js"></script>
+<script type="module" src="./js/admin/admin.js"></script>
+<script type="module" src="./js/admin/profileAdmin.js"></script>

@@ -1,0 +1,34 @@
+const adminS = require("../services/adminServices");
+const userS = require("../services/userServices");
+const hbsHelpers = require("../helpers/hbs_helpers.js");
+
+exports.checkPermission = async (req, res, next) => {
+    try {
+      if (req.isAuthenticated()) {
+        if (req.user.permission == 1) {
+          next();
+        } else if (req.user.permission == 0) {
+          res.redirect("/");
+        } else {
+          res.redirect("/block");
+        }
+      } else {
+        res.redirect("/login");
+      }
+    } catch (error) {
+      next(error);
+    }
+  };
+
+exports.renderAdmin = async (req, res, next) => {
+  try {
+    const adminProf = userS.getUserProfile(req.user.username)
+    res.render("admin", {
+      title: "Admin | BookBook",
+      user: adminProf,
+      helpers: hbsHelpers,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

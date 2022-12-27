@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 
 const userRouter = require("./routers/user.r");
+const adminRouter = require("./routers/admin.r");
 const profileRouter = require("./routers/profile.r");
 const feedRouter = require("./routers/feed.r");
 const postRouter = require("./routers/post.r");
@@ -53,6 +54,7 @@ app.use("/", userRouter);
 app.use("/", postRouter);
 app.use("/profile", profileRouter);
 app.use("/market", marketRouter);
+app.use("/admin", adminRouter)
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode | 500;
