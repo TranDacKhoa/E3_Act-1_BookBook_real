@@ -16,4 +16,6 @@ router.route("/follow").post(userActionC.followUser);
 
 router.route("/unfollow").post(userActionC.unfollowUser);
 
+router.route("/view").post(userActionC.getPostView);
+
 module.exports = router;

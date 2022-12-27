@@ -27,7 +27,7 @@
                      <div class="divider"></div>
                      <div class="posts d-flex col flex-column justify-content-center ">
                         <span class="small-label">
-                           543
+                           {{number_of_posts}}
                         </span>
                         <span class="small-label">posts</span>
                      </div>
@@ -179,10 +179,11 @@
 
          </ul>
          <div class="image-list p-3">
-            <div class="images">
-
-
-            </div>
+            {{#each post}}
+               <div class="images point-----------" data-bs-toggle="modal"  data-bs-target="#exampleModal" >
+                  <img src="post/{{dataValues.img}}" id="{{dataValues.post_id}}" alt="" />
+               </div>
+            {{/each}}
          </div>
       </div>
    </div>
@@ -195,3 +196,4 @@
 
 
 <script type="module" src="./js/profile/profile.js"></script>
+<script type="module" src="./js/post/newpost.js"></script>
