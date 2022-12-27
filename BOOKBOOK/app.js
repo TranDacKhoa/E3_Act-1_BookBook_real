@@ -7,6 +7,7 @@ const profileRouter = require("./routers/profile.r");
 const feedRouter = require("./routers/feed.r");
 const postRouter = require("./routers/post.r");
 const marketRouter = require("./routers/market.r");
+const searchRouter = require("./routers/search.r");
 const e = require("express");
 
 const app = express();
@@ -32,7 +33,11 @@ app.use(
   express.static(__dirname + "/public"),
   express.static(__dirname + "/uploads")
 );
-
+app.use(
+  "/search",
+  express.static(__dirname + "/public"),
+  express.static(__dirname + "/uploads")
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -53,6 +58,7 @@ app.use("/", userRouter);
 app.use("/", postRouter);
 app.use("/profile", profileRouter);
 app.use("/market", marketRouter);
+app.use("/search", searchRouter);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode | 500;
