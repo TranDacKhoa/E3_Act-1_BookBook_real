@@ -4,18 +4,6 @@ import { data_images, data_user } from "../data.js"; // data fake
 const username = document.getElementById("user").innerText;
 const uViewed_username = document.getElementById("userViewed").innerText;
 
-// render images
-// const render_images = () => {
-//   const image_list = document.querySelector(".image-list");
-//   const htmls = data_images.map((item) => {
-//     return `
-// <div class="images" data-bs-toggle="modal" data-bs-target="#exampleModal">
-//       <img src="${item.image}" id="${item.id}" alt="" />
-// </div>`;
-//   });
-//   return (image_list.innerHTML = htmls.join(""));
-// };
-
 async function sendViewRequest(url = "/view", index) {
   const data = {
     view: index,
@@ -322,24 +310,16 @@ async function follow(user_to_follow) {
     },
     body: JSON.stringify({ user_to_follow: user_to_follow }),
   })
-    .then((res) => res.json())
-    .then((data_received) => {
-      if (data_received.result == 1) {
-        console.log(`start following ${user_to_follow}`);
-        return true;
-      } else {
-        console.log(`error occurs when try to follow ${user_to_follow}`);
-        return false;
-      }
-    })
-    .then((res) => res.json())
-    .then((data_received) => {
-      if (data_received.result == 1) {
-        console.log(`start following ${user_to_follow}`);
-      } else {
-        console.log(`error occurs when try to follow ${user_to_follow}`);
-      }
-    });
+  .then((res) => res.json())
+  .then((data_received) => {
+    if (data_received.result == 1) {
+      console.log(`start following ${user_to_follow}`);
+      return true;
+    } else {
+      console.log(`error occurs when try to follow ${user_to_follow}`);
+      return false;
+    }
+  })
 }
 
 async function unfollow(user_to_unfollow) {
@@ -351,24 +331,16 @@ async function unfollow(user_to_unfollow) {
     },
     body: JSON.stringify({ user_to_unfollow: user_to_unfollow }),
   })
-    .then((res) => res.json())
-    .then((data_received) => {
-      if (data_received.result == 1) {
-        console.log(`unfollow ${user_to_unfollow}`);
-        return true;
-      } else {
-        console.log(`error occurs when try to unfollow ${user_to_unfollow}`);
-        return false;
-      }
-    })
-    .then((res) => res.json())
-    .then((data_received) => {
-      if (data_received.result == 1) {
-        console.log(`unfollow ${user_to_unfollow}`);
-      } else {
-        console.log(`error occurs when try to unfollow ${user_to_unfollow}`);
-      }
-    });
+  .then((res) => res.json())
+  .then((data_received) => {
+    if (data_received.result == 1) {
+      console.log(`unfollow ${user_to_unfollow}`);
+      return true;
+    } else {
+      console.log(`error occurs when try to unfollow ${user_to_unfollow}`);
+      return false;
+    }
+  })
 }
 
 // prevent go to other profile when clicking on follow box
@@ -397,13 +369,19 @@ user_boxs.forEach((user_box) => {
   });
 });
 
+// remove report button if user is viewing their own profile
+if (uViewed_username == username) {
+  document.getElementById("report-user").remove()
+  document.getElementById("report-post").remove()
+}
+// remove delete post button if user is viewing other profiles
+else {
+  document.getElementById("delete-post").remove()
+}
+
 // *************************************************************
 // main
 const main = async () => {
-  // render_followers();
-  //render_following();
-  // render_images();
-  //load_modal_edit();
   event_click_image();
   event_delete_post();
   event_report_post();

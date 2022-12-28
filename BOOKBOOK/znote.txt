@@ -1,3 +1,8 @@
+update 28/12/2022 by Thùy
+- sửa lỗi render report user/post ở profile
+- thêm front-end cho admin
+- sửa lỗi follow/unfollow lỗi ở profile (do merge code lỗi??)
+
 update 28/12/2022 by Nguyên
 - phần search user còn mấy cái nút follow chưa xử lý
 - phần search post khi nào rảnh làm sau. tạm thời skip.

@@ -132,7 +132,7 @@ exports.followUser = async (req, res, next) => {
     try {
       const user_to_follow_info = await userS.getUserInfo(req.body.user_to_follow)
       if (user_to_follow_info.permission == 0) {
-        const result = await userS.follow(req.user.username, req.body.user_to_follow)
+        const result = await userS.startFollow(req.user.username, req.body.user_to_follow)
         if (result) {
             res.send(JSON.stringify({ result: 1 }))
         }
