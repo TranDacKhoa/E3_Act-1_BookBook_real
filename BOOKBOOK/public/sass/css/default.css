@@ -31,7 +31,7 @@ body {
 
 .base-layout {
   background-repeat: no-repeat;
-  background-color: rgb(244, 243, 244);
+  /* background-color: rgb(244, 243, 244); */
   background-attachment: fixed;
 }
 .base-layout::after {
@@ -148,7 +148,7 @@ body {
 }
 .hover-icon:hover {
   /* background-color: var(--bgr-light-gray); */
-  background-color: #c7c7c7;
+  /* background-color: #c7c7c7; */
   cursor: pointer;
 }
 
@@ -188,7 +188,9 @@ body {
   z-index: 2;
   position: absolute;
 }
-
+.bg-light {
+  background-color: #ffffffc3 !important;
+}
 .nav-container {
   min-width: 200px;
   border-radius: 10px;
@@ -224,9 +226,7 @@ body {
 .search-result {
   border-radius: 10px;
 }
-#tmp {
-  border-radius: 50px;
-}
+
 .search-box {
   display: flex;
   align-items: center;

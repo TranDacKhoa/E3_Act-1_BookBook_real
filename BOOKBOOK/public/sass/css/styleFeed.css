@@ -1,3 +1,49 @@
+@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,500&display=swap");
+:root {
+  --light-orange: rgb(255, 158, 29);
+  --light-blue: rgb(35, 135, 241);
+  --light-gray: rgb(170, 170, 170);
+  --dark-orange: rgb(255, 117, 47);
+  --white: white;
+  --border-light-gray: rgb(226, 226, 226);
+  --bgr-light-gray: rgba(226, 226, 226, 0.652);
+  --text-dart-orange: rgb(255, 117, 47);
+  --dark-gray: #dedede;
+  --bg-light-gray: #f0f0f0;
+  --font: "Font Awesome 6 Free";
+}
+.hover-icon {
+  border-radius: 7px;
+}
+.hover-icon:hover {
+  background-color: var(--bgr-light-gray);
+  cursor: pointer;
+}
+.hover-icon:hover i {
+  color: var(--dark-orange);
+}
+.hover-icon:hover span {
+  color: var(--dark-orange);
+}
+
+.active {
+  border-radius: 7px;
+  background-color: var(--bgr-light-gray);
+}
+.active i {
+  color: var(--dark-orange);
+}
+.active span {
+  color: var(--dark-orange);
+}
+
+.active-like i {
+  color: var(--dark-orange);
+}
+.active-like span {
+  color: var(--dark-orange);
+}
 .content {
   margin: 110px 10px 0 10px;
   max-width: 1200px;
@@ -8,7 +54,7 @@
 .nav-container {
   min-width: 200px;
   border-radius: 10px;
-  background-color: var(--bg-light-gray);
+  /* background-color: var(--bg-light-gray); */
   position: sticky;
   top: 110px;
   height: calc(100vh - 130px);

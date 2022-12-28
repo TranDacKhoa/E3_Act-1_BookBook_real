@@ -14,134 +14,6 @@
   --font: "Font Awesome 6 Free";
 }
 
-html {
-  margin: 0;
-  padding: 0;
-  background-color: var(--dark-gray);
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: auto;
-  box-sizing: border-box;
-  font-family: "Open Sans", sans-serif;
-}
-
-.base-layout {
-  background-repeat: no-repeat;
-  background-color: rgb(244, 243, 244);
-  background-attachment: fixed;
-}
-.base-layout::after {
-  position: fixed;
-  z-index: 1;
-  content: "";
-  width: 150px;
-  height: 150px;
-  background-color: var(--light-orange);
-  bottom: 5%;
-  left: 0;
-  filter: blur(100px);
-}
-.base-layout::before {
-  position: fixed;
-  z-index: 1;
-  content: "";
-  width: 150px;
-  height: 150px;
-  background-color: var(--light-orange);
-  top: 10%;
-  right: 5%;
-  transform: translateY(-50%);
-  filter: blur(100px);
-}
-
-.header {
-  /* background-color: var(--white); */
-  background-color: #f0f0f0;
-  z-index: 10;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-}
-
-.header-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.header-container i {
-  font-size: 20px;
-}
-
-.header-left .left-logo {
-  max-width: 100px;
-  display: flex;
-}
-.header-left .left-logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.header-left .left-logo span {
-  position: absolute;
-  letter-spacing: 5px;
-  bottom: 10%;
-  transform: translate(-15%, 20%);
-}
-
-.header-center {
-  /* max-width: 400px; */
-}
-.header-center ul {
-  list-style-type: none;
-}
-.header-center ul li {
-  border-radius: 7px;
-  cursor: pointer;
-}
-.header-center ul li a {
-  color: black;
-  text-decoration: none;
-}
-
-.header-right .right-message {
-  border-radius: 7px;
-  cursor: pointer;
-}
-.header-right .right-user {
-  width: 50px;
-  height: 50px;
-  border-radius: 100rem;
-  overflow: hidden;
-  cursor: pointer;
-}
-.header-right .right-user:hover img {
-  opacity: 0.7;
-}
-.header-right .right-user img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.user-chat .chat-text {
-  flex: 1;
-}
-
-.img-user {
-  min-height: 40px;
-  min-width: 40px;
-  height: 40px;
-  width: 40px;
-  border-radius: 100rem;
-  overflow: hidden;
-}
-.img-user img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .hover-icon {
   border-radius: 7px;
 }
@@ -341,7 +213,10 @@ body {
 .card-header {
   font-weight: bold;
   font-size: 24px;
+  overflow: hidden;
+  height: 50px;
 }
+
 .display-on-hover {
   position: absolute;
   visibility: hidden;
@@ -406,4 +281,7 @@ h3 > a {
 .item-img {
   min-width: 200px;
   min-height: 200px;
+  max-width: 202px;
+  max-height: 202px;
+  object-fit: cover;
 }

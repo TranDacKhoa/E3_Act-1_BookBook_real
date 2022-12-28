@@ -31,7 +31,7 @@
           <li class="nav-item-left hover-icon">
             <a
               class="nav-link d-flex gap-3 align-items-center"
-              href="./me/"
+              href="/market/me/"
             >
               <i class="fa-solid fa-user fa-fw"></i>
               <span>My items</span></a>
@@ -138,16 +138,16 @@
         <div class="grid-prod">
           {{#each itemList}} 
                      <div class="card list-item-group zoom-in-card" post_id="{{this.post_id}}">
-                        <h5 class="card-header" style="font-size: 15px;">
+                        <h5 class="card-header d-flex align-items-center" style="font-size: 15px;" >
                          {{this.title}} 
                         
                         </h5>
 
-                        <div class="card-body to-hover" data-bs-toggle="modal" data-bs-target="#modal-user-item">
+                        <div class="card-body to-hover" data-bs-toggle="modal" data-bs-target="#modal-user-item" style="margin: 0 auto;">
                            <img src="./market/{{this.img}}" class="card-img-top zoom-in-img item-img" alt="..." />
                            <hr />
 
-                           <div class="card border-success align-items-center price-card" id="tinyprice">
+                           <div class="card border-success align-items-center price-card mb-2" id="tinyprice">
                              {{displayVND this.price}} 
                            
                            </div>

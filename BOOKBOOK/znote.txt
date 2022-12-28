@@ -1,3 +1,8 @@
+update 29/12/2022 by Nguyên
+- fix 1 số lỗi hiển thị của search bar liên quan đến các file css
+- fix lỗi size hình của market
+
+
 update 28/12/2022 by Thùy
 - sửa lỗi render report user/post ở profile
 - thêm front-end cho admin
