@@ -18,14 +18,39 @@ exports.checkPermission = async (req, res, next) => {
     } catch (error) {
       next(error);
     }
-  };
+};
 
-exports.renderAdmin = async (req, res, next) => {
+exports.redirectAdmin = async (req, res, next) => {
   try {
-    const adminProf = userS.getUserProfile(req.user.username)
-    res.render("admin", {
-      title: "Admin | BookBook",
+    res.redirect("/admin/post")
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.renderReportPost = async (req, res, next) => {
+  try {
+    const adminProf = await userS.getUserProfile(req.user.username)
+    
+    res.render("report_post", {
+      title: adminProf.fullname + " | BookBook",
       user: adminProf,
+      layout: "admin",
+      helpers: hbsHelpers,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.renderReportUser = async (req, res, next) => {
+  try {
+    const adminProf = await userS.getUserProfile(req.user.username)
+
+    res.render("report_user", {
+      title: adminProf.fullname + " | BookBook",
+      user: adminProf,
+      layout: "admin",
       helpers: hbsHelpers,
     });
   } catch (error) {

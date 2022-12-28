@@ -6,7 +6,7 @@ const userActionC = require("../controllers/userAction.c");
 router
   .route("/")
   .all(userActionC.checkPermission)
-  .get(userActionC.handleMyProfile, userActionC.handleOtherProfile);
+  .get(userActionC.handleMyProfile, userActionC.checkOtherPermission, userActionC.handleOtherProfile);
 
 router
   .route("/edit")

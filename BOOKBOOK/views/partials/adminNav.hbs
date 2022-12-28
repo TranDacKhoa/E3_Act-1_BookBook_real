@@ -10,95 +10,15 @@
         </span>
       </div>
     </div>
-    <div
-      class="header-center d-flex gap-3 justify-content-center align-items-center w-100"
-    >
-      <ul class="nav justify-content-center m-0 p-0 w-100 gap-4">
-        <li class="nav-item hover-icon">
-          <a class="nav-link active" aria-current="page" href="/"><i
-              class="fa-solid fa-house"
-            ></i></a>
-        </li>
-        <li class="nav-item hover-icon">
-          <a class="nav-link" href="#"><i
-              class="fa-solid fa-magnifying-glass"
-            ></i></a>
-        </li>
-        <li class="nav-item hover-icon">
-          <a class="nav-link" href="/group"><i
-              class="fa-solid fa-users-line"
-            ></i></a>
-        </li>
-        <li class="nav-item hover-icon">
-          <a class="nav-link" href="/market"><i class="fa-solid fa-store"></i></a>
-        </li>
-      </ul>
-    </div>
+    
     <div
       class="header-right d-flex justify-content-center align-items-center gap-2"
     >
-      <i class="fa-solid fa-bell"></i>
-      <div
-        class="right-message p-2 px-3 hover-icon"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-
-                <i class="fa-regular fa-comment"></i>
-            </div>
-            <ul class="dropdown-menu w-25">
-                <span class="text-center">
-                <h3><b>Chat</b></h3>
-                </span>
-                <li class="dropdown-item">
-                <div class="user-chat d-flex flex-row justify-content-between gap-2 p-2">
-                    <div class="img-user">
-                        <img src="./images/new.jpg" alt="" />
-                    </div>
-                    <div class="chat-text">
-                        <span><b>Tuan</b></span>
-                        <span>
-                            <p class="m-0">Dang lam gi day.</p>
-                        </span>
-                    </div>
-                </div>
-                </li>
-                <li class="dropdown-item">
-                <div class="user-chat d-flex flex-row justify-content-between gap-2 p-2">
-                    <div class="img-user">
-                        <img src="./images/new.jpg" alt="" />
-                    </div>
-                    <div class="chat-text">
-                        <span><b>Tuan</b></span>
-                        <span>
-                            <p class="m-0">Dang lam gi day.</p>
-                        </span>
-                    </div>
-                </div>
-                </li>
-                <li class="dropdown-item">
-                <div class="user-chat d-flex flex-row justify-content-between gap-2 p-2">
-                    <div class="img-user">
-                        <img src="./images/new.jpg" alt="" />
-                    </div>
-                    <div class="chat-text">
-                        <span><b>Tuan</b></span>
-                        <span>
-                            <p class="m-0">Dang lam gi day.</p>
-                        </span>
-                    </div>
-                </div>
-                </li>
-            </ul>
-            <div class="right-user" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="avatar/{{ user.avatar }}" alt="" />
-            </div>
+        <div class="right-user" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="avatar/{{ user.avatar }}" alt="" />
+        </div>
 
       <ul class="dropdown-menu">
-        <li>
-          <a class="dropdown-item" href="/profile"><i class="fa fa-user fa-fw"></i>
-            Profile</a>
-        </li>
         <li>
           <a class="dropdown-item" href="#"><i class="fa-solid fa-wrench fa-fw"></i>
             Change password</a>

@@ -36,20 +36,19 @@ exports.checkPermission = async (req, res, next) => {
 exports.handleMyProfile = async (req, res, next) => {
   try {
     if (req.user.username === req.query.username || req.query.username === undefined) {
-        const uProfile = await userS.getUserProfile(req.user.username)
+        const myProfile = await userS.getUserProfile(req.user.username)
         const followers = await userS.getFollowersList(req.user.username)
         const following = await userS.getFollowingList(req.user.username)
         const posts = await userS.getAllPosts(req.user.username);
 
         res.render('profile', {
-            title: uProfile.fullname + " | BookBook",
-            user: uProfile,
-            userViewed: uProfile,
+            title: myProfile.fullname + " | BookBook",
+            user: myProfile,
+            userViewed: myProfile,
             followers: followers,
             following: following,
             followedByUser: following,
             helpers: hbsHelpers,
-            number_of_posts: posts.length,
             post: posts,
         })
     }
@@ -61,6 +60,26 @@ exports.handleMyProfile = async (req, res, next) => {
   }
 };
 
+exports.checkOtherPermission = async (req, res, next) => {
+  try {
+    const otherInfo = await userS.getUserInfo(req.query.username)
+    // if going to profile page of a valid user
+    if (otherInfo.permission == 0) {
+      next()
+    }
+    // if going to profile page of an admin
+    if (otherInfo.permission == 1) {
+      res.redirect("/")
+    }
+    // if going to profile page of a blocked user
+    if (otherInfo.permission == -1) {
+      res.redirect("/block")
+    }
+  } catch (error) {
+    next(error);
+  }
+}
+
 exports.handleOtherProfile = async (req, res, next) => {
   try {
     const myProfile = await userS.getUserProfile(req.user.username)
@@ -68,6 +87,7 @@ exports.handleOtherProfile = async (req, res, next) => {
     const followers = await userS.getFollowersList(req.query.username)
     const following = await userS.getFollowingList(req.query.username)
     const followedByUser = await userS.getFollowingList(req.user.username)
+    const posts = await userS.getAllPosts(req.query.username);
 
     res.render('profile', {
         title: otherProfile.fullname + " | BookBook",
@@ -77,6 +97,7 @@ exports.handleOtherProfile = async (req, res, next) => {
         following: following,
         followedByUser: followedByUser,
         helpers: hbsHelpers,
+        post: posts,
     })
   } catch (error) {
     next(error);
@@ -108,17 +129,16 @@ exports.updateProfile = async (req, res, next) => {
   }
 };
 
-
 exports.followUser = async (req, res, next) => {
     try {
-      console.log(req.body)
-      const result = await userS.follow(req.user.username, req.body.user_to_follow)
-      if (result) {
-          res.send(JSON.stringify({ result: 1 }))
+      const user_to_follow_info = await userS.getUserInfo(req.body.user_to_follow)
+      if (user_to_follow_info.permission == 0) {
+        const result = await userS.follow(req.user.username, req.body.user_to_follow)
+        if (result) {
+            res.send(JSON.stringify({ result: 1 }))
+        }
       }
-      else {
-          res.send(JSON.stringify({ result: 0 }))
-      }
+      res.send(JSON.stringify({ result: 0 }))
     } catch (error) {
         next(error)
     }
@@ -126,14 +146,14 @@ exports.followUser = async (req, res, next) => {
 
 exports.unfollowUser = async (req, res, next) => {
     try {
-      console.log(req.body)
-      const result = await userS.unfollow(req.user.username, req.body.user_to_unfollow)
-      if (result) {
-          res.send(JSON.stringify({ result: 1 }))
+      const user_to_unfollow_info = await userS.getUserInfo(req.body.user_to_unfollow)
+      if (user_to_unfollow_info.permission == 0) {
+        const result = await userS.unfollow(req.user.username, req.body.user_to_unfollow)
+        if (result) {
+            res.send(JSON.stringify({ result: 1 }))
+        }
       }
-      else {
-          res.send(JSON.stringify({ result: 0 }))
-      }
+      res.send(JSON.stringify({ result: 0 }))
     } catch (error) {
         next(error)
     }

@@ -33,6 +33,16 @@ app.use(
   express.static(__dirname + "/public"),
   express.static(__dirname + "/uploads")
 );
+app.use(
+  "/admin/user",
+  express.static(__dirname + "/public"),
+  express.static(__dirname + "/uploads")
+);
+app.use(
+  "/admin/post",
+  express.static(__dirname + "/public"),
+  express.static(__dirname + "/uploads")
+);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
