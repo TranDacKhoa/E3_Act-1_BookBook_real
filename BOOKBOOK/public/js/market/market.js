@@ -20,12 +20,8 @@ const event_click_image = () => {
   const items = document.querySelectorAll(".list-item-group");
   items.forEach((item, index) => {
     item.onclick = () => {
-      // let id = item.querySelector(".post_id");
-      // id = id.innerHTML;
+      console.log(item.getAttribute("post_id"));
       //fetch here to take item data
-      // const res =???;
-      // changeData(res);
-      // console.log(item.getAttribute("mine"));
     };
   });
 };

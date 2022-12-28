@@ -16,7 +16,7 @@ const marketServices = {
     }
   },
   getAds: async () => {
-    var ads = adsData;
+    var ads = await adsData;
     return ads;
   },
   getOwnItem: async (username) => {

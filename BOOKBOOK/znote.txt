@@ -1,3 +1,13 @@
+update 28/12/2022 by Nguyên
+- phần search user còn mấy cái nút follow chưa xử lý
+- phần search post khi nào rảnh làm sau. tạm thời skip.
+- profile chưa xử lý cái nút report user nếu như mình là owner
+- có 1 số lỗi hiển thị lặt vặt liên quan đến head nav
+
+update 27/12/2022 by Thư
+- xóa post
+- report post
+
 update 27/12/2022 by Thư
 - thêm post ở profile, bắt buộc phải có ảnh mới được đăng bài
 - render list posts ở profile

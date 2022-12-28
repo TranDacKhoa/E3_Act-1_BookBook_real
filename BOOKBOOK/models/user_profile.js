@@ -45,6 +45,12 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: true,
         defaultValue: Sequelize.Sequelize.fn("now"),
       },
+      searchable: {
+        type: `tsvector GENERATED ALWAYS AS (((setweight(to_tsvector('english'::regconfig, (COALESCE(fullname, ''::character varying))::text), 'A'::"char") || setweight(to_tsvector('english'::regconfig, COALESCE(username, ''::text)), 'B'::"char")))) STORED`,
+        set() {
+          throw new Error("generatedValue is read-only");
+        },
+      },
     },
     {
       sequelize,
@@ -56,6 +62,11 @@ module.exports = function (sequelize, DataTypes) {
           name: "user_profile_pkey",
           unique: true,
           fields: [{ name: "username" }],
+        },
+        {
+          name: "idx_searchable",
+          fields: ["searchable"],
+          using: "gin",
         },
       ],
     }

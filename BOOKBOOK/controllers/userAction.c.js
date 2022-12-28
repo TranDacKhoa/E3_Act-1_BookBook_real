@@ -32,7 +32,6 @@ exports.checkPermission = async (req, res, next) => {
   }
 };
 
-
 exports.handleMyProfile = async (req, res, next) => {
   try {
     if (req.user.username === req.query.username || req.query.username === undefined) {
@@ -123,7 +122,7 @@ exports.updateProfile = async (req, res, next) => {
       req.body.avatar = list[list.length - 1];
     }
     const result = await userS.updateProfile(req.user.username, req.body);
-    res.redirect('/profile')
+    res.redirect("/profile");
   } catch (error) {
     next(error);
   }
@@ -164,11 +163,36 @@ exports.getPostView = async (req, res, next) => {
     const index = req.body.view;
     const posts = await userS.getAllPosts(req.user.username);
     const post_view = posts[index];
-    console.log(post_view);
     res.json({
       img: post_view.dataValues.img,
       content: post_view.dataValues.text,
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.deletePost = async (req, res, next) => {
+  try {
+    const index = req.body.view;
+    const posts = await userS.getAllPosts(req.user.username);
+    const delete_post = posts[index];
+    const del_post_id = delete_post.post_id;
+    await userS.deleteOnWall(del_post_id);
+    res.json({ status: "success" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.reportPost = async (req, res, next) => {
+  try {
+    const index = req.body.view;
+    const posts = await userS.getAllPosts(req.user.username);
+    const post_reported = posts[index];
+    const post_reported_id = post_reported.post_id;
+    await userS.reportPost(post_reported_id);
+    res.json({ status: "success" });
   } catch (error) {
     next(error);
   }
