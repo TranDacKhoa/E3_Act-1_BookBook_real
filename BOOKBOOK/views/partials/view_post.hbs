@@ -20,7 +20,7 @@
     >
       <div class="modal-content flex-row m-0 bg-black">
         <div class="w-75 position-relative">
-          <div class="modal-body h-100">
+          <div class="modal-body h-100" id="post-image">
 
           </div>
         </div>
@@ -47,10 +47,12 @@
                   <i class="fa-solid fa-ellipsis"></i>
                 </div>
                 <ul class="dropdown-menu">
-                  <li class="d-flex align-items-center px-2 hover-icon" id="report-post">
+                  {{#if (notEq user.username userViewed.username)}}
+                  <li class="d-flex align-items-center px-2 hover-icon" id="report-post" data-bs-toggle="modal" data-bs-target="#modalReason">
                     <i class="fa-solid fa-circle-exclamation px-2"></i>
                     <span class="dropdown-item px-0 report-post">Report</span>
                   </li>
+                  {{else}}
                   <li
                     class="d-flex align-items-center px-2 hover-icon btn-delete" id="delete-post"
                   >
@@ -60,6 +62,7 @@
                       style="padding-left: 2px !important;"
                     >Delete</span>
                   </li>
+                  {{/if}}
                 </ul>
               </div>
               <div class="contents-body mb-3">

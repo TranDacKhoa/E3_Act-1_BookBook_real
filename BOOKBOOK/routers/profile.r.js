@@ -22,4 +22,6 @@ router.route("/deletePost").post(userActionC.deletePost);
 
 router.route("/reportPost").post(userActionC.reportPost);
 
+router.route("/reportUser").post(userActionC.reportUser);
+
 module.exports = router;

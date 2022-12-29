@@ -83,4 +83,10 @@ module.exports = {
       currency: "VND",
     });
   },
+  notAdmin: (permission) => {
+    if (permission == 1) {
+      return false
+    }
+    return true
+  }
 };

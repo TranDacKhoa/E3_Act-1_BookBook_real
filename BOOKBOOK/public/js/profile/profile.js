@@ -1,13 +1,20 @@
-import { showModal } from "../profile/modal.js"; // modal show image
-import { data_images, data_user } from "../data.js"; // data fake
-
 const username = document.getElementById("user").innerText;
 const uViewed_username = document.getElementById("userViewed").innerText;
 
-async function sendViewRequest(url = "/view", index) {
-  const data = {
-    view: index,
-  };
+async function sendViewRequest(url = "/view", index, to_report = 0) {
+  let data = ''
+  if (to_report) {
+    data = {
+      view: index,
+      reason: document.getElementById("reason").value
+    }
+  }
+  else {
+    data = {
+      view: index,
+    };
+  }
+  
   const response = await fetch(url, {
     method: "POST",
     headers: {
@@ -53,26 +60,71 @@ const event_delete_post = () => {
   });
 };
 
+let reportType = ''
+
 const event_report_post = () => {
-  const del_btn = document.querySelectorAll(".report-post");
-  del_btn.forEach((item, index) => {
-    item.onclick = (e) => {
-      sendViewRequest(
-        "http://localhost:3000/profile/reportPost",
-        current_post
-      ).then((data) => {});
-    };
-  });
+  const report_btn = document.getElementById("report-post");
+  report_btn.addEventListener('click', () => {
+    reportType = 'post'
+  })
 };
 
 const event_report_user = () => {
-  const images = document.querySelectorAll(".big-avt");
-  images.forEach((item, index) => {
-    item.onclick = () => {
-      showModal(data_images[index]); // data, nơi đặt modal
-    };
-  });
+  document.getElementById("reason").addEventListener('input', function () {
+    if (this.value != "") {
+      document.getElementById("report-btn").disabled = false
+    }
+    else {
+      document.getElementById("report-btn").disabled = true
+    }
+  })
+  document.getElementById("report-user").addEventListener("click", async () => {
+    reportType = 'user'
+  })
 };
+
+
+document.getElementById("report-btn").addEventListener("click", async () => {
+  let reason = document.getElementById("reason").value
+
+  if (reportType == 'user') {
+    let data = {
+      username: uViewed_username,
+      reason: reason,
+    }
+    await fetch("/profile/reportUser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.result == 1) {
+        console.log(`report ${uViewed_username} successfully`)
+        document.getElementById("reason").value = ""
+        $("#modalReason").modal('hide')
+      }
+      else {
+        alert(`Error occurs while reporting ${uViewed_username}`)
+        console.log(`Fail to report ${uViewed_username}`)
+      }
+    })
+  }
+
+  if (reportType == 'post') {
+    await sendViewRequest(
+      "http://localhost:3000/profile/reportPost",
+      current_post,
+      1
+    ).then((data) => {
+      document.getElementById("reason").value = ""
+      $("#modalReason").modal('hide')
+    });
+  }
+})
+
 // handle modal new post
 const input_wrap = document.querySelector(".input-wrap");
 const input_file = document.querySelector(".input-file");
@@ -369,15 +421,19 @@ user_boxs.forEach((user_box) => {
   });
 });
 
-// remove report button if user is viewing their own profile
-if (uViewed_username == username) {
-  document.getElementById("report-user").remove()
-  document.getElementById("report-post").remove()
-}
-// remove delete post button if user is viewing other profiles
-else {
-  document.getElementById("delete-post").remove()
-}
+
+// function toggle_report_button() {
+  
+//   document.getElementById("reason").addEventListener('input', function () {
+//     if (this.value != "") {
+//       document.getElementById("report-btn").disabled = false
+//     }
+//     else {
+//       document.getElementById("report-btn").disabled = true
+//     }
+//   })
+// }
+
 
 // *************************************************************
 // main
@@ -385,5 +441,6 @@ const main = async () => {
   event_click_image();
   event_delete_post();
   event_report_post();
+  event_report_user();
 };
 main();

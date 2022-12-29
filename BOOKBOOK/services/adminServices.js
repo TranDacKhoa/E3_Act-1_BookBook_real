@@ -1,10 +1,30 @@
 const seq = require("../database/db");
 const models = seq.models;
-//const sequelize = seq.sequelize;
-const bcrypt = require("bcrypt");
-const saltRounds = 10;
 
 const adminServices = {
+    getAllReportUsers: async () => {
+        const result = await models.reported_user.findAll();
+        return result
+    },
+    getAllReportPosts: async () => {
+        const result = await models.reported_post.findAll();
+        return result
+    },
+    getPost: async (post_id) => {
+        const result = await models.general_post.findAll({
+            include: [
+                {
+                    model: models.user_profile,
+                    as: "author_username_user_profile",
+                    attributes: ["username", "avatar", "fullname"],
+                },
+            ],
+            where: {
+                post_id: post_id,
+            },
+        });
+        return result[0]
+    },
     checkExistGroupPost: async (post_id) => {
         const result = await models.group_wall.findAll({
             where: {
@@ -210,7 +230,7 @@ const adminServices = {
             console.log(err);
             return false;
         }
-    }
+    },
 };
 
 
