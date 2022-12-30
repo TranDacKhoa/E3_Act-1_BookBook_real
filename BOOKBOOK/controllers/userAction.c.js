@@ -8,6 +8,7 @@ exports.getFeed = async (req, res, next) => {
     res.render("feed", {
       title: "BookBook",
       user: uProfile,
+      helpers: hbsHelpers,
     });
   } catch (error) {
     next(error);
@@ -17,13 +18,10 @@ exports.getFeed = async (req, res, next) => {
 exports.checkPermission = async (req, res, next) => {
   try {
     if (req.isAuthenticated()) {
-      if (req.user.permission == 0) {
-        next();
-      } else if (req.user.permission == 1) {
-        res.redirect("/admin");
-      } else {
-        res.redirect("/block");
+      if (req.user.permission == -1) {
+        return res.redirect("/block");
       }
+      next()
     } else {
       res.redirect("/login");
     }
@@ -35,21 +33,24 @@ exports.checkPermission = async (req, res, next) => {
 exports.handleMyProfile = async (req, res, next) => {
   try {
     if (req.user.username === req.query.username || req.query.username === undefined) {
-        const myProfile = await userS.getUserProfile(req.user.username)
-        const followers = await userS.getFollowersList(req.user.username)
-        const following = await userS.getFollowingList(req.user.username)
-        const posts = await userS.getAllPosts(req.user.username);
+      if (req.user.permission == 1) {
+        return res.redirect('/admin')
+      }
+      const myProfile = await userS.getUserProfile(req.user.username)
+      const followers = await userS.getFollowersList(req.user.username)
+      const following = await userS.getFollowingList(req.user.username)
+      const posts = await userS.getAllPosts(req.user.username);
 
-        res.render('profile', {
-            title: myProfile.fullname + " | BookBook",
-            user: myProfile,
-            userViewed: myProfile,
-            followers: followers,
-            following: following,
-            followedByUser: following,
-            helpers: hbsHelpers,
-            post: posts,
-        })
+      res.render('profile', {
+          title: myProfile.fullname + " | BookBook",
+          user: myProfile,
+          userViewed: myProfile,
+          followers: followers,
+          following: following,
+          followedByUser: following,
+          helpers: hbsHelpers,
+          post: posts,
+      })
     }
     else {
         next()
@@ -97,6 +98,7 @@ exports.handleOtherProfile = async (req, res, next) => {
         followedByUser: followedByUser,
         helpers: hbsHelpers,
         post: posts,
+        permission: req.user.permission,
     })
   } catch (error) {
     next(error);
@@ -191,8 +193,23 @@ exports.reportPost = async (req, res, next) => {
     const posts = await userS.getAllPosts(req.user.username);
     const post_reported = posts[index];
     const post_reported_id = post_reported.post_id;
-    await userS.reportPost(post_reported_id);
+    const reason = req.body.reason;
+    await userS.reportPost(post_reported_id, reason);
     res.json({ status: "success" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.reportUser = async (req, res, next) => {
+  try {
+    const username = req.body.username;
+    const reason = req.body.reason;
+    let result = 0;
+    if (await userS.reportUser(username, reason)) {
+      result = 1
+    }
+    res.send(JSON.stringify({result: result}))
   } catch (error) {
     next(error);
   }

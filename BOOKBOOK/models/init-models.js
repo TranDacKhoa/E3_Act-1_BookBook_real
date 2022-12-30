@@ -16,7 +16,7 @@ const _reported_group = require("./reported_group");
 const _reported_user = require("./reported_user");
 const _reported_post = require("./reported_post");
 const _group_reported_member = require("./group_reported_member");
-const _group_reposted_post = require("./group_reported_post");
+const _group_reported_post = require("./group_reported_post");
 
 function initModels(sequelize) {
   var follow = _follow(sequelize, DataTypes);
@@ -36,7 +36,7 @@ function initModels(sequelize) {
   var reported_user = _reported_user(sequelize, DataTypes);
   var reported_post = _reported_post(sequelize, DataTypes);
   var group_reported_member = _group_reported_member(sequelize, DataTypes);
-  var group_reposted_post = _group_reposted_post(sequelize, DataTypes);
+  var group_reported_post = _group_reported_post(sequelize, DataTypes);
 
   general_post.belongsToMany(group_info, {
     as: "group_id_group_info_group_walls",
@@ -278,7 +278,7 @@ function initModels(sequelize) {
     reported_user,
     reported_post,
     group_reported_member,
-    group_reposted_post,
+    group_reported_post,
   };
 }
 

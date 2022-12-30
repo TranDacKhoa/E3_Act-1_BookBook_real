@@ -1,6 +1,5 @@
 const seq = require("../database/db");
 const models = seq.models;
-//const sequelize = seq.sequelize;
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
@@ -119,15 +118,6 @@ const userServices = {
   },
 
   //profile services
-  // getProfile: async (username) => {
-  //   const result = await models.user_profile.findAll({
-  //     raw: true,
-  //     where: {
-  //       username: username,
-  //     },
-  //   });
-  //   return result;
-  // },
   getFollowersList: async (username) => {
     const result = await models.follow.findAll({
       attributes: ["usr_follow"],
@@ -291,15 +281,32 @@ const userServices = {
       return false;
     }
   },
-  reportPost: async (post_id) => {
+
+  // report
+  reportPost: async (post_id, reason) => {
     try {
       const result = await models.reported_post.create({
         post_id: post_id,
+        reason: reason,
       });
       console.log(`report post ${post_id}\n`);
       return true;
     } catch (err) {
       console.log(`raise error when report post ${post_id}\n `);
+      console.log(err);
+      return false;
+    }
+  },
+  reportUser: async (username, reason) => {
+    try {
+      const result = await models.reported_user.create({
+        reported_user: username,
+        reason: reason,
+      });
+      console.log(`report user ${username}\n`);
+      return true;
+    } catch (err) {
+      console.log(`raise error when report user ${username}\n `);
       console.log(err);
       return false;
     }

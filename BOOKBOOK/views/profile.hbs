@@ -68,6 +68,7 @@
                   Edit profile
                </button>
                {{else}}
+                  {{#if (notAdmin permission)}}
                   {{#if (isFollowedByUser userViewed.username followedByUser) }}
                   <button type="button" class="btn btn-info w-100" data-bs-toggle="dropdown" aria-expanded="false" id="following-btn">
                      Following <i class="fa fa-check"></i>
@@ -83,6 +84,7 @@
                   <button type="button" class="btn btn-outline-info w-100" name="follow" id="flw-viewedUser-btn">
                      Follow
                   </button>
+                  {{/if}}
                   {{/if}}
                {{/if}}
             </div>
@@ -103,6 +105,7 @@
                         <span class="other-user-username">@{{ username }}</span>
                      </div>
                      {{#if (notEq username ../user.username)}}
+                        {{#if (notAdmin ../permission)}}
                         {{#if (isFollowedByUser username ../followedByUser)}}
                         <div class="box-follow">
                            <button type="button" class="btn btn-success btn-sm" data-bs-toggle="dropdown" aria-expanded="false"
@@ -121,6 +124,7 @@
                         <div class="box-follow">
                            <button type="button" class="btn btn-outline-success" name="follow">Follow</button>
                         </div>
+                        {{/if}}
                         {{/if}}
                      {{/if}}
                   </div>
@@ -143,6 +147,7 @@
                         <span class="other-user-username">@{{ username }}</span>
                      </div>
                      {{#if (notEq username ../user.username)}}
+                        {{#if (notAdmin ../permission)}}
                         {{#if (isFollowedByUser username ../followedByUser)}}
                         <div class="box-follow">
                            <button type="button" class="btn btn-success btn-sm" data-bs-toggle="dropdown" aria-expanded="false">
@@ -161,6 +166,7 @@
                            <button type="button" class="btn btn-outline-success" name="follow">Follow</button>
                         </div>
                         {{/if}}
+                        {{/if}}
                      {{/if}}
                   </div>
                   {{/each}}
@@ -169,20 +175,26 @@
       </div>
 {{!-- ----------------------- --}}
       <div class="content-right col-9">
+         {{#if (notAdmin permission)}}
+         {{#if (notEq user.username userViewed.username)}}
          <div class="header-setting hover-icon action-dot" data-bs-toggle="dropdown" aria-expanded="false" id="report-user">
             <i class="fa-solid fa-ellipsis"></i>
          </div>
 
          <ul class="dropdown-menu">
-            <li class="d-flex align-items-center px-2 hover-icon">
-               <i class="fa-regular fa-flag px-2">
-               </i><span class="dropdown-item px-0"> Report user</span>
+            <li class="d-flex align-items-center px-1 hover-icon">
+               <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalReason" id="report-user">
+                  <i class="fa-regular fa-flag pe-2"></i>
+                  <span class="px-0"> Report user</span>
+               </button>
             </li>
 
          </ul>
+         {{/if}}
+         {{/if}}
          <div class="image-list p-3">
             {{#each post}}
-               <div class="images" data-bs-toggle="modal"  data-bs-target="#exampleModal" >
+               <div class="images" data-bs-toggle="modal" data-bs-target="#exampleModal" >
                   <img src="post/{{dataValues.img}}" id="{{dataValues.post_id}}" alt="" />
                </div>
             {{/each}}
@@ -193,6 +205,7 @@
 {{> view_post}}
 {{> delete_post}}
 {{> new_post}}
+{{> report}}
 {{> edit_profile}}
 
 

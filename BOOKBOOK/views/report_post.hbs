@@ -1,66 +1,16 @@
-
-<link rel="stylesheet" href="./sass/css/styleAdmin.css" />
-
 <div class="base-layout position-relative d-flex justify-content-center w-100 h-100" id="idOfReport">
-    
-    <div class="modal-wrap">
-        <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-keyboard="false"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <button type="button" class="btn-close position-absolute d-flex align-items-center" data-bs-dismiss="modal"
-                aria-label="Close">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="modal-dialog modal-fullscreen-md-down modal-dialog-centered modal-container">
-                <div class="modal-content flex-row m-0 bg-black">
-                    <div class="w-75 position-relative">
-                        <div class="modal-body h-100">
-
-                        </div>
-                    </div>
-                    <div class="modal-post w-25 position-relative">
-                        <div class="post-container overflow-auto pt-3 px-2">
-                            <div class="container-contents d-flex flex-column">
-                                <div
-                                    class="contents-header d-flex gap-3 align-items-center justify-content-between pt-2 pb-2 px-1 pe-1">
-                                    <div class="header-img">
-                                        <img src="${data_images.avatar}" alt="" />
-                                    </div>
-                                    <div class="header-name d-flex flex-column">
-                                        <span>${data_images.user}</span>
-                                        <span class="fst-italic fw-lighter">${data_images.id_user}</span>
-                                    </div>
-                                </div>
-                                <div class="contents-body mb-3">
-                                    <!--  -->
-                                </div>
-                                <div class="contents-footer pt-1 pb-1 d-flex justify-content-between gap-2 mb-4">
-                                    <div class="d-flex justify-content-center align-items-center gap-3 pt-2 pb-2">
-                                        <i class="fa-regular fa-message"></i> Comments
-                                    </div>
-                                </div>
-                                <div class="contents-comments">
-                                    <!--  -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
     <div class="content w-100 d-flex gap-0 h-auto pb-4 gap-3">
         <div class="col-3 overflow-hidden pb-3 nav-container bg-light pt-4 px-2">
             <div class="left-nav">
                 <ul
                     class="nav h-100 d-flex flex-column align-items-center justify-content-start py-3 px-3 gap-3 ul-wrap">
                     <li class="nav-item-left hover-icon">
-                        <a class="nav-link d-flex gap-3 align-items-center active" href="/admin/post">
+                        <a class="nav-link d-flex gap-3 align-items-center active" href="/admin/post" rp-type="post">
                         <i class="fa-solid fa-clipboard-user fa-fw"></i>
                         <span>Report Post</span></a>
                     </li>
                     <li class="nav-item-left hover-icon">
-                        <a class="nav-link d-flex gap-3 align-items-center" href="/admin/user">
+                        <a class="nav-link d-flex gap-3 align-items-center" href="/admin/user" rp-type="user">
                         <i class="fa-solid fa-user-tag fa-fw"></i>
                         <span>Report User</span></a>
                     </li>
@@ -73,50 +23,28 @@
 
         </div>
         <div class="col-9 px-3 py-2 bg-light">
-            <table class="table table-striped">
+            <table class="table table-striped"  id="rp-table">
                 <thead>
                     <tr>
                         <th scope="col">ReportID</th>
                         <th scope="col">PostID</th>
-                        <th scope="col">Author</th>
                         <th scope="col">Reason</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {{#each rp_posts}}
                     <tr>
-                        <th scope="row">1</th>
-                        <td>0</td>
-                        <td>Mark</td>
-                        <td>trash</td>
+                        <th scope="row">{{dataValues.report_id}}</th>
+                        <td>{{dataValues.post_id}}</td>
+                        <td>{{dataValues.reason}}</td>
                         <td>
-                            <button class="btn btn-info me-3" data-bs-toggle="modal" data-bs-target="#exampleModal">View</button>
-                            <button class="btn btn-success me-3">Skip</button>
-                            <button class="btn btn-danger me-3">Delete</button>
+                            <button class="btn btn-info me-3" name="view-post">View</button>
+                            <button class="btn btn-success me-3" name="skip" onclick="confirmSkip(this, 'post')">Skip</button>
+                            <button class="btn btn-danger me-3" name="delete" onclick="confirmDelete(this, 'post')">Delete</button>
                         </td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>0</td>
-                        <td>Jacob</td>
-                        <td>trash</td>
-                        <td>
-                            <button class="btn btn-info me-3" data-bs-toggle="modal" data-bs-target="#exampleModal">View</button>
-                            <button class="btn btn-success me-3">Skip</button>
-                            <button class="btn btn-danger me-3">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>0</td>
-                        <td>Larry</td>
-                        <td>trash</td>
-                        <td>
-                            <button class="btn btn-info me-3" data-bs-toggle="modal" data-bs-target="#exampleModal">View</button>
-                            <button class="btn btn-success me-3">Skip</button>
-                            <button class="btn btn-danger me-3">Delete</button>
-                        </td>
-                    </tr>
+                    {{/each}}
                 </tbody>
             </table>
             
@@ -124,5 +52,6 @@
     </div>
 </div>
 
-<script type="module" src="./js/admin/admin.js"></script>
-<script type="module" src="./js/admin/profileAdmin.js"></script>
+{{> confirm_delete}}
+{{> confirm_skip}}
+{{> view_post}}

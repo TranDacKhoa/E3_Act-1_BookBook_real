@@ -1,7 +1,11 @@
+update 30/12/2022 by Thùy
+- sửa typo gây lỗi trong init-models (group_reposted_post -> group_reported_post)
+- sửa lại một số hàm adminServices (lỗi foreign key khi xóa)
+- xong admin
+
 update 29/12/2022 by Nguyên
 - fix 1 số lỗi hiển thị của search bar liên quan đến các file css
 - fix lỗi size hình của market
-
 
 update 28/12/2022 by Thùy
 - sửa lỗi render report user/post ở profile
