@@ -1,3 +1,13 @@
+// check location (at report user or report post)
+let nav_item_left = document.querySelectorAll(".nav-item-left")
+let _location = ''
+nav_item_left.forEach((item) => {
+    let nav_link = item.children[0]
+    if (nav_link.classList.contains("active")) {
+        _location = nav_link.getAttribute('rp-type')
+    }
+})
+
 // handle view button
 let view_user = document.getElementsByName("view-user")
 for (let i = 0; i < view_user.length; i++) {
@@ -32,19 +42,96 @@ for (let i = 0; i < view_post.length; i++) {
 }
 
 // handle skip button
-let confirm = document.getElementById("confirm-skip")
-
+let confirm_skip = document.getElementById("confirm-skip")
 function confirmSkip(skip_btn) {
     $("#skipModal").modal('show')
-    confirm.addEventListener('click', skip, false)
-    confirm.skip_btn = skip_btn
+    confirm_skip.addEventListener('click', skip, false)
+    confirm_skip.skip_btn = skip_btn
+}
+async function skip(event) {
+    let row = event.currentTarget.skip_btn.parentElement.parentElement
+    let row_index = row.rowIndex
+    let report_id = row.children[0].innerText
+    let url = ''
+    
+    if (_location == 'post') {
+        url = '/admin/post/skip'
+    }
+    else {
+        url = '/admin/user/skip'
+    }
+    let result = await fetch(url, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({data: report_id})
+    })
+    .then(res => res.json())
+    .then(result => {
+        return result
+        
+    })
+
+    if (result) {
+        console.log(`Report ${_location} ${report_id} successfully`)
+        document.getElementById("rp-table").deleteRow(row_index)
+        confirm_skip.removeEventListener('click', skip, false)
+        $("#skipModal").modal('hide')
+    }
+    else {
+        console.log(`Fail to skip report of ${_location} ${report_id}`)
+        alert(`Fail to skip report of ${_location} ${report_id}`)
+    }
 }
 
-function skip(event) {
-    let row_index = event.currentTarget.skip_btn.parentElement.parentElement.rowIndex
-    document.getElementById("rp-table").deleteRow(row_index)
-    $("#skipModal").modal('hide')
-    confirm.removeEventListener('click', skip, false)
+
+// handle delete button
+let confirm_delete = document.getElementById("confirm-delete")
+function confirmDelete(delete_btn) {
+    $("#deleteModal").modal('show')
+    confirm_delete.addEventListener('click', _delete, false)
+    confirm_delete.delete_btn = delete_btn
+}
+async function _delete(event) {
+    let row = event.currentTarget.delete_btn.parentElement.parentElement
+    let data = row.children[1].innerText
+    let rows = document.querySelectorAll("tr")
+    let table = document.getElementById("rp-table")
+    let url = ''
+    
+    if (_location == 'post') {
+        url = '/admin/post/delete'
+    }
+    else {
+        url = '/admin/user/delete'
+    }
+    let result = await fetch(url, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({data: data})
+    })
+    .then(res => res.json())
+    .then(result => {
+        return result
+    })
+    if (result) {
+        console.log(`Delete ${location} ${data} successfully`)
+        $("#deleteModal").modal('hide')
+        confirm_delete.removeEventListener('click', _delete, false)
+        rows.forEach((row) => {
+            if (row.children[1].innerText == data) {
+                let row_index = row.rowIndex
+                table.deleteRow(row_index)
+            }
+        })
+    }
+    else {
+        console.log(`Fail to delete ${_location} ${data}`)
+        alert(`Fail to delete ${_location} ${data}`)
+    }
 }
 
 document.querySelector('.header-setting').disabled = true

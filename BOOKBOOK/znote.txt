@@ -1,3 +1,8 @@
+update 30/12/2022 by Thùy
+- sửa typo gây lỗi trong init-models (group_reposted_post -> group_reported_post)
+- sửa lại một số hàm adminServices (lỗi foreign key khi xóa)
+- xong admin
+
 update 28/12/2022 by Thùy
 - sửa lỗi render report user/post ở profile
 - thêm front-end cho admin

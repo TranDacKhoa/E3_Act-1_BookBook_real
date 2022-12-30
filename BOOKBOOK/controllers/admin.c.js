@@ -72,3 +72,40 @@ exports.getPost = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.skipUser = async (req, res, next) => {
+  try {
+    const result = await adminS.skipUser(req.body.data)
+    res.send(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.deleteUser = async (req, res, next) => {
+  try {
+    const result = await adminS.deleteUser(req.body.data)
+    res.send(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.skipPost = async (req, res, next) => {
+  try {
+    const result = await adminS.skipPost(req.body.data)
+    console.log(req.body.data)
+    res.send(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.deletePost = async (req, res, next) => {
+  try {
+    const result = await adminS.deleteGeneralPost(req.body.data)
+    res.send(result);
+  } catch (error) {
+    next(error);
+  }
+};
