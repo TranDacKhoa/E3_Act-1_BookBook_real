@@ -2,19 +2,19 @@ const username = document.getElementById("user").innerText;
 const uViewed_username = document.getElementById("userViewed").innerText;
 
 async function sendViewRequest(url = "/view", index, to_report = 0) {
-  let data = ''
+  let data = "";
   if (to_report) {
     data = {
       view: index,
-      reason: document.getElementById("reason").value
-    }
-  }
-  else {
+      reason: document.getElementById("reason").value,
+    };
+  } else {
     data = {
       view: index,
+      user: document.querySelector(".images").getAttribute("username"),
     };
   }
-  
+
   const response = await fetch(url, {
     method: "POST",
     headers: {
@@ -47,7 +47,7 @@ const event_click_image = () => {
 };
 
 const event_delete_post = () => {
-  const del_btn = document.querySelectorAll(".delete-post");
+  const del_btn = document.querySelectorAll("#delete-post");
   del_btn.forEach((item, index) => {
     item.onclick = (e) => {
       sendViewRequest(
@@ -60,38 +60,36 @@ const event_delete_post = () => {
   });
 };
 
-let reportType = ''
+let reportType = "";
 
 const event_report_post = () => {
   const report_btn = document.getElementById("report-post");
-  report_btn.addEventListener('click', () => {
-    reportType = 'post'
-  })
+  report_btn.addEventListener("click", () => {
+    reportType = "post";
+  });
 };
 
 const event_report_user = () => {
-  document.getElementById("reason").addEventListener('input', function () {
+  document.getElementById("reason").addEventListener("input", function () {
     if (this.value != "") {
-      document.getElementById("report-btn").disabled = false
+      document.getElementById("report-btn").disabled = false;
+    } else {
+      document.getElementById("report-btn").disabled = true;
     }
-    else {
-      document.getElementById("report-btn").disabled = true
-    }
-  })
+  });
   document.getElementById("report-user").addEventListener("click", async () => {
-    reportType = 'user'
-  })
+    reportType = "user";
+  });
 };
 
-
 document.getElementById("report-btn").addEventListener("click", async () => {
-  let reason = document.getElementById("reason").value
+  let reason = document.getElementById("reason").value;
 
-  if (reportType == 'user') {
+  if (reportType == "user") {
     let data = {
       username: uViewed_username,
       reason: reason,
-    }
+    };
     await fetch("/profile/reportUser", {
       method: "POST",
       headers: {
@@ -99,31 +97,30 @@ document.getElementById("report-btn").addEventListener("click", async () => {
       },
       body: JSON.stringify(data),
     })
-    .then(res => res.json())
-    .then(data => {
-      if (data.result == 1) {
-        console.log(`report ${uViewed_username} successfully`)
-        document.getElementById("reason").value = ""
-        $("#modalReason").modal('hide')
-      }
-      else {
-        alert(`Error occurs while reporting ${uViewed_username}`)
-        console.log(`Fail to report ${uViewed_username}`)
-      }
-    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.result == 1) {
+          console.log(`report ${uViewed_username} successfully`);
+          document.getElementById("reason").value = "";
+          $("#modalReason").modal("hide");
+        } else {
+          alert(`Error occurs while reporting ${uViewed_username}`);
+          console.log(`Fail to report ${uViewed_username}`);
+        }
+      });
   }
 
-  if (reportType == 'post') {
+  if (reportType == "post") {
     await sendViewRequest(
       "http://localhost:3000/profile/reportPost",
       current_post,
       1
     ).then((data) => {
-      document.getElementById("reason").value = ""
-      $("#modalReason").modal('hide')
+      document.getElementById("reason").value = "";
+      $("#modalReason").modal("hide");
     });
   }
-})
+});
 
 // handle modal new post
 const input_wrap = document.querySelector(".input-wrap");
@@ -362,16 +359,16 @@ async function follow(user_to_follow) {
     },
     body: JSON.stringify({ user_to_follow: user_to_follow }),
   })
-  .then((res) => res.json())
-  .then((data_received) => {
-    if (data_received.result == 1) {
-      console.log(`start following ${user_to_follow}`);
-      return true;
-    } else {
-      console.log(`error occurs when try to follow ${user_to_follow}`);
-      return false;
-    }
-  })
+    .then((res) => res.json())
+    .then((data_received) => {
+      if (data_received.result == 1) {
+        console.log(`start following ${user_to_follow}`);
+        return true;
+      } else {
+        console.log(`error occurs when try to follow ${user_to_follow}`);
+        return false;
+      }
+    });
 }
 
 async function unfollow(user_to_unfollow) {
@@ -383,16 +380,16 @@ async function unfollow(user_to_unfollow) {
     },
     body: JSON.stringify({ user_to_unfollow: user_to_unfollow }),
   })
-  .then((res) => res.json())
-  .then((data_received) => {
-    if (data_received.result == 1) {
-      console.log(`unfollow ${user_to_unfollow}`);
-      return true;
-    } else {
-      console.log(`error occurs when try to unfollow ${user_to_unfollow}`);
-      return false;
-    }
-  })
+    .then((res) => res.json())
+    .then((data_received) => {
+      if (data_received.result == 1) {
+        console.log(`unfollow ${user_to_unfollow}`);
+        return true;
+      } else {
+        console.log(`error occurs when try to unfollow ${user_to_unfollow}`);
+        return false;
+      }
+    });
 }
 
 // prevent go to other profile when clicking on follow box
@@ -421,9 +418,8 @@ user_boxs.forEach((user_box) => {
   });
 });
 
-
 // function toggle_report_button() {
-  
+
 //   document.getElementById("reason").addEventListener('input', function () {
 //     if (this.value != "") {
 //       document.getElementById("report-btn").disabled = false
@@ -433,7 +429,6 @@ user_boxs.forEach((user_box) => {
 //     }
 //   })
 // }
-
 
 // *************************************************************
 // main

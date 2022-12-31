@@ -357,6 +357,14 @@ const userServices = {
       return false;
     }
   },
+  calculateTime: async () => {
+    try {
+      return true;
+    } catch (err) {
+      console.log(`raise error when calculate time\n`);
+      return false;
+    }
+  },
 };
 
 module.exports = userServices;

@@ -1,3 +1,6 @@
+update 31/12/2022 by Thư
+- sửa lại view post ở profile
+
 update 30/12/2022 by Thùy
 - sửa typo gây lỗi trong init-models (group_reposted_post -> group_reported_post)
 - sửa lại một số hàm adminServices (lỗi foreign key khi xóa)

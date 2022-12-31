@@ -7,7 +7,7 @@ import {
 import { comment, post, suggest_people, sponsor } from "./view.js";
 
 // load view
-post(data_images);
+// post(data_images);
 suggest_people(data_user_other);
 sponsor(data_sponsor);
 //nav header
