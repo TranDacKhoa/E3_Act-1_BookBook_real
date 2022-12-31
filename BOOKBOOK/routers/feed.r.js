@@ -1,7 +1,9 @@
-const app = require('express')
-const router = app.Router()
-const userActionC = require('../controllers/userAction.c')
+const app = require("express");
+const router = app.Router();
+const userActionC = require("../controllers/userAction.c");
 
-router.get('/', userActionC.checkPermission, userActionC.getFeed)
+router.get("/", userActionC.checkPermission, userActionC.getFeed);
 
-module.exports = router
+router.post("/like", userActionC.likePost);
+
+module.exports = router;

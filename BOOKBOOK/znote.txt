@@ -1,5 +1,7 @@
 update 31/12/2022 by Thư
 - sửa lại view post ở profile
+- render feed với thời gian đã format, post của following
+- like post ở feed
 
 update 30/12/2022 by Thùy
 - sửa typo gây lỗi trong init-models (group_reposted_post -> group_reported_post)

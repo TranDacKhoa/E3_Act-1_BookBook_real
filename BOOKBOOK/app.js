@@ -69,7 +69,7 @@ app.use("/", userRouter);
 app.use("/", postRouter);
 app.use("/profile", profileRouter);
 app.use("/market", marketRouter);
-app.use("/admin", adminRouter)
+app.use("/admin", adminRouter);
 app.use("/search", searchRouter);
 
 app.use((err, req, res, next) => {

@@ -35,10 +35,30 @@ ul_wrap.forEach((item) => {
 });
 
 // like post
+
+async function sendLikeRequest(url = "/like", id) {
+  const data = {
+    post: id,
+  };
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  return response.json();
+}
 const btn_like = document.querySelectorAll(".btn-like");
 btn_like.forEach((item) => {
-  item.onclick = () => {
+  item.onclick = (e) => {
     item.classList.toggle("active-like");
+    sendLikeRequest("http://localhost:3000/like", item.getAttribute("id")).then(
+      (data) => {
+        console.log(data);
+      }
+    );
+    e.preventDefault();
   };
 });
 // show comments

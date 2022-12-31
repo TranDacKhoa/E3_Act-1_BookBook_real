@@ -94,7 +94,8 @@
                   <div class="contents-footer px-4 mb-2">
                     <div class="py-1 d-flex justify-content-around gap-3">
                       <div
-                        class="d-flex justify-content-center align-items-center gap-1 pt-2 pb-2 px-3 hover-icon w-50 btn-like"
+                        class="d-flex justify-content-center align-items-center gap-1 pt-2 pb-2 px-3 hover-icon w-50 btn-like {{active}}"
+                        id="{{id}}"
                       >
                         <i class="fa-regular fa-heart"></i>
                         <span>Awesome</span>
@@ -112,7 +113,7 @@
                     <div class="input-wrap px-3 mb-3">
                       <div class="d-flex gap-2">
                         <div class="img-user">
-                          <img src="avatar/{{user.avatar}}" alt="" />
+                          <img src="avatar/{{../user.avatar}}" alt="" />
                         </div>
                         <input
                           type="email"

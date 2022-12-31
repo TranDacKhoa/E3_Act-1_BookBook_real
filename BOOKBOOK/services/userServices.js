@@ -281,6 +281,50 @@ const userServices = {
       return false;
     }
   },
+  like: async (data) => {
+    try {
+      const liked = await models.reaction.findAll({
+        where: {
+          react_by: data.username,
+          react_on: data.post_id,
+        },
+      });
+      if (liked == null || liked.length == 0) {
+        const result = await models.reaction.create({
+          react_by: data.username,
+          react_on: data.post_id,
+          react_type: 1,
+        });
+        console.log(`like on post ${data.post_id}\n`);
+        return 1;
+      } else {
+        const result = await models.reaction.destroy({
+          where: {
+            react_by: data.username,
+            react_on: data.post_id,
+          },
+        });
+        console.log(`unlike on post ${data.post_id}\n`);
+        return -1;
+      }
+    } catch (err) {
+      console.log(`raise error when like on post ${data.post_id}\n `);
+      console.log(err);
+      return false;
+    }
+  },
+  getLikedList: async (user) => {
+    try {
+      const result = await models.reaction.findAll({
+        react_by: user,
+      });
+      return result;
+    } catch (err) {
+      console.log(`raise error when get liked list of ${user}\n `);
+      console.log(err);
+      return false;
+    }
+  },
 
   // report
   reportPost: async (post_id, reason) => {
@@ -354,14 +398,6 @@ const userServices = {
       }
     } else {
       console.log(`user is not exist\n`);
-      return false;
-    }
-  },
-  calculateTime: async () => {
-    try {
-      return true;
-    } catch (err) {
-      console.log(`raise error when calculate time\n`);
       return false;
     }
   },

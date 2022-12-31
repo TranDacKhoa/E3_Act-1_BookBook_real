@@ -1,39 +1,82 @@
 const userS = require("../services/userServices");
 const hbsHelpers = require("../helpers/hbs_helpers.js");
 const chalk = require("chalk");
+const dayjs = require("dayjs");
+dayjs().format();
+var relativeTime = require("dayjs/plugin/relativeTime");
+dayjs.extend(relativeTime);
 
 exports.getFeed = async (req, res, next) => {
   try {
     const uProfile = await userS.getUserProfile(req.user.username);
     const following = await userS.getFollowingList(req.user.username);
-    console.log(following[0]);
+    const liked = await userS.getLikedList(req.user.username);
+
     let item = [];
+
+    const my_post = await userS.getAllPosts(req.user.username);
+    for (let j = 0; j < my_post.length; j++) {
+      let time = "";
+      if (
+        dayjs().get("date") !=
+        dayjs(my_post[j].dataValues.date_post).get("date")
+      )
+        time = dayjs(my_post[j].dataValues.date_post).format("H:mm DD/MM/YYYY");
+      else time = dayjs(my_post[j].dataValues.date_post).fromNow(true);
+
+      let like_active = "";
+      for (let k = 0; k < liked.length; k++) {
+        if (my_post[j].dataValues.post_id == liked[k].dataValues.react_on)
+          like_active = "active-like";
+      }
+
+      item.push({
+        name: uProfile.fullname,
+        avatar: uProfile.avatar,
+        id: my_post[j].dataValues.post_id,
+        date: time,
+        img: my_post[j].dataValues.img,
+        content: my_post[j].dataValues.text,
+        active: like_active,
+      });
+    }
+
     for (let i = 0; i < following.length; i++) {
       const username_of_following =
         following[i].dataValues.usr_followed_user_profile.dataValues.username;
       const posts_info = await userS.getAllPosts(username_of_following);
 
-      let posts = [];
       for (let j = 0; j < posts_info.length; j++) {
-        // posts.push({
-        //   id: posts_info[j].dataValues.post_id,
-        //   date: posts_info[j].dataValues.date_post,
-        //   img: posts_info[j].dataValues.img,
-        //   content: posts_info[j].dataValues.text,
-        // });
+        let time = "";
+        if (
+          dayjs().get("date") !=
+          dayjs(posts_info[j].dataValues.date_post).get("date")
+        )
+          time = dayjs(posts_info[j].dataValues.date_post).format(
+            "H:mm DD/MM/YYYY"
+          );
+        else time = dayjs(posts_info[j].dataValues.date_post).fromNow(true);
+
+        let like_active = "";
+        for (let k = 0; k < liked.length; k++) {
+          if (posts_info[j].dataValues.post_id == liked[k].dataValues.react_on)
+            like_active = "active-like";
+        }
+
         item.push({
           name: following[i].dataValues.usr_followed_user_profile.dataValues
             .fullname,
           avatar:
             following[i].dataValues.usr_followed_user_profile.dataValues.avatar,
           id: posts_info[j].dataValues.post_id,
-          date: posts_info[j].dataValues.date_post,
+          date: time,
           img: posts_info[j].dataValues.img,
           content: posts_info[j].dataValues.text,
+          active: like_active,
         });
       }
     }
-    console.log(item);
+
     res.render("feed", {
       title: "BookBook",
       user: uProfile,
@@ -253,6 +296,23 @@ exports.reportUser = async (req, res, next) => {
       result = 1;
     }
     res.send(JSON.stringify({ result: result }));
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.likePost = async (req, res, next) => {
+  try {
+    const interactive_post = req.body.post;
+    const data = {
+      post_id: interactive_post,
+      username: req.user.username,
+    };
+    const result = await userS.like(data);
+    if (result == 1) res.send(JSON.stringify({ result: "like" }));
+    else {
+      if (result == -1) res.send(JSON.stringify({ result: "unlike" }));
+    }
   } catch (error) {
     next(error);
   }
