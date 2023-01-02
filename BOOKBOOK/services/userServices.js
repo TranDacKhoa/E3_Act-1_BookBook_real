@@ -163,6 +163,26 @@ const userServices = {
     });
     return result;
   },
+  isFollowing: async (me, they) => {
+    const result = await models.follow.findAll({
+      attributes: ["usr_followed"],
+      distinct: false,
+      include: [
+        {
+          model: models.user_profile,
+          required: true,
+          as: "usr_followed_user_profile",
+          attributes: ["username", "fullname", "avatar"],
+        },
+      ],
+      where: {
+        usr_follow: me,
+        usr_followed: they,
+      },
+    });
+    if (result == null || result.length == 0) return false;
+    return true;
+  },
   countFollowing: async (username) => {
     const result = await models.follow.count({
       distinct: false,
@@ -281,6 +301,20 @@ const userServices = {
       return false;
     }
   },
+  getCommentedListOfPost: async (post_id) => {
+    try {
+      const result = await models.general_comment.findAll({
+        where: {
+          cmt_on: post_id,
+        },
+      });
+      return result;
+    } catch (err) {
+      console.log(`raise error when get comment list of post ${post_id}\n `);
+      console.log(err);
+      return false;
+    }
+  },
   like: async (data) => {
     try {
       const liked = await models.reaction.findAll({
@@ -316,7 +350,9 @@ const userServices = {
   getLikedList: async (user) => {
     try {
       const result = await models.reaction.findAll({
-        react_by: user,
+        where: {
+          react_by: user,
+        },
       });
       return result;
     } catch (err) {

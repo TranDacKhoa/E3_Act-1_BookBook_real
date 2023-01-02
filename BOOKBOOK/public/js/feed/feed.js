@@ -8,7 +8,7 @@ import { comment, post, suggest_people, sponsor } from "./view.js";
 
 // load view
 // post(data_images);
-suggest_people(data_user_other);
+// suggest_people(data_user_other);
 sponsor(data_sponsor);
 //nav header
 const header_center = document.querySelectorAll(".header-center ul li");
@@ -54,9 +54,7 @@ btn_like.forEach((item) => {
   item.onclick = (e) => {
     item.classList.toggle("active-like");
     sendLikeRequest("http://localhost:3000/like", item.getAttribute("id")).then(
-      (data) => {
-        console.log(data);
-      }
+      (data) => {}
     );
     e.preventDefault();
   };
@@ -70,26 +68,111 @@ btn_show_comments.forEach((item, index) => {
   };
 });
 // comment
-const handleComment = (index) => {
+async function sendCommentRequest(url = "/comment", id, text) {
+  const data = {
+    post: id,
+    content: text,
+  };
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  return response.json();
+}
+const handleComment = (index, id) => {
   let input_value = input_comments[index].value;
   if (input_value == "") {
-    alert("Please, enter your comment!!");
     return;
   }
-  const location = post_comments[index].querySelector(".comments-wrap");
-  comment(location, input_value, data_user); // (vị trí để show new comment, value, user)
+
+  sendCommentRequest("http://localhost:3000/comment", id, input_value).then(
+    (data) => {
+      console.log(data);
+      const location = post_comments[index].querySelector(".comments-wrap");
+      comment(location, input_value, data); // (vị trí để show new comment, value, user)
+    }
+  );
+
   input_comments[index].value = "";
 };
 
 const input_comments = document.querySelectorAll(".input-comments");
 const btn_comments = document.querySelectorAll(".btn-comment");
 btn_comments.forEach((item, index) => {
+  const id = item.getAttribute("name");
   item.onclick = () => {
-    handleComment(index);
+    handleComment(index, id);
   };
   input_comments[index].addEventListener("keydown", (e) => {
     if (e.keyCode == 13) {
-      handleComment(index);
+      handleComment(index, id);
     }
   });
+});
+
+// suggested people
+async function follow(user_to_follow) {
+  return await fetch("/profile/follow", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({ user_to_follow: user_to_follow }),
+  })
+    .then((res) => res.json())
+    .then((data_received) => {
+      if (data_received.result == 1) {
+        console.log(`start following ${user_to_follow}`);
+        return true;
+      } else {
+        console.log(`error occurs when try to follow ${user_to_follow}`);
+        return false;
+      }
+    });
+}
+async function unfollow(user_to_unfollow) {
+  return await fetch("/profile/unfollow", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({ user_to_unfollow: user_to_unfollow }),
+  })
+    .then((res) => res.json())
+    .then((data_received) => {
+      if (data_received.result == 1) {
+        console.log(`unfollow ${user_to_unfollow}`);
+        return true;
+      } else {
+        console.log(`error occurs when try to unfollow ${user_to_unfollow}`);
+        return false;
+      }
+    });
+}
+
+const state_btns = document.querySelectorAll(".state");
+state_btns.forEach((item) => {
+  const user_following = item.getAttribute("name");
+  item.onclick = () => {
+    const state = item.getAttribute("state");
+    console.log(state);
+    if (state == "Follow") {
+      follow(user_following).then((data) => {
+        console.log(data);
+      });
+      item.setAttribute("state", "Unfollow");
+      item.innerHTML = "Unfollow";
+    } else {
+      unfollow(user_following).then((data) => {
+        console.log(data);
+      });
+      item.setAttribute("state", "Follow");
+      item.innerHTML = "Follow";
+    }
+  };
 });

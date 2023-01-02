@@ -123,29 +123,31 @@
                         <button
                           type="button"
                           class="btn btn-primary px-3 btn-comment"
+                          name="{{id}}"
                         >
                           <i class="fa-regular fa-comment-dots"></i>
                         </button>
                       </div>
                     </div>
-                    {{! <div class="comments-wrap px-3 d-flex flex-column gap-3 mb-2">
-                    ${item.data .map((comment) => { return `
+                    <div class="comments-wrap px-3 d-flex flex-column gap-3 mb-2">
+                    {{#each comment}}
                     <div class="comment">
                       <div class="user-other d-flex flex-row gap-2">
                         <div class="img-user">
-                          <img src="${comment.avatar}" alt="" />
+                          <img src="avatar/{{avatar}}" alt="" />
                         </div>
                         <div
                           class="user-comment d-flex flex-column justify-content-between w-75"
                         >
                           <div class="p-2">
-                            <span><b>${comment.name}</b></span>
-                            <p class="m-0">${comment.comment}</p>
+                            <span><b>{{name}}</b></span>
+                            <p class="m-0">{{comment}}</p>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div> }}
+                    {{/each}}
+                  </div>
                   </div>
                 </div>
               </div>
@@ -156,7 +158,7 @@
       <div class="right-side">
         <div class="poll right-wrap mb-5">
           <div class="span6">
-            <h4>Book of the week</h4>
+            <h4>Books of the week</h4>
             <hr
               class="my-3 mx-2"
               style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px"
@@ -222,13 +224,28 @@
 
         <div class="right-wrap list-other-users mb-5">
           <div class="suggest-wrap mb-4">
-            <h4>Suggested people</h4>
+            <h4>Maybe you know</h4>
             <hr
               id="suggest-list"
               class="my-3 mx-2"
               style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px"
             />
-
+            {{#each person}}
+            <div
+             class="suggest-user d-flex gap-2 justify-content-center align-items-center m-2">
+             <div class="img-user">
+                 <img src="avatar/{{avatar}}" alt="" />
+             </div>
+             <div
+                 class="d-flex flex-column justify-content-center user-name" style="flex:1">
+                 <span><b>{{name}}</b></span>
+                 <span>@{{username}}</span>
+             </div>
+             <div>
+                 <button type="button" class="btn btn-outline-success state" name="{{username}}" state="{{state}}">{{state}}</button>
+             </div>
+            </div>
+            {{/each}}
           </div>
         </div>
 

@@ -1,3 +1,8 @@
+update 2/1/2023 by Thư
+- xong comment
+- load được suggested people với follow/unfollow
+- xong feed (trừ books of the week)
+
 update 31/12/2022 by Thư
 - sửa lại view post ở profile
 - render feed với thời gian đã format, post của following

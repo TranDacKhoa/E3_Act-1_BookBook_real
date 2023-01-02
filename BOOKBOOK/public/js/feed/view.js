@@ -118,7 +118,7 @@ export const comment = (location, data, user) => {
       <div class="comment">
           <div class="user-other d-flex flex-row gap-2">
               <div class="img-user">
-                  <img src="${user.avatar}" alt="" />
+                  <img src="avatar/${user.avatar}" alt="" />
               </div>
               <div
               class="user-comment d-flex flex-column justify-content-between w-75">

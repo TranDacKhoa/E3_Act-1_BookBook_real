@@ -11,9 +11,28 @@ exports.getFeed = async (req, res, next) => {
     const uProfile = await userS.getUserProfile(req.user.username);
     const following = await userS.getFollowingList(req.user.username);
     const liked = await userS.getLikedList(req.user.username);
+    const allUser = await userS.getList();
+
+    let suggested = [];
+    for (let i = 0; i < allUser.length; i++) {
+      const a_user = await userS.getUserProfile(allUser[i].username);
+      if (suggested.length > 4) break;
+      const is_following = await userS.isFollowing(
+        req.user.username,
+        a_user.username
+      );
+      let state = "Follow";
+      if (is_following) state = "Unfollow";
+      if (uProfile.username != a_user.username)
+        suggested.push({
+          avatar: a_user.avatar,
+          name: a_user.fullname,
+          username: a_user.username,
+          state: state,
+        });
+    }
 
     let item = [];
-
     const my_post = await userS.getAllPosts(req.user.username);
     for (let j = 0; j < my_post.length; j++) {
       let time = "";
@@ -30,6 +49,20 @@ exports.getFeed = async (req, res, next) => {
           like_active = "active-like";
       }
 
+      let current_post = my_post[j].dataValues.post_id;
+      const cmt_list = await userS.getCommentedListOfPost(current_post);
+      let cmts = [];
+      for (let c = 0; c < cmt_list.length; c++) {
+        const byUser = await userS.getUserProfile(
+          cmt_list[c].dataValues.cmt_by
+        );
+        cmts.push({
+          avatar: byUser.avatar,
+          name: byUser.fullname,
+          comment: cmt_list[c].dataValues.text,
+        });
+      }
+
       item.push({
         name: uProfile.fullname,
         avatar: uProfile.avatar,
@@ -38,6 +71,7 @@ exports.getFeed = async (req, res, next) => {
         img: my_post[j].dataValues.img,
         content: my_post[j].dataValues.text,
         active: like_active,
+        comment: cmts,
       });
     }
 
@@ -63,6 +97,20 @@ exports.getFeed = async (req, res, next) => {
             like_active = "active-like";
         }
 
+        let current_post = posts_info[j].dataValues.post_id;
+        const cmt_list = await userS.getCommentedListOfPost(current_post);
+        let cmts = [];
+        for (let c = 0; c < cmt_list.length; c++) {
+          const byUser = await userS.getUserProfile(
+            cmt_list[c].dataValues.cmt_by
+          );
+          cmts.push({
+            avatar: byUser.avatar,
+            name: byUser.fullname,
+            comment: cmt_list[c].dataValues.text,
+          });
+        }
+
         item.push({
           name: following[i].dataValues.usr_followed_user_profile.dataValues
             .fullname,
@@ -73,6 +121,7 @@ exports.getFeed = async (req, res, next) => {
           img: posts_info[j].dataValues.img,
           content: posts_info[j].dataValues.text,
           active: like_active,
+          comment: cmts,
         });
       }
     }
@@ -82,6 +131,7 @@ exports.getFeed = async (req, res, next) => {
       user: uProfile,
       helpers: hbsHelpers,
       item: item,
+      person: suggested,
     });
   } catch (error) {
     next(error);
@@ -313,6 +363,25 @@ exports.likePost = async (req, res, next) => {
     else {
       if (result == -1) res.send(JSON.stringify({ result: "unlike" }));
     }
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.commentPost = async (req, res, next) => {
+  try {
+    const cmt = {
+      username: req.user.username,
+      text: req.body.content,
+      post_id: req.body.post,
+    };
+    await userS.comment(cmt);
+    res.send(
+      JSON.stringify({
+        avatar: req.user.profile.avatar,
+        name: req.user.profile.fullname,
+      })
+    );
   } catch (error) {
     next(error);
   }

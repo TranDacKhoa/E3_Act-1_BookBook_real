@@ -6,4 +6,6 @@ router.get("/", userActionC.checkPermission, userActionC.getFeed);
 
 router.post("/like", userActionC.likePost);
 
+router.post("/comment", userActionC.commentPost);
+
 module.exports = router;
