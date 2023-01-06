@@ -35,10 +35,40 @@ const event_click_image = () => {
       current_post = index;
       sendViewRequest("http://localhost:3000/profile/view", index).then(
         (data) => {
+          // view picture and status
           const html_image = `<img src="post/${data.img}" alt="" />`;
           const html_contents = `<p>${data.content}</p>`;
           document.querySelector(".modal-body").innerHTML = html_image;
           document.querySelector(".contents-body").innerHTML = html_contents;
+          // view like
+          const liked = item.getAttribute("liked");
+          if (liked != "") {
+            const awesome = document.querySelector(".btn-like");
+            awesome.classList.add("active-like");
+          } else {
+            const awesome = document.querySelector(".btn-like");
+            awesome.classList.remove("active-like");
+          }
+          // view comment
+          const contents_comments =
+            document.querySelector(".contents-comments");
+          const html_comments = data.cmt.map((cmt) => {
+            return `
+                <div
+                   class="user-other d-flex flex-row  gap-2 mb-3">
+                   <div class="img-user">
+                      <img src="avatar/${cmt.avatar}" alt="" />
+                   </div>
+                   <div
+                      class="user-comment d-flex flex-column justify-content-between">
+                      <div class="p-2">
+                         <span><b>${cmt.name}</b></span>
+                         <span><p class="m-0">${cmt.comment}</p></span>
+                      </div>
+                   </div>
+                </div>`;
+          });
+          contents_comments.innerHTML = html_comments.join("");
         }
       );
       e.preventDefault();
@@ -122,6 +152,91 @@ document.getElementById("report-btn").addEventListener("click", async () => {
   }
 });
 
+// like post
+async function sendLikeRequest(url = "/like", id) {
+  const data = {
+    view: id,
+    user: document.querySelector(".images").getAttribute("username"),
+  };
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  return response.json();
+}
+const btn_like = document.querySelectorAll(".btn-like");
+btn_like.forEach((item) => {
+  item.onclick = (e) => {
+    item.classList.toggle("active-like");
+    sendLikeRequest("http://localhost:3000/like", current_post).then((data) => {
+      console.log(data);
+    });
+    e.preventDefault();
+  };
+});
+
+// comment post
+async function sendCommentRequest(url = "/comment", id, text) {
+  const data = {
+    index: id,
+    content: text,
+    user: document.querySelector(".images").getAttribute("username"),
+  };
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  return response.json();
+}
+const handleComment = (id) => {
+  let input_value = input_comments.value;
+  if (input_value == "") {
+    return;
+  }
+  sendCommentRequest("http://localhost:3000/comment", id, input_value).then(
+    (data) => {
+      console.log(data);
+      const location = document.querySelector(".contents-comments");
+      // comment(location, input_value, data); // (vị trí để show new comment, value, user)
+      const html = `
+      <div class="comment">
+          <div class="user-other d-flex flex-row gap-2">
+              <div class="img-user">
+                  <img src="avatar/${data.avatar}" alt="" />
+              </div>
+              <div
+              class="user-comment d-flex flex-column justify-content-between w-75">
+                  <div class="p-2">
+                      <span><b>${data.name}</b></span>
+                      <p class="m-0">${input_value}</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+      `;
+      location.insertAdjacentHTML("afterend", html);
+    }
+  );
+  input_comments.value = "";
+};
+const input_comments = document.querySelector(".input-comments");
+const btn_comments = document.querySelectorAll(".btn-comment");
+btn_comments.forEach((item) => {
+  item.onclick = () => {
+    handleComment(current_post);
+  };
+  input_comments.addEventListener("keydown", (e) => {
+    if (e.keyCode == 13) {
+      handleComment(current_post);
+    }
+  });
+});
 // handle modal new post
 const input_wrap = document.querySelector(".input-wrap");
 const input_file = document.querySelector(".input-file");

@@ -48,20 +48,26 @@
                 </div>
                 <ul class="dropdown-menu">
                   {{#if (notEq user.username userViewed.username)}}
-                  <li class="d-flex align-items-center px-2 hover-icon" id="report-post" data-bs-toggle="modal" data-bs-target="#modalReason">
-                    <i class="fa-solid fa-circle-exclamation px-2"></i>
-                    <span class="dropdown-item px-0 report-post">Report</span>
-                  </li>
+                    <li
+                      class="d-flex align-items-center px-2 hover-icon"
+                      id="report-post"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modalReason"
+                    >
+                      <i class="fa-solid fa-circle-exclamation px-2"></i>
+                      <span class="dropdown-item px-0 report-post">Report</span>
+                    </li>
                   {{else}}
-                  <li
-                    class="d-flex align-items-center px-2 hover-icon btn-delete" id="delete-post"
-                  >
-                    <i class="fa-regular fa-trash-can px-2"></i>
-                    <span
-                      class="dropdown-item px-0"
-                      style="padding-left: 2px !important;"
-                    >Delete</span>
-                  </li>
+                    <li
+                      class="d-flex align-items-center px-2 hover-icon btn-delete"
+                      id="delete-post"
+                    >
+                      <i class="fa-regular fa-trash-can px-2"></i>
+                      <span
+                        class="dropdown-item px-0"
+                        style="padding-left: 2px !important;"
+                      >Delete</span>
+                    </li>
                   {{/if}}
                 </ul>
               </div>
@@ -72,10 +78,10 @@
                 class="contents-footer pt-1 pb-1 d-flex justify-content-between gap-2 mb-4"
               >
                 <div
-                  class="d-flex justify-content-center align-items-center gap-3 pt-2 pb-2"
+                  class="d-flex justify-content-center align-items-center gap-3 pt-2 pb-2 btn-like"
                 >
-                  <i class="fa-regular fa-thumbs-up"></i>
-                  <span>Like</span>
+                  <i class="fa-regular fa-heart"></i>
+                  <span>Awesome</span>
                 </div>
                 <div
                   class="d-flex justify-content-center align-items-center gap-3 pt-2 pb-2"
@@ -93,15 +99,12 @@
             <div class="pt-2 pb-2 px-3 d-flex justify-content-between gap-2">
               <input
                 type="text"
-                class="form-control"
-                id="inputComment"
+                class="form-control input-comments"
                 placeholder="New comments..."
               />
-              <div class="hover-icon d-flex justify-content-between">
-                <i
-                  class="fa-solid fa-paper-plane px-3 d-flex align-items-center justify-content-center"
-                ></i>
-              </div>
+              <button type="button" class="btn btn-primary px-3 btn-comment">
+                <i class="fa-regular fa-comment-dots"></i>
+              </button>
             </div>
           </div>
         </div>

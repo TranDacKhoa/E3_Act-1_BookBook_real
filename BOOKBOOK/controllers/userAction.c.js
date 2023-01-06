@@ -166,6 +166,15 @@ exports.handleMyProfile = async (req, res, next) => {
       const followers = await userS.getFollowersList(req.user.username);
       const following = await userS.getFollowingList(req.user.username);
       const posts = await userS.getAllPosts(req.user.username);
+      const liked = await userS.getLikedList(req.user.username);
+
+      for (let j = 0; j < posts.length; j++) {
+        for (let k = 0; k < liked.length; k++) {
+          if (posts[j].dataValues.post_id == liked[k].dataValues.react_on) {
+            Object.assign(posts[j].dataValues, { liked: "active-like" });
+          }
+        }
+      }
 
       res.render("profile", {
         title: myProfile.fullname + " | BookBook",
@@ -213,6 +222,15 @@ exports.handleOtherProfile = async (req, res, next) => {
     const following = await userS.getFollowingList(req.query.username);
     const followedByUser = await userS.getFollowingList(req.user.username);
     const posts = await userS.getAllPosts(req.query.username);
+    const liked = await userS.getLikedList(req.user.username);
+
+    for (let j = 0; j < posts.length; j++) {
+      for (let k = 0; k < liked.length; k++) {
+        if (posts[j].dataValues.post_id == liked[k].dataValues.react_on) {
+          Object.assign(posts[j].dataValues, { liked: "active-like" });
+        }
+      }
+    }
 
     res.render("profile", {
       title: otherProfile.fullname + " | BookBook",
@@ -301,9 +319,23 @@ exports.getPostView = async (req, res, next) => {
     const user = req.body.user;
     const posts = await userS.getAllPosts(user);
     const post_view = posts[index];
+
+    let current_post = post_view.dataValues.post_id;
+    const cmt_list = await userS.getCommentedListOfPost(current_post);
+    let cmts = [];
+    for (let c = 0; c < cmt_list.length; c++) {
+      const byUser = await userS.getUserProfile(cmt_list[c].dataValues.cmt_by);
+      cmts.push({
+        avatar: byUser.avatar,
+        name: byUser.fullname,
+        comment: cmt_list[c].dataValues.text,
+      });
+    }
+
     res.json({
       img: post_view.dataValues.img,
       content: post_view.dataValues.text,
+      cmt: cmts,
     });
   } catch (error) {
     next(error);
@@ -353,7 +385,15 @@ exports.reportUser = async (req, res, next) => {
 
 exports.likePost = async (req, res, next) => {
   try {
-    const interactive_post = req.body.post;
+    const user = req.body.user == null ? req.user.username : req.body.user;
+    let interactive_post;
+    if (req.body.view == null) interactive_post = req.body.post;
+    else {
+      const index = req.body.view;
+      const posts = await userS.getAllPosts(user);
+      const post_view = posts[index];
+      interactive_post = post_view.dataValues.post_id;
+    }
     const data = {
       post_id: interactive_post,
       username: req.user.username,
@@ -370,10 +410,19 @@ exports.likePost = async (req, res, next) => {
 
 exports.commentPost = async (req, res, next) => {
   try {
+    const user = req.body.user == null ? req.user.username : req.body.user;
+    let interactive_post;
+    if (req.body.index == null) interactive_post = req.body.post;
+    else {
+      const index = req.body.index;
+      const posts = await userS.getAllPosts(user);
+      const post_view = posts[index];
+      interactive_post = post_view.dataValues.post_id;
+    }
     const cmt = {
       username: req.user.username,
       text: req.body.content,
-      post_id: req.body.post,
+      post_id: interactive_post,
     };
     await userS.comment(cmt);
     res.send(

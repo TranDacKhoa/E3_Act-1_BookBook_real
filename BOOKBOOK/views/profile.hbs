@@ -194,7 +194,7 @@
          {{/if}}
          <div class="image-list p-3">
             {{#each post}}
-               <div class="images" username="{{dataValues.author_username}}" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+               <div class="images" username="{{dataValues.author_username}}" data-bs-toggle="modal" data-bs-target="#exampleModal" liked="{{dataValues.liked}}">
                   <img src="post/{{dataValues.img}}" id="{{dataValues.post_id}}" alt="" />
                </div>
             {{/each}}
