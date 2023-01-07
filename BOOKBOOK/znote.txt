@@ -1,3 +1,12 @@
+update 07/01/2023 by Thùy
+- follow/unfollow ở search
+- phát hiện lỗi khi render feed dính user bị admin block -> không render được, báo username null
+    (user bị block có row ở user_info với permission -1, 
+    còn lại thông tin của user bị xóa hết kể cả ở user_profile, có thể lỗi ở đây)
+- đề xuất khi render check thêm nếu permission -1 thì loại khỏi dữ liệu render
+- đề xuất thêm điều hướng đến profile khi click vào tên hoặc avatar user đăng bài viết ở trang feed
+- không thực hiện follow ở feed được?
+
 update 6/1/2023 by Thư
 - comment, like post ở profile
 

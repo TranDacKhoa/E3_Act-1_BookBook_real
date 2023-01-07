@@ -16,8 +16,11 @@ exports.getFeed = async (req, res, next) => {
     var adsData = await marketS.getAds();
     adsData = adsData.slice(0, 4);
     let suggested = [];
+    
     for (let i = 0; i < allUser.length; i++) {
+      console.log("1")
       const a_user = await userS.getUserProfile(allUser[i].username);
+      console.log(a_user)
       if (suggested.length > 4) break;
       const is_following = await userS.isFollowing(
         req.user.username,
@@ -33,7 +36,7 @@ exports.getFeed = async (req, res, next) => {
           state: state,
         });
     }
-
+    
     let item = [];
     const my_post = await userS.getAllPosts(req.user.username);
     for (let j = 0; j < my_post.length; j++) {
@@ -76,7 +79,7 @@ exports.getFeed = async (req, res, next) => {
         comment: cmts,
       });
     }
-
+    
     for (let i = 0; i < following.length; i++) {
       const username_of_following =
         following[i].dataValues.usr_followed_user_profile.dataValues.username;
@@ -127,7 +130,7 @@ exports.getFeed = async (req, res, next) => {
         });
       }
     }
-
+    
     res.render("feed", {
       title: "BookBook",
       user: uProfile,
@@ -287,7 +290,7 @@ exports.followUser = async (req, res, next) => {
         req.body.user_to_follow
       );
       if (result) {
-        res.send(JSON.stringify({ result: 1 }));
+        return res.send(JSON.stringify({ result: 1 }));
       }
     }
     res.send(JSON.stringify({ result: 0 }));
@@ -298,6 +301,8 @@ exports.followUser = async (req, res, next) => {
 
 exports.unfollowUser = async (req, res, next) => {
   try {
+    console.log(req.user.username)
+    console.log(req.body.user_to_unfollow)
     const user_to_unfollow_info = await userS.getUserInfo(
       req.body.user_to_unfollow
     );
@@ -307,7 +312,7 @@ exports.unfollowUser = async (req, res, next) => {
         req.body.user_to_unfollow
       );
       if (result) {
-        res.send(JSON.stringify({ result: 1 }));
+        return res.send(JSON.stringify({ result: 1 }));
       }
     }
     res.send(JSON.stringify({ result: 0 }));

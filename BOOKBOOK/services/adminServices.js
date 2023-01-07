@@ -86,11 +86,11 @@ const adminServices = {
                     author_username: username,
                 },
             });
-            const delProfile = await models.user_profile.destroy({
-                where: {
-                    username: username,
-                },
-            });
+            // const delProfile = await models.user_profile.destroy({
+            //     where: {
+            //         username: username,
+            //     },
+            // });
             const delUser = await models.user_info.update(
                 {
                     permission: -1,

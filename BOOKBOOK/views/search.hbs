@@ -9,7 +9,7 @@
               style="margin: 0;">
         <div class="input-group rounded py-3 d-flex justify-content-center">
           <input
-          class="input-search"
+          class="input-search px-2 py-2"
             type="text"
             class="form-control rounded"
             placeholder="Search..."
@@ -27,7 +27,7 @@
 
           <li class="nav-item-left hover-icon active">
             <a class="nav-link d-flex gap-3 align-items-center" href="#"><i
-                class="fa-solid fa-users"
+                class="fa-solid fa-users fa-fw"
               ></i><span>People</span></a>
           </li>
           <li class="nav-item-left hover-icon">
@@ -35,11 +35,11 @@
               class="nav-link d-flex gap-3 align-items-center disabled"
               href=""
             >
-              <i class="fa-solid fa-address-card"></i>
+              <i class="fa-solid fa-address-card fa-fw"></i>
               <span>Posts</span></a>
           </li>
-          <div class="small position-absolute" style="bottom:30px">copy right
-            &copy; group 22</div>
+          <div class="small position-absolute" style="bottom:30px">Copyright
+            &copy; Group 22</div>
 
         </ul>
 
@@ -64,9 +64,28 @@
                 <p class="m-0">@{{this.username}}</p>
                 <p class="m-0">{{this.location}}</p>
               </div>
-              <div class="col-3"><button
-                  class="btn btn-success"
-                >follow</button></div>
+              <div class="col-3">
+                {{#if (notEq this.username ../user.username)}}
+                  {{#if (isFollowedByUser this.username ../following)}}
+                  <div class="box-follow" user="{{ this.username }}">
+                      <button type="button" class="btn btn-success" data-bs-toggle="dropdown" aria-expanded="false">
+                        Following <i class="fa fa-check"></i>
+                      </button>
+                      <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <button type="button" class="btn dropdown-item" name="unfollow">
+                              Unfollow
+                            </button>
+                        </li>
+                      </ul>
+                  </div>
+                  {{else}}
+                  <div class="box-follow" user="{{ this.username }}">
+                      <button type="button" class="btn btn-outline-success" name="follow">Follow</button>
+                  </div>
+                  {{/if}}
+                {{/if}}
+              </div>
             </div>
           </div>
         {{/each}}
