@@ -27,7 +27,7 @@
 
           <li class="nav-item-left hover-icon active">
             <a class="nav-link d-flex gap-3 align-items-center" href="#"><i
-                class="fa-solid fa-users"
+                class="fa-solid fa-users fa-fw"
               ></i><span>People</span></a>
           </li>
           <li class="nav-item-left hover-icon">
@@ -35,11 +35,11 @@
               class="nav-link d-flex gap-3 align-items-center disabled"
               href="./market-me.html"
             >
-              <i class="fa-solid fa-address-card"></i>
+              <i class="fa-solid fa-address-card fa-fw"></i>
               <span>Posts</span></a>
           </li>
-          <div class="small position-absolute" style="bottom:30px">copy right
-            &copy; group 22</div>
+          <div class="small position-absolute" style="bottom:30px">Copyright
+            &copy; Group 22</div>
 
         </ul>
 
@@ -64,9 +64,14 @@
                 <p class="m-0">@{{this.username}}</p>
                 <p class="m-0">{{this.location}}</p>
               </div>
-              <div class="col-3"><button
+              <div class="col-3">
+                {{!-- {{#if (isFollowedByUser this.username ../following)}}
+                {{else}} --}}
+                <button
                   class="btn btn-success"
-                >follow</button></div>
+                >Follow</button>
+                {{!-- {{/if}} --}}
+              </div>
             </div>
           </div>
         {{/each}}
