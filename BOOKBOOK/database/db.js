@@ -13,6 +13,7 @@ const config = require("../configs/config");
 //     logging: false,
 //   }
 // );
+
 const sequelize = new Sequelize(
   "postgresql://postgres:sOyMI7bskMemA0zij05H@containers-us-west-91.railway.app:5452/railway"
 );

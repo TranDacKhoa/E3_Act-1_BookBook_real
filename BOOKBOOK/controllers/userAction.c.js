@@ -1,5 +1,6 @@
 const userS = require("../services/userServices");
 const hbsHelpers = require("../helpers/hbs_helpers.js");
+const marketS = require("../services/marketServices");
 const chalk = require("chalk");
 const dayjs = require("dayjs");
 dayjs().format();
@@ -12,7 +13,8 @@ exports.getFeed = async (req, res, next) => {
     const following = await userS.getFollowingList(req.user.username);
     const liked = await userS.getLikedList(req.user.username);
     const allUser = await userS.getList();
-
+    var adsData = await marketS.getAds();
+    adsData = adsData.slice(0, 4);
     let suggested = [];
     for (let i = 0; i < allUser.length; i++) {
       const a_user = await userS.getUserProfile(allUser[i].username);
@@ -132,6 +134,7 @@ exports.getFeed = async (req, res, next) => {
       helpers: hbsHelpers,
       item: item,
       person: suggested,
+      ads: adsData,
     });
   } catch (error) {
     next(error);
