@@ -36,7 +36,7 @@ const event_click_image = () => {
       sendViewRequest("http://localhost:3000/profile/view", index).then(
         (data) => {
           // view picture and status
-          const html_image = `<img src="post/${data.img}" alt="" />`;
+          const html_image = `<img class="img-post" src="post/${data.img}" alt="" />`;
           const html_contents = `<p>${data.content}</p>`;
           document.querySelector(".modal-body").innerHTML = html_image;
           document.querySelector(".contents-body").innerHTML = html_contents;
@@ -205,22 +205,20 @@ const handleComment = (id) => {
       const location = document.querySelector(".contents-comments");
       // comment(location, input_value, data); // (vị trí để show new comment, value, user)
       const html = `
-      <div class="comment">
-          <div class="user-other d-flex flex-row gap-2">
+          <div class="user-other d-flex flex-row gap-2 mb-3">
               <div class="img-user">
                   <img src="avatar/${data.avatar}" alt="" />
               </div>
               <div
-              class="user-comment d-flex flex-column justify-content-between w-75">
+              class="user-comment d-flex flex-column justify-content-between">
                   <div class="p-2">
                       <span><b>${data.name}</b></span>
-                      <p class="m-0">${input_value}</p>
+                      <span><p class="m-0">${input_value}</p></span>
                   </div>
               </div>
           </div>
-      </div>
       `;
-      location.insertAdjacentHTML("afterend", html);
+      location.innerHTML += html;
     }
   );
   input_comments.value = "";
