@@ -9,7 +9,7 @@ import { comment, post, suggest_people, sponsor } from "./view.js";
 // load view
 // post(data_images);
 // suggest_people(data_user_other);
-sponsor(data_sponsor);
+
 //nav header
 const header_center = document.querySelectorAll(".header-center ul li");
 header_center.forEach((item, index) => {
@@ -176,3 +176,11 @@ state_btns.forEach((item) => {
     }
   };
 });
+// const suggest_ = document.querySelectorAll(".suggest-user");
+// suggest_.forEach((item, index) => {
+//   item.onclick = (e) => {
+//     let usr = item.username;
+//     console.log(usr);
+//     window.location.href = `/user?user=${usr}`;
+//   };
+// });

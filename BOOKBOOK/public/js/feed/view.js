@@ -22,19 +22,10 @@ export const post = (data_images) => {
                       <i class="fa-solid fa-ellipsis"></i>
                   </div>
                   <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li>
-                          <a class="dropdown-item" href="#">Another action</a>
-                      </li>
-                      <li>
-                          <a class="dropdown-item" href="#"
-                          >Something else here</a
-                          >
-                      </li>
-                      <li><hr class="dropdown-divider" /></li>
-                      <li>
-                          <a class="dropdown-item" href="#">Separated link</a>
-                      </li>
+                      <li><a class="dropdown-item" href="#">Report user</a></li>
+                    <li>
+                      <a class="dropdown-item" href="#">Report post</a>
+                    </li>
                   </ul>
                   
               </div>
@@ -54,12 +45,12 @@ export const post = (data_images) => {
                       <div class="py-1 d-flex justify-content-around gap-3">
                           <div
                           class="d-flex justify-content-center align-items-center gap-1 pt-2 pb-2 px-3 hover-icon w-50 btn-like">
-                         <i class="fa-regular fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
                           <span>Awesome</span>
                           </div>
                           <div
                           class="d-flex justify-content-center align-items-center gap-1 pt-2 pb-2 px-3 hover-icon w-50 btn-show-comments">
-                          <i class="fa-regular fa-message"></i>
+                          <i class="fa-solid fa-message"></i>
                           <span>Comments</span>
                           </div>
                       </div>
@@ -153,23 +144,23 @@ export const suggest_people = (data) => {
     suggest_list.insertAdjacentHTML("afterend", html);
   }
 };
-export const sponsor = (data) => {
-  const sponsor_list = document.querySelector("#sponsors-list");
-  for (let index = 0; index < 5; index++) {
-    let html = `
-              <div class="d-flex gap-2 align-items-center">
-                  <div class="spn-img">
-                      <img src="./images/shopee.png" alt="" />
-                  </div>
-                  <div class="d-flex flex-column spn-link px-1">
-                      <span><b>
-                          <a href="https://shopee.vn" class="text-decoration-none">shopeeasdh asjdh nkja sdkjha skjdkjash dkajshdakjshd kajhsd</a>
-                      </b></span>
-                      <span class="fw-lighter" style="font-size: 15px">
-                          <i>20-10-2022</i>
-                      </span>
-                  </div>
-              </div>`;
-    sponsor_list.insertAdjacentHTML("afterend", html);
-  }
-};
+// export const sponsor = (data) => {
+//   const sponsor_list = document.querySelector("#sponsors-list");
+//   for (let index = 0; index < 5; index++) {
+//     let html = `
+//               <div class="d-flex gap-2 align-items-center">
+//                   <div class="spn-img">
+//                       <img src="./images/shopee.png" alt="" />
+//                   </div>
+//                   <div class="d-flex flex-column spn-link px-1">
+//                       <span><b>
+//                           <a href="https://shopee.vn" class="text-decoration-none">shopeeasdh asjdh nkja sdkjha skjdkjash dkajshdakjshd kajhsd</a>
+//                       </b></span>
+//                       <span class="fw-lighter" style="font-size: 15px">
+//                           <i>20-10-2022</i>
+//                       </span>
+//                   </div>
+//               </div>`;
+//     sponsor_list.insertAdjacentHTML("afterend", html);
+//   }
+// };
