@@ -7,13 +7,16 @@ module.exports.searchPeople = async (req, res, next) => {
     res.redirect("/");
   } else {
     const result = await searchS.searchUser(input);
-    // const following = await userS.getFollowingList(req.user.username)
+    const following = await userS.getFollowingList(req.user.username)
+    console.log(following)
     res.render("search", {
       result: result,
       query: input,
-      // following: following,
+      following: following,
       helpers: hbsHelpers,
       user: {
+        username: req.user.username,
+        permission: req.user.permission,
         avatar: req.user.profile.avatar,
       },
     });

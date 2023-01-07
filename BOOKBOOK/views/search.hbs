@@ -9,7 +9,7 @@
               style="margin: 0;">
         <div class="input-group rounded py-3 d-flex justify-content-center">
           <input
-          class="input-search"
+          class="input-search px-2 py-2"
             type="text"
             class="form-control rounded"
             placeholder="Search..."
@@ -65,12 +65,26 @@
                 <p class="m-0">{{this.location}}</p>
               </div>
               <div class="col-3">
-                {{!-- {{#if (isFollowedByUser this.username ../following)}}
-                {{else}} --}}
-                <button
-                  class="btn btn-success"
-                >Follow</button>
-                {{!-- {{/if}} --}}
+                {{#if (notEq this.username ../user.username)}}
+                  {{#if (isFollowedByUser this.username ../following)}}
+                  <div class="box-follow" user="{{ this.username }}">
+                      <button type="button" class="btn btn-success" data-bs-toggle="dropdown" aria-expanded="false">
+                        Following <i class="fa fa-check"></i>
+                      </button>
+                      <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <button type="button" class="btn dropdown-item" name="unfollow">
+                              Unfollow
+                            </button>
+                        </li>
+                      </ul>
+                  </div>
+                  {{else}}
+                  <div class="box-follow" user="{{ this.username }}">
+                      <button type="button" class="btn btn-outline-success" name="follow">Follow</button>
+                  </div>
+                  {{/if}}
+                {{/if}}
               </div>
             </div>
           </div>
