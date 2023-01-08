@@ -4,7 +4,7 @@ import {
   data_user_other,
   data_sponsor,
 } from "../data.js"; // data fake
-import { comment, post, suggest_people, sponsor } from "./view.js";
+// import { comment, post, suggest_people, sponsor } from "./view.js";
 
 // load view
 // post(data_images);
@@ -68,6 +68,25 @@ btn_show_comments.forEach((item, index) => {
   };
 });
 // comment
+const comment = (location, data, user) => {
+  const html = `
+      <div class="comment">
+          <div class="user-other d-flex flex-row gap-2">
+              <div class="img-user">
+                  <img src="avatar/${user.avatar}" alt="" />
+              </div>
+              <div
+              class="user-comment d-flex flex-column justify-content-between w-75">
+                  <div class="p-2">
+                      <span><b>${user.name}</b></span>
+                      <p class="m-0">${data}</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+      `;
+  location.insertAdjacentHTML("afterbegin", html);
+};
 async function sendCommentRequest(url = "/comment", id, text) {
   const data = {
     post: id,

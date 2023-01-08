@@ -1,3 +1,7 @@
+updat 8/1/2023 by Thư
+- Sửa cmt, like ở feed bị lỗi
+- Lỗi follow có vẻ đã sửa được khi lỗi trên được sửa ??? (test ở máy bình thường)
+
 update 08/01/2023 by Thùy
 - sửa front-end admin
 - thêm check admin khi thêm vào suggested (gợi ý follow) trong hàm getFeed ở userAction controller
