@@ -1,4 +1,4 @@
-<div id="user" style="display: none;">{{ user.username }}</div>
+<div id="user" style="display: none;">{{user.username}}</div>
 
 <div class="header position-fixed top-0 w-100">
   <div class="header-container d-flex justify-content-between">
@@ -10,17 +10,19 @@
         </span>
       </div>
     </div>
-    
+
     <div
       class="header-right d-flex justify-content-center align-items-center gap-2"
     >
-        <div class="right-user" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="avatar/{{ user.avatar }}" alt="" />
-        </div>
+      <div class="right-user" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="avatar/{{user.avatar}}" alt="" />
+      </div>
 
       <ul class="dropdown-menu">
         <li>
-          <a class="dropdown-item" href="#"><i class="fa-solid fa-wrench fa-fw"></i>
+          <a class="dropdown-item" href="#"><i
+              class="fa-solid fa-wrench fa-fw"
+            ></i>
             Change password</a>
         </li>
         <li>
@@ -29,7 +31,6 @@
         <li>
           <a class="dropdown-item" href="#" onclick="logOut()"><i
               class="fa-solid fa-arrow-right-from-bracket fa-fw"
-
             ></i>
             Log out</a>
         </li>
