@@ -52,7 +52,7 @@ exports.postLogIn = async (req, res, next) => {
         return next(err);
       }
     });
-    res.redirect("/block");
+    res.redirect("/banned");
   }
 };
 

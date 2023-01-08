@@ -1,3 +1,10 @@
+update 08/01/2023 by Nguyên
+- Thêm router 404,block.
+- Follow/unfollow ở feed bị lag/lỗi???
+- Các modal ở profile,adminpost bị lỗi.
+- Admin bị lỗi UI-> nav bar.
+-Admin chưa xóa post được vì service chưa xử lý foreignkey eg: 'Key (post_id)=(3) is still referenced from table "reaction".',
+
 update 07/01/2023 by Thùy
 - follow/unfollow ở search
 - phát hiện lỗi khi render feed dính user bị admin block -> không render được, báo username null
