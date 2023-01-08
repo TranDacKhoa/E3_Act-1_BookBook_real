@@ -4,7 +4,11 @@ update 08/01/2023 by Nguyên
     + admin bấm skip user333 -> cả user333 và user3333 bị skip ???
     + f5 trang admin -> hiển thị lại user3333 ???
 - Giờ đây nếu vào link profile 1 user banned -> dẫn đến 404 (trước đây dẫn đến /banned dù mình không phải người bị ban)
-- code phần feed không tốt : mỗi lần load feed phải vào db rất nhiều lần để check + for quá nhiều -> load cực chậm khi bậc db trên host. ( get all use nên chỉ lấy những user permission =0, tương tự cho getfollow... )
+- (góp ý, chưa cần fix chổ này) code phần feed không tốt : mỗi lần load feed phải vào db rất nhiều lần để check + for quá nhiều -> load cực chậm khi bậc db trên host. (sau này rảnh thì tối ưu sau vd: get all use nên chỉ lấy những user permission =0, tương tự cho getfollow... )
+
+update 8/1/2023 by Thư
+- Sửa cmt, like ở feed bị lỗi
+- Lỗi follow có vẻ đã sửa được khi lỗi trên được sửa ??? (test ở máy bình thường)
 
 update 08/01/2023 by Thùy
 - sửa front-end admin
