@@ -336,6 +336,7 @@
   border: 3px var(--dark-orange) dashed;
   border-radius: 7px;
   cursor: pointer;
+  max-width: 382px;
 }
 #modalNewPost .modal-body form .input-wrap > div {
   width: 382px;
