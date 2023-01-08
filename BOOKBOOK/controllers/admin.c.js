@@ -34,7 +34,7 @@ exports.renderReportPost = async (req, res, next) => {
     const rp_posts = await adminS.getAllReportPosts();
 
     res.render("report_post", {
-      title: "Admin | BookBook",
+      title: adminProf.fullname + " | BookBook",
       user: adminProf,
       layout: "admin",
       rp_posts: rp_posts,

@@ -135,4 +135,6 @@ async function _delete(event) {
 }
 
 document.querySelector('.header-setting').disabled = true
-document.getElementById("inputComment").disabled = true
+document.querySelector(".input-comments").disabled = true
+document.querySelector(".btn-comment").disabled = true
+// document.querySelector(".btn-like").disabled = true

@@ -1,19 +1,19 @@
 const username = document.getElementById("user").innerText;
 const uViewed_username = document.getElementById("userViewed").innerText;
 
-async function sendViewRequest(url = "/view", index, to_report = 0) {
+async function sendViewRequest(url = "/view", index) {
   let data = "";
-  if (to_report) {
-    data = {
-      view: index,
-      reason: document.getElementById("reason").value,
-    };
-  } else {
+  // if (to_report) {
+  //   data = {
+  //     view: index,
+  //     reason: document.getElementById("reason").value,
+  //   };
+  // } else {
     data = {
       view: index,
       user: document.querySelector(".images").getAttribute("username"),
     };
-  }
+  // }
 
   const response = await fetch(url, {
     method: "POST",
@@ -28,11 +28,13 @@ async function sendViewRequest(url = "/view", index, to_report = 0) {
 let current_post = -1;
 
 // add event click image
+let viewing_postid = ''
 const event_click_image = () => {
   const images = document.querySelectorAll(".images");
   images.forEach((item, index) => {
     item.onclick = (e) => {
       current_post = index;
+      viewing_postid = item.children[0].id
       sendViewRequest("http://localhost:3000/profile/view", index).then(
         (data) => {
           // view picture and status
@@ -114,7 +116,7 @@ const event_report_user = () => {
 
 document.getElementById("report-btn").addEventListener("click", async () => {
   let reason = document.getElementById("reason").value;
-
+  console.log(reportType)
   if (reportType == "user") {
     let data = {
       username: uViewed_username,
@@ -130,7 +132,7 @@ document.getElementById("report-btn").addEventListener("click", async () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.result == 1) {
-          console.log(`report ${uViewed_username} successfully`);
+          console.log(`Report ${uViewed_username} successfully`);
           document.getElementById("reason").value = "";
           $("#modalReason").modal("hide");
         } else {
@@ -141,16 +143,42 @@ document.getElementById("report-btn").addEventListener("click", async () => {
   }
 
   if (reportType == "post") {
-    await sendViewRequest(
-      "http://localhost:3000/profile/reportPost",
-      current_post,
-      1
-    ).then((data) => {
-      document.getElementById("reason").value = "";
-      $("#modalReason").modal("hide");
+    let data = {
+      postid: viewing_postid,
+      reason: reason,
+    }
+    await fetch("/profile/reportPost", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.result == 1) {
+        console.log(`Report post with postID ${viewing_postid} successfully`);
+        document.getElementById("reason").value = "";
+        $("#modalReason").modal("hide");
+      } else {
+        alert(`Error occurs while reporting post with postID ${viewing_postid}`);
+        console.log(`Fail to report post with postID ${viewing_postid}`);
+      }
     });
+    // .then((data) => {
+    //   document.getElementById("reason").value = "";
+    //   $("#modalReason").modal("hide");
+    // });
   }
 });
+
+let permission = document.getElementById("permission").innerText
+
+if (permission == 1) {
+  document.querySelector('.header-setting').disabled = true
+  document.querySelector(".input-comments").disabled = true
+  document.querySelector(".btn-comment").disabled = true
+}
 
 // like post
 async function sendLikeRequest(url = "/like", id) {
@@ -168,15 +196,17 @@ async function sendLikeRequest(url = "/like", id) {
   return response.json();
 }
 const btn_like = document.querySelectorAll(".btn-like");
-btn_like.forEach((item) => {
-  item.onclick = (e) => {
-    item.classList.toggle("active-like");
-    sendLikeRequest("http://localhost:3000/like", current_post).then((data) => {
-      console.log(data);
-    });
-    e.preventDefault();
-  };
-});
+if (permission == 0) {
+  btn_like.forEach((item) => {
+    item.onclick = (e) => {
+      item.classList.toggle("active-like");
+      sendLikeRequest("http://localhost:3000/like", current_post).then((data) => {
+        console.log(data);
+      });
+      e.preventDefault();
+    };
+  });
+} 
 
 // comment post
 async function sendCommentRequest(url = "/comment", id, text) {
@@ -225,16 +255,19 @@ const handleComment = (id) => {
 };
 const input_comments = document.querySelector(".input-comments");
 const btn_comments = document.querySelectorAll(".btn-comment");
-btn_comments.forEach((item) => {
-  item.onclick = () => {
-    handleComment(current_post);
-  };
-  input_comments.addEventListener("keydown", (e) => {
-    if (e.keyCode == 13) {
+if (permission == 0) {
+  btn_comments.forEach((item) => {
+    item.onclick = () => {
       handleComment(current_post);
-    }
+    };
+    input_comments.addEventListener("keydown", (e) => {
+      if (e.keyCode == 13) {
+        handleComment(current_post);
+      }
+    });
   });
-});
+}
+
 // handle modal new post
 const input_wrap = document.querySelector(".input-wrap");
 const input_file = document.querySelector(".input-file");

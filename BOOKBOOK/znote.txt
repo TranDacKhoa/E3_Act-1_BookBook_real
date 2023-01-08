@@ -1,3 +1,10 @@
+update 08/01/2023 by Thùy
+- sửa front-end admin
+- thêm check admin khi thêm vào suggested (gợi ý follow) trong hàm getFeed ở userAction controller
+- sửa report post ở profile (report không đúng post)
+- sửa service admin
+- feed vẫn còn lỗi, còn dính render user bị banned "Cannot read properties of null (reading 'username')"
+
 update 08/01/2023 by Nguyên
 - cách SWITCH DATABASE ghi trong config.js
 - Thêm router 404,block.

@@ -260,6 +260,17 @@ function initModels(sequelize) {
     foreignKey: "group_id",
   });
 
+  general_post.hasMany(reported_post, {
+    as: "reported_general_post",
+    sourceKey: "post_id",
+    foreignKey: "post_id",
+  })
+  reported_post.belongsTo(general_post, {
+    as: "reported_post_reported_general_post",
+    sourceKey: "post_id",
+    foreignKey: "post_id",
+  })
+
   return {
     user_info,
     user_profile,

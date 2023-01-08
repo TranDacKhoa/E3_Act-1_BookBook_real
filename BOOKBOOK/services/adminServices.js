@@ -76,22 +76,45 @@ const adminServices = {
                     post_by: username,
                 },
             });
-            const delGroupMember = await models.group_member.destroy({
-                where: {
-                    username: username,
-                },
+            const reportedPost = await models.reported_post.findAll({
+                include: [
+                    {
+                      model: models.general_post,
+                      required: true,
+                      as: "reported_post_reported_general_post",
+                      where: {
+                        author_username: username,
+                      },
+                      attributes: ['post_id'],
+                    },
+                ],
             });
+
+            for (let i = 0; i < reportedPost.length; i++) {
+                let delReportedPost = await models.reported_post.destroy({
+                    where: {
+                        post_id: reportedPost[i].dataValues.reported_post_reported_general_post.dataValues.post_id
+                    }
+                })
+            }
+            
             const delGeneralPost = await models.general_post.destroy({
                 where: {
                     author_username: username,
                 },
             });
-            // const delProfile = await models.user_profile.destroy({
-            //     where: {
-            //         username: username,
-            //     },
-            // });
-            const delUser = await models.user_info.update(
+            const delGroupMember = await models.group_member.destroy({
+                where: {
+                    username: username,
+                },
+            });
+            
+            const delProfile = await models.user_profile.destroy({
+                where: {
+                    username: username,
+                },
+            });
+            const changeUser = await models.user_info.update(
                 {
                     permission: -1,
                 },

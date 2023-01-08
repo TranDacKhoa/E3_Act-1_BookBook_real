@@ -9,6 +9,9 @@ dayjs.extend(relativeTime);
 
 exports.getFeed = async (req, res, next) => {
   try {
+    if (req.user.permission == 1) {
+      return res.redirect("/admin")
+    }
     const uProfile = await userS.getUserProfile(req.user.username);
     const following = await userS.getFollowingList(req.user.username);
     const liked = await userS.getLikedList(req.user.username);
@@ -19,6 +22,11 @@ exports.getFeed = async (req, res, next) => {
 
     for (let i = 0; i < allUser.length; i++) {
       console.log("1");
+      // check if this user is admin
+      const a_user_info = await userS.getUserInfo(allUser[i].username);
+      if (a_user_info.permission == 1) {
+        continue;
+      }
       const a_user = await userS.getUserProfile(allUser[i].username);
       console.log(a_user);
       if (suggested.length > 4) break;
@@ -365,13 +373,18 @@ exports.deletePost = async (req, res, next) => {
 
 exports.reportPost = async (req, res, next) => {
   try {
-    const index = req.body.view;
-    const posts = await userS.getAllPosts(req.user.username);
-    const post_reported = posts[index];
-    const post_reported_id = post_reported.post_id;
+    // const index = req.body.view;
+    // const posts = await userS.getAllPosts(req.user.username);
+    // const post_reported = posts[index];
+    const postid = req.body.postid;
     const reason = req.body.reason;
-    await userS.reportPost(post_reported_id, reason);
-    res.json({ status: "success" });
+    let result = 0;
+    if (await userS.reportPost(postid, reason)) {
+      result = 1;
+    }
+    res.send(JSON.stringify({ result: result }));
+    // await userS.reportPost(postid, reason);
+    // res.json({ status: "success" });
   } catch (error) {
     next(error);
   }

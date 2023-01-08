@@ -69,3 +69,7 @@
 tr:hover {
     background-color: blanchedalmond;
 }
+
+.modal-body {
+    height: fit-content !important; 
+}
