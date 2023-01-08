@@ -221,7 +221,7 @@ exports.checkOtherPermission = async (req, res, next) => {
     }
     // if going to profile page of a blocked user
     if (otherInfo.permission == -1) {
-      res.redirect("/banned");
+      res.redirect("/404");
     }
   } catch (error) {
     next(error);

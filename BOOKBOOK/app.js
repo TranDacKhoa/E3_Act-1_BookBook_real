@@ -79,6 +79,11 @@ app.use((err, req, res, next) => {
 });
 
 //404 router
+app.use("/404", (req, res) => {
+  res.status(404).render("404", {
+    layout: "base.hbs",
+  });
+});
 app.use((req, res) => {
   res.status(404).render("404", {
     layout: "base.hbs",
