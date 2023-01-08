@@ -200,7 +200,7 @@
 
 .modal-body {
   padding: 15px 5px;
-  width: 500px;
+  /* width: 500px; */
   height: 522px !important;
 }
 .modal-body img {

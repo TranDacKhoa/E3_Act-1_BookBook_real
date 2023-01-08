@@ -1,3 +1,7 @@
+updat 8/1/2023 by Thư
+- Sửa cmt, like ở feed bị lỗi
+- Lỗi follow có vẻ đã sửa được khi lỗi trên được sửa ???
+
 update 08/01/2023 by Nguyên
 - Thêm router 404,block.
 - Follow/unfollow ở feed bị lag/lỗi???

@@ -284,6 +284,7 @@ exports.followUser = async (req, res, next) => {
     const user_to_follow_info = await userS.getUserInfo(
       req.body.user_to_follow
     );
+    console.log(req.body);
     if (user_to_follow_info.permission == 0) {
       const result = await userS.startFollow(
         req.user.username,
