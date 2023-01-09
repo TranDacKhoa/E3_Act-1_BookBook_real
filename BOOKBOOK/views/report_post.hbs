@@ -42,7 +42,7 @@
                         <td>{{dataValues.post_id}}</td>
                         <td>{{dataValues.reason}}</td>
                         <td>
-                            <button class="btn btn-info me-3" name="view-post">View</button>
+                            <button class="btn btn-info me-3" name="view-post" postid="{{dataValues.post_id}}">View</button>
                             <button class="btn btn-success me-3" name="skip" onclick="confirmSkip(this, 'post')">Skip</button>
                             <button class="btn btn-danger me-3" name="delete" onclick="confirmDelete(this, 'post')">Delete</button>
                         </td>

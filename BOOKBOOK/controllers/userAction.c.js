@@ -77,6 +77,7 @@ exports.getFeed = async (req, res, next) => {
       }
 
       item.push({
+        username: uProfile.username,
         name: uProfile.fullname,
         avatar: uProfile.avatar,
         id: my_post[j].dataValues.post_id,
@@ -125,6 +126,7 @@ exports.getFeed = async (req, res, next) => {
         }
 
         item.push({
+          username: username_of_following,
           name: following[i].dataValues.usr_followed_user_profile.dataValues
             .fullname,
           avatar:

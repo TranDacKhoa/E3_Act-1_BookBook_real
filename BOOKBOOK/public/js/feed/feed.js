@@ -203,3 +203,87 @@ state_btns.forEach((item) => {
 //     window.location.href = `/user?user=${usr}`;
 //   };
 // });
+
+let report_type = ''
+let reported_user = ''
+let reported_post = ''
+
+const rp_user = document.getElementsByName('rp-user-btn')
+const rp_post = document.getElementsByName('rp-post-btn')
+
+for (let i = 0; i < rp_user.length; i++) {
+  rp_user[i].addEventListener('click', async function() {
+    report_type = 'user'
+    reported_user = rp_user[i].getAttribute('username')
+  })
+}
+
+for (let i = 0; i < rp_post.length; i++) {
+  rp_post[i].addEventListener('click', async function() {
+    report_type = 'post'
+    reported_post = rp_post[i].getAttribute('postid')
+  })
+}
+
+document.getElementById("report-btn").addEventListener("click", async () => {
+  let reason = document.getElementById("reason").value;
+
+  if (report_type == "user") {
+    let data = {
+      username: reported_user,
+      reason: reason,
+    };
+    await fetch("/report_user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.result == 1) {
+          console.log(`Report ${reported_user} successfully`);
+          document.getElementById("reason").value = "";
+          $("#modalReason").modal("hide");
+        } else {
+          alert(`Error occurs while reporting ${reported_user}`);
+          console.log(`Fail to report ${reported_user}`);
+        }
+      });
+  }
+
+  if (report_type == "post") {
+    let data = {
+      postid: reported_post,
+      reason: reason,
+    }
+    await fetch("/report_post", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.result == 1) {
+        console.log(`Report post with postID ${reported_post} successfully`);
+        document.getElementById("reason").value = "";
+        $("#modalReason").modal("hide");
+      } else {
+        alert(`Error occurs while reporting post with postID ${reported_post}`);
+        console.log(`Fail to report post with postID ${reported_post}`);
+      }
+    });
+  }
+});
+
+document.getElementById("reason").addEventListener('input', function () {
+  if (this.value != "") {
+    document.getElementById("report-btn").disabled = false
+  }
+  else {
+    document.getElementById("report-btn").disabled = true
+  }
+})

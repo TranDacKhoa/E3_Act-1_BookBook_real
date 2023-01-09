@@ -19,7 +19,7 @@ for (let i = 0; i < view_user.length; i++) {
 let view_post = document.getElementsByName("view-post")
 for (let i = 0; i < view_post.length; i++) {
     view_post[i].addEventListener('click', async function() {
-        let post_id = view_post[i].parentElement.parentElement.children[1].innerText
+        let post_id = this.getAttribute('postid')
         await fetch(`/admin/post/view?post_id=${post_id}`)
         .then(res => res.json())
         .then(data => {
@@ -74,7 +74,7 @@ async function skip(event) {
     })
 
     if (result) {
-        console.log(`Report ${_location} ${report_id} successfully`)
+        console.log(`Skip ${_location} ${report_id} successfully`)
         document.getElementById("rp-table").deleteRow(row_index)
         confirm_skip.removeEventListener('click', skip, false)
         $("#skipModal").modal('hide')

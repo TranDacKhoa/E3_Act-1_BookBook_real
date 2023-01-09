@@ -67,13 +67,25 @@
                   >
                     <i class="fa-solid fa-ellipsis"></i>
                   </div>
+                  {{#if (eq username ../user.username)}}
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Report user</a></li>
                     <li>
-                      <a class="dropdown-item" href="#">Report post</a>
+                      <button type="button" class="dropdown-item" data-bs-toggle="modal" 
+                      data-bs-target="#deleteModal" name="del-post-btn" postid="{{id}}">Delete</button>
                     </li>
-                  
                   </ul>
+                  {{else}}
+                  <ul class="dropdown-menu">
+                    <li>
+                      <button type="button" class="dropdown-item" data-bs-toggle="modal" 
+                      data-bs-target="#modalReason" name="rp-user-btn" username="{{username}}">Report user</button>
+                    </li>
+                    <li>
+                      <button type="button" class="dropdown-item" data-bs-toggle="modal" 
+                      data-bs-target="#modalReason" name="rp-post-btn" postid="{{id}}">Report post</button>
+                    </li>
+                  </ul>
+                  {{/if}}
 
                 </div>
 
@@ -269,5 +281,7 @@
     </div>
   </div>
 </div>
+{{> report}}
+{{> delete_post}}
 
 <script type="module" src="./js/feed/feed.js"></script>

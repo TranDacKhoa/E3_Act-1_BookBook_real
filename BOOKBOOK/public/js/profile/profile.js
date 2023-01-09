@@ -116,13 +116,13 @@ const event_report_user = () => {
 
 document.getElementById("report-btn").addEventListener("click", async () => {
   let reason = document.getElementById("reason").value;
-  console.log(reportType)
+
   if (reportType == "user") {
     let data = {
       username: uViewed_username,
       reason: reason,
     };
-    await fetch("/profile/reportUser", {
+    await fetch("/report_user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -147,7 +147,7 @@ document.getElementById("report-btn").addEventListener("click", async () => {
       postid: viewing_postid,
       reason: reason,
     }
-    await fetch("/profile/reportPost", {
+    await fetch("/report_post", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -165,10 +165,6 @@ document.getElementById("report-btn").addEventListener("click", async () => {
         console.log(`Fail to report post with postID ${viewing_postid}`);
       }
     });
-    // .then((data) => {
-    //   document.getElementById("reason").value = "";
-    //   $("#modalReason").modal("hide");
-    // });
   }
 });
 
@@ -564,17 +560,16 @@ user_boxs.forEach((user_box) => {
   });
 });
 
-// function toggle_report_button() {
-
-//   document.getElementById("reason").addEventListener('input', function () {
-//     if (this.value != "") {
-//       document.getElementById("report-btn").disabled = false
-//     }
-//     else {
-//       document.getElementById("report-btn").disabled = true
-//     }
-//   })
-// }
+function toggle_report_button() {
+  document.getElementById("reason").addEventListener('input', function () {
+    if (this.value != "") {
+      document.getElementById("report-btn").disabled = false
+    }
+    else {
+      document.getElementById("report-btn").disabled = true
+    }
+  })
+}
 
 // *************************************************************
 // main

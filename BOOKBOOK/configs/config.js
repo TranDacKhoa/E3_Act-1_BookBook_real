@@ -3,7 +3,7 @@ const dotenv = require("dotenv").config({ path: __dirname + "/.env" });
 module.exports = {
   //muốn chạy db local để code thì chọn NODE_ENV
   //muốn chạy db on host để test thì chọn NODE_ENV1
-  // NODE_ENV: process.env.NODE_ENV,
+  //NODE_ENV: process.env.NODE_ENV,
   NODE_ENV: process.env.NODE_ENV1,
   PORT: process.env.PORT,
   HOST: process.env.HOST,
