@@ -459,3 +459,16 @@ exports.commentPost = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.deletePostAtFeed = async (req, res, next) => {
+  try {
+    if (await userS.deleteOnWall(req.body.postid)) {
+      res.send(JSON.stringify({result: 1}))
+    } 
+    else {
+      res.send(JSON.stringify({result: 0}))
+    }
+  } catch (error) {
+    next(error);
+  }
+}

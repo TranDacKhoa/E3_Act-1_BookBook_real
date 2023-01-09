@@ -8,8 +8,10 @@ router.post("/like", userActionC.likePost);
 
 router.post("/comment", userActionC.commentPost);
 
-router.route("/report_post").post(userActionC.reportPost);
+router.post("/report_post", userActionC.reportPost);
 
-router.route("/report_user").post(userActionC.reportUser);
+router.post("/report_user", userActionC.reportUser);
+
+router.post("/delete_post", userActionC.deletePostAtFeed);
 
 module.exports = router;

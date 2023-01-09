@@ -204,6 +204,8 @@ state_btns.forEach((item) => {
 //   };
 // });
 
+
+// handle report user + post
 let report_type = ''
 let reported_user = ''
 let reported_post = ''
@@ -286,4 +288,35 @@ document.getElementById("reason").addEventListener('input', function () {
   else {
     document.getElementById("report-btn").disabled = true
   }
+})
+
+// handle delete post
+const del_post = document.getElementsByName('del-post-btn')
+let deleted_post = ''
+
+for (let i = 0; i < del_post.length; i++) {
+  del_post[i].addEventListener('click', function() {
+    deleted_post = this.getAttribute('postid')
+  })
+}
+
+document.getElementById('confirm-delete').addEventListener('click', async function () {
+  await fetch("/delete_post", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({postid: deleted_post}),
+  })
+  .then((res) => res.json())
+  .then((data) => {
+    if (data.result == 1) {
+      console.log(`Delete post with postID ${deleted_post} successfully`);
+      document.getElementById(deleted_post).remove();
+      $('#deleteModal').modal('hide')
+    } else {
+      alert(`Error occurs while deleting post with postID ${deleted_post}`);
+      console.log(`Fail to delete post with postID ${deleted_post}`);
+    }
+  });
 })

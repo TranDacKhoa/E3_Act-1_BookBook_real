@@ -45,16 +45,20 @@
       <div class="content-wrap overflow-hidden h-100 px-3 align-items-center">
         <div class="feed-posts d-flex flex-column gap-3 pb-3">
           {{#each item}}
-            <div class="post bg-light">
+            <div class="post bg-light" id="{{id}}">
               <div class="d-flex flex-column gap-1">
                 <div
                   class="post-header d-flex justify-content-between gap-2 px-3 pt-3 pb-2"
                 >
                   <div class="post-avatar img-user">
-                    <img src="avatar/{{avatar}}" alt="" />
+                    <a style="text-decoration: none !important; color: inherit !important;" href="/profile/?username={{username}}">
+                      <img src="avatar/{{avatar}}" alt="" />
+                    </a>
                   </div>
                   <div class="post-name d-flex flex-column">
-                    <span><b>{{name}}</b></span>
+                    <span>
+                      <b><a style="text-decoration: none !important; color: inherit !important;" href="/profile/?username={{username}}">{{name}}</a></b>
+                    </span>
                     <span
                       class="fw-lighter"
                       style="font-size: 13px"
@@ -282,6 +286,6 @@
   </div>
 </div>
 {{> report}}
-{{> delete_post}}
+{{> confirm_delete}}
 
 <script type="module" src="./js/feed/feed.js"></script>

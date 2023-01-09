@@ -262,6 +262,11 @@ const userServices = {
   },
   deleteOnWall: async (postID) => {
     try {
+      const delReaction = await models.reaction.destroy({
+        where: {
+          react_on: postID,
+        },
+      });
       const delCmt = await models.general_comment.destroy({
         where: {
           cmt_on: postID,
