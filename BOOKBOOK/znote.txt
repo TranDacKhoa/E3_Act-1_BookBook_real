@@ -1,3 +1,6 @@
+update 11/01/2023 by Thùy
+- Chuyển thành 5 following/followers ở profile
+
 update 09/01/2023 by Thùy
 - Chưa tìm thấy lỗi admin skip user
 - Thêm report user + post với post của người khác ở feed
