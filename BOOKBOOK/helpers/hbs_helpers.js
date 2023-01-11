@@ -57,7 +57,7 @@ module.exports = {
     let arr = [];
     if (followers) {
       for (let i = followers.length - 1; i >= 0; i--) {
-        if (i == followers.length - 1 - 3) {
+        if (i == followers.length - 1 - 5) {
           break;
         }
         arr.push(followers[i].dataValues.usr_follow_user_profile.dataValues);
@@ -69,7 +69,7 @@ module.exports = {
     let arr = [];
     if (following) {
       for (let i = following.length - 1; i >= 0; i--) {
-        if (i == following.length - 1 - 3) {
+        if (i == following.length - 1 - 5) {
           break;
         }
         arr.push(following[i].dataValues.usr_followed_user_profile.dataValues);
