@@ -1,5 +1,9 @@
 update 11/01/2023 by Nguyên
 - feed: fix lỗi hiểu thị cột lộn xộn "maybe you know"
+- feed giờ đây hiển thị 3 post của user và 12 post của ng user following order by lastest time.(giớ hạn 15 post cho đỡ lag)
+- suggest chỉ suggest max 5 người user chưa follow
+- profile giờ đây các post order by lastest time
+- sửa file profile.js để các thao tác xem xóa hiển thị đúng post ( chưa test lại chức năng report)
 
 update 11/01/2023 by Thùy
 - Chuyển thành 5 following/followers ở profile

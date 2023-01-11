@@ -10,44 +10,53 @@ dayjs.extend(relativeTime);
 exports.getFeed = async (req, res, next) => {
   try {
     if (req.user.permission == 1) {
-      return res.redirect("/admin")
+      return res.redirect("/admin");
     }
     const uProfile = await userS.getUserProfile(req.user.username);
     const following = await userS.getFollowingList(req.user.username);
-    const liked = await userS.getLikedList(req.user.username);
     const allUser = await userS.getList();
+    const liked = await userS.getLikedList(req.user.username);
+    const suggestList = await userS.getSuggestList(req.user.username);
     var adsData = await marketS.getAds();
     adsData = adsData.slice(0, 4);
     let suggested = [];
+    suggestList.forEach((a_user) => {
+      suggested.push({
+        avatar: a_user.avatar,
+        name: a_user.fullname,
+        username: a_user.username,
+        state: "Follow",
+      });
+    });
 
-    for (let i = 0; i < allUser.length; i++) {
-      console.log("1");
-      // check if this user is admin
-      const a_user_info = await userS.getUserInfo(allUser[i].username);
-      if (a_user_info.permission == 1) {
-        continue;
-      }
-      const a_user = await userS.getUserProfile(allUser[i].username);
-      console.log(a_user);
-      if (suggested.length > 4) break;
-      const is_following = await userS.isFollowing(
-        req.user.username,
-        a_user.username
-      );
-      let state = "Follow";
-      if (is_following) state = "Unfollow";
-      if (uProfile.username != a_user.username)
-        suggested.push({
-          avatar: a_user.avatar,
-          name: a_user.fullname,
-          username: a_user.username,
-          state: state,
-        });
-    }
+    // for (let i = 0; i < allUser.length; i++) {
+    //   // check if this user is admin
+    //   const a_user_info = await userS.getUserInfo(allUser[i].username);
+    //   if (a_user_info.permission == 1) {
+    //     continue;
+    //   }
+    //   const a_user = await userS.getUserProfile(allUser[i].username);
+
+    //   if (suggested.length > 4) break;
+    //   const is_following = await userS.isFollowing(
+    //     req.user.username,
+    //     a_user.username
+    //   );
+    //   let state = "Follow";
+    //   if (is_following) state = "Unfollow";
+    //   if (uProfile.username != a_user.username)
+    //     suggested.push({
+    //       avatar: a_user.avatar,
+    //       name: a_user.fullname,
+    //       username: a_user.username,
+    //       state: state,
+    //     });
+    // }
 
     let item = [];
-    const my_post = await userS.getAllPosts(req.user.username);
+    const my_post = await userS.getAllMyNewestPosts(req.user.username);
     for (let j = 0; j < my_post.length; j++) {
+      if (j == 3) break;
       let time = "";
       if (
         dayjs().get("date") !=
@@ -88,11 +97,12 @@ exports.getFeed = async (req, res, next) => {
         comment: cmts,
       });
     }
-
+    // console.log(following[0]);
     for (let i = 0; i < following.length; i++) {
+      if (i == 12) break;
       const username_of_following =
         following[i].dataValues.usr_followed_user_profile.dataValues.username;
-      const posts_info = await userS.getAllPosts(username_of_following);
+      const posts_info = await userS.getAllMyNewestPosts(username_of_following);
 
       for (let j = 0; j < posts_info.length; j++) {
         let time = "";
@@ -140,7 +150,12 @@ exports.getFeed = async (req, res, next) => {
         });
       }
     }
-
+    item.sort(function (a, b) {
+      // Turn your strings into dates, and then subtract them
+      // to get a value that is either negative, positive, or zero.
+      return new Date(b.date) - new Date(a.date);
+    });
+    // console.log(item);
     res.render("feed", {
       title: "BookBook",
       user: uProfile,
@@ -179,9 +194,9 @@ exports.handleMyProfile = async (req, res, next) => {
         return res.redirect("/admin");
       }
       const myProfile = await userS.getUserProfile(req.user.username);
-      const followers = await userS.getFollowersList(req.user.username);
-      const following = await userS.getFollowingList(req.user.username);
-      const posts = await userS.getAllPosts(req.user.username);
+      const followers = await userS.getFollowersList(req.user.username, 5);
+      const following = await userS.getFollowingList(req.user.username, 5);
+      const posts = await userS.getAllMyNewestPosts(req.user.username);
       const liked = await userS.getLikedList(req.user.username);
 
       for (let j = 0; j < posts.length; j++) {
@@ -294,7 +309,7 @@ exports.followUser = async (req, res, next) => {
     const user_to_follow_info = await userS.getUserInfo(
       req.body.user_to_follow
     );
-    console.log(req.body);
+    // console.log(req.body);
     if (user_to_follow_info.permission == 0) {
       const result = await userS.startFollow(
         req.user.username,
@@ -312,8 +327,8 @@ exports.followUser = async (req, res, next) => {
 
 exports.unfollowUser = async (req, res, next) => {
   try {
-    console.log(req.user.username);
-    console.log(req.body.user_to_unfollow);
+    // console.log(req.user.username);
+    // console.log(req.body.user_to_unfollow);
     const user_to_unfollow_info = await userS.getUserInfo(
       req.body.user_to_unfollow
     );
@@ -335,9 +350,9 @@ exports.unfollowUser = async (req, res, next) => {
 exports.getPostView = async (req, res, next) => {
   try {
     const index = req.body.view;
-    const user = req.body.user;
-    const posts = await userS.getAllPosts(user);
-    const post_view = posts[index];
+    // const user = req.body.user;
+    const post_view = await userS.getPostByID(index);
+    // const post_view = posts[index];
 
     let current_post = post_view.dataValues.post_id;
     const cmt_list = await userS.getCommentedListOfPost(current_post);
@@ -364,10 +379,10 @@ exports.getPostView = async (req, res, next) => {
 exports.deletePost = async (req, res, next) => {
   try {
     const index = req.body.view;
-    const posts = await userS.getAllPosts(req.user.username);
-    const delete_post = posts[index];
-    const del_post_id = delete_post.post_id;
-    await userS.deleteOnWall(del_post_id);
+    // const posts = await userS.getAllPosts(req.user.username);
+    // const delete_post = posts[index];
+    // const del_post_id = delete_post.post_id;
+    await userS.deleteOnWall(index);
     res.json({ status: "success" });
   } catch (error) {
     next(error);
@@ -463,12 +478,11 @@ exports.commentPost = async (req, res, next) => {
 exports.deletePostAtFeed = async (req, res, next) => {
   try {
     if (await userS.deleteOnWall(req.body.postid)) {
-      res.send(JSON.stringify({result: 1}))
-    } 
-    else {
-      res.send(JSON.stringify({result: 0}))
+      res.send(JSON.stringify({ result: 1 }));
+    } else {
+      res.send(JSON.stringify({ result: 0 }));
     }
   } catch (error) {
     next(error);
   }
-}
+};

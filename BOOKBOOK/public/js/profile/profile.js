@@ -9,10 +9,10 @@ async function sendViewRequest(url = "/view", index) {
   //     reason: document.getElementById("reason").value,
   //   };
   // } else {
-    data = {
-      view: index,
-      user: document.querySelector(".images").getAttribute("username"),
-    };
+  data = {
+    view: index,
+    user: document.querySelector(".images").getAttribute("username"),
+  };
   // }
 
   const response = await fetch(url, {
@@ -28,34 +28,36 @@ async function sendViewRequest(url = "/view", index) {
 let current_post = -1;
 
 // add event click image
-let viewing_postid = ''
+let viewing_postid = "";
 const event_click_image = () => {
   const images = document.querySelectorAll(".images");
   images.forEach((item, index) => {
     item.onclick = (e) => {
-      current_post = index;
-      viewing_postid = item.children[0].id
-      sendViewRequest("http://localhost:3000/profile/view", index).then(
-        (data) => {
-          // view picture and status
-          const html_image = `<img class="img-post" src="post/${data.img}" alt="" />`;
-          const html_contents = `<p>${data.content}</p>`;
-          document.querySelector(".modal-body").innerHTML = html_image;
-          document.querySelector(".contents-body").innerHTML = html_contents;
-          // view like
-          const liked = item.getAttribute("liked");
-          if (liked != "") {
-            const awesome = document.querySelector(".btn-like");
-            awesome.classList.add("active-like");
-          } else {
-            const awesome = document.querySelector(".btn-like");
-            awesome.classList.remove("active-like");
-          }
-          // view comment
-          const contents_comments =
-            document.querySelector(".contents-comments");
-          const html_comments = data.cmt.map((cmt) => {
-            return `
+      viewing_postid = item.children[0].id;
+      current_post = viewing_postid;
+      console.log(viewing_postid);
+      sendViewRequest(
+        "http://localhost:3000/profile/view",
+        viewing_postid
+      ).then((data) => {
+        // view picture and status
+        const html_image = `<img class="img-post" src="post/${data.img}" alt="" />`;
+        const html_contents = `<p>${data.content}</p>`;
+        document.querySelector(".modal-body").innerHTML = html_image;
+        document.querySelector(".contents-body").innerHTML = html_contents;
+        // view like
+        const liked = item.getAttribute("liked");
+        if (liked != "") {
+          const awesome = document.querySelector(".btn-like");
+          awesome.classList.add("active-like");
+        } else {
+          const awesome = document.querySelector(".btn-like");
+          awesome.classList.remove("active-like");
+        }
+        // view comment
+        const contents_comments = document.querySelector(".contents-comments");
+        const html_comments = data.cmt.map((cmt) => {
+          return `
                 <div
                    class="user-other d-flex flex-row  gap-2 mb-3">
                    <div class="img-user">
@@ -69,10 +71,9 @@ const event_click_image = () => {
                       </div>
                    </div>
                 </div>`;
-          });
-          contents_comments.innerHTML = html_comments.join("");
-        }
-      );
+        });
+        contents_comments.innerHTML = html_comments.join("");
+      });
       e.preventDefault();
     };
   });
@@ -146,34 +147,36 @@ document.getElementById("report-btn").addEventListener("click", async () => {
     let data = {
       postid: viewing_postid,
       reason: reason,
-    }
+    };
     await fetch("/report_post", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
     })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.result == 1) {
-        console.log(`Report post with postID ${viewing_postid} successfully`);
-        document.getElementById("reason").value = "";
-        $("#modalReason").modal("hide");
-      } else {
-        alert(`Error occurs while reporting post with postID ${viewing_postid}`);
-        console.log(`Fail to report post with postID ${viewing_postid}`);
-      }
-    });
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.result == 1) {
+          console.log(`Report post with postID ${viewing_postid} successfully`);
+          document.getElementById("reason").value = "";
+          $("#modalReason").modal("hide");
+        } else {
+          alert(
+            `Error occurs while reporting post with postID ${viewing_postid}`
+          );
+          console.log(`Fail to report post with postID ${viewing_postid}`);
+        }
+      });
   }
 });
 
-let permission = document.getElementById("permission").innerText
+let permission = document.getElementById("permission").innerText;
 
 if (permission == 1) {
-  document.querySelector('.header-setting').disabled = true
-  document.querySelector(".input-comments").disabled = true
-  document.querySelector(".btn-comment").disabled = true
+  document.querySelector(".header-setting").disabled = true;
+  document.querySelector(".input-comments").disabled = true;
+  document.querySelector(".btn-comment").disabled = true;
 }
 
 // like post
@@ -196,13 +199,15 @@ if (permission == 0) {
   btn_like.forEach((item) => {
     item.onclick = (e) => {
       item.classList.toggle("active-like");
-      sendLikeRequest("http://localhost:3000/like", current_post).then((data) => {
-        console.log(data);
-      });
+      sendLikeRequest("http://localhost:3000/like", current_post).then(
+        (data) => {
+          console.log(data);
+        }
+      );
       e.preventDefault();
     };
   });
-} 
+}
 
 // comment post
 async function sendCommentRequest(url = "/comment", id, text) {
@@ -561,14 +566,13 @@ user_boxs.forEach((user_box) => {
 });
 
 function toggle_report_button() {
-  document.getElementById("reason").addEventListener('input', function () {
+  document.getElementById("reason").addEventListener("input", function () {
     if (this.value != "") {
-      document.getElementById("report-btn").disabled = false
+      document.getElementById("report-btn").disabled = false;
+    } else {
+      document.getElementById("report-btn").disabled = true;
     }
-    else {
-      document.getElementById("report-btn").disabled = true
-    }
-  })
+  });
 }
 
 // *************************************************************

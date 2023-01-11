@@ -2,7 +2,8 @@ const seq = require("../database/db");
 const models = seq.models;
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-
+const sequelize = seq.sequelize;
+const { QueryTypes } = require("sequelize");
 const userServices = {
   //get all user in database
   getList: async () => {
@@ -118,10 +119,11 @@ const userServices = {
   },
 
   //profile services
-  getFollowersList: async (username) => {
+  getFollowersList: async (username, limit = 50) => {
     const result = await models.follow.findAll({
       attributes: ["usr_follow"],
       distinct: false,
+      limit: limit,
       include: [
         {
           model: models.user_profile,
@@ -145,10 +147,11 @@ const userServices = {
     });
     return result;
   },
-  getFollowingList: async (username) => {
+  getFollowingList: async (username, limit = 50) => {
     const result = await models.follow.findAll({
       attributes: ["usr_followed"],
       distinct: false,
+      limit: limit,
       include: [
         {
           model: models.user_profile,
@@ -239,6 +242,34 @@ const userServices = {
         author_username: username,
       },
     });
+    return result;
+  },
+  getPostByID: async (id) => {
+    const result = await models.general_post.findByPk(id);
+    return result;
+  },
+  getAllMyNewestPosts: async (username) => {
+    const result = await models.general_post.findAll({
+      where: {
+        author_username: username,
+      },
+      order: [["date_post", "DESC"]],
+    });
+    return result;
+  },
+  //get all post of user and who user following order by latest time
+  getNewestFeed: async (username) => {
+    const result = await sequelize.query(
+      "select * from general_post,follow where author_username= $1 or (usr_follow= $1 and usr_followed=author_username) limit 20",
+      { bind: [username], raw: true, type: QueryTypes.SELECT }
+    );
+    return result;
+  },
+  getSuggestList: async (username) => {
+    const result = await sequelize.query(
+      "select * from user_profile as user2,user_profile as user1 where user2.username = $1 and not exists( select * from user_info where user_info.username=user1.username and user_info.permission=1 ) and not exists(select * from follow where follow.usr_followed=user1.username and follow.usr_follow=user2.username )and user1.username!=user2.username limit 5",
+      { bind: [username], raw: true, type: QueryTypes.SELECT }
+    );
     return result;
   },
   postOnWall: async (data) => {

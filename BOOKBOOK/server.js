@@ -1,6 +1,8 @@
 const app = require("./app");
 const config = require("./configs/config");
 const sequelize = require("./database/db").sequelize;
+const services = require("./services/userServices");
+const { QueryTypes } = require("sequelize");
 //for deploy purpose
 const port = config.PORT || 3000;
 
@@ -16,3 +18,8 @@ const port = config.PORT || 3000;
 app.listen(port, async () => {
   console.log(`Server is running on port ${port}\n`);
 });
+// app.listen(port, async () => {
+//   username = "user333";
+//   const result = await services.getNewestFeed();
+//   console.log(result);
+// });
