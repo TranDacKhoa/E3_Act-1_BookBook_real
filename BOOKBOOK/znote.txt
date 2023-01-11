@@ -1,4 +1,6 @@
-update 09/01/2023 by Thùy
+date 11/01/2023 by Nguyên
+- feed: fix lỗi hiểu thị cột lộn xộn "maybe you know"
+date 09/01/2023 by Thùy
 - Chưa tìm thấy lỗi admin skip user
 - Thêm report user + post với post của người khác ở feed
 - Thêm delete post với post của mình ở feed
