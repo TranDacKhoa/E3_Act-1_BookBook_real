@@ -16,15 +16,15 @@ const changeData = (res) => {
   item_price.innerHTML = res.price;
 };
 
-const event_click_image = () => {
-  const items = document.querySelectorAll(".list-item-group");
-  items.forEach((item, index) => {
-    item.onclick = () => {
-      console.log(item.getAttribute("post_id"));
-      //fetch here to take item data
-    };
-  });
-};
+// const event_click_image = () => {
+//   const items = document.querySelectorAll(".list-item-group");
+//   items.forEach((item, index) => {
+//     item.onclick = () => {
+//       console.log(item.getAttribute("post_id"));
+//       //fetch here to take item data
+//     };
+//   });
+// };
 const click_btn_del = () => {
   const items = document.querySelectorAll(".btn-del-item");
   items.forEach((item, index) => {
@@ -41,7 +41,7 @@ const image = document.getElementById("img-preview");
 input.addEventListener("change", (e) => {
   if (e.target.files.length) {
     const src = URL.createObjectURL(e.target.files[0]);
-    image.src = src;
+    image.src = "";
     image.style.visibility = "visible";
   }
 });
